@@ -6,8 +6,15 @@ $font-family-sans-serif: Roboto;
 
 /*-- scss:rules --*/
 
-.sidebar-title  { /* sidebar title class */
-} 
+/*-- Classes for misc stuff --*/
+
+.red_text { /*-- <p class="red_text"> This text will be red. </p> --*/
+    color: red;
+}
+
+.code_text { /*-- <p class="code_text"> This text will be monospaced. </p> --*/
+    font-family: 'Courier New', Courier, monospace;
+}
 
 h1 .h1 {
     margin-top: 50px;

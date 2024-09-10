@@ -6,9 +6,9 @@ book:
   date: 10-09-2024
   chapters:
     - index.qmd
-    - chapters/intro.qmd
-    - chapters/summary.qmd
-    - chapters/references.qmd
+    - part: chapters/week_1.qmd
+      chapters:
+      - chapters/week_1_reading.qmd
 
 
 # Book layout options

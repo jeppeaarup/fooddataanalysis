@@ -1,0 +1,19 @@
+# Week 1
+
+This first week is going to introduce basic descriptive tools for getting a primary overview of data. These are divided into representative numerics, which we call descriptive statistics and various plots. Especially for the plotting part you will be needing a computer program. We strongly encourage you to get familiar with R, that, although not being as intuitive point-and-click as the widely used programs such as excel, is capable of conducting almost any type of sophisticated analysis you may wish, and further will strengthen you to become familiar with a scientific programming language - a generic competence useful whenever working with information.
+
+
+Included in the week 1 notes are material related to working in R; Installing packages, importing data, working in scripts and debugging your code. This material you should try to cover briefly and then use it when you get stuck on a problem throughout the course (and after). However, there is a huge amount of videos, tutorials, etc. on the web which you can also use, and we encourage you to get familiar with these resources as well. Simply type your problem in google and check if others have experienced something similar. 
+
+## Hand-in assignment
+
+The exercise EXERCISE 1.7 *Analysis of Coffee Serving Temperature - PCA* is to be handed in (through Absalon or as hard-copy Wednesday night). You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important. If you have problems with R, then try to write what you would have done if you did not experience problems with the machinery. 
+
+
+## Exercises
+
+For Monday work through EXERCISE 1.1, 1.2 and 1.4 and for Wednesday work through 1.5 and 1.8. You will most likely not be able to complete all exercises within the hours in the classroom, so we recommend that you use some time in advance to initiate the task.
+
+## Case I
+
+The first, of a total of four cases, are described in the document "Case1.pdf". You should work on the case in groups of four, and hand in a slide-show with voice no later than Thursday evening next week. Be aware, that a lot of the technical stuff can be zacked from the exercises, so you might want to finalize those in advance of the case.  
