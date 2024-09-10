@@ -4,39 +4,72 @@
     "href": "index.html",
     "title": "Data Analysis for Food Science",
     "section": "",
-    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.\n\n\nCode\n1 + 1\n\n\n[1] 2",
+    "text": "Preface\nDuring the past decades the production of data in relation to research, production, consumer behavior, social network etc. has increased dramatically. Today we are faced with data structures which were unimaginable just 50 years ago. Traditionally, a system under investigation were characterized by a few samples associated with say one to five descriptors and, carefully selected, responses. Today all aspects of the classical system interrogation has blown up, such that we have many more samples (e.g. production monitoring every minute), more descriptors (e.g. consumer characteristics), and by far more response variables (e.g. high throughput omics technologies). Tools developed for handling traditional scenarios still pertain the corner of how to approach today’s data analytical challenges, however, by the development of computers, it is possible to carry out challenging mathematical procedures in no time and further produce visual graphics as resources for translating information into knowledge. Due to this fact, the traditional tools has gotten a makeover and new tools has been developed.\nFood is, as such, an extremely inherent part of the human life, although one could argue that so is e.g. cardiovascular biology and governmental policy making, these subjects either work autonomously or does not demand everyday mental capacity. Everyday all humans need to eat- and drink in some social context, pay attention to the perception of the meal, and further deal with the possible health- and emotional implications of this process. When studying food science all these aspects are relevant.\nFood science constitute a broad range of disciplines spanning controlled artificial model systems, over functional modification of real food matrices, production technology, to the relation between food- and meal composition, taste, perception and health. All by means of data.\nThese notes are thought to cover data analysis within food science. That is to; provide a general understanding of the purpose of data analysis, found a theoretical- and practical basis for understanding various numerical and graphical tools and couple generic tools to concrete issues within related disciplines. To this end by theory, examples and exercises.\nThe Book material used in these notes are mostly from the notes for the course; Introduction to Statistics at DTU by P.B. Brockhoff and co workers. Additionally there are relevant chapters from other sources. All exercises are custom made and deal with real problems within food science.\nWelcome to the course in Fødevaredataanalyse for second year bachelor students in Food Science and Technology - Hope you will enjoy learning about how to use data for getting insight on food systems.\nMorten Arendt Vils Rasmussen\nAugust 2024",
     "crumbs": [
       "Preface"
     ]
   },
   {
-    "objectID": "chapters/intro.html",
-    "href": "chapters/intro.html",
-    "title": "1  Introduction",
+    "objectID": "chapters/week_1_reading.html",
+    "href": "chapters/week_1_reading.html",
+    "title": "1  Installing packages",
     "section": "",
-    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\nCode\n1 + 1\n\n\n[1] 2\n\n\n\n\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "text": "1.1 Loading a package\nWhen the packages are installed on the computer, you can load them onto your workspace/script at every occasion you initiate your analysis in R. To do this, you use the library() command. library() points at a package-library stored on your computer. Everytime you open a new session of R, you need to load the needed packages again.\nFor example, library(readxl) Loads the package readxl onto the workspace.\nWhen you load a package, you might get warning messages like the following:\n&gt; library(readxl)\nAdvarselsbesked:\npakke ‘readxl’ blev bygget under R version 3.1.3",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+      "Week 1",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installing packages</span>"
     ]
   },
   {
-    "objectID": "chapters/summary.html",
-    "href": "chapters/summary.html",
-    "title": "2  Summary",
-    "section": "",
-    "text": "In summary, this book has no content whatsoever.\n\n\nCode\n1 + 1\n\n\n[1] 2",
+    "objectID": "chapters/week_1_reading.html#working-directory",
+    "href": "chapters/week_1_reading.html#working-directory",
+    "title": "1  Installing packages",
+    "section": "1.2 Working directory",
+    "text": "1.2 Working directory\nIn R you are using something called a working directory or wd for short. This is the folder on your computer in which R saves and finds the projects that you are working on. This also makes it easier to load datasets. The working directory can be changed in R either manually or through code. getwd() and setwd() are the two important commands for changing the working directory.\nShow the current code directory\n&gt; getwd()\n[1] “/Users/madsbjorlie/Documents/Statistik/Exercises/Week 1”\nChange the working directory\n&gt; setwd(“~/Documents/R-træning”) &gt; getwd() [1] “/Users/madsbjorlie/Documents/R-træning”",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+      "Week 1",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installing packages</span>"
     ]
   },
   {
-    "objectID": "chapters/references.html",
-    "href": "chapters/references.html",
-    "title": "References",
-    "section": "",
-    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "objectID": "chapters/week_1_reading.html#importing-a-dataset",
+    "href": "chapters/week_1_reading.html#importing-a-dataset",
+    "title": "1  Installing packages",
+    "section": "1.3 Importing a dataset",
+    "text": "1.3 Importing a dataset\nThroughout this course you will need to import a lot of data into R. Getting familiar with the following packages and commands will help minimize your R-related frustration. Datasets can be imported into R in numerous ways. Like changing the working directory, it can be done both manually and through coding. We recommend doing it through coding since this makes it easier to maintain an overview.\nAlmost all of the datasets that will be handed out in this course will be in both the excel file-type .xlsx, as well as the .RData format. R is also capable of importing text-files such as .txt or .csv.\n.xlsx-files are Microsoft Excel’s standard project file type, whereas .csv-files are short for comma separated values and is a term for text-files where the values are separated by a comma (or in the Danish Excel, a semicolon).\nYou can either load .RData files, import datasets through R’s inherent commands or use some data-import packages to import file-types such as .xlsx or .xls. Both methods works fine and which one you will use depends on your personal preference.\n\n1.3.1 Importing an .RData file\nIf someone imported and stored the data as an .RData file, you can simply import it using the load() function. For this you do not need any libraries.\n\nload(file.choose())\nload(“~/Documents/…./Beer GCMS.RData”)\n\nThe only difference in comparison with the import-methods below, is that you do not “pipe” (the &lt;- function) the object into something you name yourself. The data object will retain the name as it was saved with. However, if you like your objects to be named something special (like X), then simply just add a line below the load() where you define it: e.g., X &lt;- beer.\n\n\n1.3.2 Importing a dataset through R’s own commands\nAs a default, R can not import Excel-files such as .xls and .xlsx. To use R’s read.csv() function, you need to save the Excel dataset as a .csv file. This is done by choosing (in Excel) and then selecting the .csv file-type. This might seem a bit tedious, but it eliminates the demand for other packages.\nread.csv() imports the dataset specified in the parenthesis. This can be done in two ways: by typing the path to the file on your computer or by using the command file.choose() which corresponds to opening a new file. If the dataset is in the working directory, you do not have to type the full path, but just the file-name.\nFor example:\n\nBeer &lt;- read.csv(file.choose(), header=TRUE, sep=“;”, dec=“,”)\nBeer &lt;- read.csv(”Beerdata.csv”, header=TRUE, sep=“;”, dec=“,”)\nBeer &lt;- read.csv(“~/Documents/R-traening/Øldata.csv”, header=TRUE, sep=“;”, dec=“,”)\n\nThe different arguments: header =, sep =, and dec = tells R how to import the data. header=TRUE tells R that the first row in the dataset is not a part of the data itself but carries the variable names. sep=”;” defines which separator the document uses. By using Danish Excel, this will always be semicolon. This can be checked by opening the dataset in NotePad on windows or TextEditor on Mac. dec=”,” defines which symbol is used for decimals. It is necessary to make sure that the dataset in R is separated by a full stop rather than a comma. This can be checked by using summary commands after the data has been imported.",
     "crumbs": [
-      "References"
+      "Week 1",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installing packages</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/week_1.html",
+    "href": "chapters/week_1.html",
+    "title": "Week 1",
+    "section": "",
+    "text": "Hand-in assignment\nThe exercise EXERCISE 1.7 Analysis of Coffee Serving Temperature - PCA is to be handed in (through Absalon or as hard-copy Wednesday night). You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important. If you have problems with R, then try to write what you would have done if you did not experience problems with the machinery.",
+    "crumbs": [
+      "Week 1"
+    ]
+  },
+  {
+    "objectID": "chapters/week_1.html#exercises",
+    "href": "chapters/week_1.html#exercises",
+    "title": "Week 1",
+    "section": "Exercises",
+    "text": "Exercises\nFor Monday work through EXERCISE 1.1, 1.2 and 1.4 and for Wednesday work through 1.5 and 1.8. You will most likely not be able to complete all exercises within the hours in the classroom, so we recommend that you use some time in advance to initiate the task.",
+    "crumbs": [
+      "Week 1"
+    ]
+  },
+  {
+    "objectID": "chapters/week_1.html#case-i",
+    "href": "chapters/week_1.html#case-i",
+    "title": "Week 1",
+    "section": "Case I",
+    "text": "Case I\nThe first, of a total of four cases, are described in the document “Case1.pdf”. You should work on the case in groups of four, and hand in a slide-show with voice no later than Thursday evening next week. Be aware, that a lot of the technical stuff can be zacked from the exercises, so you might want to finalize those in advance of the case.",
+    "crumbs": [
+      "Week 1"
     ]
   }
 ]
