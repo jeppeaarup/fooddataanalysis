@@ -1,0 +1,47 @@
+project:
+  type: book
+
+book:
+  title: "Data Analysis for Food Science"
+  date: 10-09-2024
+  chapters:
+    - index.qmd
+    - chapters/intro.qmd
+    - chapters/summary.qmd
+    - chapters/references.qmd
+
+
+# Book layout options
+  sidebar:
+    style: docked
+
+
+
+bibliography: references.bib
+
+
+# Global format options
+format:
+  html:
+    theme:
+      - default
+      - style.scss
+  
+  # Code options
+    code-fold: show # show code, but be able to fold it
+    code-line-numbers: true # show code line numbers
+    code-tools: true # add code tools like "copy" and "source"
+
+  # Cross ref options
+    crossref: 
+      fig-prefix: figure # (default is "Figure")
+
+  # Grid options
+    grid:
+      sidebar-width: 350px # Max width of left sidebar (standard is 250px)
+      body-width: 1000px # Max width of body (standard is 800px)
+      margin-width: 350px # Max width of right sidebar (standard is 250px)
+      gutter-width: 3em #Max width of space between grid components (standard is 1.5em)
+
+
+
