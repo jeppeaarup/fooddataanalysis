@@ -5,7 +5,7 @@
 
 * Be able to install and load packages in R.
 * Be able to set the working directory in R.
-* Be able to import `.Rdata`, `.csv` and `.xlsx`-files.
+* Be able to import `.RData`, `.csv` and `.xlsx`-files.
 * Understand why scripts are the main way of working with code in R.
 
 :::

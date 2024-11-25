@@ -57,7 +57,7 @@ The power of PCA is when the mathematical decomposition into scores and loadings
 #| message: false
 #| warning: false
 
-load(here("data", "meat_data.rdata"))
+load(here("data", "meat_data.RData"))
 
 ```
 
@@ -84,7 +84,7 @@ Remember to set your [working directory](#sec-r-basics-working-directory).
 ```{r}
 #| eval: false
 #| code-line-numbers: false
-load("meat_data.rdata")
+load("meat_data.RData")
 ```
 
 **Step 3 - Calculate the PCA model**  
@@ -126,7 +126,7 @@ There are not registered any greater difference between the two green tea and ro
 #| message: false
 #| warning: false
 
-load(here("data", "Marzipan.rdata"))
+load(here("data", "Marzipan.RData"))
 
 ```
 
@@ -138,7 +138,7 @@ We start by loading the relevant libraries and importing the data.
 ```{r}
 #| eval: false
 library(ggplot2)
-load("Marzipan.rdata")
+load("Marzipan.RData")
 ```
 
 **Step 2 - Inspect raw spectra**  

@@ -98,7 +98,7 @@ data.frame(
 #| message: false
 #| warning: false
 
-load(here("data", "meat_data.rdata"))
+load(here("data", "meat_data.RData"))
 
 ```
 
@@ -114,7 +114,7 @@ Remember to set your [working directory](#sec-r-basics-working-directory).
 
 library(ggplot2)
 library(gridExtra) # For showing multiple plots in a grid
-load("meat_data.rdata")
+load("meat_data.RData")
 ```
 
 ```{r}
