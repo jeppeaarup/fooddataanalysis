@@ -1,0 +1,213 @@
+# Descriptive statistics
+
+```{r}
+#| label: w1_descriptive_statistics setup
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+
+options(knitr.kable.NA = '')
+
+```
+
+::: {.callout-tip}
+## Learning objectives
+
+* Understand what univariate, bi-variate and multivariate data is.
+* Comprehend the concepts of centrality and dispersion.
+* Be able to compute a range of metrics (numbers), that are informative with respect to centrality and dispersion.
+* Know what correlated variables are, and be able to calculate a correlation coefficient.
+* Know how to use the functions `aggregate()` and `summary()` to create overview tables.
+* Know what the the very useful functions `str()`, `head()`, `tail()` and `view()` does.
+
+:::
+
+## Reading material
+
+* Chapter 1 of [Introduction to Statistics](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff 
+    * Especially section 1.1 to 1.4.
+* [Video lecture](https://www.youtube.com/watch?v=kn83BA7cRNM) on central metrics (mean and median).
+* [Video lecture](https://www.youtube.com/watch?v=R4yfNi_8Kqw) on dispersion (variance, standard deviation etc.)
+* [Video lecture](https://www.youtube.com/watch?v=SzZ6GpcfoQY) on both central metrics and dispersion.
+
+## Exercises
+
+:::{.callout-exercise id=ex-descriptive-stats-by-hand}
+
+### Descriptive statistics by hand
+
+Below (@tbl-desc-stats-by-hand) is listed a vector of ranking (*Liking*) of coffee served at 56°C by 52 consumers. The data is sorted.
+
+```{r}
+#| label: tbl-desc-stats-by-hand
+#| tbl-cap: "Liking of coffee served at 56°C as ranked by 52 consumers."
+#| echo: false
+
+x <- DAinFoodScience::coffeetempconsumer |>
+  filter(Temperatur == 56) |>
+  select(Liking) |>
+  arrange(Liking) |>
+  deframe()
+
+df <- data.frame(matrix(c(x, rep(NA, length = 10 - 52%%10)), 
+                        ncol = 10, byrow = T), 
+                 row.names = 1:6)
+
+colnames(df) <- 1:10
+
+
+kable(df, "html",  align = "c") |>
+  kable_styling(bootstrap_options = c("hover", "bordered", "sm"))
+
+```
+
+Some useful numbers: 
+
+$$\sum{X} = 301$$ 
+
+$$\sum{(X_i - \bar{X})^2} = 122.7$$
+
+:::{.callout-task}
+
+1. Calculate mean, variance, standard deviation, median and inner quartile range for this distribution of data.
+
+:::
+
+:::
+
+:::{.callout-exercise id=ex-descriptive-stats}
+
+### Descriptive statistics
+
+Serving temperature of coffee seems of importance as to how this drink is perceived. However, it is not totally clear how this relation is. In order to understand this, studies on the same type of coffee served at different temperature is conducted. In this exercise we are going to use the data from a consumer panel of 52 consumers, evaluating coffee served at six different temperatures on a set of sensorical descriptors leading to a total of $52 \times 6 = 312$ samples. 
+
+In the dataset \textit{Results Consumer Test.xlsx} the results are listed. Taking these data from A to Z involves descriptive analysis for understanding variation within judge, between judge and between different temperatures, further outlier detection, and finally determination of structure between sensorical descriptors. In this exercise we are only going through some of the initial descriptive steps. 
+
+In the table below (@tbl-desc-stats) a subset of the data is shown. 
+
+```{r}
+#| label: tbl-desc-stats
+#| tbl-cap: "A subset of the *Results Consumer Test.xlsx* data"
+#| echo: false
+
+coffee <- DAinFoodScience::coffeetempconsumer
+df <- rbind(head(coffee), tail(coffee))
+
+kable(df, "html",  align = "c") |>
+  kable_styling(bootstrap_options = c("hover", "bordered"))
+
+```
+
+:::{.callout-task}
+
+1. Import the data 
+    * Be aware that the function `read.xls()` is not in the base library, so you need to add the specific library to your computer.
+2. Subsample on one temperature.
+    * Below (@lst-desc-stats-exercise) is listed two alternatives for doing this. 
+:::
+
+```{r}
+#| lst-cap: Importing and subsampling based on temperature.
+#| lst-label: lst-desc-stats-exercise
+#| eval: false
+
+Coffee <- read_excel( " Results Consumer Test . xlsx " )
+Coffee_t44_v1 <- Coffee[Coffee$Temperatur == 44,]
+Coffee_t44_v2 <- subset(Coffee, Temperatur == 44)
+
+mean(Coffee_t44_v1$Liking)
+```
+
+
+::: {.callout-task}
+3. Calculate the descriptive statistics for centrality (mean and median), dispersion (IQR, standard deviation and range) and extremes (min and max) for this distribution of datapoints for a single descriptor (e.g. \textit{Liking})
+
+4. Now do it for all temperatures.
+    * You should get something like the table below (@tbl-desc-stats-summary).
+
+:::
+
+```{r}
+#| label: tbl-desc-stats-summary  
+#| tbl-cap: "Summary table computed in R."
+#| echo: false
+Coffee <- DAinFoodScience::coffeetempconsumer
+CoffeeDT <- Coffee[,2:10]
+
+# Run aggregate for each type of summary
+tmpN <-aggregate(CoffeeDT,by=list(CoffeeDT$Temperatur),FUN = 'length')
+tmpM<-aggregate(CoffeeDT,by=list(CoffeeDT$Temperatur),FUN = 'mean')
+tmpM2<-aggregate(CoffeeDT,by=list(CoffeeDT$Temperatur),FUN = 'median')
+tmpS<-aggregate(CoffeeDT,by=list(CoffeeDT$Temperatur),FUN = 'sd')
+tmpMi<-aggregate(CoffeeDT,by=list(CoffeeDT$Temperatur),FUN = 'min')
+tmpMx<-aggregate(CoffeeDT,by=list(CoffeeDT$Temperatur),FUN = 'max')
+
+# Merge these into a dataset
+tmp <- cbind(tmpM$Temperatur,tmpN$Liking,tmpM$Liking,tmpM2$Liking,
+             tmpS$Liking,tmpMi$Liking,tmpMx$Liking)
+
+# Add a meaningfull label for each coloumn
+colnames(tmp) <- c('Temp','N','Mean','Median','Std','Min','Max') 
+
+kable(tmp, "html",  align = "c") |>
+  kable_styling(bootstrap_options = c("hover", "bordered"))
+
+```
+
+
+This can be quite tedious, and result in a lot of coding. However, the function `summary()` and `aggreggate()` are very efficient in producing such results. Try to check out these functions and see if you can use those to generate summary statistics. Below are shown some code which does exactly what you want without too many lines of code.
+
+
+```{r}
+#| lst-cap: Generating a summary table with `aggregate()`.
+#| lst-label: lst-desc-stats-exercise-summary
+#| eval: false
+
+# Include only responses
+CoffeeDT <- Coffee[,2:10]
+
+# Run aggregate for each type of summary
+tmpN <-aggregate(CoffeeDT,by=list(CoffeeDT$Temperatur),FUN = 'length')
+tmpM<-aggregate(CoffeeDT,by=list(CoffeeDT$Temperatur),FUN = 'mean')
+tmpM2<-aggregate(CoffeeDT,by=list(CoffeeDT$Temperatur),FUN = 'median')
+tmpS<-aggregate(CoffeeDT,by=list(CoffeeDT$Temperatur),FUN = 'sd')
+tmpMi<-aggregate(CoffeeDT,by=list(CoffeeDT$Temperatur),FUN = 'min')
+tmpMx<-aggregate(CoffeeDT,by=list(CoffeeDT$Temperatur),FUN = 'max')
+
+# Merge these into a dataset
+tmp <- cbind(tmpM$Temperatur,tmpN$Liking,tmpM$Liking,tmpM2$Liking,
+             tmpS$Liking,tmpMi$Liking,tmpMx$Liking)
+
+# Add a meaningfull label for each coloumn
+colnames(tmp) <- c('Temp','N','Mean','Median','Std','Min','Max') 
+print(tmp)
+
+```
+
+::: {.callout-task}
+
+5. The above is done for \textit{Liking}, try to do it for some of the other responses. 
+    * HINT: This can be done by repeating the code and exchange `$Liking` with e.g. `$Bitter`. However, putting this in a for loop is another option.
+
+6. What have you learned from analysing these data in terms of importance of serving temperature on the sensorical properties as percieved by consumers? 
+    * HINT: You can run the code below to get a comprehensive overview. This is based on the mean aggreggate, but you might just as well check some of the other descriptive metrics. For instance, what does the standard deviation tells you about consumers in general, and does the type of sensorical attribute and serving temperature make a difference on the spread in scoring? 
+
+:::
+
+```{r}
+#| lst-cap: Code for plotting the results of @lst-desc-stats-exercise-summary.
+#| lst-label: lst-desc-stats-exercise-summary-plot
+#| eval: false
+
+matplot(tmpM[,2],tmpM[,6:10],type='l',lwd=3)
+text(cbind(60,t(tmpM[6,6:10])),colnames(tmpM[,6:10]))
+
+```
+
+You might want to fix some of the labels in these figures. Check the documentation by typing `?matplot` and see how to add meaning full stuff to the plot.
+
+:::

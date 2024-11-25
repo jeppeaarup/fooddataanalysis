@@ -4,44 +4,76 @@ project:
 book:
   title: "Data Analysis for Food Science"
   date: 10-09-2024
+  favicon: fda_favicon.png
+  
+  # Chapters
   chapters:
     - index.qmd
-    - part: chapters/week_1.qmd
-      chapters:
-      - chapters/week_1_reading.qmd
+
+    # Week 1
+    - part: chapters/week1/week_1.qmd
+      chapters: 
+        - chapters/week1/r_basics.qmd
+        - chapters/week1/descriptive_statistics.qmd
+        - chapters/week1/debugging.qmd
+        - chapters/week1/plotting.qmd
+        - chapters/week1/pca.qmd
+
+    - part: chapters/week2/week_2.qmd
+      chapters: 
+        - chapters/week2/correlation.qmd
+        - chapters/week2/normal_distribution.qmd
+ 
+  # Appendices
+  appendices:
+  - chapters/appendix/data_wrangling.qmd
+  - chapters/appendix/ggplot2.qmd
 
 
-# Book layout options
+# Book layout options ----
   sidebar:
     style: docked
-
 
 
 bibliography: references.bib
 
 
-# Global format options
+# Global format options ----
 format:
   html:
     theme:
       - default
       - style.scss
   
-  # Code options
-    code-fold: show # show code, but be able to fold it
-    code-line-numbers: true # show code line numbers
+  ## Code options ----
+    code-fold: false # show code, but be able to fold it
+    code-line-numbers: false # show code line numbers
     code-tools: true # add code tools like "copy" and "source"
+    c
 
-  # Cross ref options
+  ## External links ----
+    link-external-icon: true # show external link icon
+    link-external-newwindow: true # open external links in new window
+
+  ## Cross ref options ----
     crossref: 
-      fig-prefix: figure # (default is "Figure")
+      fig-prefix: figure      # (default is "Figure")
+      sec-prefix: section     # (default is "Section")
+      tbl-prefix: table       # (default is "Table")
+      lst-prefix: listing     # (default is "Listing")
 
-  # Grid options
+  ## Grid options ----
     grid:
       sidebar-width: 350px # Max width of left sidebar (standard is 250px)
       body-width: 1000px # Max width of body (standard is 800px)
       margin-width: 350px # Max width of right sidebar (standard is 250px)
       gutter-width: 3em #Max width of space between grid components (standard is 1.5em)
+  
+  ## Other format options ----
+    number-depth: 3 # Numbering depth for sections
+    lightbox: true # Use lightbox for figs
 
-
-
+exercises:
+  number: true
+filters:
+  - _extensions/callout-exercise.lua

@@ -1,0 +1,12 @@
+# The Normal Distribution
+
+## Section 1
+
+### Section 2
+
+## Exercises 
+
+::: exercise
+### Test
+
+:::

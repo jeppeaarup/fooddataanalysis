@@ -1,0 +1,256 @@
+# Wrangling data in R
+
+```{r}
+#| label: programming appendix setup
+#| echo: false
+#| message: false
+#| warning: false
+
+
+library(tidyverse)
+library(palmerpenguins)
+
+```
+
+## The pipe operator {#sec-pipe-operator}
+
+In R you have the opportunity to use a special syntax called the *pipe operator* `|>`. It can be thought of as a pipe that "sends data downstream" to the next call in your script. 
+
+If we for example want to take the square root of some data `df` and afterwards show the first 6 values of that data with `head()` we can write
+
+```{r}
+#| eval: false
+df |>
+  sqrt() |>
+  head()
+```
+
+which is equivalent to
+
+```{r}
+#| eval: false
+head(sqrt(df))
+```
+
+This might not make much sense for this example, but when things get a bit more complex the pipe operator can really help by making code easier to read.
+
+If we for example want to format some data `df` and then plot it in ggplot2 we can write the following script
+
+```{r}
+#| eval: false
+
+df |>
+  pivot_longer(
+    cols = everything(),
+    names_to = "group",
+    names_prefix = "X",
+    values_to = "response"
+    ) |>
+  mutate(group = str_c("Group ", group)) |>
+  ggplot(aes(group, response)) +
+  geom_boxplot()
+```
+
+Without the pipe we would need to create several intermediate variables cluttering up our script and environment in the process. 
+
+## Tidy data
+
+### What is tidy data?
+
+### How to convert to tidy data
+
+## Summarise by group {#sec-summarise-by-group}
+
+Sometimes we want to calculate a statistic per group. There are many different ways of doing this, and in these examples we are going to present a way possible ways.
+
+For these examples we use the *Palmer Penguins* dataset. It consists of some data regarding the bill size, flipper length and body mass of three penguin species across three islands.
+
+Let us start by taking a look at our data. This can be done via the `head()` function or the `glimpse()` function from the Tidyverse.
+
+```{r}
+head(penguins) # Show the first 6 rows of dataframe
+```
+
+```{r}
+glimpse(penguins)
+```
+
+### One statistic per group
+
+If we want to summarise one statistic, that could be the mean or the standard deviation, grouped by *species* or *island* (or both), we can do it in the following ways.
+
+::: {.panel-tabset}
+
+#### Using Tidyverse
+
+::: {.callout-important}
+If the pipe operator `|>` is unkown to you see @sec-pipe-operator.
+:::
+
+To compute the mean of all numeric variables we can use the `summarise()` function from the dplyr package in Tidyverse. Remember to load the tidyverse package (`library(tidyverse)`) - this package includes dplyr as well as a whole lot of other nice packages.
+
+For this example we want the mean for all numeric variables grouped by *species*.
+
+```{r}
+penguins |>
+  drop_na() |> # Remove rows with missing values
+  summarise(
+    across(
+      .cols = where(is.numeric), # Chose columns that are numeric 
+      .fns = mean # Set the function we want to use
+           ),
+    .by = species # Group by species
+    )
+```
+
+Be aware that the function drops all non-numeric variables that are not part of the grouping. So the output of the above code is "missing" the *island* and *sex* variables. Also, the `drop_na()` function removes all rows with missing values - if this is not done all columns with missing values will return `NA`.
+
+If we want to group by multiple variables, for example *species* and *island*, we just need to pass a vector of the variables to the `.by = ` argument.
+
+```{r}
+penguins |>
+  drop_na() |> # Remove rows with missing values
+  summarise(
+    across(where(is.numeric), mean),
+    .by = c(island, species) # Group by island and species
+  )
+```
+
+#### Using base R
+
+To compute the mean of all variables grouped by *species* we can use the `aggregate()` function. This is included in base R, so there is no need to load any packages. 
+
+```{r}
+#| warning: false
+# Remove rows with missing values 
+penguins_clean <- na.omit(penguins)
+
+aggregate(penguins_clean, list(species = penguins_clean$species), mean)
+```
+
+Be aware that all non-numeric variables will return `NA` (and thus a lot of warnings). Also, the `na.omit()` function removes all rows with missing values - if this is not done all columns with missing values will return `NA`.
+
+If we want to group by multiple variables, for example *species* and *island*, we just need to pass another grouping variable to the list.
+
+```{r}
+#| warning: false
+aggregate(penguins_clean, 
+          list(species = penguins_clean$species,
+               island = penguins_clean$island), 
+          mean)
+```
+
+:::
+
+### Create a summary table 
+
+Sometimes we want to create a summary table grouped by some variable. This can be done in the following ways. 
+
+::: {.panel-tabset}
+
+#### Using Tidyverse
+
+::: {.callout-important}
+If the pipe operator `|>` is unkown to you see @sec-pipe-operator.
+:::
+
+To compute a summary table of a numeric variable we can use the `summarise()` function from the dplyr package in Tidyverse. Remember to load the tidyverse package (`library(tidyverse)`) - this package includes dplyr as well as a whole lot of other nice packages.
+
+For this example we want some summary statistics for the *body_mass_g* variable grouped by *species*.
+
+```{r}
+penguins |>
+  drop_na() |> # Remove rows with missing values
+  summarise(
+    N = length(body_mass_g),
+    Mean = mean(body_mass_g),
+    Median = median(body_mass_g),
+    Std = sd(body_mass_g),
+    IQR = IQR(body_mass_g),
+    .by = species # Group by species
+  )
+```
+
+Be aware that the `drop_na()` function removes all rows with missing values - if this is not done all columns with missing values will return `NA`.
+
+If we want to group by multiple variables, for example *species* and *island*, we just need to pass another grouping variable to the list.
+
+```{r}
+penguins |>
+  drop_na() |> # Remove rows with missing values
+  summarise(
+    N = length(body_mass_g),
+    Mean = mean(body_mass_g),
+    Median = median(body_mass_g),
+    Std = sd(body_mass_g),
+    IQR = IQR(body_mass_g),
+    .by = c(island, species) # Group by island and species
+  )
+```
+
+#### Using base R
+
+To compute a summary table of a numeric variable we can use the `aggregate()` function. This is included in base R, so there is no need to load any packages. 
+
+For this example we want some summary statistics for the *body_mass_g* variable grouped by *species*.
+
+```{r}
+#| warning: false
+
+# Remove rows with missing values 
+penguins_clean <- na.omit(penguins)
+
+# Define variables for grouping
+my_groups <- list(species = penguins_clean$species)
+
+# Compute summary stats
+penguins_n <- aggregate(penguins_clean, my_groups, length)
+penguins_mean <- aggregate(penguins_clean, my_groups, mean)
+penguins_median <- aggregate(penguins_clean, my_groups, mean)
+penguins_std <- aggregate(penguins_clean, my_groups, mean)
+penguins_iqr <- aggregate(penguins_clean, my_groups, mean)
+
+# Collect everything in a dataframe
+penguins_summary <- data.frame(
+  "Species" = penguins_n$species,
+  "N" = penguins_n$body_mass_g,
+  "Mean" = penguins_mean$body_mass_g,
+  "Median" = penguins_median$body_mass_g,
+  "Std" = penguins_std$body_mass_g,
+  "IQR" = penguins_iqr$body_mass_g
+  )
+
+print(penguins_summary)
+```
+
+If we want to group by multiple variables, for example *species* and *island*, we just need to pass another grouping variable to the `my_groups` list.
+
+```{r}
+#| warning: false
+
+# Define variables for grouping
+my_groups <- list(species = penguins_clean$species,
+                  island = penguins_clean$island)
+
+# Compute summary stats
+penguins_n <- aggregate(penguins_clean, my_groups, length)
+penguins_mean <- aggregate(penguins_clean, my_groups, mean)
+penguins_median <- aggregate(penguins_clean, my_groups, mean)
+penguins_std <- aggregate(penguins_clean, my_groups, mean)
+penguins_iqr <- aggregate(penguins_clean, my_groups, mean)
+
+# Collect everything in a dataframe
+penguins_summary <- data.frame(
+  "Species" = penguins_n$species,
+  "Island" = penguins_n$island,
+  "N" = penguins_n$body_mass_g,
+  "Mean" = penguins_mean$body_mass_g,
+  "Median" = penguins_median$body_mass_g,
+  "Std" = penguins_std$body_mass_g,
+  "IQR" = penguins_iqr$body_mass_g
+)
+
+print(penguins_summary)
+```
+
+:::

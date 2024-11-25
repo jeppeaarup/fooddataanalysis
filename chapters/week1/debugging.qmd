@@ -1,0 +1,67 @@
+# Debugging - Getting R to work
+When using any computer program you now and then encounter that it does not do as intended. However, it is so, that the program do exactly what it is told, which might not be in line with the task you anticipate conducted. R work by interpreting commands which are either written directly on the command line, or in the form of lines in a script which then is submitted to the R compiler. Sometimes instead of producing nice results and plots, R returns red stuff on the screen. Debugging is the process of figuring out why that is so, and change the code to do as anticipated.
+
+We will throughout the course get used to debug code, why the learning objectives for this set of skills stretches over several weeks. In detail you should:
+
+* Know that R distinguish small and capital letters.
+* Know that some R functions comes in libraries.
+* Know the top five most common, and trivial, reasons for R to produce errors.
+
+## Reading material
+
+The notes on debugging *Debugging in R.pdf* available through Absalon.
+
+
+## Exercises
+
+:::{.callout-exercise id=ex-debugging}
+For some of you, coding in Rstudio may seem simple. The aim with these debugging tasks is to train you to analyze the errors Rstudio gives you, and to give you some tools to use to avoid issues when coding in Rstudio. Many of the debugging exercises throughout the course will be related to the datasets used in other exercises given in the same week, so you might find it sensible to do the debugging-exercises first, to get to know the datasets and their potential issues, before the struggle starts.
+
+
+:::{.callout-task}
+1. Why won’t Rstudio read in the file in the following cases?
+:::
+
+```{r}
+#| eval: false
+#| code-fold: false
+coffee <- read_excel("Results Consumer Test.xlsx")
+```
+
+[Error: could not find function "read_excel"]{.code_text .red_text}
+
+```{r}
+#| eval: false
+#| code-fold: false
+coffee <- read_excel("Results Consumer Test")
+```
+
+[Error: "Results Consumer Test" does not exist in current working directory"]{.code_text .red_text}
+
+:::{.callout-task}
+2. Why isn’t the view-function working in the following case?
+:::
+
+```{r}
+#| eval: false
+#| code-fold: false
+coffee <- read_excel("Results Consumer Test.xlsx")
+view(coffee)
+```
+
+[Error: could not find function "view"]{.code_text .red_text}
+
+:::{.callout-task}
+3. What is missing when you call for `aggregate` to do its calculations?
+:::
+
+```{r}
+#| eval: false
+#| code-fold: false
+coffee <- read_excel("Results Consumer Test.xlsx")
+coffee_ag <- aggregate(by = list(coffee$Assessor, coffee$Sample), FUN = "sd")
+```
+
+[Error in is.ts(x) : argument "x" is missing, with no default]{.code_text .red_text}
+
+:::

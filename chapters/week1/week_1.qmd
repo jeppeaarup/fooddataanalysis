@@ -7,13 +7,26 @@ Included in the week 1 notes are material related to working in R; Installing pa
 
 ## Hand-in assignment
 
-The exercise EXERCISE 1.7 *Analysis of Coffee Serving Temperature - PCA* is to be handed in (through Absalon or as hard-copy Wednesday night). You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important. If you have problems with R, then try to write what you would have done if you did not experience problems with the machinery. 
-
+@ex-coffee-serving-temp *Analysis of coffee serving temperatura - PCA* is to be handed in (through Absalon or as hard-copy Wednesday night). You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important. If you have problems with R, then try to write what you would have done if you did not experience problems with the machinery. 
 
 ## Exercises
 
-For Monday work through EXERCISE 1.1, 1.2 and 1.4 and for Wednesday work through 1.5 and 1.8. You will most likely not be able to complete all exercises within the hours in the classroom, so we recommend that you use some time in advance to initiate the task.
+For Monday work through the following exercises:
+
+* @ex-descriptive-stats-by-hand
+* @ex-descriptive-stats
+* @ex-plotting-1
+* @ex-plotting-2
+* @ex-plotting-3
+
+For Wednesday work through the following exercise:
+
+* @ex-analysis-of-coffee-inspection
+* @ex-wine-aromas-pca
+
+You will most likely not be able to complete all exercises within the hours in the classroom, so we recommend that you use some time in advance to initiate the task.
 
 ## Case I
 
 The first, of a total of four cases, are described in the document "Case1.pdf". You should work on the case in groups of four, and hand in a slide-show with voice no later than Thursday evening next week. Be aware, that a lot of the technical stuff can be zacked from the exercises, so you might want to finalize those in advance of the case.  
+

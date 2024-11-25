@@ -1,0 +1,20 @@
+# Week 2
+
+This week is going to focus on three very central subjects, namely correlation, the normal distribution and in relation to this the Central Limit Theorem.
+
+## Hand-in assigment
+
+@ex-correlation-between-aroma-compounds *Correlation between aroma compounds* questions 1 – 6 (not the PCA part) is to be handed in (through Absalon or as hard-copy Wednesday night).
+
+## Exercises
+
+For Monday work through the following exercises:
+
+* @ex-covariance-and-correlation-by-hand
+* @ex-correlation-and-pca
+
+For Wednesday work through the following exercise:
+
+* @ex-olive-oil-adulteration
+* @ex-normal-distribution
+* @ex-who-height-and-weight-standard-normal-distribution
