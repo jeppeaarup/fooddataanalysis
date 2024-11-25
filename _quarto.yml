@@ -49,7 +49,6 @@ format:
     code-fold: false # show code, but be able to fold it
     code-line-numbers: false # show code line numbers
     code-tools: true # add code tools like "copy" and "source"
-    c
 
   ## External links ----
     link-external-icon: true # show external link icon
