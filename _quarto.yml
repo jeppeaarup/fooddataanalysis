@@ -19,11 +19,32 @@ book:
         - chapters/week1/plotting.qmd
         - chapters/week1/pca.qmd
 
+    # Week 2
     - part: chapters/week2/week_2.qmd
       chapters: 
         - chapters/week2/correlation.qmd
         - chapters/week2/normal_distribution.qmd
- 
+        - chapters/week2/central_limit_theorem.qmd
+    
+    # Week 3
+    - part: chapters/week3/week_3.qmd
+      chapters:
+        - chapters/week3/t_test.qmd
+        - chapters/week3/hypothesis_testing.qmd
+    
+    # Week 4
+    - part: chapters/week4/week_4.qmd
+      chapters:
+        - chapters/week4/binomial_data.qmd
+        - chapters/week4/poisson_data.qmd
+      
+    # Week 5
+    - part: chapters/week5/week_5.qmd
+      chapters:
+        - chapters/week5/mutinomial_data.qmd
+        - chapters/week5/power_calculation.qmd
+
+        
   # Appendices
   appendices:
   - chapters/appendix/data_wrangling.qmd
@@ -49,6 +70,7 @@ format:
     code-fold: false # show code, but be able to fold it
     code-line-numbers: false # show code line numbers
     code-tools: true # add code tools like "copy" and "source"
+    code-copy: true # add copy button to code blocks
 
   ## External links ----
     link-external-icon: true # show external link icon

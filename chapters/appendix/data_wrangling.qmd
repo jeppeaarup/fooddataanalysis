@@ -12,6 +12,111 @@ library(palmerpenguins)
 
 ```
 
+## Logical indexing
+
+Logical indexing is one of the most powerful data wrangling techniques. It uses logical operators like `==` (equal to) and `!=` (not equal to) to subset data based on multiply criteria. Below are some examples to explain [indexing](#sec-indexing), [logical operators](#sec-logical-operators), and finally [subsetting data with logical indexing](#sec-logical-indexing).
+
+### Indexing data {#sec-indexing}
+
+If `x` is a vector of the letters A through F in alphabetical order, then we can call the fourth letter (D) by the syntax `x[4]`:
+
+```{r}
+x <- c("A", "B", "C", "D", "E", "F")
+
+x[4]
+
+```
+
+If `x` is a matrix (or a dataframe) then we can index the data by the syntax `x[row, column]`. For example
+
+* `x[2, 3]` - Extract the data in row 2, column 3. 
+* `x[ , 3]` - Extract all rows in column 3.
+* `x[2, ]` - Extract all columns in row 2.
+
+```{r}
+# Create a matrix with 3 columns
+x <- matrix(c("A", "B", "C", "D", "E", "F"), ncol = 3)
+
+# Print full matrix
+x
+
+# Row 2, column 3
+x[2, 3]
+
+# All rows, column 3
+x[ , 3]
+
+# Row 2, all columns
+x[2, ]
+
+```
+
+
+### Logical operators in R {#sec-logical-operators}
+
+Logical operators are basic statements that return `TRUE` or `FALSE` (@tbl-logical-operators).
+
+
+| Name                     | Operator |Returns `TRUE`               | Returns `FALSE`            |
+|:-------------------------|:---------|:----------------------------|:---------------------------|
+| Equal to                 | `==`     | `"A" == "A"`                | `"A" == "B"`               |
+| Not equal to             | `!=`     | `"A" != "B"`                | `"A" != "A"`               |
+| Less than                | `<`      | `2 < 3"`                    | `3 < 2`                    |
+| Greater than             | `>`      | `15 > 10`                   | `10 > 15`                  |
+| Less than or equal to    | `<=`     | `10 <= 10` or `9 <= 10`     | `10 <= 9`                  |
+| Greater than or equal to | `>=`     | `22 >= 22` or `25 >= 22`    | `20 >= 15`                 |
+| In                       | `%in%`   | `"A" %in% c("A", "B" "C")`  | `"F" %in% c("A", "B" "C")` |
+
+: Some of the logical operators available in R {#tbl-logical-operators}
+
+If we have a vector `x` with multiple instances of `A`, `B` and `C` we can index it as:
+
+```{r}
+# Create the vector
+x <- rep(c("A", "B", "C"), each = 3)
+
+# Print the vector
+x
+
+# Check where the elements of x equals "B"
+x == "B"
+```
+
+If we want to check multiple statements at once we can use the AND `&` and the OR `|` operator. 
+
+```{r}
+
+# Check where the elements of x equals "B" OR "C"
+x == "A" | x == "C"
+
+# Check where the elements of x equals "B" AND "C"
+x == "A" & x == "C"
+```
+
+### Logical indexing of data {#sec-logical-indexing}
+
+It is possible to use a logical vector (i.e. a vector that only contains `TRUE` and `FALSE`) to index data. When passing a logical vector to a data object it returns the data in all the places where the vector equals `TRUE`. 
+
+As an example, we load the `palmerpenguins` dataset, inspect it and do some simple logical indexing.
+
+```{r}
+
+# Inspect the data
+head(penguins)
+
+# Extract all rows where species equals "Adelie"
+x <- penguins[penguins$species == "Adelie", ]
+
+head(x)
+
+# Extract all rows where species equals "Adelie"
+# AND body mass in greater than 4000
+x <- penguins[penguins$species == "Adelie" & penguins$body_mass_g > 4000, ]
+
+head(x)
+
+```
+
 ## The pipe operator {#sec-pipe-operator}
 
 In R you have the opportunity to use a special syntax called the *pipe operator* `|>`. It can be thought of as a pipe that "sends data downstream" to the next call in your script. 

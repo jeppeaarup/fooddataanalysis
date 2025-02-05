@@ -1,0 +1,24 @@
+# Week 4
+In this week we are going to discuss non-continuous data, and look at binary and count data. This task involves probability distributions such as binomial distribution and the Poisson distribution. 
+
+## Hand-in assignment
+@ex-fig-bars *Fig bars* is to be handed in (through absalon or as hard-copy Wednesday night). You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important. 
+
+## Exercises
+
+For Monday work through the following exercises:
+
+* @ex-chocolate-and-binomial-data
+* @ex-triangle-test
+* @ex-uncertainty-of-the-binomial-dist
+
+If you really think that this is easy stuff, then try to work through exercise @ex-dist-of-extreme-values
+
+For Wednesday work through the following exercises:
+
+* @ex-qa-poisson
+* @ex-qa-poisson-binomial
+* @ex-qa-chance-of-false-rejections
+
+## Case II
+The second case should be handed in as a slide-show with voice no later than Thursday evening.

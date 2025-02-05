@@ -1,0 +1,82 @@
+# Central limit theorem
+
+::: {.callout-tip}
+## Learning objectives
+
+* Understand what the central limit theorem is, and how this is a useful theorem when dealing with uncertain data. 
+* Know the difference between the distribution of a population and the distribution of the population parameters.
+
+:::
+
+In short, the central limit theorem (CLT) says, that the central parameter (e.g. the mean) obtained from a sample (stikprøve) from ANY distribution is normal distributed with variance equal to the sample variance divided by the sample size. That is:  
+
+$$
+\bar{X} \sim \mathcal{N}(\mu,\sigma^2/n) \quad for \: n \rightarrow \infty
+$$
+
+As we are dealing with samples of finite size, and further needs to estimate the parameters (mean and variance) based on this sample, the Normal distribution is exchanged by the T-distribution. The T-distribution take the uncertainty of having finite data into account. That is, if $X_1,X_2,..,X_n$ is randomly sampled from some distribution with mean $\mu$ and variance $\sigma^2$ (approximated by $s_X^2$), then: 
+
+$$
+\frac{\bar{X} - \mu}{s_X/\sqrt{n}} \sim \mathcal{T}(df) \quad for \: finite \: n
+$$
+
+Where $df$ (degrees of freedom) is equal to *how well* the variance is estimated (usually $df = n-1$).
+
+## Reading material
+
+* Videos on the central limit theorem:
+    * [The Central Limit Theorem, Clearly Explained](#sec-the-central-limit-theorem-clearly-explained)
+    * [What is the central limit theorem? And why is it so hard to understand?](#sec-what-is-the-clt)
+* Chapter 8.3 in *Introduction to Probability and Statistics Using R* by J.G. Kern
+    * Available on Absalon
+
+### The Central Limit Theorem, Clearly Explained - *StatQuest* {#sec-the-central-limit-theorem-clearly-explained}
+
+{{< video https://www.youtube.com/watch?v=YAlJCEDH2uY&t=66s >}}
+
+### What is the central limit theorem? And why is it so hard to understand? - *MrNystrom* {#sec-what-is-the-clt}
+
+{{< video https://www.youtube.com/watch?v=zr-97MVZYb0 >}}
+
+## Exercises
+
+::: {.callout-exercise id=ex-quality-control-and-clt}
+### Quality control and central limit theorem
+
+Ensuring the end product quality in food production is naturally of utmost interest. In doing so, the production is monitored at several critical points, in order to check that it is \textit{on track}. This is referred to as statistical process control (SPC) and is under the umbrella of process analytical technology (PAT). 
+
+In short, a critical point in a production is monitored by a so-called control card, that register a value, e.g. pH, temperature, or other essential product/production parameters. When a point is above or below certain limits, there is an alarm. However, due to natural variation, now and then such alarms occur without there being any systematic faults. These are called false positives. 
+
+A cheese production monitors the *24 hours pH* for every production batch within a day. Under normal conditions the false alarms follow a distribution with mean $\mu = 3$ and variance $\sigma^2 = 3$ (the distribution is a Poisson distribution, but that is actually not so important here). The production runs very well, so the monitoring of these alarms are only used for retrospective follow up. Suddenly there are reclamations based on the last years production, and the boss want you to check up on whether it is the *24 hours pH* causing the trouble. 
+
+::: {.callout-task}
+1. You check the control card and finds that during the last year there were on average $3.2$ alarms. Does this indicate problems with the *24 hours pH*? 
+2. Use the `rpois()` to generate data from $1000$ years, and check whether your results match. 
+3. Imagine that the aggregated measure were over a month (30 days) or over a week (7 days) or as low as average over 2 days. How does this affect the agreement between the analytical probability (via central limit theorem) and the simulated probability (based on the actual underlying distribution)? 
+:::
+
+You might want to use the following code as inspiration for how it can be done in R.
+
+```{r}
+#| eval: false
+n <- ? # How many samples to average over
+l <- ? # Population mean
+s <- ? # Population standard deviation
+x <- ? # The odd observation
+
+1 - pnorm(x, mean = ?, sd = ?)
+
+# Simulation 
+k <- 10000 # The number of e.g. years to simulate
+
+X <- matrix(rpois(n*k, l), k, n) # Simulate data
+
+mX <- apply(X, 1, mean) # Compute row-wise mean
+
+hist(mX)
+
+sum(mX > x) / length(mX)
+```
+
+
+:::

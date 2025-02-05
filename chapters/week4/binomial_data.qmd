@@ -1,0 +1,308 @@
+# Binomial data
+
+::: {.callout-tip}
+## Learning objectives
+
+* Be able to calculate probabilities for a binary process.
+* Understand what the meaning of independence.  
+* Understand the difference between point probability and cumulative probability, and be able to compute those. 
+* Based on data, be able to estimate parameters for the binomial distribution. 
+* Based on study design and data, be able to formulate null hypothesis, and test them. 
+
+:::
+
+In short, binomial data are of the type *either / or*, and is normally recorded as a list of $0$'s and $1$'s. The binomial distribution is characterized by *how many* trials there is conducted ($n$) and the probability of a positive ($"1"$) response ($p$). In notation that is:  
+
+\begin{equation}
+X \sim \mathcal{B}(n,p)
+\end{equation}
+
+The probability density function (pdf) evaluating the probability of $x$ (out of $n$) positive responses is:
+
+\begin{equation}
+%\binom{N}{K}
+P(X=x) = \binom{n}{x} \cdot p^x(1-p)^{n-x}
+\end{equation}
+
+Where 
+
+\begin{equation}
+%\binom{N}{K}
+\binom{n}{x} = \frac{{n!}}{{x!\left( {n - x} \right)!}}
+\end{equation}
+
+is the binomial coefficient, which calculates how many combinations of $x$ in $n$ there exists.
+
+The cumulative density function (cdf) simply sums op the individual point probabilities. 
+
+\begin{equation}
+%\binom{N}{K}
+P(X \leq x) = P(X=0) + P(X=1) + ... + P(X=x) 
+\end{equation}
+
+Based on data from $n$ trials with $x$ positive responses, the parameter $p$ can be estimated as the frequency: 
+
+\begin{equation}
+\hat{p} = \frac{x}{n}
+\end{equation}
+
+With the following standard error: 
+
+\begin{equation}
+S_{p} = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}
+\end{equation}
+
+From the Central Limit Theorem follows that the point estimate for $p$ is approximately normally distributed, why the confidence interval is as follows: 
+
+\begin{equation}
+CI_{p}: \hat{p} \pm z_{1-\alpha/2}S_{p}
+\end{equation}
+
+Be aware that the extreme cases where $x = 0$ or $x = n$ does not comply with the above mentioned method for calculating the confidence interval, as $S_{p} = 0$. A surpass in this situation is to find a value for $p$ under which the observed data is still likely. For instance; find $p$ such that:
+
+\begin{equation}
+P(X=0) = (1-p)^{n}>\alpha
+\end{equation}
+
+::: {.callout-example #exa-qa-estimation}
+### Quality control - estimation
+
+As a production engineer you are responsible for keeping the product quality high, which specifically means that the number of nonconforming products from the your production facility should be low.
+
+In order to establish what the rate of nonconforming products is, you choose to randomly select $200$ products and check their quality. 
+
+Of these 6 are nonconforming. So on average $3\%$.
+
+However, the production facility produces a very large number of elements, and your boss wish to know whether the $3\%$ holds for the entire production. In order to answer this you calculate a confidence interval:
+
+```{r}
+n <- 200 # Number of samples
+x <- 6 # Number of "positive" (non-conforming)
+
+pHat <- x / n # Estimate of probability of "positive"
+
+seHat <- sqrt(pHat * (1 - pHat) / n) # Standard error of pHat
+
+zFrac <- 1.96 # Critical value of 95% standard normal
+
+lwrCI <- pHat - zFrac * seHat # Lower value of 95% confidence interval
+uprCI <- pHat + zFrac * seHat # Upper value of 95% confidence interval
+
+c(lwrCI, uprCI)
+```
+
+You return these numbers to your boss, stating that there is probably 3% nonconforming products, and that it is very unlikely that there are more than 5.4% based on the 95% confidence bounds.
+
+
+:::
+<!-- End example callout -->
+
+## Reading material
+
+* Introductory videos to the binomial distribution:
+    * [The Binomial Distribution](#sec-binom-dist-crashcourse)
+    * [An Introduction to the Binomial Distribution](#sec-binom-dist-jb)
+    * [The Binomial Distribution and Test, Clearly Explained](#sec-binom-dist-statquest)
+* Video on probability distribution:
+    * [The Main Ideas behind Probability Distributions](#sec-ideas-behind-prob-dist)
+* Chapter 2.1 and 2.2 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
+
+
+##### The Binomial Distribution - *CrashCourse* {#sec-binom-dist-crashcourse}
+{{< video https://www.youtube.com/watch?v=WR0nMTr6uOo >}}
+
+##### An Introduction to the Binomial Distribution - *jbstatistics* {#sec-binom-dist-jb}
+{{< video https://www.youtube.com/watch?v=qIzC1-9PwQo >}}
+
+##### The Binomial Distribution and Test, Clearly Explained - *StatQuest* {#sec-binom-dist-statquest}
+{{< video https://www.youtube.com/watch?v=J8jNoF-K8E8 >}}
+
+##### The Main Ideas behind Probability Distributions - *StatQuest* {#sec-ideas-behind-prob-dist}
+{{< video https://www.youtube.com/watch?v=oI3hZJqXJuc >}}
+
+## Exercises
+
+::: {.callout-exercise id=ex-chocolate-and-binomial-data}
+### Chocolate and binomial data
+
+A chocholate factory discards 68 chocolates out of 300 produced in a day.
+
+::: {.callout-task}
+1. State the model for these data
+2. Calculate the probability of discarding a chocolate ($\hat{p}$)
+3. Calculate the confidence interval for $\hat{p}$. 
+:::
+
+:::
+<!-- End exercise callout -->
+
+
+::: {.callout-exercise id=ex-triangle-test}
+### Triangle test
+
+In sensorical science several types of experiments can be used for measuring (dis-)similarity between products. One of those is the Triangle Test. 
+
+::: {.callout-task}
+1. Check out on the internet how this test is conducted. 
+2. Assume that you run a Triangle test with $n$ judges. What is the nature- and statistical model for the data obtained from such a trial? 
+3. State a null hypothesis, relating to the question of similarity of products in the study. 
+4. Assume that you include $n = 20$ judges in your experiment. How many correct answers do you need in order to statistically prove difference between products? 
+    * You need to define what *statistically prove* means. 
+    * Hint: The result is found by *trial and error* computation - see code below.
+:::  
+
+```{r}
+#| eval: false
+p <- 1/3 # Parameter under the null hypothesis
+n <- 20 # Number of trials 
+x <- 1:n # Define all possible outcomes
+
+# Outcome probability under the null distribution
+nullProb <- 1 - pbinom(x - 1, n, p)
+
+# Put results into dataframe
+df <- data.frame( 
+  nCorrect = x,
+  nullProb
+)
+
+# Plot data
+ggplot(df, aes(nCorrect, nullProb)) +
+  geom_line() +
+  geom_hline(yintercept = 0.05) # Alpha value
+```
+
+::: {.callout-task}
+5. Generalize this to $n = 1,2,3,...,100$ and plot the results (x-axis: number of trials, y-axis: frequency of correct answers). 
+    * Hint: You need to put this in a for loop over $n$ and record the least number of samples needed for a significant results within each iteration. The code below can be used as inspiration. 
+:::
+
+```{r}
+#| eval: false
+p <- 1/3 # Parameter under the null hypothesis
+a <- 0.05 # Set the significance threshold 
+results <- c() # Predefine vector for storing results
+
+for (n in 1:100) {
+  
+  # Define all possible outcomes for this round of the loop
+  x <- 1:n
+  
+  # Outcome probability under the null distribution
+  nullProb <- 1 - pbinom(x - 1, n, p) 
+  
+  # Find all x-values where the null prob. is less than alpha
+  underAlpha <- x[nullProb < a]
+  
+  # Find the minimum x where the null prob is less than alpha and divide with n
+  results[n] <- min(underAlpha) / n
+}
+```
+
+::: {.callout-task}
+
+6. In a population you think that $40\%$ are capable of answering correct for discrimination of two products. The rest ($60\%$) will simply just give a blind guess. How large a proportion of correct answers would you expect in such a population? 
+     * Hint: Think of $100$ persons. 
+7. Compare the results for the later two questions, and give a frank idea of the number of participants needed for an experiment with the purpose of discriminating the products. 
+
+:::
+
+:::
+<!-- End exercise callout -->
+
+
+::: {.callout-exercise id=ex-uncertainty-of-the-binomial-dist}
+### Uncertainty of the binomial distribution
+
+This exercises examines the relation between the probability parameter $p$ and the uncertainty on this $S_p$ for the binomial distribution.
+
+1. Let $X$ describe the number of successes out of $n$ trial. Write op the model for $X$
+2. Let $x$ be the observed number of successes from such a trial. Estimate the parameter of interest. 
+3. Use the central limit theorem to approximate the standard error on this estimate, and write up the standard error for the parameter. 
+4. Draw the relation between the parameter estimate and the standard error for the same estimate in a graph. 
+5. At which point is the uncertainty lowest/highest?
+    * Hint: You can either solve this analytically by differentiation with respect to $\hat{p}$ or use the graph. 
+
+:::
+<!-- End exercise callout -->
+
+
+::: {.callout-exercise id=ex-fig-bars}
+### Fig bars
+
+A company is producing fig and date bars and they are considering changing their date supplier. The company would like to produce fig and date bars with the same taste, smell and appearance as they have done for many years. It is therefore important that a new date supplier will not result in fig and date bars that differ from the original bars. The company asked the Department of Food Science at University of Copenhagen to perform a sensory test with five possible date suppliers. The Department of Food Science performed a triangle test with a trained sensory panel to detect if the new date suppliers would change the organoleptic (in this case smell, taste and sight) properties of the bars. The same $23$ sensory judges performed the triangle test on smell, taste and appearance.
+
+::: {.callout-task}
+
+1. Open the file `dates.xlsx` in Excel or in R. The results of the triangle test were either $1$ for a correct assignment of the deviating sample or $0$ for an incorrect assignment. Get a first impression of
+the data by looking at the raw data (the $1's$ and $0's$). 
+    a. Is there a judge that is good at finding the deviating sample from the smell but bad a finding the deviating sample from the taste? 
+    a. Is there a judge that is good at finding the deviating sample from smell, taste and appearance?
+
+2. Import the data into R by making a data matrix like this (i.e. no need to read the excel file):
+
+:::
+
+```{r}
+#| eval: false
+# Import data into matrix
+dates <- matrix(c(10, 11, 14, 19, 11, 9, 9,
+                  16, 9, 9, 18, 14, 22, 16, 11), 
+                ncol = 5, byrow = TRUE) 
+
+# Set column and row names
+colnames(dates) <- c("A - R", "B - R ", "C - R ", "D - R ", "E - R")
+rownames(dates) <- c( "Smell", "Taste", "Appearance")
+
+# Compute the percent of correct
+datesPercent <- dates / 23
+
+# Show summary table
+summary(dates)
+```
+
+
+::: {.callout-task}
+
+3. Make a descriptive plot to visualize the data. 
+    * You can for example take inspiration from the plot in exercise 7.23 from [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff. 
+    * You can also use ggplot2 by first making dates into a Tidy dataframe: `reshape::melt(dates)` and then use `geom_bar(stat = 'identity')`.
+4. By looking at the plotted data, does it seem likely that some of the new date producers could be used to produce fig and date bars that are similar to the reference/original bar?
+5. State a model for $X$, where $X$ is the number of correct answers in comparing a single product with the reference for a single sense, and state the chance probability. What is the probability of *by random chance* guessing the correct deviating sample?
+
+6. Now, state a null hypothesis and an alternative hypothesis. 
+    a. Is the alternative hypothesis directional ($>$ or $<$) or non-directional ($\neq$)? 
+    a. What does the three alternatives correspond to in terms of probability of correct answer compared to unqualified guessing? 
+7. Test this hypothesis for a triangle test result of $19$ correct and $4$ incorrect assignments (which is the result of the `D - R` smell triangle test). 
+
+:::
+
+**Note:** A number of tests could be applied to test the hypothesis but since the sample size is fairly small then an exact binomial test is a good choice. This is found in the R function` binom.test()` (remember to specify the alternative hypothesis).
+
+::: {.callout-task}
+8. On the basis of this exercise, which date suppliers would you recommend to the company?
+:::
+
+:::
+<!-- End exercise callout -->
+
+
+::: {.callout-exercise id=ex-dist-of-extreme-values}
+### Distribution of extreme values in the normal distribution
+
+This exercise combines the (standard) normal distribution with the binomial distribution in order to calculate the distribution of the maximum (or minimum) value from a sample of size $n$. 
+
+::: {.callout-important}
+This is a hard exercise, and not a part of the curriculum. However, the ideas used for solving the task is central in a number of applications. 
+:::
+
+::: {.callout-task}
+1. Consider a single random draw $X$ from the standard normal distribution. Calculate the probability of getting $x$ or less. That is $P(X\leq x)$. If it helps, then set $x$ to some specific number, say $1.2$. 
+2. Now consider a draw of size $n$ from the same distribution ($X_1,..,X_n$). Write up the model for the number of data points less than $x$ (from Q1). 
+3. Set $n$ to a specific number, and calculate the probability of non of the data points being larger than $x$. 
+4. Generalize the above and write up the distribution for the maximum value in a finite sample from the standard normal distribution. 
+5. Simulate some data, and check that your analytical solution match. 
+:::
+
+:::
+<!-- End exercise callout -->

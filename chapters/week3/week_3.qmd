@@ -1,0 +1,27 @@
+# Week 3
+In this week we are introducing the concept of inferential statistics. That is to be able to answer a specific question based on observed data. Biological or scientific questions are, in statistical terms, formulated as a hypothesis, which can be tested using data. One of the most widely used tests, are the t-test for comparison of the mean from two distributions. 
+
+## Hand-in assigment
+@ex-diet-and-fat-metabolism-in-r *Diet and Fat metabolism - T test - in R* is to be handed in (through absalon or as hard-copy Wednesday night). You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important. 
+
+::: {.callout-important}
+Complete @ex-diet-and-fat-metabolism-by-hand prior to the hand-in assignment to make sure you understand what R does during a t-test.
+:::
+
+## Exercises
+
+For Monday work through the following exercises:
+
+* @ex-t-test
+* @ex-diet-and-fat-metabolism-by-hand
+* @ex-fiber-and-cholesterol
+* @ex-stability-of-oil-under-different-conditions
+
+For Wednesday work through the following exercises:
+
+* @ex-power-of-paired-tests
+* @ex-confidence-intervals
+* @ex-hypothesis-testing 
+
+## Case II
+The second case is described in the document "Case II.pdf". You should work on the case in groups of four, and hand in a slide-show with voice no later than Thursday evening next week. 

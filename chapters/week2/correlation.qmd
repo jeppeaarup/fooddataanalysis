@@ -90,7 +90,8 @@ data.frame(
 
 ```
 
-### Example: Natural Phenolic Antioxidants for Meat Preservation - Correlation
+::: {.callout-example #exa-phenolic-antiox-correlation}
+### Natural phenolic antioxidants for meat preservation - Correlation
 
 ```{r}
 #| label: correlation example 1 setup
@@ -152,7 +153,7 @@ In @fig-meat-loadings-example the loading plot corresponding to some of the load
 
 To check if the correlation holds for the raw data, scatter plots are made for each of the encircled three examples. (Note that the interpretation of these correlations are only valid with respect to the variation described in the model)
 
-**Create scatter plots**
+**Create scatter plots**  
 
 ```{r}
 #| label: fig-meat-correlation
@@ -207,9 +208,12 @@ cat("Correlation coefficients",
 
 ```
 
-**Conclusions**
-
+**Conclusions**  
 Here, it can be seen that the pink and grey color attributes, which are oppositely directed in the PCA loadings, display a moderate negative correlation in the raw data. The pink color and bitter taste, which are orthogonal to each other in the loadings, are not correlated at all. The old smell and old taste with similar directionality in the PCA are moderately postively correlated. With regards to food chemistry, do you think these conclusions make sense?
+
+:::
+<!-- End example callout -->
+
 
 ## Reading material
 
@@ -376,6 +380,79 @@ Since it is a bit more difficult to work with spectral data in R, we have decide
 ![**Top right)** Triglyceride. Left part: Glycerol backbone. Right part from top to bottom: Unsaturated, monounsaturated and polyunsaturated fatty acid. **Top left)** Trans fatty acid. **Bottom)** Raw IR spectrum of mixed oil.](oilfig.png){#fig-oil}
 
 
+::: {.callout-task}
+
+1. Load the "oliveoil" dataset in R. To be able to plot the raw spectral data, run the following R code. Use the `dim()` command to understand the difference between input and output to `melt()` on how the data is organised in the two formats.
 
 :::
 
+```{r}
+#| eval: false
+
+library(reshape2)
+
+# Melt before plotting
+for_raw <- melt(Oliveoil, 
+                id.vars = c("sample_id", "oliveoil", "thistleoil", "transfat"))
+
+# Define correct x-axis with wavelength vector
+for_raw$wl <- sort(rep(wl, nrow(Oliveoil)))
+```
+
+::: {.callout-task}
+2. Now make a plot of the raw data. Use the R-code below as a base, and customize it to your liking. Use the handy plotly package to plot an interactive plot that we can zoom in.
+:::
+
+```{r}
+#| eval: false
+
+library(ggplot2)
+library(plotly)
+
+raw <- ggplot(for_raw, aes(wl, value, group = sample_id)) +
+  geom_line()
+
+ggplotly(raw)
+```
+
+
+::: {.callout-task}
+3. Inspect the raw data plot.
+    a. How does the raw data look? Are there any outliers? in ggplotly you can identify specific samples by hovering the curser over them.
+    a. Try to color according to the different types of oil, one at a time. Then, zoom in on some of the peaks highlighted in @fig-oil. Can you observe a correlation between these peaks and the oil concentration?
+4. Now that you have a feel for the raw data, try to estimate the scores and loadings for a PCA model. Why do we only center, and not autoscale the spectral data?
+:::
+
+```{r}
+#| eval: false
+
+# Define PCA
+oliveoil_pca <- prcomp(Oliveoil[1:1790], center = T, scale = F)
+
+scores <- data.frame(oliveoil_pca$x)
+loads <- data.frame(oliveoil_pca$rotation)
+
+```
+
+
+::: {.callout-task}
+5. Using `ggplot()` and `ggplotly()`, make a plot of the PC1 vs PC2 scores, and color according to oliveoil content.
+6. Make two separate loading plots with first PC1 loads vs the wavelength (wl) vector and then PC2 loads vs. the wavelength. It is very important that the loadings are plotted separately, and not against each other when working with spectral data. Can you see why?
+7. Inspect the scoreplot. Are there any outlying samples? If so, identify them. Did you notice this outlier in the raw spectra plot? Remove the outlier by using the code below and inserting the correct sample id number.
+:::
+
+```{r}
+#| eval: false
+# Remove outlier
+
+Oliveoil <- Oliveoil[-c(" insert outlier ID number here"), ]
+```
+
+::: {.callout-task}
+8. Now rerun your whole script and see how the removal of the outlier has changed the score and loading plots.
+9. Using the score plot, try to colour them by different oil types and elucidate what information about the samples is being described by the first and second PCA component, respectively.
+10. Inspect the loading plots and compare them to the information in @fig-oil. Can you re-find some of the important peaks in the loadings? And how does this relate to the findings in the scoreplot?.
+    a. Hint: Remember that the dataset is mean centred, so the peaks will be positive or negative. Negative scores have a high absorbance in the negative loading ”peaks”, and positive scores have a high absorbance in the positive loading ”peaks”.
+:::
+
+:::

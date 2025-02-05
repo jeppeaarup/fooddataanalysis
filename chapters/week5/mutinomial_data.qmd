@@ -1,0 +1,147 @@
+# Multinomial data
+
+::: {.callout-tip}
+## Learning objectives
+
+* Identify the distribution from the study design and/or data. 
+* Be able to formalize the probability model, from which the data were generated. 
+* Know the basic principle behind goodness of fit test ($\chi^2$-test). 
+* Be able to perform a goodness of fit test for comparison of categorical data from several groups. 
+
+:::
+
+Multinomial data are categorical data with *more* than two groups. If there is only two groups, the data follow the binomial distribution. These data are naturally organized in a so-called frequency- or contingency table (see for example @ex-comparison-of-senses). In general terms such a table with $n$ rows and $k$ columns can be shown as in @tbl-multinomial-data.
+
+<div style="width: 60%; margin: auto;">
+|            | Category I | Category II | $\cdots$ | Category $k$ |
+|:-----------|:----------:|:----------:|:---------:|:------------:|
+| Sample I   | $N_{11}$   | $N_{12}$   | $\cdots$  | $N_{1k}$     |
+| Sample II  | $N_{21}$   | $N_{22}$   | $\cdots$  | $N_{2k}$     |
+| $\vdots$   | $\vdots$   | $\vdots$   | $\ddots$  | $\vdots$     |
+| Sample $n$ | $N_{n1}$   | $N_{n2}$   | $\cdots$  | $N_{nk}$     |
+
+: A table of multinomial data. Each column is a category and each row is a sample {#tbl-multinomial-data}
+</div>
+
+Such data can be collected in two ways following two slightly different models.
+
+**One distribution**  
+$N$ samples, that are put into $nk$ categories. For example, $256$ people are selected and categorized according to gender and color of hair. 
+The model for this case is:
+
+$$
+N_{11},N_{12},...,N_{nk} \sim Multinomial(N,p_{11},p_{12},...,p_{nk})
+$$ 
+
+where
+
+$$
+N = N_{11} + N_{12} + ... + N_{nk} \quad \text{and} \quad p_{11} + p_{12} + ... + p_{nk} = 1$. 
+$$
+
+i.e. one distribution
+
+**Several distributions**  
+Several $N_i$ samples, that are put into $k$ categories. In this case, we predefine the number of samples within each row and distribute those over the categories. For example, $100$ men and $123$ women, distributed on color of their hair. 
+The model for this case is:
+
+
+$$
+N_{i1},N_{i2},...,N_{ik} \sim Multinomial(N_{i},p_{i1},p_{i2},...,p_{ik})
+$$
+
+where
+
+$$
+N_{i} = N_{i1} + N_{i2} + ... + N_{ik} \quad \text{and} \quad p_{i1} + p_{i2} + ... + p_{ik} = 1$ for $i = 1,...,n.
+$$
+
+i.e. several ($n$) distributions.
+
+The natural question for both types of data is whether there is independence between the columns (or rows). For the example that is; Is the distribution similar regardless of gender. However, the null hypothesis is stated differently depending on the model. 
+
+* $H0:$ $p_{ij} = p_{i \cdot}p_{\cdot j}$ where $p_{i \cdot}$ refers to the row probability (i.e. the probability of having gender $i$), and $p_{\cdot j}$ refers to the column probability (i.e. the probability of having hair color $j$). 
+* $H0:$ $p_{1j} = p_{2j} = ... = p_{nj} = p_{\cdot j}$ i.e. equal probability of hair color across gender. 
+
+In both cases the test is the same, and based on calculating the expected number of observations under the null hypothesis, and comparing those with the observed number of observations. If this number is large, then there is large differences between the observed and the expected,  why the null hypothesis is rejected. 
+
+|             | Category I                   | Category II                  | $\cdots$ | Category $k$                 |                                  |
+|:------------|:----------------------------:|:----------------------------:|:--------:|:----------------------------:|:--------------------------------:|
+| Sample I    | $N_{11}$                     | $N_{12}$                     | $\cdots$ | $N_{1k}$                     | $N_{1 \cdot} = \sum{N_{1j}}$     |
+| Sample II   | $N_{21}$                     | $N_{22}$                     | $\cdots$ | $N_{2k}$                     | $N_{2 \cdot} = \sum{N_{2j}}$     |
+| $\vdots$    | $\vdots$                     | $\vdots$                     | $\ddots$ | $\vdots$                     | $\vdots$                         |
+| Sample $n$  | $N_{n1}$                     | $N_{n2}$                     | $\cdots$ | $N_{nk}$                     | $N_{n \cdot} = \sum{N_{nj}}$     |
+|             | $N_{\cdot 1} = \sum{N_{i1}}$ | $N_{\cdot 2} = \sum{N_{i2}}$ | $\cdots$ | $N_{\cdot k} = \sum{N_{ik}}$ | $N_{\cdot \cdot} = \sum{N_{ij}}$ |
+
+: A table of multinomial data with row and column sums. {#tbl-multinomial-data-sums}
+
+The expected value $E$ for each cell in the table is calculated as: 
+
+\begin{equation}
+E_{ij} = \frac{N_{i \cdot} N_{\cdot j}}{N_{\cdot \cdot}}
+\end{equation}
+
+I.e. the row sum multiplied with the column sum and divided by the total sum (see @tbl-multinomial-data-sums).
+The test statistic $X^2_{obs}$ is calculated as: 
+
+\begin{equation}
+X^2_{obs} = \sum_{ij}{\frac{(E_{ij} - N_{ij})^2}{E_{ij}}}
+\end{equation}
+
+I.e. the (squared) discrepancy between the expected ($E_{ij}$) and the observed ($N_{ij}$) divided by the expected value. Summed across all cells.
+
+Under the null hypothesis $X^2_{obs}$ follow a so-called chi-squared distribution ($\chi^2$) with $df = (n-1)(k-1)$ degrees of freedom. The P-value is one-sided: 
+
+\begin{equation}
+P = P(\chi^2_{df} > X^2_{obs})
+\end{equation}
+
+OBS: Be aware that too low expected values ($E_{ij}$) makes this test unstable. A rule of thumb is that $80\%$ of the cells should be above $5$ and ALL should be above $1$. In the case where this is violated, cells can be merged by summing both the expected and observed values. 
+
+## Reading material
+* A video going through $\chi^2$-test (Goodness of fit test) for frequency tables:
+    * [Chi-Square Tests](#sec-chi-square-crashcourse)
+* Chapter 7 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
+
+##### Chi-Square Tests - *CrashCourse* {#sec-chi-square-crashcourse}
+{{< video https://www.youtube.com/watch?v=7_cs1YlZoug >}}
+
+## Exercises
+
+::: {.callout-exercise id=ex-comparison-of-senses}
+### Comparison of senses
+
+A study wants to compare two types of trout samples, being meat stored under different conditions. The instrument used is a sensorical panel of $23$ judges using either their visual sense, smelling sense or tasting sense. At each trial, each judges is presented with three pieces of meat - two similar and one odd. The task for the judge is to identify the odd sample using one of the senses. Data from such an experiment is presented below (@tbl-exercise-senses).
+
+<div style="width: 40%; margin: auto;">
+
+|                   | Correct | Not correct |
+|------------------:|:-------:|:-----------:|
+| Smell             | 14      | 9           |
+| Taste             | 16      | 7           |
+| Visual appearance | 22      | 1           |
+
+: Counts of outcomes for each sense. {#tbl-exercise-senses}
+</div>
+
+::: {.callout-task}
+1. For now, stick to the sense *Taste*. State a statistical model for the outcome of each trial. 
+2. Formulate a null hypothesis based on the model, and test how different the observed results are compared to this hypothesis. 
+:::
+
+Based on the previous result, it seems like the different meat pieces is identifiable based on tasting. Now the questions is whether the two other senses performs similar in identification of the odd sample? (Hint: In this exercise you should use the method sketched in *Method 7.19* and *Method 7.21* in the eNotes).
+
+
+::: {.callout-task}
+3. Give a frank ranking of the senses based on the observed data. 
+4. Formulate a model for each of the three senses. 
+5. State a null hypothesis in relation to the question of similarity between senses. 
+6. Compute *by hand* the expected values under this null hypothesis, $X^2_{obs}$ and the degrees of freedom.  
+7. Use the `pchisq()` to test the null hypothesis.
+8. Test the hypothesis using a function in R (try to figure out which one that does the job in a single line). Compare the results with your own calculation.  
+9. Report the results in such a way, that differences between the three senses are communicated. 
+    * Hint: This can either be done by pairwise contrasts or confidence intervals for the central parameters. 
+:::
+
+:::
+<!-- End exercise callout -->

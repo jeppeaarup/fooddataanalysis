@@ -1,0 +1,108 @@
+# Power calculation
+
+
+::: {.callout-tip}
+## Learning objectives
+
+The learning objectives for this theme is to understand the idea behind statistical power.
+
+* Know that a true difference might not be statistical detected due to size of data. 
+* Understand that statistical power depends on effect size, uncertainty and number of samples. 
+* Be able to make appropriate assumptions and calculate the power for a given study design. 
+* Be able to calculate power for studies evaluated by the t-test and by the binomial distribution. 
+:::
+
+::: {.callout-example #exa-qa-power-calculation}
+### Quality control - power calculation
+
+This example extends @exa-qa-estimation.
+
+The $3\%$ nonconforming products is unsatisfactory, and so you use a lot of money and (hopefully) make a lot of improvements. After a year you and your colleagues feel that the end quality has improved, and you wish to test that this improvement is indeed also statistically provable.
+
+You believe that the number of nonconforming products is reduced by a factor of $2$, that is down to $1.5\%$ nonconforming products.
+
+The question is: In a trial, how many samples ($n$) should you select in order to statistically prove this change?.
+
+The null hypothesis is $H0: p = p_0 = 0.03$.
+
+With the *one-sided* alternative: $HA: p < p_0 = 0.03$.
+
+From a study on say $n = 200$ ($X_{HO} \sim \mathcal{B}(n,p = 0.03)$) with $x$ nonconforming products the probability for accepting $H0$ is: 
+
+\begin{equation}
+P(X_{HO} \leq x) \geq \alpha = 0.05
+\end{equation}
+
+```{r}
+
+n <- 200
+x <- 0:3
+pbinom(x, n, 0.03)
+
+```
+
+So, in order to *reject* $H0$ (at level $\alpha = 0.05$) you should among $200$ samples find $0$ or $1$ nonconforming products (at $x = 2$, the p-value is $p = 0.059$).
+
+If you believe that the true probability is $p = 0.015$ ($X_{HA} \sim \mathcal{B}(n,p = 0.015)$) then the probability for getting this number of positive samples (or what is even more extreme compared to $H0$) can be calculated as
+
+\begin{equation}
+P(X_{HA} \leq 1) = P(X_{HA}=0) + P(X_{HA}=1).
+\end{equation}
+
+```{r}
+n <- 200
+x <- 1
+pbinom(x, n, 0.015)
+```
+
+**This is the power of the trial** under these assumptions.
+In detail that means, that only one out of five times you would be able to prove that the investment were worth the effort.
+
+If you which to have a higher power for the study, then the number of samples should be increased e.g. to $n = 400$:
+
+```{r}
+alpha <- 0.05
+n <- 400 # Number of trials
+x <- 0:100 # Number of successes
+
+# The probability of outcome x under the null hypothesis that p = 0.03
+nullProb <- pbinom(x, n, 0.03) 
+
+
+# The maximum x-value that returns a probability smaller than alpha
+xMax <- max(x[nullProb < alpha])
+
+pbinom(xMax, n, 0.015)
+```
+
+Or assessed for a sequence of $n$ values (@fig-power-vs-n).
+```{r}
+#| label: fig-power-vs-n
+#| fig-cap: Power vs number of trials.
+#| warning: false
+
+
+alpha <- 0.05
+N <- 1:800 # Number of trials
+pwr <- c() # Initiate vector for storage
+
+
+for (n in N) {
+  
+  x <- 0:n
+  
+  nullProb <- pbinom(x, n, 0.03)
+  
+  xMax <- max(x[nullProb < alpha])
+  pwr[n] <- pbinom(xMax, n, 0.015)
+}
+
+plot(N, pwr)
+
+```
+
+It is seen that indeed a very high number of samples needs to be collected in order to be fairly certain that the trial will statistically confirm that the number of nonconforming products has dropped.
+
+
+:::
+<!-- End example callout -->

@@ -1,12 +1,232 @@
-# The Normal Distribution
+# The normal distribution
 
-## Section 1
+```{r}
+#| label: normal dist setup
+#| echo: false
+#| message: false
+#| warning: false
 
-### Section 2
+```
 
-## Exercises 
+::: {.callout-tip}
+## Learning objectives
 
-::: exercise
-### Test
+* Introduce the predominant distribution within biological data; The normal distribution. 
+* Be able to characterize the distribution by a set of parameters, and be able to calculate the precision of these parameters (give confidence intervals) based on data. 
+* Know which graphics that are useful for visualizing normally distributed data (histogram, boxplot, qq-plot), and be able to use this to judge whether normality is fulfilled. 
+* For a given distribution to be able to calculate the probability of a given observation.
+:::
+
+If $X$ is normaly distributed with mean $\mu$ and variance $\sigma^2$, then the probability density function for a given draw from that distribution $x$ is given by 
+
+$$
+P(x) = \frac{1}{{\sigma \sqrt {2\pi } }}e^{{{ - \left( {x - \mu } \right)^2 } {2\sigma ^2 }}}
+$$
+
+Further, the cumulative density function can be found by integration of this formula
+$$
+P(X \leq x) = \frac{1}{{\sigma \sqrt {2\pi } }} \int_{-\inf}^x e^{{{ - \left( {x - \mu } \right)^2 } {2\sigma ^2 }}} \, dx
+$$
+
+The short notation for this distribution is
+
+$$
+X \sim \mathcal{N}(\mu,\sigma^2)
+$$
+
+## Estimation of $\mu$ and $\sigma$
+
+More often than not, the distribution is unknown. That is the values of $\mu$ and $\sigma$ are unknown and must then be estimated from data.
+
+$\mu$ characterizes the center of the distribution, and is naturally estimated by the mean-value of the data-points ($\bar{X}$). $\sigma$ reflects the spread around the mean, and is in a similar fashion estimated by the standard deviation ($\hat{\sigma}$ or $s$). 
+
+$$
+\hat{\mu} = \bar{X} = \sum_{i = 1}^n X_i / n = (X_1 + X_2 + X_3 + \ldots + X_n) / n
+$$
+
+
+$$
+\hat{\sigma}^2 = s^2 = \sum_{i = 1}^n (X_i - \bar{X})^2 / (n-1) = ((X_1 - \bar{X})^2 + (X_2 - \bar{X})^2 + (X_3 - \bar{X})^2 + \ldots + (X_n - \bar{X})^2 ) / (n-1)
+$$
+
+::: {.callout-example #exa-effect-of-caffeine}
+### Effect of caffeine on activity
+
+Caffeine is a central neurvous system stimulant, which can have several positive- and negative effects. In this study, the level of activity is up for examination, and for this purpose a model-system; the runing activity of mice in a wheel reflected as the number of rounds pr minutes recorded over 7 minutes. Here a total of 249 mice from two species; one breed to be high in running performance, and one control, where given either Water, Gatorade or Red Bull followed by measuring their voluentary wheel run activiy. Of interest is the average actvity within each mouse type and for each caffeine type and how large the spread is.
+
+The data is listed in a table with 249 rows (here, the first five samples are shown):
+
+MISSING DATA
+
+:::
+<!-- End example callout -->
+
+::: {.callout-example #exa-effect-of-caffeine-probability}
+### Effect of caffeine on activity - probability
+
+MISSING DATA
+
+:::
+<!-- End example callout -->
+
+
+## Confidence interval for $\mu$
+
+The confidence interval for the center of a normal distribution ($\mu$) is calculated as follows: 
+
+$$
+CI_{\mu,1-\alpha}:  \hat{\mu} \pm t_{1-\alpha/2,df} \cdot \hat{\sigma} / \sqrt(n)
+$$
+$$
+\bar{X} \pm t_{1-\alpha/2,df} \cdot s / \sqrt(n) 
+$$
+
+where $t_{1-\alpha/2,df}$ is a fractile, a number, which determines the coverage. Here, $\alpha$ is the left ot part. I.e. if a $90 \%$ confidence interval is wanted, the left out part is $\alpha = 0.10$. $n$ is the number of samples on which the mean ($\bar{X}$) is estimated, and $df$ is the degrees of freedom, which refers to how well the standard deviation is estimated. 
+
+For instance, if one needs a $95 \%$ confidence interval ($\alpha = 0.05$) based on a sample of $20$ observations $t_{1-\alpha/2,df} = t_{0.975,20-1} = 2.093$.
+
+It is further noticed that the interval is symmetric around the mean, and that the more samples ($n$) the lower the spread as the standard deviation is divided by $\sqrt{n}$. 
+
+::: {.callout-example #exa-effect-of-caffeine-conf-int}
+### Effect of caffeine on activity - confidence intervals
+
+MISSING DATA
+
+:::
+<!-- End example callout -->
+
+
+## Reading material
+
+* Videos giving short condensed introduction to the normal distribution:
+    * [The Normal Distribution](#sec-the-normal-distribution)
+    * [An Introduction to the Normal Distribution](#sec-intro-to-the-normal-distribution)
+    * [The Normal Distribution, Clearly Explained](#sec-the-normal-distribution-clearly-explained)
+* Video on confidence intervals: 
+    * [Confidence intervals](#sec-confidence-intervals)
+* Chapter 2 and 3 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
+    * especially 2.1 to 2.4 (you can skip 2.2 on discrete distributions, which is the subject of week 4) and 3.1 - 3.1.6.
+
+
+### The Normal Distribution - *CrashCourse* {#sec-the-normal-distribution}
+{{< video https://www.youtube.com/watch?v=rBjft49MAO8 >}}
+
+### An Introduction to the Normal Distribution - *jbstatistics* {#sec-intro-to-the-normal-distribution}
+{{< video https://www.youtube.com/watch?v=iYiOVISWXS4 >}}
+
+### The Normal Distribution, Clearly Explained - *StatQuest* {#sec-the-normal-distribution-clearly-explained}
+{{< video https://www.youtube.com/watch?v=rzFX5NWojp0 >}}
+
+### Confidence Intervals - *CrashCourse* {#sec-confidence-intervals}
+{{< video https://www.youtube.com/watch?v=yDEvXB6ApWc >}}
+
+
+## Exercises
+
+::: {.callout-exercise id=ex-normal-distribution}
+### Normal Distribution
+
+Serum cholestorol level is a biomarker of health in relation to a range of life-style related diseases. A population of adults have mean values of $178 mg/100mL$ and $207 mg/100mL$, standard deviations of $31 mg/100mL$ and $37 mg/100mL$ in males and females respectively. 
+
+::: {.callout-task}
+1. Draw curves (by hand - with pen on paper!) and plug in the parameters for these distributions.
+2. What percentage are below $150, 178$ and $200 mg/100 mL$ respectively (for males and females separately)?
+3. What percentage are above $140 mg/100 mL$
+:::
+
+A level above $240 mg/100 mL$ is considered high risk, whereas the range between $200$ and $239 mg/100 mL$ is considered borderline high risk. 
+
+::: {.callout-task}
+4. How big a proportion is considered at high risk (for males and females seperately)? 
+5. How big a proportion is considered borderline high risk (for males and females seperately)? 
+6. Now assume that the above metrics describing the distribution (mean and standard deviation) is estimated based on samples of $30$ males and $30$ females. What it the changes to the calculations above? 
+:::
+
+A population consists of $40\%$ males and $60\%$ females.
+
+::: {.callout-task}
+7. What is the propability that a random person from that population have a serum cholesterol level higher than $240 mg/100mL$.
+:::
+
+ Use that the mean and variance of a sum of two populations is the sum of the means and variance respectively. That is; Let $X$ and $Y$ be two indepedent random variables with mean $\mu_X$ and $\mu_y$ and variance $\sigma^2_X$ and $\sigma^2_Y$ respectively. And let: 
+
+$$
+Z = c_1X+ c_2Y
+$$
+
+Then the mean and variance of $Z$ is:
+$$
+\mu_Z = c_1\mu_X + c_2\mu_Y
+$$
+$$
+\sigma^2_Z = c_1\sigma^2_X + c_2\sigma^2_Y
+$$
+
+::: {.callout-task}
+8. What is the population mean and standard deviation of a population made up of $40\%$ males and $60\%$ females? 
+9. Use this mean and standard deviation to calculate the probability of a random person from that population having a serum cholesterol level higher than $240 mg/100mL$. How is that different from question 7? and why so? 
+:::
+
+:::
+
+
+::: {.callout-exercise id=ex-transformations-and-the-normal-distribution}
+### Transformations and the normal distribution
+
+The normal distribution (also known as the Gaussian distribution) are central in biology as such, and in data analysis especially.
+
+::: {.callout-task}
+1. Why do we (sometimes) transform data before making statistical analysis?
+2. Make a histogram plot and a qqplot (use `qqnorm()` and `qqline()` functions) on the variable *Ethyl.pyruvate* from the "Wine" data set. Are the data normal distributed?
+3. Try to Log transform the variable *Ethyl.pyruvate*. Make a new histogram plot and a corresponding qqplot. Compare with question 1.
+    a. Use the command `par(mfrow = c(1,2))` (in front of your plotting commands) to get the plots side by side which makes it easier to compare the results.
+    a. Add a suitable title on both plots using the argument `main="a very nice title"`.
+
+4. Does it seem possible to get all samples to match the same distribution?
+5. Do the same for the variable *Benxyl.alcohol*. 
+6. Does the log transformation work? What is the problem? 
+7. Try the square root transformation.
+:::
+
+:::
+
+
+::: {.callout-exercise id=ex-who-height-and-weight-standard-normal-distribution}
+### WHO height and weight - standard normal distribution
+
+Height and weight are important measures of growth during childhood. However, the largest factor impacting these measures are naturally the age of the child. In order to be able to compare children with slightly different ages such data are transformed using so-called growth curves. These are provided by the WHO and are constructed to represent the world wide distribution at specific ages for boys and girl. In this exercise you are supposed to take height and weight measures from African children living under different circumstances, transform them using WHO numbers for the world wide distribution, and further look for explanatory variables causing differences in growth.
+
+::: {.callout-task}
+1. Start by importing the *GrowthData.xlsx* dataset into R. Check that all the info from the excel file was imported correctly using the commands `dim()` and `head()`. You can ’chop’ the dataframe in R to isolate the variables of importance (length, sex, age etc.).
+2. Using the following graphs (@fig-length-for-age), find the mean and standard deviation for boys and girls at age 15 months.
+::: 
+
+
+::: {#fig-length-for-age layout-ncol=2}
+![Z-scores for the length-to-age ratio for girls](length-for-age-girls.png){#fig-length-for-age-girls}
+
+![Z-scores for the length-to-age ratio for boys.](length-for-age-boys.png){#fig-length-for-age-boys}
+
+Z-scores for the length-to-age ratio for girls and boys aged 0 to 2 years. Source: WHO. **Click on the images to enlargen them.**
+:::
+
+::: {.callout-task}
+3. Based on the dataset imported, calculate mean and standard deviation for the girls and the boys, how does it relate to the data from WHO?
+:::
+
+You can use the command `X <- X[complete.cases(X),]` to remove the empty rows in the dataframe `X`, or google how to compute descriptive statistics in the case of missing values. 
+
+::: {.callout-task}
+4. What is the Z-value? How can you use it to relate the dataset to the WHO data?
+5. Calculate the Z-scores for all the boys and girls.
+:::
+
+This can be done by creating a new vector inserting the length-vector from the previous dataframe to the equation for Z-score.
+
+::: {.callout-task}
+6. What does it mean that a child is above or below 0 in Z-score? How many children has a Z-score below -2 and -3?
+7. How many children are longer/taller than the world average? 
+8.  Investigate whether some of the other variables (source of water *primary_watersource* or treatment of water *water_treatment_type*) impact the length at 15 months. Use `ggplot()` to do the plotting, and then use `ggplot(...) + facet_wrap(~SEX)` to split the plot in two corresponding to the variable *SEX*. Are the trends similar for the two sexes?
+:::
 
 :::

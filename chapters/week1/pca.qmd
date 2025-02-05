@@ -49,7 +49,8 @@ The power of PCA is when the mathematical decomposition into scores and loadings
 * **Loading plot** - scatter plots of combination of loadings (often $\mathbf{p}_1$ vs. $\mathbf{p}_2$).
 * **Bi plot** - overlayed score- and loading plot.
 
-### Example: Natural Phenolic Antioxidants for Meat Preservation - PCA {#sec-example-meat-pca}
+::: {.callout-example #exa-phenolic-antiox-pca}
+### Natural phenolic antioxidants for meat preservation - PCA
 
 ```{r}
 #| label: pca example 1 setup
@@ -118,8 +119,12 @@ between samples, and the underlying reason behind the differences is interpreted
 
 There are not registered any greater difference between the two green tea and rosemary extract samples.
 
-### Example: Near Infrared Spectroscopy of Marzipan - PCA
+:::
+<!-- End example callout -->
 
+::: {.callout-example #exa-nirs-marzipan-pca}
+### Near infrared spectroscopy of marzipan - PCA
+ 
 ```{r}
 #| label: pca example 2 setup
 #| echo: false
@@ -270,6 +275,10 @@ ggplot(loadings, aes(wl, PC1)) +
 
 
 It is not straight forward to see which peaks are related to sugar. However, the peaks around 1200, 1400, 1875 and 2100 nm has the highest magnitude and therefore the main reason for the sugar content gradient we see in PC1. Actually all 4 peaks are related to either the C-H (Carbon - Hydrogen) or O-H groups in sugar or O-H in water. You will learn more about assigning peaks to chemical information in other courses later on.
+
+:::
+<!-- End example callout -->
+
 
 ## Reading material
 

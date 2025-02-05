@@ -13,7 +13,7 @@ For Monday work through the following exercises:
 * @ex-covariance-and-correlation-by-hand
 * @ex-correlation-and-pca
 
-For Wednesday work through the following exercise:
+For Wednesday work through the following exercises:
 
 * @ex-olive-oil-adulteration
 * @ex-normal-distribution

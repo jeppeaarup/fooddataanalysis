@@ -185,7 +185,7 @@ library(readxl) # load package readxl
 
 setwd("~/MyComputer/Courses/FDA/Exercises/Week1") # set working directory
 
-data <- read_excel("SomeData.xlsx”) # load file
+data <- read_excel("SomeData.xlsx") # load file
 
 head(data) # show first 6 lines of data
 

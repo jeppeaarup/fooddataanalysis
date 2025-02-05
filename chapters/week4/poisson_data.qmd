@@ -1,0 +1,155 @@
+# Poisson data
+
+::: {.callout-tip}
+## Learning objectives
+
+* Understand the Poisson distribution.
+* Understand the poisson data reflects a concentration (in time, in volume etc.)
+* The relation between the poisson distribution and binomial distribution.
+* Be able to calculate point probabilities, and cumulative probabilities in the poisson distribution. 
+
+:::
+
+In short, the Poisson distribution are characterized by observations that are non-negative integers. That is $X \in (0,1,2,...)$, where each observation is a \textit{concentration} in a fixed volume, time, space etc.. I.e. the number of bacteria in $1gram$ of sample or the number of events within one day. The Poisson distribution only have a single parameter $\lambda$, which is both the mean and the variance of the distribution. Formalized the distribution can be written as:
+
+\begin{equation}
+ X \sim Po(\lambda)
+\end{equation}
+
+For calculation of a point probability, the probability density function (pdf) is as follows: 
+
+\begin{equation}
+ P\left(X = x \right) = \frac{\lambda ^x {e^{ - \lambda } }}{{x!}}
+\end{equation}
+
+The cumulative probability function (cdf) is simply the sum over the individual point probabilities (just as in the binomial distribution).
+
+In the case where we have data ($X_1,X_2,...,X_n$) following the Poisson distribution, we can use these to estimate the parameter $\lambda$. This is simply done by using the mean of $X$. 
+
+\begin{equation}
+\hat{\lambda} = \bar{X}
+\end{equation}
+
+A confidence interval for this parameter is found by using the Central Limit Theorem, which states that the distribution of the mean approximately follow a normal distribution. That is: 
+
+\begin{equation}
+CI_{\lambda}: \hat{\lambda} \pm z_{1-\alpha/2}\sqrt{\hat{\lambda}/n}
+\end{equation}
+
+Where $z_{1-\alpha/2}$ is a fractile from the standard normal distribution. If $\alpha = 0.05$, then $z_{1-\alpha/2} = 1.96$. 
+
+## Reading material
+
+* A video with an introduction to the Poisson distribution:
+    * [An Introduction to the Poisson Distribution](#sec-poisson-dist-jb)
+* Chapter 2.2 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
+    * Especially 2.2.4
+
+
+##### An Introduction to the Poisson Distribution - *jbstatistics* {#sec-poisson-dist-jb}
+{{< video https://www.youtube.com/watch?v=jmqZG6roVqU >}}
+
+
+## Exercises
+
+::: {.callout-note}
+
+Sometimes, when solving exercises you end up by doing what you are asked, without understanding why. The next two exercises tries to surpass this, by presenting the task in a short form, from which you should specify the questions which will give answers to the task. It is up to you, but maybe try to use the short version, and see how far that will get you
+
+:::
+
+::: {.callout-exercise id=ex-qa-poisson}
+### Quality assurance
+
+**Short version**  
+A production of a food material is checked batch wise for contamination of unwanted bacteria. The procedure is to take out $n$ samples of a given size, innoculate each sample in a relevant media at a relevant temperature for a relevant number of hours, and then check each sample for growth. 
+
+::: {.callout-task}
+1. Derive the underlying distribution of bacteria in the production batch. 
+2. Which assumptions do you impose? and how would you ensure the validity of these in the sampling procedure?.
+:::
+
+A batch were sampled following the procedure with $n = 5$ and there were not observed any growth.
+
+::: {.callout-task}
+3.  What is the upper confidence bound for the bacteria concentration in the sample under this observation? 
+:::
+
+You probably assume that in order to observe growth in a single sample there need to be at least $1$ viral bacteria cell present. However, the way growth is measured is via checking the optical density a method which is not extremly sensitive, why there need to be at least $500$ viral bacteria cells present in original sample in order to detect growth. 
+
+::: {.callout-task}
+4. Recalculate the upper confidence bound for the bacteria concentration under this opservation. 
+:::
+
+**Long version**  
+A production of a food material is checked batch wise for contamination of unwanted bacteria. The procedure is to take out $n$ samples of a given size, inoculate each sample in a relevant media at a relevant temperature for a relevant number of hours, and then check each sample for growth. 
+
+::: {.callout-task}
+
+1. Which distribution do the number of bacteria cells in each sample follow? 
+2. Calculate the probability of observing growth. I.e. that a sample contain at least a single bacteria cell. 
+3. Which distribution does the observation of growth/no growth in the $n$ samples follow? and what are the parameters for this distribution?  
+4. What assumptions naturally follow? and how would you ensure the validity of these in the sampling procedure?  
+
+:::
+
+A batch were sampled following the procedure with $n = 5$ and there were not observed any growth in any of the $5$ samples. 
+
+::: {.callout-task}
+
+5. Estimate the binomial parameter and calculate a confidence interval for this. 
+    * Hint: For this extreme case ($0$ positive) you can not use the approximation by the normal distribution. Instead look for a value of $p$ that would produce the observed result with some certainty (you have to specify). You can do this analytically or trial and error using the `dbinom()` in R.  
+6. What is the upper confidence bound for the bacteria concentration in the sample under this observation? 
+
+You probably assume that in order to observe growth in a single sample there need to be at least $1$ viral bacteria cell present. However, the way growth is measured is via checking the optical density a method which is not extremely sensitive, why there need to be at least $500$ viral bacteria cells present in original sample in order to detect growth. 
+
+7. Recalculate the upper confidence bound for the bacteria concentration under this observation. 
+    Hint: This can not be done analytically, so you need to try with different values of $\lambda$ and see which one that matches 
+
+:::
+
+:::
+<!-- End exercise callout -->
+
+::: {.callout-exercise id=ex-qa-poisson-binomial}
+### Quality assurance - poisson and binomial distribution
+
+**Short version**  
+A quality assurance program uses the test described in @ex-qa-poisson with $n$ samples. Derive the sensitivity of the test, that is; the probability of detecting contamination, given that is indeed there, as a function of the number of samples and the true concentration in the batch under investigation. Draw some curves visualizing this relation.
+
+**Long version**  
+A quality assurance program uses the test described in @ex-qa-poisson with $n$ samples. 
+
+1. Set $\lambda = 1$, calculate the binomial parameter for detecting growth in a single sample. 
+2. Set $n=5$, calculate the probability of observing no growth in any of the samples. 
+3. What is the sensitivity of the test, that is; the probability of detecting contamination, given that it is indeed there. 
+4. What happens if the sample size is changed for instance by a factor of $2$ or $1/2$? 
+5. Generalize this for other values of $\lambda$ and $n$, and draw curves for varying $n$ with sensitivity on the y-axis and $\lambda$ on the x-axis. 
+
+:::
+<!-- End exercise callout -->
+
+::: {.callout-exercise id=ex-qa-chance-of-false-rejections}
+### Quality assurance - chance of false rejections
+
+For some types of microorganisms (bacteria or yeast) a product is damaged for very low concentrations, due to the possibility of growth during storage. However, a number of organisms are only damaging the product when present in high amounts - if present in low amounts, they do not affect the quality.
+
+For a specific type of bacteria a concentration above a value $C$ (measured in CFU/g) leads to a damaged product, that should not be put on market, whereas a concentration below this value results in a good product, at least within the labeled shelf life.
+
+You have the responsibility for quality assurance at your company. In order to be able to export to Japan and USA (those countries are the most pernickety with respect to product safety) you need to document a thorough eigen-control system. So you set up a procedure.
+
+
+This procedure is set up to measure the concentration in a product sample. That is, a predefined number of samples ($n$) is sampled from the batch, diluted, spread on plates, incubated and the number of colony forming units are counted. That leads to the observations: $X_1,X_2,\ldots,X_n$. 
+
+
+1. Based on these observations give an estimate of the concentration in the entire batch. 
+2. Additionally, give a confidence interval for this concentration, where you approximate the distribution of the mean concentration with a normal distribution (using the central limit theorem). 
+3. Which of the three numbers (central estimate, lower and upper confidence bound) do you think is essential for determination of whether the batch is ok or not? 
+4. Which rule would you suggest for making this decision? 
+5. What is the change of rejecting an ok product under this rule? 
+6. Simulate the scenario for varying concentration parameters, varying sample size ($n$) and determine the rate of rejection of ok batches.
+
+For construction of random Poisson data use the function `rpois()` of fictious samples. 
+
+:::
+<!-- End exercise callout -->

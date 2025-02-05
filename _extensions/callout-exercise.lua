@@ -1,6 +1,7 @@
 -- Global state to track exercises and book information
 local exercises = {}  -- Store exercise data
 local exercise_counters = {}  -- Exercise counters per chapter
+local example_counters = {}  -- Example counters per chapter
 local seen_ids = {}  -- Track seen IDs
 local current_chapter = 1  -- Track current chapter number
 local book_info = {
@@ -110,7 +111,7 @@ local function init_book_info(meta)
   end
 end
 
--- Process exercise and task divs
+-- Process exercise, task, and example divs
 function Div(div)
   -- Process exercise callouts
   if div.classes:includes("callout-exercise") then
@@ -160,6 +161,55 @@ function Div(div)
       collapse = false
     })
   end
+
+  -- Process example callouts
+  if div.classes:includes("callout-example") then
+    -- Initialize counter for this chapter if it doesn't exist
+    if not example_counters[current_chapter] then
+      example_counters[current_chapter] = 0
+    end
+    example_counters[current_chapter] = example_counters[current_chapter] + 1
+    
+    local example_number = string.format("%d.%d", current_chapter, example_counters[current_chapter])
+    local example_title = nil
+    
+    -- Store example information for cross-referencing
+    if div.identifier and div.identifier:match("^exa%-") then
+      if seen_ids[div.identifier] then
+        warn("Duplicate example ID found: #" .. div.identifier)
+      end
+      
+      seen_ids[div.identifier] = true
+      exercises[div.identifier] = {
+        number = example_number,
+        file = book_info.processed_file,
+        new = true,
+        type = "example",
+        chapter = current_chapter
+      }
+      
+      -- Extract title from first header
+      if div.content[1] and div.content[1].t == "Header" then
+        example_title = pandoc.utils.stringify(div.content[1])
+        div.content:remove(1)
+      end
+    end
+    
+    -- Create example callout with number and title
+    local final_title = "Example " .. example_number
+    if example_title then
+      final_title = final_title .. " - " .. example_title
+    end
+    
+    return quarto.Callout({
+      type = "example",
+      content = { div },
+      title = final_title,
+      id = div.identifier,
+      icon = false,
+      collapse = false
+    })
+  end
   
   -- Process task callouts
   if div.classes:includes("callout-task") then
@@ -199,13 +249,15 @@ end
 -- Replace cross-references
 function Cite(cite)
   local id = cite.citations[1].id
-  if id:match("^ex%-") or id:match("^task%-") then
+  if id:match("^ex%-") or id:match("^exa%-") or id:match("^task%-") then
     local item = exercises[id]
     
     if item then
       local link_text
       if item.type == "exercise" then
         link_text = "Exercise " .. item.number
+      elseif item.type == "example" then
+        link_text = "Example " .. item.number
       else
         link_text = "Task"
       end

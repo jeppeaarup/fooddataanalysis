@@ -5,19 +5,59 @@
 // Importing fa icons
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
 
-// Global callout styling
+
+// -----------------------------------------
+// CALLOUTS AND CODE BLOCKS
+// -----------------------------------------
+
+// --- Code block styling ---
+
+.sourceCode {
+  border-radius: 0 !important;
+  margin-left: 1rem;
+}
+
+
+
+// --- Global callout styling ---
+
 .callout {
   border-radius: 0;
+  border-left-width: .5rem;
   }
 
-// Exercise callout styling
+
+  
+// --- Example callout styling ---
+
+div.callout-example.callout {
+  border-left-color: #3C91E6;
+}
+
+div.callout-example.callout-style-default > .callout-header {
+  background-color:  #C8E0F9; // Light version of left border color
+  font-size: large;
+}
+
+div.callout-example .callout-body { // Body margins
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+div.callout-example .callout-header .callout-title-container { // Title margins
+  margin-left: 10px;
+}
+
+
+
+// --- Exercise callout styling ---
+
 div.callout-exercise.callout {
     border-left-color: #6B9B8B;
-    padding-left: 10px;
   }
   
   div.callout-exercise.callout-style-default > .callout-header {
-    background-color: #ffffff;
+    background-color: #E7EEEC; // Light version of left border color
     font-size: large;
   }
   
@@ -25,42 +65,39 @@ div.callout-exercise.callout {
     font-family: "Font Awesome 5 Free";
     content: "\f303";
     margin-right: 15px;
-  }
-
-// Task callout styling
-div.callout-task.callout {
-    border-right: none;
-    border-bottom: none;
-    border-top: none;
-    border-left-color: #E6AC73;
-    background-color: #e6ad7330;
-
-  }
-
-div.callout-task.callout-style-default > .callout-header {
-    background-color: #ffffff;
-  }
-
-  .callout-task > .callout-header::before {
-    font-family: "Font Awesome 5 Free";
-    content: "\f04b";
     margin-left: 10px;
-    margin-right: 15px;
   }
 
-/*-- Classes for misc stuff --*/
+  div.callout-exercise .callout-body { // Body margins
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 
-.red_text { /*-- <p class="red_text"> This text will be red. </p> --*/
-    color: red !important;
+
+
+// --- Task callout styling ---
+
+.callout.callout-style-default.callout-task > .callout-header {
+  display: none !important;
 }
 
-.code_text { /*-- <p class="code_text"> This text will be monospaced. </p> --*/
-    font-family:  SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-    font-size: 0.9em;
-    color: black;
-}
+div.callout-task.callout {
+    border-left-color: #E6AC73;
+    padding-top: 10px;
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+  }
 
-h1, .h1 {
+
+
+// -----------------------------------------
+// TEXT
+// -----------------------------------------
+
+  // --- Header and float margins ---
+
+  h1, .h1 {
     margin-top: 60px;
 }
 
@@ -80,5 +117,22 @@ h4, .h4 {
     margin-top: 40px;
     margin-bottom: 40px;
 }
+
+
+
+// --- Text styling ---
+
+.red_text { /*-- <p class="red_text"> This text will be red. </p> --*/
+    color: red !important;
+}
+
+.code_text { /*-- <p class="code_text"> This text will be monospaced. </p> --*/
+    font-family:  SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+    font-size: 0.9em;
+    color: black;
+}
+
+
+
 
 

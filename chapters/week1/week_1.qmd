@@ -19,7 +19,7 @@ For Monday work through the following exercises:
 * @ex-plotting-2
 * @ex-plotting-3
 
-For Wednesday work through the following exercise:
+For Wednesday work through the following exercises:
 
 * @ex-analysis-of-coffee-inspection
 * @ex-wine-aromas-pca
