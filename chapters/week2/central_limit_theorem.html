@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Appendix B — Plotting with ggplot2 – Data Analysis for Food Science</title>
+<title>8&nbsp; Central limit theorem – Data Analysis for Food Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,7 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/appendix/data_wrangling.html" rel="prev">
+<link href="../../chapters/week3/week_3.html" rel="next">
+<link href="../../chapters/week2/normal_distribution.html" rel="prev">
 <link href="../../fda_favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -103,6 +104,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -115,7 +145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/appendix/data_wrangling.html">Appendices</a></li><li class="breadcrumb-item"><a href="../../chapters/appendix/ggplot2.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Plotting with ggplot2</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/week2/week_2.html">Week 2</a></li><li class="breadcrumb-item"><a href="../../chapters/week2/central_limit_theorem.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Central limit theorem</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -210,7 +240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/week2/central_limit_theorem.html" class="sidebar-item-text sidebar-link">
+  <a href="../../chapters/week2/central_limit_theorem.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Central limit theorem</span></span></a>
   </div>
 </li>
@@ -302,7 +332,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/appendix/ggplot2.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../chapters/appendix/ggplot2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Plotting with ggplot2</span></span></a>
   </div>
 </li>
@@ -313,15 +343,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#reading-material" id="toc-reading-material" class="nav-link active" data-scroll-target="#reading-material"><span class="header-section-number">8.1</span> Reading material</a>
+  <ul class="collapse">
+  <li><a href="#sec-the-central-limit-theorem-clearly-explained" id="toc-sec-the-central-limit-theorem-clearly-explained" class="nav-link" data-scroll-target="#sec-the-central-limit-theorem-clearly-explained"><span class="header-section-number">8.1.1</span> The Central Limit Theorem, Clearly Explained - <em>StatQuest</em></a></li>
+  <li><a href="#sec-what-is-the-clt" id="toc-sec-what-is-the-clt" class="nav-link" data-scroll-target="#sec-what-is-the-clt"><span class="header-section-number">8.1.2</span> What is the central limit theorem? And why is it so hard to understand? - <em>MrNystrom</em></a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">8.2</span> Exercises</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/appendix/data_wrangling.html">Appendices</a></li><li class="breadcrumb-item"><a href="../../chapters/appendix/ggplot2.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Plotting with ggplot2</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/week2/week_2.html">Week 2</a></li><li class="breadcrumb-item"><a href="../../chapters/week2/central_limit_theorem.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Central limit theorem</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Appendix B — Plotting with ggplot2</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Central limit theorem</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -338,10 +379,122 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Learning objectives
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Understand what the central limit theorem is, and how this is a useful theorem when dealing with uncertain data.</li>
+<li>Know the difference between the distribution of a population and the distribution of the population parameters.</li>
+</ul>
+</div>
+</div>
+<p>In short, the central limit theorem (CLT) says, that the central parameter (e.g.&nbsp;the mean) obtained from a sample (stikprøve) from ANY distribution is normal distributed with variance equal to the sample variance divided by the sample size. That is:</p>
+<p><span class="math display">\[
+\bar{X} \sim \mathcal{N}(\mu,\sigma^2/n) \quad for \: n \rightarrow \infty
+\]</span></p>
+<p>As we are dealing with samples of finite size, and further needs to estimate the parameters (mean and variance) based on this sample, the Normal distribution is exchanged by the T-distribution. The T-distribution take the uncertainty of having finite data into account. That is, if <span class="math inline">\(X_1,X_2,..,X_n\)</span> is randomly sampled from some distribution with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span> (approximated by <span class="math inline">\(s_X^2\)</span>), then:</p>
+<p><span class="math display">\[
+\frac{\bar{X} - \mu}{s_X/\sqrt{n}} \sim \mathcal{T}(df) \quad for \: finite \: n
+\]</span></p>
+<p>Where <span class="math inline">\(df\)</span> (degrees of freedom) is equal to <em>how well</em> the variance is estimated (usually <span class="math inline">\(df = n-1\)</span>).</p>
+<section id="reading-material" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="reading-material"><span class="header-section-number">8.1</span> Reading material</h2>
+<ul>
+<li>Videos on the central limit theorem:
+<ul>
+<li><a href="#sec-the-central-limit-theorem-clearly-explained">The Central Limit Theorem, Clearly Explained</a></li>
+<li><a href="#sec-what-is-the-clt">What is the central limit theorem? And why is it so hard to understand?</a></li>
+</ul></li>
+<li>Chapter 8.3 in <em>Introduction to Probability and Statistics Using R</em> by J.G. Kern
+<ul>
+<li>Available on Absalon</li>
+</ul></li>
+</ul>
+<section id="sec-the-central-limit-theorem-clearly-explained" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="sec-the-central-limit-theorem-clearly-explained"><span class="header-section-number">8.1.1</span> The Central Limit Theorem, Clearly Explained - <em>StatQuest</em></h3>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/YAlJCEDH2uY" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</section>
+<section id="sec-what-is-the-clt" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="sec-what-is-the-clt"><span class="header-section-number">8.1.2</span> What is the central limit theorem? And why is it so hard to understand? - <em>MrNystrom</em></h3>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/zr-97MVZYb0" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</section>
+</section>
+<section id="exercises" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="exercises"><span class="header-section-number">8.2</span> Exercises</h2>
+<div class="callout callout-style-default callout-exercise no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise 8.1 - Quality control and central limit theorem
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div id="ex-quality-control-and-clt" class="callout-exercise">
+<p>Ensuring the end product quality in food production is naturally of utmost interest. In doing so, the production is monitored at several critical points, in order to check that it is . This is referred to as statistical process control (SPC) and is under the umbrella of process analytical technology (PAT).</p>
+<p>In short, a critical point in a production is monitored by a so-called control card, that register a value, e.g.&nbsp;pH, temperature, or other essential product/production parameters. When a point is above or below certain limits, there is an alarm. However, due to natural variation, now and then such alarms occur without there being any systematic faults. These are called false positives.</p>
+<p>A cheese production monitors the <em>24 hours pH</em> for every production batch within a day. Under normal conditions the false alarms follow a distribution with mean <span class="math inline">\(\mu = 3\)</span> and variance <span class="math inline">\(\sigma^2 = 3\)</span> (the distribution is a Poisson distribution, but that is actually not so important here). The production runs very well, so the monitoring of these alarms are only used for retrospective follow up. Suddenly there are reclamations based on the last years production, and the boss want you to check up on whether it is the <em>24 hours pH</em> causing the trouble.</p>
+<div class="callout callout-style-default callout-task no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tasks
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout-task">
+<ol type="1">
+<li>You check the control card and finds that during the last year there were on average <span class="math inline">\(3.2\)</span> alarms. Does this indicate problems with the <em>24 hours pH</em>?</li>
+<li>Use the <code>rpois()</code> to generate data from <span class="math inline">\(1000\)</span> years, and check whether your results match.</li>
+<li>Imagine that the aggregated measure were over a month (30 days) or over a week (7 days) or as low as average over 2 days. How does this affect the agreement between the analytical probability (via central limit theorem) and the simulated probability (based on the actual underlying distribution)?</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<p>You might want to use the following code as inspiration for how it can be done in R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> ? <span class="co"># How many samples to average over</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> ? <span class="co"># Population mean</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> ? <span class="co"># Population standard deviation</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> ? <span class="co"># The odd observation</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(x, <span class="at">mean =</span> ?, <span class="at">sd =</span> ?)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation </span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">10000</span> <span class="co"># The number of e.g. years to simulate</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rpois</span>(n<span class="sc">*</span>k, l), k, n) <span class="co"># Simulate data</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>mX <span class="ot">&lt;-</span> <span class="fu">apply</span>(X, <span class="dv">1</span>, mean) <span class="co"># Compute row-wise mean</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(mX)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(mX <span class="sc">&gt;</span> x) <span class="sc">/</span> <span class="fu">length</span>(mX)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
 <!-- -->
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -821,14 +974,99 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/appendix/data_wrangling.html" class="pagination-link" aria-label="Wrangling data in R">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Wrangling data in R</span></span>
+      <a href="../../chapters/week2/normal_distribution.html" class="pagination-link" aria-label="The normal distribution">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The normal distribution</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../chapters/week3/week_3.html" class="pagination-link" aria-label="Week 3">
+        <span class="nav-page-text">Week 3</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Plotting with ggplot2</span></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Central limit theorem</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">## Learning objectives</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Understand what the central limit theorem is, and how this is a useful theorem when dealing with uncertain data. </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Know the difference between the distribution of a population and the distribution of the population parameters.</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>In short, the central limit theorem (CLT) says, that the central parameter (e.g. the mean) obtained from a sample (stikprøve) from ANY distribution is normal distributed with variance equal to the sample variance divided by the sample size. That is:  </span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>\bar{X} \sim \mathcal{N}(\mu,\sigma^2/n) \quad for \: n \rightarrow \infty</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>As we are dealing with samples of finite size, and further needs to estimate the parameters (mean and variance) based on this sample, the Normal distribution is exchanged by the T-distribution. The T-distribution take the uncertainty of having finite data into account. That is, if $X_1,X_2,..,X_n$ is randomly sampled from some distribution with mean $\mu$ and variance $\sigma^2$ (approximated by $s_X^2$), then: </span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>\frac{\bar{X} - \mu}{s_X/\sqrt{n}} \sim \mathcal{T}(df) \quad for \: finite \: n</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>Where $df$ (degrees of freedom) is equal to *how well* the variance is estimated (usually $df = n-1$).</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reading material</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Videos on the central limit theorem:</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="co">[</span><span class="ot">The Central Limit Theorem, Clearly Explained</span><span class="co">](#sec-the-central-limit-theorem-clearly-explained)</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="co">[</span><span class="ot">What is the central limit theorem? And why is it so hard to understand?</span><span class="co">](#sec-what-is-the-clt)</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Chapter 8.3 in *Introduction to Probability and Statistics Using R* by J.G. Kern</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Available on Absalon</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="fu">### The Central Limit Theorem, Clearly Explained - *StatQuest* {#sec-the-central-limit-theorem-clearly-explained}</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=YAlJCEDH2uY&amp;t=66s &gt;}}</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="fu">### What is the central limit theorem? And why is it so hard to understand? - *MrNystrom* {#sec-what-is-the-clt}</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=zr-97MVZYb0 &gt;}}</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercises</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise id=ex-quality-control-and-clt}</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="fu">### Quality control and central limit theorem</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>Ensuring the end product quality in food production is naturally of utmost interest. In doing so, the production is monitored at several critical points, in order to check that it is \textit{on track}. This is referred to as statistical process control (SPC) and is under the umbrella of process analytical technology (PAT). </span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>In short, a critical point in a production is monitored by a so-called control card, that register a value, e.g. pH, temperature, or other essential product/production parameters. When a point is above or below certain limits, there is an alarm. However, due to natural variation, now and then such alarms occur without there being any systematic faults. These are called false positives. </span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>A cheese production monitors the *24 hours pH* for every production batch within a day. Under normal conditions the false alarms follow a distribution with mean $\mu = 3$ and variance $\sigma^2 = 3$ (the distribution is a Poisson distribution, but that is actually not so important here). The production runs very well, so the monitoring of these alarms are only used for retrospective follow up. Suddenly there are reclamations based on the last years production, and the boss want you to check up on whether it is the *24 hours pH* causing the trouble. </span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>You check the control card and finds that during the last year there were on average $3.2$ alarms. Does this indicate problems with the *24 hours pH*? </span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Use the <span class="in">`rpois()`</span> to generate data from $1000$ years, and check whether your results match. </span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Imagine that the aggregated measure were over a month (30 days) or over a week (7 days) or as low as average over 2 days. How does this affect the agreement between the analytical probability (via central limit theorem) and the simulated probability (based on the actual underlying distribution)? </span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>You might want to use the following code as inspiration for how it can be done in R.</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> ? <span class="co"># How many samples to average over</span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> ? <span class="co"># Population mean</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> ? <span class="co"># Population standard deviation</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> ? <span class="co"># The odd observation</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(x, <span class="at">mean =</span> ?, <span class="at">sd =</span> ?)</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulation </span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">10000</span> <span class="co"># The number of e.g. years to simulate</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rpois</span>(n<span class="sc">*</span>k, l), k, n) <span class="co"># Simulate data</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>mX <span class="ot">&lt;-</span> <span class="fu">apply</span>(X, <span class="dv">1</span>, mean) <span class="co"># Compute row-wise mean</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(mX)</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(mX <span class="sc">&gt;</span> x) <span class="sc">/</span> <span class="fu">length</span>(mX)</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>:::</span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
