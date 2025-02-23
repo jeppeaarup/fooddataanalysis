@@ -4,7 +4,8 @@
 #| message: false
 #| warning: false
 
-library(tidyverse)
+library(dplyr)
+library(tidyr)
 library(ggpubr)
 library(ggbiplot)
 library(gridExtra)

@@ -6,9 +6,10 @@
 #| message: false
 #| warning: false
 
-library(tidyverse)
+library(dplyr)
 library(knitr)
 library(kableExtra)
+library(tibble)
 
 options(knitr.kable.NA = '')
 
