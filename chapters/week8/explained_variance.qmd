@@ -1,0 +1,60 @@
+# Explained variance
+```{r}
+#| label: exp-var-setup
+#| echo: false
+#| message: false
+#| warning: false
+
+library(ggplot2)
+library(gridExtra)
+
+```
+
+::: {.callout-tip}
+## Learning objectives
+
+The learning objectives for this theme are to:
+
+*  Understand the general notion of explained variance and its relation to least squares.
+
+:::
+
+Explained variance refers to how well the estimated model describes the observed data. That is, how much of the variation is systematic and how much is residual. In the figure below are shown two examples.
+
+```{r}
+#| label: fig-r2-pies
+#| fig-cap: Systematic variation (blue) and residual variation (red). 
+#| echo: false
+# Create data frames for both pie charts
+good_fit <- data.frame(
+  category = c("Explained", "Unexplained"),
+  value = c(0.8, 0.2)  # Representing high R² of 0.8
+)
+
+poor_fit <- data.frame(
+  category = c("Explained", "Unexplained"),
+  value = c(0.1, 0.9)  # Representing low R² of 0.1
+)
+
+# Create the first pie chart (High R²)
+p1 <- ggplot(good_fit, aes(x = "", y = value, fill = category)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start = 0) +
+  scale_fill_manual(values = c("blue", "red")) +
+  theme_void() +
+  theme(legend.position = "none") +
+  ggtitle("Model which describes data\nfairly well (High R²)")
+
+# Create the second pie chart (Low R²)
+p2 <- ggplot(poor_fit, aes(x = "", y = value, fill = category)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start = 0) +
+  scale_fill_manual(values = c("blue", "red")) +
+  theme_void() +
+  theme(legend.position = "none") +
+  ggtitle("Model which describes data\npoorly (Low R²)")
+
+# Arrange the plots side by side
+grid.arrange(p1, p2, ncol = 2)
+
+```

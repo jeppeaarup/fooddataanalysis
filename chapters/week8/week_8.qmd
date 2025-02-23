@@ -1,0 +1,23 @@
+# Week 7
+This week is going to extend regression to several predictors. Further, least squares for more complicated problems will be pursued.
+
+## Hand-in assignment
+The exercise @diet-several-vars *Diet and fat metabolism - regression with several variables* is to be handed in (through absalon or as hard-copy Wednesday night). You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important.  <!-- Original exercise 8.1 -->
+
+## Exercises
+
+For Monday work through the following exercises:
+
+* @ex-explained-variance         <!-- Original exercise 8.2 -->
+* @ex-r2-and-outliers            <!-- Original exercise 8.3 -->
+
+For Wednesday work through the following exercises:
+
+* @ex-r2-and-transformations   <!-- Original exercise 8.4 -->
+* @ex-exp-var-and-pca          <!-- Original exercise 8.5 -->
+
+Further, this week might allow you to recap on some of the exercises you did not make during the last weeks.
+
+## Case IV
+The fourth case should be handed in as a slide-show with voice no later than the Friday evening this week. 
+

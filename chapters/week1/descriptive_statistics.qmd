@@ -191,10 +191,10 @@ print(tmp)
 ::: {.callout-task}
 
 5. The above is done for \textit{Liking}, try to do it for some of the other responses. 
-    * HINT: This can be done by repeating the code and exchange `$Liking` with e.g. `$Bitter`. However, putting this in a for loop is another option.
+    * Hint: This can be done by repeating the code and exchange `$Liking` with e.g. `$Bitter`. However, putting this in a for loop is another option.
 
 6. What have you learned from analysing these data in terms of importance of serving temperature on the sensorical properties as percieved by consumers? 
-    * HINT: You can run the code below to get a comprehensive overview. This is based on the mean aggreggate, but you might just as well check some of the other descriptive metrics. For instance, what does the standard deviation tells you about consumers in general, and does the type of sensorical attribute and serving temperature make a difference on the spread in scoring? 
+    * Hint: You can run the code below to get a comprehensive overview. This is based on the mean aggreggate, but you might just as well check some of the other descriptive metrics. For instance, what does the standard deviation tells you about consumers in general, and does the type of sensorical attribute and serving temperature make a difference on the spread in scoring? 
 
 :::
 

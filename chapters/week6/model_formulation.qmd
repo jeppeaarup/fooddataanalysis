@@ -1,0 +1,18 @@
+# Model formulation
+
+::: {.callout-tip}
+## Learning objectives
+
+The learning objectives for this theme is to comprehend the idea of model specification. That amounts to:
+
+* Comprehend that a model describes the underlying process by which the data were generated, and that this ideally should cover the entire population which data is sampled from.
+* Understand that a model have a systematic part and a random part.
+* Be able to relate the systematic part of the model to central statistics.
+* Know what the systematic parameters of a model is.
+* Be able to formulate hypothesis based on the parameters of a model.
+* Know that the random part of a model is the vehicle for testing the systematic part.
+:::
+
+## Reading material
+
+* Chapter 3.1.10 and 8 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff

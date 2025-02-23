@@ -12,6 +12,8 @@ The learning objectives for this theme is to understand the idea behind statisti
 * Be able to calculate power for studies evaluated by the t-test and by the binomial distribution. 
 :::
 
+## Intro to power calculation
+
 ::: {.callout-example #exa-qa-power-calculation}
 ### Quality control - power calculation
 
@@ -106,3 +108,180 @@ It is seen that indeed a very high number of samples needs to be collected in or
 
 :::
 <!-- End example callout -->
+
+
+::: {.callout-example #exa-effect-of-caffeine-}
+### Effect of caffeine on activity - power
+
+The test in @exa-effect-of-caffeine-hypothesis-test reveal a p-value of p = 0.12 (see test below), which is not to be considered as strong support/evidence of a difference between the two groups. However, we do believe that there should be a difference between whether a mice is given water or red bull on their level of activity, and hence speculates that the study design is too small to be able to show a statistical significant difference between the two groups.
+:::
+<!-- End example callout -->
+
+
+## Reading material
+
+* Videos on power calculation:
+  * [Playing with Power: P-Values Pt 3](#sec-power-crashcourse)
+  * [Power Analysis, Clearly Explained](#sec-power-statquest)
+  * [Visualizing a Power Calculation ](#sec-power-ncss)
+* A video on how to do power calculation in R:
+  * [Calculating Power in R](#sec-power-in-r)
+* Chapter 3.2.4 and 3.1.9 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
+
+### Playing with Power: P-Values Pt 3 - *CrashCourse* {#sec-power-crashcourse}
+{{< video https://www.youtube.com/watch?v=WWagtGT1zH4 >}}
+
+### Power Analysis, Clearly Explained - *StatQuest* {#sec-power-statquest}
+{{< video https://www.youtube.com/watch?v=VX_M3tIyiYk >}}
+
+### Visualizing a Power Calculation - *NCSS Statistical Software* {#sec-power-ncss}
+{{< video https://www.youtube.com/watch?v=STO1NtVR2HI >}}
+
+### Calculating Power in R - *Ed Boone* {#sec-power-in-r}
+{{< video https://www.youtube.com/watch?v=7xghHcmQC50 >}}
+
+
+## Exercises
+
+::: {.callout-exercise id=ex-comparison-of-senses}
+### Comparison of senses
+A study wants to compare two types of trout samples, being meat stored under different conditions. The instrument used is a sensorical panel of 23 judges using either their visual sense, smelling sense or tasting sense. At each trial, each judges is presented with three pieces of meat - two similar and one odd. The task for the judge is to identify the odd sample using one of the senses. Data from such an experiment is presented in @tbl-sensory-study.
+
+|                   | Correct  | Not correct |
+|-------------------|:--------:|:-----------:| 
+| Smell             | 14       | 9           |
+| Taste             | 16       | 7           |
+| Visual appearance | 22       | 1           |
+
+: Data from a sensory study using 23 judges. {#tbl-sensory-study .responsive}
+
+::: {.callout-task}
+1. For now, stick to the sense *Taste*. State a statistical model for the outcome of each trial.
+2. Formulate a null hypothesis based on the model, and test how different the observed results are compared to this hypothesis.
+:::
+
+Based on the previous result, it seems like the different meat pieces is identifiable based on tasting. Now the questions is whether the two other senses performs similar in identification of the odd sample? (Hint: In this exercise you should use the method sketched in Method 7.19 and Method 7.21 in Brockhoff.)
+
+::: {.callout-task}
+3. Give a frank ranking of the senses based on the observed data.
+4. Formulate a model for each of the three senses.
+5. State a null hypothesis in relation to the question of similarity between senses.
+6. Compute *by hand* the expected values under this null hypothesis, $\chi^2_{obs}$ and the degrees of freedom.
+7. Use `pchisq()` to test the null hypothesis.
+8. Test the hypothesis using a function in R (try to figure out which one that does the job in a single line) - compare the results with your own calculation.
+9. Report the results in such a way, that differences between the three senses are communicated. 
+    * Hint: This can either be done by pairwise contrasts or confidence intervals for the central parameters.
+:::
+
+
+:::
+
+
+<!-- End exercise callout -->
+
+::: {.callout-exercise id=ex-our-sensorical-trial}
+### Our sensorical trial
+
+In September 2015 the students in food science conducted two sensorical trials. A triangle test and a duo trio test. Both on apple juice for discrimination between normal juice and juice with added citric acid. In @tbl-sensorical-trials is listed the results from the 69 judges in the study.
+
+<div style="width: 60%; margin: auto;">
+|          | N  | Correct |
+|----------|:--:|:-------:| 
+| Duo-Trio | 29 | 12      |
+| Triangle | 40 | 20      |
+
+: Results of the two sensorical trials. {#tbl-sensorical-trials}
+</div>
+
+
+::: {.callout-task}
+
+1. What is the chance probability for answering correct in the two tests?
+2. Initially, inspect data to see how the frequencies of correct answers compare with the chance probability. Can you draw conclusions without doing any stats?
+3. State two models for the data obtained from the Duo-trio test and from the triangle test.
+4. State null- and alternative hypothesis for the relevant data.
+5. Calculate the probability of observing the results (and what is more extreme compared to the null
+hypothesis) under the null-assumption.
+6. In case of rejection of the null hypothesis, give a estimate (and confidence interval) for the parameter.
+7. How big is the proportion of people who are actually able to taste differences based on this result?
+    * Hint: you need to take into account the amount of people who gives correct answer by guessing.
+
+:::
+
+:::
+<!-- End exercise callout -->
+
+::: {.callout-exercise id=ex-power-calculation-triangle-test}
+### Power calculation - triangle test
+
+A chocolate company have a product, which they want to improve the quality of. In order to do so, they change some of the raw material to a more expensive alternative. In order to test whether this change actually ”pays of” they set up an experiment - A triangle test. Among a set of consumers ($n$), each consumer is presented to three pieces of chocolate, two of type $A$ and one of type $B$, with the task of finding type $B$. The recorded data from such an experiment may look like:
+
+$$
+0,0,1,0,1,1,...0
+$$
+
+
+::: {.callout-task}
+1. Write up the statistical model underlying these data.
+2. If it is not possible to identify type $B$, what is the value of the parameter?
+:::
+
+A trial based on responses from 20 consumers results in half ($x = 10$) correctly identified.
+
+::: {.callout-task}
+3. What is the probability of observing such a results (or more extreme) under the null hypothesis of no differences between type $A$ and type $B$?
+:::
+
+The product manager is not satisfied with the results, after all half of the consumers were able to distinguish he says. You think 50% - *Aaahhh that is not actually what the data says - some of them were random!*, but you leave it there, as your boss is from CBS and basically without any technical insight!, so instead you assumme that this is indeed the case for the entire population (that the probability of selecting type $B$ is $p = 0.5$).
+
+::: {.callout-task}
+4. How many customers should you include in your trial in order to have a fair chance of achieving a significant result? 
+    * Hint i: Calculate for $n = 20, 21, ...$ the least number of correct findings in order for the results to be significant under the null hypothesis. I.e. what is $x$ in $P(X ≥ x) < 0.05$ under $p = p0$ (the guessing probability). 
+    * Hint ii: Calculate the probability of observing this (and more extreme) given the population probability of $p = 0.5$.
+5. Plot the combination of number of customers ($n$) and the probability of getting significant results, and device a new trial.
+:::
+
+:::
+<!-- End exercise callout -->
+
+
+::: {.callout-exercise id=ex-triangle-or-duo-trio}
+### Triangle or Duo-Trio?
+
+There exist a bunch of sensorical discrimination test, which all have the same aim, but are different in setup. In this exercise we are going to deal with the power of Triangle test and Duo-Trio test.
+
+::: {.callout-task}
+1. State the statistical model for the two test types.
+2. State the chance probabilities, and formulate null- and alternative hypothesis, for both tests.
+3. Now assume you conduct both trials $n = 20$ times. What is the least number of correct answers needed to get significant discrimination between the products.
+4. Assume that 50% of the people in the population are actually able to discriminate the samples. What is the expected frequency of correct answers under this assumption? 
+    * HINT: think of 100 persons.
+5. Calculate the power for a Duo-trio and a Triangle test with $n = 20$ assuming these populations probabilities.
+6. Comment on why somebody still uses the Duo-trio test.
+:::
+
+:::
+<!-- End exercise callout -->
+
+
+::: {.callout-exercise id=ex-power-calculation-in-t-test}
+### Power calculation in T-test
+
+**Short version**  
+You have been able to isolate a fiber from a novel source. With the increasing lifestyle related health problems, you think that your new fiber might actually* save the world*. You just need to prove it. In order to do so, you set up an experiment similar to the one described in "Fiber and Cholesterol". I.e. a paired setup with baseline measurements, followed by an intervention period and end-of-trial measurements. You will have proven your case if the fiber supplemented to the diet is able to lower the cholesterol level. The question is: How many patients do you need in order to run such a trial?
+
+**Long version**  
+You have been able to isolate a fiber from a novel source. With the increasing lifestyle related health problems, you think that your new fiber might actually* save the world*. You just need to prove it. In order to do so, you set up an experiment similar to the one described in "Fiber and Cholesterol". I.e. a paired setup with baseline measurements, followed by an intervention period and end-of-trial measurements. You will have proven your case if the fiber supplemented to the diet is able to lower the cholesterol level. The question is: How many patients do you need in order to run such a trial?
+
+::: {.callout-task}
+1. Based on your knowledge on fiber and health give some numbers for effect size, and standard deviation.
+    * Hint: You might use the results from a previous similar study to get reliable numbers.
+2. Write up the test statistics for this experiment.
+3. Calculate the test statistics for varying number of included persons, with the parameters (effect size
+and standard deviation) fixed.
+4. Use the function `power.t.test()` to calculate how many persons are needed for a trial with power of $\beta = 0.80$ and a significance threshold of $\alpha = 0.05$.
+:::
+
+
+:::
+<!-- End exercise callout -->

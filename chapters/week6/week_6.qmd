@@ -1,0 +1,31 @@
+# Week 6
+In this week we are going to expand on inferential statistics by introdcuing the very general notion of statistical model formulation. In short, that is to set up an equation or function that specifies how the observed response is made up. In addition we are going to work with the analysis of variance (ANOVA) and the associated F statistics and distribution.
+
+## Hand-in assignment
+@ex-diet-and-fat-metabolism-anova *Diet and fat metabolism - ANOVA* question 1 to 6 is to be handed in (through absalon or as hard-copy Friday night). <!-- Original exercise 6.3 -->
+
+Question 7 to 11 verifies the questions, so please use those for checking your results - however, we DO NOT correct these if you include them in the assignment.
+
+You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important. 
+
+## Exercises
+
+For Monday work through the following exercises:
+
+* @ex-anova (question 1 to 3)                   <!-- Original exercise 6.1 -->
+* @ex-wine-and-one-way-anova                    <!-- Original exercise 6.2 -->
+
+For Wednesday work through the following exercises:
+
+* @ex-wine-and-one-way-anova (question 4 to 5)  <!-- Original exercise 6.1 -->
+* @ex-analysis-of-coffee-serving-temperature    <!-- Original exercise 6.5 -->
+* @ex-carcass-suspension                         <!-- Original exercise 6.6 -->
+* @ex-stability-of-oil-2 <!-- Original exercise 6.7 -->
+
+::: {.callout-important}
+@ex-stability-of-oil-2 includes more than two factors and further interaction between those - this is not part of the curriculum, but being able to compute the numbers in an ANOVA table is.
+:::
+
+## Case III
+The third case should be handed in as a slide-show with voice no later than Friday evening.
+

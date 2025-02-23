@@ -2,21 +2,21 @@
 In this week we are going to discuss a last subject for non continuous data, that is, multinomial data and the multinomial distribution. The Chi squared test is a central test for discrete data types and can be used for inferential testing. Further, we are going to deal with the notion of power, that is; if there truly is a difference, how likely is it that the statistical tests will find it? 
 
 ## Hand-in assignment
-@ex-power-triangle *Power calculation - triangle test* is to be handed in (through absalon or as hard-copy Wednesday night). You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important. 
+@ex-triangle-or-duo-trio *Power calculation - triangle test* is to be handed in (through absalon or as hard-copy Wednesday night). You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important. 
 
 ## Exercises
 
 For Monday work through the following exercises:
 
 * @ex-comparison-of-senses
-* @ex-power-calculation
-
-If you really think that this is easy stuff, then try to work through exercise @ex-dist-of-extreme-values
+* @ex-our-sensorical-trial
 
 For Wednesday work through the following exercises:
 
 * @ex-triangle-or-duo-trio
 * @ex-power-calculation-in-t-test
+
+Further, this week might allow you to recap on some of the exercises you did not make during the last weeks.
 
 ## Case III
 The third case should be handed in as a slide-show with voice no later than Thursday evening next week.

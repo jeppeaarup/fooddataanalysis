@@ -44,6 +44,17 @@ book:
         - chapters/week5/mutinomial_data.qmd
         - chapters/week5/power_calculation.qmd
 
+    # Week 6
+    - part: chapters/week6/week_6.qmd
+      chapters:
+        - chapters/week6/model_formulation.qmd
+        - chapters/week6/anova.qmd
+
+    # Week 6
+    - part: chapters/week7/week_7.qmd
+      chapters:
+        - chapters/week7/regression.qmd
+        - chapters/week7/least_squares.qmd
         
   # Appendices
   appendices:

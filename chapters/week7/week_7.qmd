@@ -1,0 +1,31 @@
+# Week 7
+This week is going to be on regression analysis. Regression might be the most influential and most widely used technique for relating response with outcomes. Although regression is a general framework for different types of responses (continuous, binomial, poisson, categorical,...) we are only going to deal with continuous outcomes in this course. However, knowing the basis for continuous data, makes it easy to extend into other types of data.
+
+Using regression as an example, this week will introduce the mathematical concept behind analysis of continuous normally distributed data. Namely Least Squares estimation. In the estimation of parameters for a model, ANOVA, linear regression, correlation, PCA and also non-linear models, there is often stated a so-called objective in the form of a minimization problem. I.e. *give me the parameters that results in the minimum sum of squared errors*, that is the least squares parameter estimates. The most simple situation is the center of a distribution; Using the mean/average as the center results in a minimum *overall* distance to the center. 
+
+## Hand-in assignment
+@ex-least-squares-estimation *Diet and fat metabolism - ANOVA* question 1 to 6 is to be handed in (through absalon or as hard-copy Wednesday night). <!-- Original exercise 7.7 -->
+You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important. 
+
+## Exercises
+
+For Monday work through the following exercises:
+
+* @ex-linear-regression         <!-- Original exercise 7.1 -->
+* @ex-diet-regression-by-hand   <!-- Original exercise 7.2 -->
+
+For Wednesday work through the following exercises:
+
+* @ex-diet-regression-and-pca   <!-- Original exercise 7.3 -->
+* @ex-standard-curve-by-hand    <!-- Original exercise 7.5 -->
+* @ex-standard-curve-phenols    <!-- Original exercise 7.6 -->
+
+Further, this week might allow you to recap on some of the exercises you did not make during the last weeks.
+
+## Case IV
+In this dataset there is a lot of possibilities, so it is very important that you take choices on what questions you want to pursue, and then use all your knowledge and tools to grasp how the biological system works.
+
+Case four is contributing to the final grade.
+
+The case should be made in groups similarly as to case 1-3. 
+
