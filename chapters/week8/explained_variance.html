@@ -107,6 +107,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -119,7 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/week8/week_8.html">Week 7</a></li><li class="breadcrumb-item"><a href="../../chapters/week8/explained_variance.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Explained variance</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/week8/week_8.html">Week 8</a></li><li class="breadcrumb-item"><a href="../../chapters/week8/explained_variance.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Explained variance</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -338,7 +367,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../chapters/week8/week_8.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 7</span></a>
+ <span class="menu-text">Week 8</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -386,13 +415,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#reading-material" id="toc-reading-material" class="nav-link active" data-scroll-target="#reading-material"><span class="header-section-number">20.1</span> Reading material</a></li>
+  <li><a href="#videos" id="toc-videos" class="nav-link" data-scroll-target="#videos"><span class="header-section-number">20.2</span> Videos</a></li>
+  <li><a href="#intro-to-explained-variance" id="toc-intro-to-explained-variance" class="nav-link" data-scroll-target="#intro-to-explained-variance"><span class="header-section-number">20.3</span> Intro to explained variance</a>
+  <ul class="collapse">
+  <li><a href="#model-estimates-haty-and-r2" id="toc-model-estimates-haty-and-r2" class="nav-link" data-scroll-target="#model-estimates-haty-and-r2"><span class="header-section-number">20.3.1</span> Model estimates (<span class="math inline">\(\hat{y}\)</span>) and <span class="math inline">\(R^2\)</span></a></li>
+  <li><a href="#correlation-coefficient-and-r2" id="toc-correlation-coefficient-and-r2" class="nav-link" data-scroll-target="#correlation-coefficient-and-r2"><span class="header-section-number">20.3.2</span> Correlation coefficient and <span class="math inline">\(R^2\)</span></a></li>
+  <li><a href="#r2-for-pca" id="toc-r2-for-pca" class="nav-link" data-scroll-target="#r2-for-pca"><span class="header-section-number">20.3.3</span> <span class="math inline">\(R^2\)</span> for PCA</a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">20.4</span> Exercises</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/week8/week_8.html">Week 7</a></li><li class="breadcrumb-item"><a href="../../chapters/week8/explained_variance.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Explained variance</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/week8/week_8.html">Week 8</a></li><li class="breadcrumb-item"><a href="../../chapters/week8/explained_variance.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Explained variance</span></a></li></ol></nav>
 <div class="quarto-title">
 <div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Explained variance</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
@@ -427,6 +470,29 @@ Learning objectives
 </ul>
 </div>
 </div>
+<section id="reading-material" class="level2" data-number="20.1">
+<h2 data-number="20.1" class="anchored" data-anchor-id="reading-material"><span class="header-section-number">20.1</span> Reading material</h2>
+<ul>
+<li>Videos on R-squared:
+<ul>
+<li><a href="#sec-r2-mrnystrom">What does r squared tell us? What does it all mean</a></li>
+<li><a href="#sec-r2-statquest">R-squared, Clearly Explained</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="videos" class="level2" data-number="20.2">
+<h2 data-number="20.2" class="anchored" data-anchor-id="videos"><span class="header-section-number">20.2</span> Videos</h2>
+<section id="sec-r2-mrnystrom" class="level4">
+<h4 class="anchored" data-anchor-id="sec-r2-mrnystrom">What does r squared tell us? What does it all mean - <em>MrNystrom</em></h4>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/IMjrEeeDB-Y" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</section>
+<section id="sec-r2-statquest" class="level4">
+<h4 class="anchored" data-anchor-id="sec-r2-statquest">R-squared, Clearly Explained - <em>StatQuest</em></h4>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/bMccdk8EdGo" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</section>
+</section>
+<section id="intro-to-explained-variance" class="level2" data-number="20.3">
+<h2 data-number="20.3" class="anchored" data-anchor-id="intro-to-explained-variance"><span class="header-section-number">20.3</span> Intro to explained variance</h2>
 <p>Explained variance refers to how well the estimated model describes the observed data. That is, how much of the variation is systematic and how much is residual. In the figure below are shown two examples.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -442,10 +508,301 @@ Figure&nbsp;20.1: Systematic variation (blue) and residual variation (red).
 </div>
 </div>
 </div>
+<p>The explained variance is summarized in the so-called <span class="math inline">\(R^2 \in \left[ 0,1 \right]\)</span> metric. Where a value close to <span class="math inline">\(1\)</span> indicates high degree of explained variance, and a value close to <span class="math inline">\(0\)</span> the contrary.</p>
+<p><span class="math inline">\(R^2\)</span> is based on the sums of squares of the different model terms. Given the model:</p>
+<p><span class="math display">\[
+X = S + E
+\]</span></p>
+<p>Where <span class="math inline">\(X\)</span> refers to the observed data, <span class="math inline">\(S\)</span> the systematic parameterized part of the model and <span class="math inline">\(E\)</span> the residuals, then:</p>
+<p><span class="math display">\[
+SS(X) = SS(S) + SS(E)
+\]</span></p>
+<p>I.e. the sums of squares are additive. From this the <span class="math inline">\(R^2\)</span> value is defined as:</p>
+<p><span class="math display">\[
+R^2 = \frac{SS(S)}{SS(X)} = \frac{SS(X) - SS(E)}{SS(X)} = 1 - \frac{SS(E)}{SS(X)}
+\]</span></p>
+<p>In both ANOVA and linear regression these <span class="math inline">\(SS()\)</span> values are readily available from the analysis table, where <span class="math inline">\(SS(X) = SS_{tot}\)</span> and <span class="math inline">\(SS(E) = SS_e\)</span>. Further, it is possible to calculate the <span class="math inline">\(R^2\)</span> for the entire model, but also for individual factors in twoway ANOVA and regression with multiple descriptors, simply by using the individual <span class="math inline">\(SS()\)</span> contributions.</p>
+<section id="model-estimates-haty-and-r2" class="level3" data-number="20.3.1">
+<h3 data-number="20.3.1" class="anchored" data-anchor-id="model-estimates-haty-and-r2"><span class="header-section-number">20.3.1</span> Model estimates (<span class="math inline">\(\hat{y}\)</span>) and <span class="math inline">\(R^2\)</span></h3>
+<p>In linear regression the model is stated as:</p>
+<p><span class="math display">\[
+\begin{gather}
+y_{i} = \alpha + \beta \cdot x_i + e_i \\
+where \ e_{i}\sim \mathcal{N}(0,\sigma^2) \ and \ independent \\
+for  \ i=1,...,n
+\end{gather}
+\]</span></p>
+<p>The predicted values for <span class="math inline">\(y\)</span> (referred to as <span class="math inline">\(\hat{y}\)</span>) can be expressed as:</p>
+<p><span class="math display">\[
+\hat{y}_{i} = \hat{\alpha} + \hat{\beta} \cdot x_i
+\]</span></p>
+<p>where the estimates of the slope and the intercept is used for calculating <span class="math inline">\(y\)</span> based on <span class="math inline">\(x\)</span>.</p>
+<p>The <span class="math inline">\(R^2\)</span> value for such a model can also be seen as:</p>
+<p><span class="math display">\[
+R^2 = r_{\hat{y},y}^2
+\]</span></p>
+<p>That is, taking the squared value of the correlation coefficient between the observed response and the predicted response yields the explained variance by the model.</p>
+<p>This concept is valid for for a range of models including ANOVA, PCA and linear regression.</p>
+</section>
+<section id="correlation-coefficient-and-r2" class="level3" data-number="20.3.2">
+<h3 data-number="20.3.2" class="anchored" data-anchor-id="correlation-coefficient-and-r2"><span class="header-section-number">20.3.2</span> Correlation coefficient and <span class="math inline">\(R^2\)</span></h3>
+<p>In bi-variate correlation analysis, the correlation coefficient is directly related to <span class="math inline">\(R^2\)</span>, as: I</p>
+<p>The implication of this, is that the <em>direction</em> is lost (<span class="math inline">\(R^2 = 0.3^2 = (-0.3)^2\)</span>), but the <em>strength</em> of the relation is not.</p>
+</section>
+<section id="r2-for-pca" class="level3" data-number="20.3.3">
+<h3 data-number="20.3.3" class="anchored" data-anchor-id="r2-for-pca"><span class="header-section-number">20.3.3</span> <span class="math inline">\(R^2\)</span> for PCA</h3>
+<p>In a PCA model, it is possible to talk about <span class="math inline">\(R^2\)</span> values for the entire model or for the individual components. It is so, by definition, that the contribution from the individual components is decreasing, that is:</p>
+<p><span class="math display">\[
+R_{PC1}^2 \geq R_{PC2}^2 \geq \ldots \geq R_{PCk}^2
+\]</span></p>
+<p>Further, from a <span class="math inline">\(k\)</span> component model follows that total explained variance is:</p>
+<p><span class="math display">\[
+R_{PC1-PCk}^2  = R_{PC1}^2 + R_{PC2}^2 + \ldots + R_{PCk}^2 = \sum_{i=1}^k{R_{PCi}^2}
+\]</span></p>
+<section id="pca-vs-regressionanova" class="level4">
+<h4 class="anchored" data-anchor-id="pca-vs-regressionanova">PCA vs Regression/ANOVA</h4>
+<p>In PCA, by increasing the number of components you will eventually reach explained variance of <span class="math inline">\(1\)</span>. This is due to the parameters of this model is solely based on the response variables, so there is no set of independent variables, as there is in ANOVA and linear regression. This has the implication, that comparing <span class="math inline">\(R^2\)</span> values between e.g.&nbsp;an ANOVA model and a PCA model is not at all straight forward.</p>
+</section>
+</section>
+</section>
+<section id="exercises" class="level2" data-number="20.4">
+<h2 data-number="20.4" class="anchored" data-anchor-id="exercises"><span class="header-section-number">20.4</span> Exercises</h2>
+<div class="callout callout-style-default callout-exercise no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise 20.1 - Explained variance (R-squared) - regression n’ correlation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div id="ex-explained-variance" class="callout-exercise">
+<p>This exercise deals with explained variance and its relation to the residual deviation. This exercise uses the dietary intervention on mice and the effect on biomarkers related to fat metabolism.</p>
+<div class="callout callout-style-default callout-task no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tasks
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout-task">
+<ol type="1">
+<li>First, we are going to deal with insulin and cholesterol. Make three analyses:
+<ol type="a">
+<li>Regress cholesterol on insulin.</li>
+<li>Regress insulin on cholesterol.</li>
+<li>Make a correlation analysis between the two.</li>
+</ol></li>
+<li>Make a drawing (not exact, just some dots) of cholesterol versus insulin and indicate a regression line, and the the residuals for the first two models in Q1.</li>
+<li>For each model, calculate <span class="math inline">\(R^2\)</span>.</li>
+</ol>
+<ul>
+<li>Hint: You can use the <span class="math inline">\(SS\)</span> measures of an <code>aov()</code> model, or use <code>summary()</code> of a <code>lm()</code> model directly.</li>
+</ul>
+<ol start="4" type="1">
+<li>Comment on what you observe.</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- End exercise callout -->
+<div class="callout callout-style-default callout-exercise no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise 20.2 - R-squared and outliers
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div id="ex-r2-and-outliers" class="callout-exercise">
+<p>This exercise should show how extreme outliers can influence the <span class="math inline">\(R^2\)</span> measure by making it unrealistically high.</p>
+<div class="callout callout-style-default callout-task no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tasks
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout-task">
+<ol type="1">
+<li>Simulate two sets of vector <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, each of <span class="math inline">\(n=15\)</span> points which are not related. (use <code>rnorm()</code> in R for doing so).</li>
+<li>Scatter plot <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> and add the best regression line. (code hint: <code>+ stat_smooth(method = "lm")</code>)</li>
+<li>Calculate the correlation coefficient (<span class="math inline">\(r\)</span>) and the <span class="math inline">\(R^2\)</span> value.</li>
+<li>Do the stats (<span class="math inline">\(r\)</span> and <span class="math inline">\(R^2\)</span>) and the plot tells the same story?</li>
+<li>Now add an extreme point to both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> (<code>x &lt;- c(x,extremenumber)</code>).</li>
+<li>Repeat plotting and stat calculation (<span class="math inline">\(r\)</span> and <span class="math inline">\(R^2\)</span>).</li>
+<li>What happened?</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Take home message: <span class="math inline">\(R^2\)</span> alone without visual inspection can be misleading.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- End exercise callout -->
+<div class="callout callout-style-default callout-exercise no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise 20.3 - R-squared and transformations
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div id="ex-r2-and-transformations" class="callout-exercise">
+<p>This exercise should show how transformation influences the <span class="math inline">\(R^2\)</span> measure. The exercise is using the wine dataset.</p>
+<div class="callout callout-style-default callout-task no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tasks
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout-task">
+<ol type="1">
+<li>Import data, and make a plot of the response variable <code>Ethyl.pyruvate</code> inferring country membership.</li>
+<li>Make a oneway ANOVA model for this response variable, and check (or calculate) the <span class="math inline">\(R^2\)</span> value.</li>
+<li>Make a transformation of the response variable, and repeat plotting, modeling and <span class="math inline">\(R^2\)</span> calculation.</li>
+<li>Compare the <span class="math inline">\(R^2\)</span> for the raw response and transformed response, and figure out (based on the plots) which samples that are causing the difference.</li>
+<li>Make a check of model assumptions for both models, and try to fix the issues by outlier removal.</li>
+</ol>
+<ul>
+<li>Hint: a simple way to remove samples and update models can be seen below.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ic <span class="ot">&lt;-</span> wine<span class="sc">$</span>Ethyl.pyruvate <span class="sc">&lt;</span> ...</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> wine[ic, ], ...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- End exercise callout -->
+<div class="callout callout-style-default callout-exercise no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exercise 20.4 - Explained variance and PCA
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div id="ex-exp-var-and-pca" class="callout-exercise">
+<p>This exercise deals with explained variance in relation to PCA. This exercise uses the dietary intervention on mice and the effect on biomarkers related to fat metabolism.</p>
+<div class="callout callout-style-default callout-task no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tasks
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout-task">
+<ol type="1">
+<li>Initially extract and scale the biomarkers in the dataset (use <code>X &lt;- scale()</code> for this purpose).</li>
+<li>Calculate the total sums of squares for these data? (<code>sum(X^2)</code>)</li>
+<li>Calculate a PCA model on these preprocessed data, and plot it using <code>ggbiplot()</code>.</li>
+<li>Calculate the residuals after the first component. This is done by calculating the predicted values and subtracting those from the data (see code below).</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># "pca" refers to a PCA model built by "prcomp()"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Xhat <span class="ot">&lt;-</span> pca<span class="sc">$</span>x[ , <span class="dv">1</span>] <span class="sc">%o%</span> mm<span class="sc">$</span>rotation[ , <span class="dv">1</span>]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>E <span class="ot">&lt;-</span> X <span class="sc">-</span> Xhat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-task no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tasks
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="callout-task">
+<ol start="5" type="1">
+<li>Calculate the residual sums of squares after removing the first component.</li>
+<li>Calculate the <span class="math inline">\(R^2\)</span> for the first component.</li>
+<li>Try to calculate the <span class="math inline">\(R^2\)</span> value from the correlation between <span class="math inline">\(\mathbf{X}\)</span> and <span class="math inline">\(\hat{\mathbf{X}}\)</span>: CODE HERE</li>
+<li>Try to modify the code in Q4 to be able to calculate for component <span class="math inline">\(2\)</span>, <span class="math inline">\(3\)</span>,…</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<p>Eventually you can match your results with the ones produced by <code>ggbiplot()</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- End exercise callout -->
 
 
 <!-- -->
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -935,66 +1292,254 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Explained variance</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: exp-var-setup</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Learning objectives</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>The learning objectives for this theme are to:</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">*  </span>Understand the general notion of explained variance and its relation to least squares.</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>Explained variance refers to how well the estimated model describes the observed data. That is, how much of the variation is systematic and how much is residual. In the figure below are shown two examples.</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-r2-pies</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Systematic variation (blue) and residual variation (red). </span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data frames for both pie charts</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>good_fit <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">"Explained"</span>, <span class="st">"Unexplained"</span>),</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>)  <span class="co"># Representing high R² of 0.8</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>poor_fit <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">"Explained"</span>, <span class="st">"Unexplained"</span>),</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>)  <span class="co"># Representing low R² of 0.1</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the first pie chart (High R²)</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(good_fit, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> value, <span class="at">fill =</span> category)) <span class="sc">+</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"red"</span>)) <span class="sc">+</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Model which describes data</span><span class="sc">\n</span><span class="st">fairly well (High R²)"</span>)</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the second pie chart (Low R²)</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(poor_fit, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> value, <span class="at">fill =</span> category)) <span class="sc">+</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"red"</span>)) <span class="sc">+</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Model which describes data</span><span class="sc">\n</span><span class="st">poorly (Low R²)"</span>)</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Arrange the plots side by side</span></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Explained variance</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: exp-var-setup</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Learning objectives</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>The learning objectives for this theme are to:</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="ss">*  </span>Understand the general notion of explained variance and its relation to least squares.</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reading material</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Videos on R-squared:</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="co">[</span><span class="ot">What does r squared tell us? What does it all mean</span><span class="co">](#sec-r2-mrnystrom)</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="co">[</span><span class="ot">R-squared, Clearly Explained</span><span class="co">](#sec-r2-statquest)</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="fu">## Videos</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="fu">#### What does r squared tell us? What does it all mean - *MrNystrom* {#sec-r2-mrnystrom}</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=IMjrEeeDB-Y &gt;}}</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="fu">#### R-squared, Clearly Explained - *StatQuest* {#sec-r2-statquest}</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=bMccdk8EdGo &gt;}}</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Intro to explained variance</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>Explained variance refers to how well the estimated model describes the observed data. That is, how much of the variation is systematic and how much is residual. In the figure below are shown two examples.</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-r2-pies</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Systematic variation (blue) and residual variation (red). </span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>good_fit <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">"Explained"</span>, <span class="st">"Unexplained"</span>),</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="fl">0.8</span>, <span class="fl">0.2</span>) </span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>poor_fit <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">"Explained"</span>, <span class="st">"Unexplained"</span>),</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>)</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(good_fit, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> value, <span class="at">fill =</span> category)) <span class="sc">+</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Model which describes data</span><span class="sc">\n</span><span class="st">fairly well (High R²)"</span>)</span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(poor_fit, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> value, <span class="at">fill =</span> category)) <span class="sc">+</span></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">"y"</span>, <span class="at">start =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"red"</span>)) <span class="sc">+</span></span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Model which describes data</span><span class="sc">\n</span><span class="st">poorly (Low R²)"</span>)</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>The explained variance is summarized in the so-called $R^2 \in \left<span class="co">[</span><span class="ot"> 0,1 \right</span><span class="co">]</span>$ metric. Where a value close to $1$ indicates high degree of explained variance, and a value close to $0$ the contrary.</span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>$R^2$ is based on the sums of squares of the different model terms. Given the model:</span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>X = S + E</span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>Where $X$ refers to the observed data, $S$ the systematic parameterized part of the model and $E$ the residuals, then:</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a>SS(X) = SS(S) + SS(E)</span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>I.e. the sums of squares are additive. From this the $R^2$ value is defined as:</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>R^2 = \frac{SS(S)}{SS(X)} = \frac{SS(X) - SS(E)}{SS(X)} = 1 - \frac{SS(E)}{SS(X)}</span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>In both ANOVA and linear regression these $SS()$ values are readily available from the analysis table, where $SS(X) = SS_{tot}$ and $SS(E) = SS_e$. Further, it is possible to calculate the $R^2$ for the entire model, but also for individual factors in twoway ANOVA and regression with multiple descriptors, simply by using the individual $SS()$ contributions.</span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="fu">### Model estimates ($\hat{y}$) and $R^2$</span></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>In linear regression the model is stated as:</span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>\begin{gather}</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>y_{i} = \alpha + \beta \cdot x_i + e_i <span class="sc">\\</span></span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>where \ e_{i}\sim \mathcal{N}(0,\sigma^2) \ and \ independent <span class="sc">\\</span></span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>for  \ i=1,...,n</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>\end{gather}</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>The predicted values for $y$ (referred to as $\hat{y}$) can be expressed as:</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>\hat{y}_{i} = \hat{\alpha} + \hat{\beta} \cdot x_i</span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>where the estimates of the slope and the intercept is used for calculating $y$ based on $x$.</span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>The $R^2$ value for such a model can also be seen as:</span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>R^2 = r_{\hat{y},y}^2</span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a>That is, taking the squared value of the correlation coefficient between the observed response and the predicted response yields the explained variance by the model.</span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>This concept is valid for for a range of models including ANOVA, PCA and linear regression.</span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a><span class="fu">### Correlation coefficient and $R^2$</span></span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a>In bi-variate correlation analysis, the correlation coefficient is directly related to $R^2$, as:</span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a>I</span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>The implication of this, is that the *direction* is lost ($R^2 = 0.3^2 = (-0.3)^2$), but the *strength* of the relation is not.</span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a><span class="fu">### $R^2$ for PCA</span></span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>In a PCA model, it is possible to talk about $R^2$ values for the entire model or for the individual components. It is so, by definition, that the contribution from the individual components is decreasing, that is:</span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a>R_{PC1}^2 \geq R_{PC2}^2 \geq \ldots \geq R_{PCk}^2</span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a>Further, from a $k$ component model follows that total explained variance is:</span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a>R_{PC1-PCk}^2  = R_{PC1}^2 + R_{PC2}^2 + \ldots + R_{PCk}^2 = \sum_{i=1}^k{R_{PCi}^2}</span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a><span class="fu">#### PCA vs Regression/ANOVA</span></span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>In PCA, by increasing the number of components you will eventually reach explained variance of $1$. This is due to the parameters of this model is solely based on the response variables, so there is no set of independent variables, as there is in ANOVA and linear regression. This has the implication, that comparing $R^2$ values between e.g. an ANOVA model and a PCA model is not at all straight forward.</span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercises</span></span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise id=ex-explained-variance}</span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a><span class="fu">### Explained variance (R-squared) - regression n' correlation</span></span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a>This exercise deals with explained variance and its relation to the residual deviation. This exercise uses the dietary intervention on mice and the effect on biomarkers related to fat metabolism.</span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>First, we are going to deal with insulin and cholesterol. Make three analyses:</span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a>   a. Regress cholesterol on insulin.</span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>   b. Regress insulin on cholesterol.</span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a>   c. Make a correlation analysis between the two.</span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Make a drawing (not exact, just some dots) of cholesterol versus insulin and indicate a regression line, and the the residuals for the first two models in Q1.</span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>For each model, calculate $R^2$. </span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Hint: You can use the $SS$ measures of an <span class="in">`aov()`</span> model, or use <span class="in">`summary()`</span> of a <span class="in">`lm()`</span> model directly.</span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Comment on what you observe.</span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise id=ex-r2-and-outliers}</span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a><span class="fu">### R-squared and outliers</span></span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a>This exercise should show how extreme outliers can influence the $R^2$ measure by making it unrealistically high.</span>
+<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Simulate two sets of vector $x$ and $y$, each of $n=15$ points which are not related. (use <span class="in">`rnorm()`</span> in R for doing so).</span>
+<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Scatter plot $x$ and $y$ and add the best regression line. (code hint: <span class="in">`+ stat_smooth(method = "lm")`</span>)</span>
+<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Calculate the correlation coefficient ($r$) and the $R^2$ value.</span>
+<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Do the stats ($r$ and $R^2$) and the plot tells the same story?</span>
+<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Now add an extreme point to both $x$ and $y$ (<span class="in">`x &lt;- c(x,extremenumber)`</span>).</span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Repeat plotting and stat calculation ($r$ and $R^2$).</span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>What happened?</span>
+<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
+<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a>Take home message: $R^2$ alone without visual inspection can be misleading.</span>
+<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
+<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise id=ex-r2-and-transformations}</span>
+<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a><span class="fu">### R-squared and transformations</span></span>
+<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a>This exercise should show how transformation influences the $R^2$ measure. The exercise is using the wine dataset.</span>
+<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Import data, and make a plot of the response variable <span class="in">`Ethyl.pyruvate`</span> inferring country membership.</span>
+<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Make a oneway ANOVA model for this response variable, and check (or calculate) the $R^2$ value.</span>
+<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Make a transformation of the response variable, and repeat plotting, modeling and $R^2$ calculation.</span>
+<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Compare the $R^2$ for the raw response and transformed response, and figure out (based on the plots) which samples that are causing the difference.</span>
+<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Make a check of model assumptions for both models, and try to fix the issues by outlier removal.</span>
+<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Hint: a simple way to remove samples and update models can be seen below.</span>
+<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-210"><a href="#cb3-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-213"><a href="#cb3-213" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-214"><a href="#cb3-214" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb3-215"><a href="#cb3-215" aria-hidden="true" tabindex="-1"></a>ic <span class="ot">&lt;-</span> wine<span class="sc">$</span>Ethyl.pyruvate <span class="sc">&lt;</span> ...</span>
+<span id="cb3-216"><a href="#cb3-216" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> wine[ic, ], ...)</span>
+<span id="cb3-217"><a href="#cb3-217" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-218"><a href="#cb3-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-219"><a href="#cb3-219" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-220"><a href="#cb3-220" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
+<span id="cb3-221"><a href="#cb3-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-222"><a href="#cb3-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-223"><a href="#cb3-223" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise id=ex-exp-var-and-pca}</span>
+<span id="cb3-224"><a href="#cb3-224" aria-hidden="true" tabindex="-1"></a><span class="fu">### Explained variance and PCA</span></span>
+<span id="cb3-225"><a href="#cb3-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-226"><a href="#cb3-226" aria-hidden="true" tabindex="-1"></a>This exercise deals with explained variance in relation to PCA. This exercise uses the dietary intervention on mice and the effect on biomarkers related to fat metabolism.</span>
+<span id="cb3-227"><a href="#cb3-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-228"><a href="#cb3-228" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb3-229"><a href="#cb3-229" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Initially extract and scale the biomarkers in the dataset (use <span class="in">`X &lt;- scale()`</span> for this purpose).</span>
+<span id="cb3-230"><a href="#cb3-230" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Calculate the total sums of squares for these data? (<span class="in">`sum(X^2)`</span>)</span>
+<span id="cb3-231"><a href="#cb3-231" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Calculate a PCA model on these preprocessed data, and plot it using <span class="in">`ggbiplot()`</span>.</span>
+<span id="cb3-232"><a href="#cb3-232" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Calculate the residuals after the first component. This is done by calculating the predicted values and subtracting those from the data (see code below).</span>
+<span id="cb3-233"><a href="#cb3-233" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-234"><a href="#cb3-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-237"><a href="#cb3-237" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-238"><a href="#cb3-238" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb3-239"><a href="#cb3-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-240"><a href="#cb3-240" aria-hidden="true" tabindex="-1"></a><span class="co"># "pca" refers to a PCA model built by "prcomp()"</span></span>
+<span id="cb3-241"><a href="#cb3-241" aria-hidden="true" tabindex="-1"></a>Xhat <span class="ot">&lt;-</span> pca<span class="sc">$</span>x[ , <span class="dv">1</span>] <span class="sc">%o%</span> mm<span class="sc">$</span>rotation[ , <span class="dv">1</span>]</span>
+<span id="cb3-242"><a href="#cb3-242" aria-hidden="true" tabindex="-1"></a>E <span class="ot">&lt;-</span> X <span class="sc">-</span> Xhat</span>
+<span id="cb3-243"><a href="#cb3-243" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-244"><a href="#cb3-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-245"><a href="#cb3-245" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb3-246"><a href="#cb3-246" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Calculate the residual sums of squares after removing the first component.</span>
+<span id="cb3-247"><a href="#cb3-247" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Calculate the $R^2$ for the first component.</span>
+<span id="cb3-248"><a href="#cb3-248" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Try to calculate the $R^2$ value from the correlation between $\mathbf{X}$ and $\hat{\mathbf{X}}$:</span>
+<span id="cb3-249"><a href="#cb3-249" aria-hidden="true" tabindex="-1"></a>   CODE HERE</span>
+<span id="cb3-250"><a href="#cb3-250" aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span>Try to modify the code in Q4 to be able to calculate for component $2$, $3$,...</span>
+<span id="cb3-251"><a href="#cb3-251" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-252"><a href="#cb3-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-253"><a href="#cb3-253" aria-hidden="true" tabindex="-1"></a>Eventually you can match your results with the ones produced by <span class="in">`ggbiplot()`</span>.</span>
+<span id="cb3-254"><a href="#cb3-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-255"><a href="#cb3-255" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-256"><a href="#cb3-256" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

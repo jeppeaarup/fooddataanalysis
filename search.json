@@ -14,7 +14,7 @@
     "href": "chapters/week1/week_1.html",
     "title": "Week 1",
     "section": "",
-    "text": "Hand-in assignment\nThis first week is going to introduce basic descriptive tools for getting a primary overview of data. These are divided into representative numerics, which we call descriptive statistics and various plots. Especially for the plotting part you will be needing a computer program. We strongly encourage you to get familiar with R, that, although not being as intuitive point-and-click as the widely used programs such as excel, is capable of conducting almost any type of sophisticated analysis you may wish, and further will strengthen you to become familiar with a scientific programming language - a generic competence useful whenever working with information.\nIncluded in the week 1 notes are material related to working in R; Installing packages, importing data, working in scripts and debugging your code. This material you should try to cover briefly and then use it when you get stuck on a problem throughout the course (and after). However, there is a huge amount of videos, tutorials, etc. on the web which you can also use, and we encourage you to get familiar with these resources as well. Simply type your problem in google and check if others have experienced something similar.\nExercise 5.2 Analysis of coffee serving temperatura - PCA is to be handed in (through Absalon or as hard-copy Wednesday night). You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important. If you have problems with R, then try to write what you would have done if you did not experience problems with the machinery.",
+    "text": "Hand-in assignment\nThis first week is going to introduce basic descriptive tools for getting a primary overview of data. These are divided into representative numerics, which we call descriptive statistics and various plots. Especially for the plotting part you will be needing a computer program. We strongly encourage you to get familiar with R, that, although not being as intuitive point-and-click as the widely used programs such as excel, is capable of conducting almost any type of sophisticated analysis you may wish, and further will strengthen you to become familiar with a scientific programming language - a generic competence useful whenever working with information.\nIncluded in the week 1 notes are material related to working in R; Installing packages, importing data, working in scripts and debugging your code. This material you should try to cover briefly and then use it when you get stuck on a problem throughout the course (and after). However, there is a huge amount of videos, tutorials, etc. on the web which you can also use, and we encourage you to get familiar with these resources as well. Simply type your problem in google and check if others have experienced something similar.\n(ex-coffee-serving-temp?) Analysis of coffee serving temperatura - PCA is to be handed in (through Absalon or as hard-copy Wednesday night). You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important. If you have problems with R, then try to write what you would have done if you did not experience problems with the machinery.",
     "crumbs": [
       "Week 1"
     ]
@@ -24,7 +24,7 @@
     "href": "chapters/week1/week_1.html#exercises",
     "title": "Week 1",
     "section": "Exercises",
-    "text": "Exercises\nFor Monday work through the following exercises:\n\nExercise 2.1\nExercise 2.2\nExercise 4.1\nExercise 4.2\nExercise 4.3\n\nFor Wednesday work through the following exercises:\n\nExercise 4.4\nExercise 5.3\n\nYou will most likely not be able to complete all exercises within the hours in the classroom, so we recommend that you use some time in advance to initiate the task.",
+    "text": "Exercises\nFor Monday work through the following exercises:\n\n(ex-descriptive-stats-by-hand?)\n(ex-descriptive-stats?)\n(ex-plotting-1?)\n(ex-plotting-2?)\n(ex-plotting-3?)\n\nFor Wednesday work through the following exercises:\n\n(ex-analysis-of-coffee-inspection?)\n(ex-wine-aromas-pca?)\n\nYou will most likely not be able to complete all exercises within the hours in the classroom, so we recommend that you use some time in advance to initiate the task.",
     "crumbs": [
       "Week 1"
     ]
@@ -253,7 +253,7 @@
     "href": "chapters/week2/week_2.html",
     "title": "Week 2",
     "section": "",
-    "text": "Hand-in assigment\nThis week is going to focus on three very central subjects, namely correlation, the normal distribution and in relation to this the Central Limit Theorem.\nExercise 6.1 Correlation between aroma compounds questions 1 – 6 (not the PCA part) is to be handed in (through Absalon or as hard-copy Wednesday night).",
+    "text": "Hand-in assigment\nThis week is going to focus on three very central subjects, namely correlation, the normal distribution and in relation to this the Central Limit Theorem.\n(ex-correlation-between-aroma-compounds?) Correlation between aroma compounds questions 1 – 6 (not the PCA part) is to be handed in (through Absalon or as hard-copy Wednesday night).",
     "crumbs": [
       "Week 2"
     ]
@@ -263,7 +263,7 @@
     "href": "chapters/week2/week_2.html#exercises",
     "title": "Week 2",
     "section": "Exercises",
-    "text": "Exercises\nFor Monday work through the following exercises:\n\nExercise 6.2\nExercise 6.3\n\nFor Wednesday work through the following exercises:\n\nExercise 6.4\nExercise 7.1\nExercise 7.3",
+    "text": "Exercises\nFor Monday work through the following exercises:\n\n(ex-covariance-and-correlation-by-hand?)\n(ex-correlation-and-pca?)\n\nFor Wednesday work through the following exercises:\n\n(ex-olive-oil-adulteration?)\n(ex-normal-distribution?)\n(ex-who-height-and-weight-standard-normal-distribution?)",
     "crumbs": [
       "Week 2"
     ]
@@ -416,7 +416,7 @@
     "href": "chapters/week3/week_3.html",
     "title": "Week 3",
     "section": "",
-    "text": "Hand-in assigment\nIn this week we are introducing the concept of inferential statistics. That is to be able to answer a specific question based on observed data. Biological or scientific questions are, in statistical terms, formulated as a hypothesis, which can be tested using data. One of the most widely used tests, are the t-test for comparison of the mean from two distributions.\nExercise 9.3 Diet and Fat metabolism - T test - in R is to be handed in (through absalon or as hard-copy Wednesday night). You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important.",
+    "text": "Hand-in assigment\nIn this week we are introducing the concept of inferential statistics. That is to be able to answer a specific question based on observed data. Biological or scientific questions are, in statistical terms, formulated as a hypothesis, which can be tested using data. One of the most widely used tests, are the t-test for comparison of the mean from two distributions.\n(ex-diet-and-fat-metabolism-in-r?) Diet and Fat metabolism - T test - in R is to be handed in (through absalon or as hard-copy Wednesday night). You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important.",
     "crumbs": [
       "Week 3"
     ]
@@ -426,7 +426,7 @@
     "href": "chapters/week3/week_3.html#hand-in-assigment",
     "title": "Week 3",
     "section": "",
-    "text": "Important\n\n\n\nComplete Exercise 9.2 prior to the hand-in assignment to make sure you understand what R does during a t-test.",
+    "text": "Important\n\n\n\nComplete (ex-diet-and-fat-metabolism-by-hand?) prior to the hand-in assignment to make sure you understand what R does during a t-test.",
     "crumbs": [
       "Week 3"
     ]
@@ -436,7 +436,7 @@
     "href": "chapters/week3/week_3.html#exercises",
     "title": "Week 3",
     "section": "Exercises",
-    "text": "Exercises\nFor Monday work through the following exercises:\n\nExercise 9.1\nExercise 9.2\nExercise 9.4\nExercise 9.5\n\nFor Wednesday work through the following exercises:\n\nExercise 9.7\nExercise 9.8\nExercise 10.1",
+    "text": "Exercises\nFor Monday work through the following exercises:\n\n(ex-t-test?)\n(ex-diet-and-fat-metabolism-by-hand?)\n(ex-fiber-and-cholesterol?)\n(ex-stability-of-oil-under-different-conditions?)\n\nFor Wednesday work through the following exercises:\n\n(ex-power-of-paired-tests?)\n(ex-confidence-intervals?)\n(ex-hypothesis-testing?)",
     "crumbs": [
       "Week 3"
     ]
@@ -533,7 +533,7 @@
     "href": "chapters/week4/week_4.html",
     "title": "Week 4",
     "section": "",
-    "text": "Hand-in assignment\nIn this week we are going to discuss non-continuous data, and look at binary and count data. This task involves probability distributions such as binomial distribution and the Poisson distribution.\nExercise 11.4 Fig bars is to be handed in (through absalon or as hard-copy Wednesday night). You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important.",
+    "text": "Hand-in assignment\nIn this week we are going to discuss non-continuous data, and look at binary and count data. This task involves probability distributions such as binomial distribution and the Poisson distribution.\n(ex-fig-bars?) Fig bars is to be handed in (through absalon or as hard-copy Wednesday night). You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important.",
     "crumbs": [
       "Week 4"
     ]
@@ -543,7 +543,7 @@
     "href": "chapters/week4/week_4.html#exercises",
     "title": "Week 4",
     "section": "Exercises",
-    "text": "Exercises\nFor Monday work through the following exercises:\n\nExercise 11.1\nExercise 11.2\nExercise 11.3\n\nIf you really think that this is easy stuff, then try to work through exercise Exercise 11.5\nFor Wednesday work through the following exercises:\n\nExercise 12.1\nExercise 12.2\nExercise 12.3",
+    "text": "Exercises\nFor Monday work through the following exercises:\n\n(ex-chocolate-and-binomial-data?)\n(ex-triangle-test?)\n(ex-uncertainty-of-the-binomial-dist?)\n\nIf you really think that this is easy stuff, then try to work through exercise (ex-dist-of-extreme-values?)\nFor Wednesday work through the following exercises:\n\n(ex-qa-poisson?)\n(ex-qa-poisson-binomial?)\n(ex-qa-chance-of-false-rejections?)",
     "crumbs": [
       "Week 4"
     ]
@@ -629,7 +629,7 @@
     "href": "chapters/week5/week_5.html",
     "title": "Week 5",
     "section": "",
-    "text": "Hand-in assignment\nIn this week we are going to discuss a last subject for non continuous data, that is, multinomial data and the multinomial distribution. The Chi squared test is a central test for discrete data types and can be used for inferential testing. Further, we are going to deal with the notion of power, that is; if there truly is a difference, how likely is it that the statistical tests will find it?\nExercise 14.4 Power calculation - triangle test is to be handed in (through absalon or as hard-copy Wednesday night). You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important.",
+    "text": "Hand-in assignment\nIn this week we are going to discuss a last subject for non continuous data, that is, multinomial data and the multinomial distribution. The Chi squared test is a central test for discrete data types and can be used for inferential testing. Further, we are going to deal with the notion of power, that is; if there truly is a difference, how likely is it that the statistical tests will find it?\n(ex-triangle-or-duo-trio?) Power calculation - triangle test is to be handed in (through absalon or as hard-copy Wednesday night). You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important.",
     "crumbs": [
       "Week 5"
     ]
@@ -639,7 +639,7 @@
     "href": "chapters/week5/week_5.html#exercises",
     "title": "Week 5",
     "section": "Exercises",
-    "text": "Exercises\nFor Monday work through the following exercises:\n\nExercise 14.1\nExercise 14.2\n\nFor Wednesday work through the following exercises:\n\nExercise 14.4\nExercise 14.5\n\nFurther, this week might allow you to recap on some of the exercises you did not make during the last weeks.",
+    "text": "Exercises\nFor Monday work through the following exercises:\n\n(ex-comparison-of-senses?)\n(ex-our-sensorical-trial?)\n\nFor Wednesday work through the following exercises:\n\n(ex-triangle-or-duo-trio?)\n(ex-power-calculation-in-t-test?)\n\nFurther, this week might allow you to recap on some of the exercises you did not make during the last weeks.",
     "crumbs": [
       "Week 5"
     ]
@@ -832,7 +832,7 @@
     "href": "chapters/week7/week_7.html",
     "title": "Week 7",
     "section": "",
-    "text": "Hand-in assignment\nThis week is going to be on regression analysis. Regression might be the most influential and most widely used technique for relating response with outcomes. Although regression is a general framework for different types of responses (continuous, binomial, poisson, categorical,…) we are only going to deal with continuous outcomes in this course. However, knowing the basis for continuous data, makes it easy to extend into other types of data.\nUsing regression as an example, this week will introduce the mathematical concept behind analysis of continuous normally distributed data. Namely Least Squares estimation. In the estimation of parameters for a model, ANOVA, linear regression, correlation, PCA and also non-linear models, there is often stated a so-called objective in the form of a minimization problem. I.e. give me the parameters that results in the minimum sum of squared errors, that is the least squares parameter estimates. The most simple situation is the center of a distribution; Using the mean/average as the center results in a minimum overall distance to the center.\nExercise 18.1 Diet and fat metabolism - ANOVA question 1 to 6 is to be handed in (through absalon or as hard-copy Wednesday night).  You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important.",
+    "text": "Hand-in assignment\nThis week is going to be on regression analysis. Regression might be the most influential and most widely used technique for relating response with outcomes. Although regression is a general framework for different types of responses (continuous, binomial, poisson, categorical,…) we are only going to deal with continuous outcomes in this course. However, knowing the basis for continuous data, makes it easy to extend into other types of data.\nUsing regression as an example, this week will introduce the mathematical concept behind analysis of continuous normally distributed data. Namely Least Squares estimation. In the estimation of parameters for a model, ANOVA, linear regression, correlation, PCA and also non-linear models, there is often stated a so-called objective in the form of a minimization problem. I.e. give me the parameters that results in the minimum sum of squared errors, that is the least squares parameter estimates. The most simple situation is the center of a distribution; Using the mean/average as the center results in a minimum overall distance to the center.\n(ex-least-squares-estimation?) Diet and fat metabolism - ANOVA question 1 to 6 is to be handed in (through absalon or as hard-copy Wednesday night).  You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important.",
     "crumbs": [
       "Week 7"
     ]
@@ -970,31 +970,31 @@
   {
     "objectID": "chapters/week8/week_8.html",
     "href": "chapters/week8/week_8.html",
-    "title": "Week 7",
+    "title": "Week 8",
     "section": "",
-    "text": "Hand-in assignment\nThis week is going to extend regression to several predictors. Further, least squares for more complicated problems will be pursued.\nThe exercise (diet-several-vars?) Diet and fat metabolism - regression with several variables is to be handed in (through absalon or as hard-copy Wednesday night). You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important.",
+    "text": "Hand-in assignment\nThis week is going to extend regression to several predictors. Further, least squares for more complicated problems will be pursued.\nExercise 19.1 Diet and fat metabolism - regression with several variables is to be handed in (through absalon or as hard-copy Wednesday night). You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important.",
     "crumbs": [
-      "Week 7"
+      "Week 8"
     ]
   },
   {
     "objectID": "chapters/week8/week_8.html#exercises",
     "href": "chapters/week8/week_8.html#exercises",
-    "title": "Week 7",
+    "title": "Week 8",
     "section": "Exercises",
-    "text": "Exercises\nFor Monday work through the following exercises:\n\n(ex-explained-variance?) \n(ex-r2-and-outliers?) \n\nFor Wednesday work through the following exercises:\n\n(ex-r2-and-transformations?) \n(ex-exp-var-and-pca?) \n\nFurther, this week might allow you to recap on some of the exercises you did not make during the last weeks.",
+    "text": "Exercises\nFor Monday work through the following exercises:\n\nExercise 20.1 \nExercise 20.2 \n\nFor Wednesday work through the following exercises:\n\nExercise 20.3 \nExercise 20.4 \n\nFurther, this week might allow you to recap on some of the exercises you did not make during the last weeks.",
     "crumbs": [
-      "Week 7"
+      "Week 8"
     ]
   },
   {
     "objectID": "chapters/week8/week_8.html#case-iv",
     "href": "chapters/week8/week_8.html#case-iv",
-    "title": "Week 7",
+    "title": "Week 8",
     "section": "Case IV",
     "text": "Case IV\nThe fourth case should be handed in as a slide-show with voice no later than the Friday evening this week.",
     "crumbs": [
-      "Week 7"
+      "Week 8"
     ]
   },
   {
@@ -1004,7 +1004,7 @@
     "section": "",
     "text": "19.1 Reading material",
     "crumbs": [
-      "Week 7",
+      "Week 8",
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>Multiple linear regression</span>"
     ]
   },
@@ -1015,7 +1015,7 @@
     "section": "",
     "text": "Intro to regression\nVideos on mutiple linear regression:\n\nMultiple Linear Regression - An Introduction\nMultiple Regression, Clearly Explained\n\nChapter 6.1 of Introduction to Statistics by Brockhoff",
     "crumbs": [
-      "Week 7",
+      "Week 8",
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>Multiple linear regression</span>"
     ]
   },
@@ -1026,7 +1026,7 @@
     "section": "19.2 Intro to multiple linear regression",
     "text": "19.2 Intro to multiple linear regression\nRegression models with several predictors are simply extensions of the simple linear regression with a single predictor.\nA two-predictor model with \\(X1\\) and \\(X2\\) and a single response variable (\\(Y\\)) can be formalized as:\n\\[\n\\begin{gather}\nY_i = \\alpha + \\beta_1 \\cdot X1_i + \\beta_2 \\cdot X2_i + e_i \\\\\nwhere \\ e_i\\sim \\mathcal{N}(0,\\sigma^2) \\ and \\ independent \\\\\nfor \\ i=1,...,n\n\\end{gather}\n\\]\nWhere \\(\\alpha\\) refers to the level of \\(Y\\) at \\(X1=X2=0\\) and \\(\\beta_1\\) and \\(\\beta_2\\) are slopes in relation to \\(X1\\) and \\(X2\\).\nEach of these three parameters consumes one degree of freedom.\nThe natural hypothesis is to check whether \\(X1\\) in the presence of \\(X2\\) has an effect on (\\(Y\\)), that is: \\(H0: \\beta_1=0\\) with the alternative \\(HA: \\beta_1 \\neq 0\\) (or the other way around). This can be tested with either an F-test or a T-test (yielding the same results).\n\n19.2.1 Marginal and Crude estimates\nIn a setup as described above, the investigation of the effect of \\(X1\\) on \\(Y\\) can be done by two approaches:\n\nA simple regression model: \\(Y_i = \\alpha + \\beta X1_i + e_i\\)\nA multiple regression model: \\(Y_i = \\alpha + \\beta_1 X1_i +\\beta_2 X2_i + e_i\\)\n\nNaturally these two approaches yield different results due to the absence/presence of the variable \\(X2\\). From the simple regression model \\(\\beta\\) shows the crude effect of \\(X1\\) on \\(Y\\), whereas in the multiple regression model \\(\\beta_1\\) shows the marginal effect of \\(X1\\) on \\(Y\\). Sometimes comparison of these models are referred to as adjusting for \\(X2\\) or controlling for \\(X2\\). These models often elucidate the direct and indirect relation between predictors and responses as is seen in exercise 1.\n\n\n\n\n\n\nExample 19.1 - Near-infrared spectroscopy of marzipan - regression\n\n\n\n\n\n\nIn the following example we want to investigate if we can improve a prediction model by using scores from more than one principal component to predict the sugar content in marzipan bread (marcipanbrød).\nThe PCA model is exactly the same as in (exa-nir-marzipan-least-squares?).\n\n\nCode\npca &lt;- prcomp(t(X[, -1]), center = T, scale = F)\nvar_exp &lt;- summary(pca)$importance[2, ] * 100\ndf &lt;- data.frame(\n  pca$x,\n  sugar = Y$sugar\n)\n\nggplot(df, aes(PC1, PC2)) + \n  geom_point(size = 2.5, aes(color = sugar)) +\n  scale_color_gradient(low = \"green\", high = \"red\") +\n  labs(\n    y = paste(\"PC2 (\", var_exp[2], \"%)\", sep = \"\"),\n    x = paste(\"PC1 (\", var_exp[1], \"%)\", sep = \"\"),\n    color = \"Sugar content (%)\"\n  ) +\n  theme_bw() +\n  theme(legend.position = \"bottom\")\n\n\n\n\n\n\n\n\nFigure 19.1: Score plot of PC1 vs PC2 on a PCA model computed on NIR spectra of marzipan samples\n\n\n\n\n\nWe now make two models:\n\nA linear regression model on the sugar content versus the scores from PC1 (see @(exa-nir-marzipan-least-squares?)).\nA linear regression model on the sugar content versus the scores from PC1 and PC2.\n\n\nlinreg1 &lt;- lm(sugar ~ PC1, df)\nlinreg2 &lt;- lm(sugar ~ PC1 + PC2, df)\n\nLet us look at the summary of the two models:\n\nsummary(linreg1)\n\n\nCall:\nlm(formula = sugar ~ PC1, data = df)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-7.1351 -4.3117 -0.6425  3.6072 11.6073 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  46.2531     0.8872   52.13  &lt; 2e-16 ***\nPC1           4.6208     0.3501   13.20 4.97e-14 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 5.019 on 30 degrees of freedom\nMultiple R-squared:  0.8531,    Adjusted R-squared:  0.8482 \nF-statistic: 174.3 on 1 and 30 DF,  p-value: 4.969e-14\n\nsummary(linreg2)\n\n\nCall:\nlm(formula = sugar ~ PC1 + PC2, data = df)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-6.7699 -3.5350 -0.7164  2.7634 11.2274 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  46.2531     0.8063  57.367  &lt; 2e-16 ***\nPC1           4.6208     0.3181  14.526 7.67e-15 ***\nPC2          -1.1724     0.4331  -2.707   0.0113 *  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.561 on 29 degrees of freedom\nMultiple R-squared:  0.8827,    Adjusted R-squared:  0.8747 \nF-statistic: 109.2 on 2 and 29 DF,  p-value: 3.178e-14\n\n\nFrom the summary of linreg2 we see that the PC2 estimate is slightly significantly different from \\(0\\) (\\(p-value = 0.01\\)) and does contribute to improving the model. If we think back on example (exa-nirs-marzipan-pca?), we learned that the second principal component had something to do with the color of the marzipan bread. In that regard it does not make a lot of sense that adding a color term (captured by the scores on PC2) into your model improve the prediction of the sugar content. However, when comparing the \\(R^2\\) values for the model including only one component (\\(R^2 = 0.85\\)) and a model with two components (\\(R^2 = 0.88\\)) it is seen that the improvement does not practically make a difference.\nOne should always be careful not to build models on meaningless data. PCA is a powerful tool for exploring data, but you need to choose meaningful principal components for your analysis. This is also relevant when selecting variables for the analysis.\nMaybe the wavelengths covering the visible part of the spectrum should have been left out of the analysis from the beginning as they do not contain information about the sugar content?",
     "crumbs": [
-      "Week 7",
+      "Week 8",
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>Multiple linear regression</span>"
     ]
   },
@@ -1037,7 +1037,7 @@
     "section": "19.3 Videos",
     "text": "19.3 Videos\n\nMultiple Linear Regression - An Introduction - Lee Rusty Waller\n\n\n\nMultiple Regression, Clearly Explained - StatQuest",
     "crumbs": [
-      "Week 7",
+      "Week 8",
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>Multiple linear regression</span>"
     ]
   },
@@ -1048,7 +1048,7 @@
     "section": "19.4 Exercises",
     "text": "19.4 Exercises\n\n\n\n\n\n\nExercise 19.1 - Diet and fat metabolism - regression with several variables\n\n\n\n\n\n\nThis exercise examines the relation between a biomarker, dietary intervention and weight in order to disentangle the effects causing elevated levels of cholesterol.\nThe data for this exercise is the same as for Exercise “Diet and Fat”.\nIn this exercise we are going to focus on predicting cholesterol from both weight and dietary intervention.\n\n\n\n\n\n\nTasks\n\n\n\n\n\n\n\nPlot, formulate and build univariate models predicting cholesterol level from:\n\n\nDietary intervention ($Fat_Protein) - A oneway ANOVA model.\nBody weight at \\(14\\) weeks ($bw_w14) - A regression model.\n\n\nState and test relevant hypothesis for these two models.\nComment on the relations between the conclusions of the two models.\nMake a scatter plot of cholesterol versus weight colored or shaped according to dietary intervention.\nMake a regression model for cholesterol with two predictors: i) Weight at week \\(14\\) and ii) Dietary intervention, and test the factors.\n\n\n\n\n\nNote: In contrast to ANOVA with one dependent variable, the order of the dependent variables makes a difference in the anova(). In order to surpass this, use the drop1(aov(),test='F') function to get results independent of order.\n\n\n\n\n\n\nTasks\n\n\n\n\n\n\n\nWhat happens to the significance of the individual factors when you change the analysis as described above?\nDo you think that the dietary intervention directly affects the cholesterol level, or that it is mediated through body weight?",
     "crumbs": [
-      "Week 7",
+      "Week 8",
       "<span class='chapter-number'>19</span>  <span class='chapter-title'>Multiple linear regression</span>"
     ]
   },
@@ -1057,9 +1057,53 @@
     "href": "chapters/week8/explained_variance.html",
     "title": "20  Explained variance",
     "section": "",
-    "text": "Learning objectives\n\n\n\nThe learning objectives for this theme are to:\n\nUnderstand the general notion of explained variance and its relation to least squares.\n\n\n\nExplained variance refers to how well the estimated model describes the observed data. That is, how much of the variation is systematic and how much is residual. In the figure below are shown two examples.\n\n\n\n\n\n\n\n\nFigure 20.1: Systematic variation (blue) and residual variation (red).",
+    "text": "20.1 Reading material",
     "crumbs": [
-      "Week 7",
+      "Week 8",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Explained variance</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/week8/explained_variance.html#reading-material",
+    "href": "chapters/week8/explained_variance.html#reading-material",
+    "title": "20  Explained variance",
+    "section": "",
+    "text": "Videos on R-squared:\n\nWhat does r squared tell us? What does it all mean\nR-squared, Clearly Explained",
+    "crumbs": [
+      "Week 8",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Explained variance</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/week8/explained_variance.html#videos",
+    "href": "chapters/week8/explained_variance.html#videos",
+    "title": "20  Explained variance",
+    "section": "20.2 Videos",
+    "text": "20.2 Videos\n\nWhat does r squared tell us? What does it all mean - MrNystrom\n\n\n\nR-squared, Clearly Explained - StatQuest",
+    "crumbs": [
+      "Week 8",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Explained variance</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/week8/explained_variance.html#intro-to-explained-variance",
+    "href": "chapters/week8/explained_variance.html#intro-to-explained-variance",
+    "title": "20  Explained variance",
+    "section": "20.3 Intro to explained variance",
+    "text": "20.3 Intro to explained variance\nExplained variance refers to how well the estimated model describes the observed data. That is, how much of the variation is systematic and how much is residual. In the figure below are shown two examples.\n\n\n\n\n\n\n\n\nFigure 20.1: Systematic variation (blue) and residual variation (red).\n\n\n\n\n\nThe explained variance is summarized in the so-called \\(R^2 \\in \\left[ 0,1 \\right]\\) metric. Where a value close to \\(1\\) indicates high degree of explained variance, and a value close to \\(0\\) the contrary.\n\\(R^2\\) is based on the sums of squares of the different model terms. Given the model:\n\\[\nX = S + E\n\\]\nWhere \\(X\\) refers to the observed data, \\(S\\) the systematic parameterized part of the model and \\(E\\) the residuals, then:\n\\[\nSS(X) = SS(S) + SS(E)\n\\]\nI.e. the sums of squares are additive. From this the \\(R^2\\) value is defined as:\n\\[\nR^2 = \\frac{SS(S)}{SS(X)} = \\frac{SS(X) - SS(E)}{SS(X)} = 1 - \\frac{SS(E)}{SS(X)}\n\\]\nIn both ANOVA and linear regression these \\(SS()\\) values are readily available from the analysis table, where \\(SS(X) = SS_{tot}\\) and \\(SS(E) = SS_e\\). Further, it is possible to calculate the \\(R^2\\) for the entire model, but also for individual factors in twoway ANOVA and regression with multiple descriptors, simply by using the individual \\(SS()\\) contributions.\n\n20.3.1 Model estimates (\\(\\hat{y}\\)) and \\(R^2\\)\nIn linear regression the model is stated as:\n\\[\n\\begin{gather}\ny_{i} = \\alpha + \\beta \\cdot x_i + e_i \\\\\nwhere \\ e_{i}\\sim \\mathcal{N}(0,\\sigma^2) \\ and \\ independent \\\\\nfor  \\ i=1,...,n\n\\end{gather}\n\\]\nThe predicted values for \\(y\\) (referred to as \\(\\hat{y}\\)) can be expressed as:\n\\[\n\\hat{y}_{i} = \\hat{\\alpha} + \\hat{\\beta} \\cdot x_i\n\\]\nwhere the estimates of the slope and the intercept is used for calculating \\(y\\) based on \\(x\\).\nThe \\(R^2\\) value for such a model can also be seen as:\n\\[\nR^2 = r_{\\hat{y},y}^2\n\\]\nThat is, taking the squared value of the correlation coefficient between the observed response and the predicted response yields the explained variance by the model.\nThis concept is valid for for a range of models including ANOVA, PCA and linear regression.\n\n\n20.3.2 Correlation coefficient and \\(R^2\\)\nIn bi-variate correlation analysis, the correlation coefficient is directly related to \\(R^2\\), as: I\nThe implication of this, is that the direction is lost (\\(R^2 = 0.3^2 = (-0.3)^2\\)), but the strength of the relation is not.\n\n\n20.3.3 \\(R^2\\) for PCA\nIn a PCA model, it is possible to talk about \\(R^2\\) values for the entire model or for the individual components. It is so, by definition, that the contribution from the individual components is decreasing, that is:\n\\[\nR_{PC1}^2 \\geq R_{PC2}^2 \\geq \\ldots \\geq R_{PCk}^2\n\\]\nFurther, from a \\(k\\) component model follows that total explained variance is:\n\\[\nR_{PC1-PCk}^2  = R_{PC1}^2 + R_{PC2}^2 + \\ldots + R_{PCk}^2 = \\sum_{i=1}^k{R_{PCi}^2}\n\\]\n\nPCA vs Regression/ANOVA\nIn PCA, by increasing the number of components you will eventually reach explained variance of \\(1\\). This is due to the parameters of this model is solely based on the response variables, so there is no set of independent variables, as there is in ANOVA and linear regression. This has the implication, that comparing \\(R^2\\) values between e.g. an ANOVA model and a PCA model is not at all straight forward.",
+    "crumbs": [
+      "Week 8",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Explained variance</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/week8/explained_variance.html#exercises",
+    "href": "chapters/week8/explained_variance.html#exercises",
+    "title": "20  Explained variance",
+    "section": "20.4 Exercises",
+    "text": "20.4 Exercises\n\n\n\n\n\n\nExercise 20.1 - Explained variance (R-squared) - regression n’ correlation\n\n\n\n\n\n\nThis exercise deals with explained variance and its relation to the residual deviation. This exercise uses the dietary intervention on mice and the effect on biomarkers related to fat metabolism.\n\n\n\n\n\n\nTasks\n\n\n\n\n\n\n\nFirst, we are going to deal with insulin and cholesterol. Make three analyses:\n\nRegress cholesterol on insulin.\nRegress insulin on cholesterol.\nMake a correlation analysis between the two.\n\nMake a drawing (not exact, just some dots) of cholesterol versus insulin and indicate a regression line, and the the residuals for the first two models in Q1.\nFor each model, calculate \\(R^2\\).\n\n\nHint: You can use the \\(SS\\) measures of an aov() model, or use summary() of a lm() model directly.\n\n\nComment on what you observe.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExercise 20.2 - R-squared and outliers\n\n\n\n\n\n\nThis exercise should show how extreme outliers can influence the \\(R^2\\) measure by making it unrealistically high.\n\n\n\n\n\n\nTasks\n\n\n\n\n\n\n\nSimulate two sets of vector \\(x\\) and \\(y\\), each of \\(n=15\\) points which are not related. (use rnorm() in R for doing so).\nScatter plot \\(x\\) and \\(y\\) and add the best regression line. (code hint: + stat_smooth(method = \"lm\"))\nCalculate the correlation coefficient (\\(r\\)) and the \\(R^2\\) value.\nDo the stats (\\(r\\) and \\(R^2\\)) and the plot tells the same story?\nNow add an extreme point to both \\(x\\) and \\(y\\) (x &lt;- c(x,extremenumber)).\nRepeat plotting and stat calculation (\\(r\\) and \\(R^2\\)).\nWhat happened?\n\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nTake home message: \\(R^2\\) alone without visual inspection can be misleading.\n\n\n\n\n\n\n\n\n\n\n\n\n\nExercise 20.3 - R-squared and transformations\n\n\n\n\n\n\nThis exercise should show how transformation influences the \\(R^2\\) measure. The exercise is using the wine dataset.\n\n\n\n\n\n\nTasks\n\n\n\n\n\n\n\nImport data, and make a plot of the response variable Ethyl.pyruvate inferring country membership.\nMake a oneway ANOVA model for this response variable, and check (or calculate) the \\(R^2\\) value.\nMake a transformation of the response variable, and repeat plotting, modeling and \\(R^2\\) calculation.\nCompare the \\(R^2\\) for the raw response and transformed response, and figure out (based on the plots) which samples that are causing the difference.\nMake a check of model assumptions for both models, and try to fix the issues by outlier removal.\n\n\nHint: a simple way to remove samples and update models can be seen below.\n\n\n\n\n\n\nic &lt;- wine$Ethyl.pyruvate &lt; ...\nm &lt;- lm(data = wine[ic, ], ...)\n\n\n\n\n\n\n\n\n\n\n\n\nExercise 20.4 - Explained variance and PCA\n\n\n\n\n\n\nThis exercise deals with explained variance in relation to PCA. This exercise uses the dietary intervention on mice and the effect on biomarkers related to fat metabolism.\n\n\n\n\n\n\nTasks\n\n\n\n\n\n\n\nInitially extract and scale the biomarkers in the dataset (use X &lt;- scale() for this purpose).\nCalculate the total sums of squares for these data? (sum(X^2))\nCalculate a PCA model on these preprocessed data, and plot it using ggbiplot().\nCalculate the residuals after the first component. This is done by calculating the predicted values and subtracting those from the data (see code below).\n\n\n\n\n\n\n# \"pca\" refers to a PCA model built by \"prcomp()\"\nXhat &lt;- pca$x[ , 1] %o% mm$rotation[ , 1]\nE &lt;- X - Xhat\n\n\n\n\n\n\n\nTasks\n\n\n\n\n\n\n\nCalculate the residual sums of squares after removing the first component.\nCalculate the \\(R^2\\) for the first component.\nTry to calculate the \\(R^2\\) value from the correlation between \\(\\mathbf{X}\\) and \\(\\hat{\\mathbf{X}}\\): CODE HERE\nTry to modify the code in Q4 to be able to calculate for component \\(2\\), \\(3\\),…\n\n\n\n\n\nEventually you can match your results with the ones produced by ggbiplot().",
+    "crumbs": [
+      "Week 8",
       "<span class='chapter-number'>20</span>  <span class='chapter-title'>Explained variance</span>"
     ]
   },
