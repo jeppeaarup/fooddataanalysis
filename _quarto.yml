@@ -50,11 +50,17 @@ book:
         - chapters/week6/model_formulation.qmd
         - chapters/week6/anova.qmd
 
-    # Week 6
+    # Week 7
     - part: chapters/week7/week_7.qmd
       chapters:
         - chapters/week7/regression.qmd
         - chapters/week7/least_squares.qmd
+
+    # Week 8
+    - part: chapters/week8/week_8.qmd
+      chapters:
+        - chapters/week8/mlr.qmd
+        - chapters/week8/explained_variance.qmd
         
   # Appendices
   appendices:
