@@ -129,7 +129,7 @@ Maybe the wavelengths covering the visible part of the spectrum should have been
 
 ## Exercises 
 
-::: {.callout-exercise id=ex-diet-several-vars}
+::: {.callout-exercise id=ex-diet-mlr}
 ### Diet and fat metabolism - regression with several variables
 
 This exercise examines the relation between a biomarker, dietary intervention and weight in order to disentangle the effects causing elevated levels of cholesterol.

@@ -1,8 +1,8 @@
-# Week 7
+# Week 8
 This week is going to extend regression to several predictors. Further, least squares for more complicated problems will be pursued.
 
 ## Hand-in assignment
-The exercise @diet-several-vars *Diet and fat metabolism - regression with several variables* is to be handed in (through absalon or as hard-copy Wednesday night). You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important.  <!-- Original exercise 8.1 -->
+@ex-diet-mlr *Diet and fat metabolism - regression with several variables* is to be handed in (through absalon or as hard-copy Wednesday night). You are welcome to put in R-code in the assignment, but it is your argumentation and interpretation that are the most important.  <!-- Original exercise 8.1 -->
 
 ## Exercises
 

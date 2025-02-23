@@ -25,7 +25,13 @@ local function read_xref(meta)
     local content = file:read("*a")
     file:close()
     if content then
-      exercises = quarto.json.decode(content)
+      -- Merge existing references with new ones, keeping the 'new' flag
+      local stored_exercises = quarto.json.decode(content)
+      for id, exercise in pairs(stored_exercises) do
+        if not exercises[id] then
+          exercises[id] = exercise
+        end
+      end
     end
   end
   return meta
@@ -33,20 +39,19 @@ end
 
 -- Write cross-references to file
 local function write_xref(meta)
+  -- Mark all entries from this pass as not new
+  for id, exercise in pairs(exercises) do
+    if exercise.new then
+      exercise.new = false
+    end
+  end
+
   local file = io.open(book_info.xref_file, "w")
   if file then
     file:write(quarto.json.encode(exercises))
     file:close()
   end
   
-  -- Clean up old references if this is the last file
-  if book_info.is_last_file then
-    for id, exercise in pairs(exercises) do
-      if not exercise.new then
-        exercises[id] = nil
-      end
-    end
-  end
   return meta
 end
 
@@ -246,7 +251,7 @@ function Div(div)
   return div
 end
 
--- Replace cross-references
+-- Replace cross-references with enhanced resolution
 function Cite(cite)
   local id = cite.citations[1].id
   if id:match("^ex%-") or id:match("^exa%-") or id:match("^task%-") then
@@ -277,7 +282,36 @@ function Cite(cite)
         return pandoc.Link(link_text, link_target)
       end
     else
-      warn("Undefined cross-reference: @" .. id)
+      -- If reference not found, try reloading the reference file
+      read_xref({})
+      item = exercises[id]
+      if item then
+        -- Repeat the link creation logic
+        local link_text
+        if item.type == "exercise" then
+          link_text = "Exercise " .. item.number
+        elseif item.type == "example" then
+          link_text = "Example " .. item.number
+        else
+          link_text = "Task"
+        end
+        
+        local link_target = "#" .. id
+        
+        if book_info.is_html_book then
+          link_target = item.file .. ".html" .. link_target
+        end
+        
+        if quarto.doc.is_format("html") then
+          return pandoc.RawInline('html', string.format(
+            '<a href="%s">%s</a>', link_target, link_text
+          ))
+        else
+          return pandoc.Link(link_text, link_target)
+        end
+      else
+        warn("Undefined cross-reference: @" .. id)
+      end
     end
   end
   return cite
