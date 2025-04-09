@@ -410,7 +410,7 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="3">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
@@ -540,112 +540,46 @@ Example 7.1 - Effect of caffeine on activity
 <p>Caffeine is a central neurvous system stimulant, which can have several positive- and negative effects. In this study, the level of activity is up for examination, and for this purpose a model-system; the runing activity of mice in a wheel reflected as the number of rounds pr minutes recorded over 7 minutes. Here a total of 249 mice from two species; one breed to be high in running performance, and one control, where given either Water, Gatorade or Red Bull followed by measuring their voluentary wheel run activiy. Of interest is the average actvity within each mouse type and for each caffeine type and how large the spread is.</p>
 <p>The data is listed in a table with 249 rows (here, the first five samples are shown):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(X), <span class="at">digits =</span> <span class="dv">1</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">MouseType</th>
-<th style="text-align: left;">gender</th>
-<th style="text-align: left;">Caffeine</th>
-<th style="text-align: right;">RPM7</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Control runner</td>
-<td style="text-align: left;">Male</td>
-<td style="text-align: left;">Red Bull</td>
-<td style="text-align: right;">10.5</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">High runner</td>
-<td style="text-align: left;">Female</td>
-<td style="text-align: left;">Gatorade</td>
-<td style="text-align: right;">24.3</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">High runner</td>
-<td style="text-align: left;">Female</td>
-<td style="text-align: left;">Gatorade</td>
-<td style="text-align: right;">19.7</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Control runner</td>
-<td style="text-align: left;">Male</td>
-<td style="text-align: left;">Red Bull</td>
-<td style="text-align: right;">13.5</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Control runner</td>
-<td style="text-align: left;">Male</td>
-<td style="text-align: left;">Red Bull</td>
-<td style="text-align: right;">15.3</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">High runner</td>
-<td style="text-align: left;">Male</td>
-<td style="text-align: left;">Gatorade</td>
-<td style="text-align: right;">30.8</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       MouseType gender Caffeine    RPM7
+1 Control runner   Male Red Bull 10.5461
+2    High runner Female Gatorade 24.2718
+3    High runner Female Gatorade 19.7215
+4 Control runner   Male Red Bull 13.5099
+5 Control runner   Male Red Bull 15.3210
+6    High runner   Male Gatorade 30.7953</code></pre>
 </div>
 </div>
 <p>To get the experimental design, the table() function nicely summarize the numbers within each group:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">table</span>(X<span class="sc">$</span>gender<span class="sc">:</span>X<span class="sc">$</span>MouseType, X<span class="sc">$</span>Caffeine))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: right;">Water</th>
-<th style="text-align: right;">Gatorade</th>
-<th style="text-align: right;">Red Bull</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Male:Control runner</td>
-<td style="text-align: right;">10</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: right;">12</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Male:High runner</td>
-<td style="text-align: right;">29</td>
-<td style="text-align: right;">31</td>
-<td style="text-align: right;">29</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Female:Control runner</td>
-<td style="text-align: right;">11</td>
-<td style="text-align: right;">13</td>
-<td style="text-align: right;">9</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Female:High runner</td>
-<td style="text-align: right;">28</td>
-<td style="text-align: right;">32</td>
-<td style="text-align: right;">31</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(X<span class="sc">$</span>gender<span class="sc">:</span>X<span class="sc">$</span>MouseType, X<span class="sc">$</span>Caffeine)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                       
+                        Water Gatorade Red Bull
+  Male:Control runner      10       14       12
+  Male:High runner         29       31       29
+  Female:Control runner    11       13        9
+  Female:High runner       28       32       31</code></pre>
 </div>
 </div>
-<p>Before doing anythingelse, the data is plotted to visualize the response as function of the design.</p>
+<p>Before doing anything else, the data is plotted to visualize the response as function of the design (<a href="#fig-caffeine-vs-rpm" class="quarto-xref">figure&nbsp;<span>7.1</span></a>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(X, <span class="fu">aes</span>(Caffeine, RPM7, <span class="at">color =</span> Caffeine)) <span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> .<span class="dv">75</span>) <span class="sc">+</span> <span class="co"># Alpha controls opacity</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>MouseType) <span class="sc">+</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="co"># Remove the legend</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(X, <span class="fu">aes</span>(Caffeine, RPM7, <span class="at">color =</span> Caffeine)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> .<span class="dv">75</span>) <span class="sc">+</span> <span class="co"># Alpha controls opacity</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>MouseType) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="co"># Remove the legend</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><a href="normal_distribution_files/figure-html/unnamed-chunk-4-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="normal_distribution_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></a></p>
+<div id="fig-caffeine-vs-rpm" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-caffeine-vs-rpm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="normal_distribution_files/figure-html/fig-caffeine-vs-rpm-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;7.1: Box n’ jitter plot of the RPM7 variable as a function of treatment."><img src="normal_distribution_files/figure-html/fig-caffeine-vs-rpm-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-caffeine-vs-rpm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.1: Box n’ jitter plot of the RPM7 variable as a function of treatment.
+</figcaption>
 </figure>
 </div>
 </div>
@@ -657,17 +591,17 @@ Example 7.1 - Effect of caffeine on activity
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p>First, the information is extracted from the dataset:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>extracted_x <span class="ot">&lt;-</span> X[</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  X<span class="sc">$</span>MouseType <span class="sc">==</span> <span class="st">"Control runner"</span> <span class="sc">&amp;</span> X<span class="sc">$</span>gender <span class="sc">==</span> <span class="st">"Female"</span> <span class="sc">&amp;</span> X<span class="sc">$</span>Caffeine <span class="sc">==</span> <span class="st">"Water"</span>, <span class="co"># Rows</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"RPM7"</span>] <span class="co"># Column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>extracted_x <span class="ot">&lt;-</span> X[</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  X<span class="sc">$</span>MouseType <span class="sc">==</span> <span class="st">"Control runner"</span> <span class="sc">&amp;</span> X<span class="sc">$</span>gender <span class="sc">==</span> <span class="st">"Female"</span> <span class="sc">&amp;</span> X<span class="sc">$</span>Caffeine <span class="sc">==</span> <span class="st">"Water"</span>, <span class="co"># Rows</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"RPM7"</span>] <span class="co"># Column</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And then the extracted information can be fed into the <code>mean()</code> and <code>sd()</code> functions.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(extracted_x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(extracted_x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 8.649382</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(extracted_x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(extracted_x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.07804</code></pre>
 </div>
@@ -676,16 +610,16 @@ Example 7.1 - Effect of caffeine on activity
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>In Tidyverse the <code>filter</code>-function is used to filter by the <code>MouseType</code>, <code>gender</code>, and <code>Caffeine</code> levels of interest. Afterwards, the mean and standard deviation are computed using <code>summarise</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>X <span class="sc">|&gt;</span> </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    MouseType <span class="sc">==</span> <span class="st">"Control runner"</span>,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    gender <span class="sc">==</span> <span class="st">"Female"</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    Caffeine <span class="sc">==</span> <span class="st">"Water"</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(RPM7),</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fu">sd</span>(RPM7)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>X <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    MouseType <span class="sc">==</span> <span class="st">"Control runner"</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    gender <span class="sc">==</span> <span class="st">"Female"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    Caffeine <span class="sc">==</span> <span class="st">"Water"</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(RPM7),</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fu">sd</span>(RPM7)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      mean      sd
 1 8.649382 2.07804</code></pre>
@@ -710,17 +644,17 @@ Example 7.1 - Effect of caffeine on activity
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <p>In base R <code>aggregate()</code> can be used to calculate a function over a group.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute number of observations, mean and sd across groups</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(X<span class="sc">$</span>RPM7, <span class="at">by =</span> <span class="fu">list</span>(X<span class="sc">$</span>MouseType, X<span class="sc">$</span>gender, X<span class="sc">$</span>Caffeine), length)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(X<span class="sc">$</span>RPM7, <span class="at">by =</span> <span class="fu">list</span>(X<span class="sc">$</span>MouseType, X<span class="sc">$</span>gender, X<span class="sc">$</span>Caffeine), mean)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(X<span class="sc">$</span>RPM7, <span class="at">by =</span> <span class="fu">list</span>(X<span class="sc">$</span>MouseType, X<span class="sc">$</span>gender, X<span class="sc">$</span>Caffeine), sd)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine and set column names</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>stat_table <span class="ot">&lt;-</span> <span class="fu">cbind</span>(n, m<span class="sc">$</span>x, s<span class="sc">$</span>x)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(stat_table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"MouseType"</span>,<span class="st">"Gender"</span>,<span class="st">"Caffeine"</span>,<span class="st">"N"</span>,<span class="st">"mean"</span>,<span class="st">"sd"</span>)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print as nice markdown table</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(stat_table, <span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute number of observations, mean and sd across groups</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(X<span class="sc">$</span>RPM7, <span class="at">by =</span> <span class="fu">list</span>(X<span class="sc">$</span>MouseType, X<span class="sc">$</span>gender, X<span class="sc">$</span>Caffeine), length)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(X<span class="sc">$</span>RPM7, <span class="at">by =</span> <span class="fu">list</span>(X<span class="sc">$</span>MouseType, X<span class="sc">$</span>gender, X<span class="sc">$</span>Caffeine), mean)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(X<span class="sc">$</span>RPM7, <span class="at">by =</span> <span class="fu">list</span>(X<span class="sc">$</span>MouseType, X<span class="sc">$</span>gender, X<span class="sc">$</span>Caffeine), sd)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine and set column names</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>stat_table <span class="ot">&lt;-</span> <span class="fu">cbind</span>(n, m<span class="sc">$</span>x, s<span class="sc">$</span>x)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(stat_table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"MouseType"</span>,<span class="st">"Gender"</span>,<span class="st">"Caffeine"</span>,<span class="st">"N"</span>,<span class="st">"mean"</span>,<span class="st">"sd"</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print as nice markdown table</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(stat_table, <span class="at">digits =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
@@ -838,14 +772,14 @@ Example 7.1 - Effect of caffeine on activity
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <p>In Tidyverse, the <code>group_by()</code>-function is used to group the observations by everything but the column <code>RPM7</code> (so that will be type, gender and caffeine). Then, the number of observations, mean and standard devations are calculated across groups, giving the information for each group in one go.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>X <span class="sc">|&gt;</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="fu">across</span>(<span class="sc">-</span>RPM7)) <span class="sc">|&gt;</span> </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">N =</span> <span class="fu">n</span>(),</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(RPM7),</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fu">sd</span>(RPM7)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="co"># Output pretty table in markdown</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>X <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="fu">across</span>(<span class="sc">-</span>RPM7)) <span class="sc">|&gt;</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">N =</span> <span class="fu">n</span>(),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(RPM7),</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fu">sd</span>(RPM7)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="co"># Output pretty table in markdown</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`summarise()` has grouped output by 'MouseType', 'gender'. You can override
 using the `.groups` argument.</code></pre>
@@ -1007,32 +941,37 @@ P(X \geq 10) &amp;= \frac{1}{\sqrt{2\pi\sigma^2}}\int_{10}^{\infty} e^{-\frac{(z
 \end{align*}\]</span></p>
 <p>where <span class="math inline">\(X\)</span> is assummed normally distributed with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>.<br>
 That is: <span class="math inline">\(X \sim \mathcal{N} (\mu,\sigma^2)\)</span>. \</p>
-<p>A small illustration below shows the area of interest</p>
+<p>A small illustration below (<a href="#fig-normal-dist-rpm7" class="quarto-xref">figure&nbsp;<span>7.2</span></a>) shows the area of interest.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create normal distributed data using estimated mean and sd</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">16</span>, <span class="fl">0.01</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">dnorm</span>(x, <span class="fu">mean</span>(extracted_x), <span class="fu">sd</span>(extracted_x))) </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot normal curve </span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">data =</span> <span class="fu">subset</span>(df, x <span class="sc">&gt;=</span> <span class="dv">10</span>), <span class="at">fill =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"RPM7"</span>,</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Probability"</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create normal distributed data using estimated mean and sd</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">16</span>, <span class="fl">0.01</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">dnorm</span>(x, <span class="fu">mean</span>(extracted_x), <span class="fu">sd</span>(extracted_x))) </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot normal curve </span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">data =</span> <span class="fu">subset</span>(df, x <span class="sc">&gt;=</span> <span class="dv">10</span>), <span class="at">fill =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"RPM7"</span>,</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Probability"</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><a href="normal_distribution_files/figure-html/unnamed-chunk-10-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="normal_distribution_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></a></p>
+<div id="fig-normal-dist-rpm7" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-normal-dist-rpm7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="normal_distribution_files/figure-html/fig-normal-dist-rpm7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;7.2: Normal density function fitted to the selected mouse population. The red area is the density for RPM7 >= 10."><img src="normal_distribution_files/figure-html/fig-normal-dist-rpm7-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normal-dist-rpm7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.2: Normal density function fitted to the selected mouse population. The red area is the density for RPM7 &gt;= 10.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>The size of the red area is simply calculated via the <code>pnorm()</code> function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">10</span>, <span class="fu">mean</span>(extracted_x), <span class="fu">sd</span>(extracted_x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">10</span>, <span class="fu">mean</span>(extracted_x), <span class="fu">sd</span>(extracted_x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2578628</code></pre>
 </div>
@@ -1084,38 +1023,43 @@ Example 7.3 - Effect of caffeine on activity - confidence intervals
 <p>In example <a href="#exa-effect-of-caffeine" class="quarto-xref">Example&nbsp;<span>7.1</span></a> concerning the relation between caffeine and voluntary activity of mice, the running activity of mice in a wheel is recorded. In this example we wish to estimate the mean activity of the two groups with either water- or Red bull as caffeine source in control runner female mice, and give a confidence interval for these means.</p>
 <p>First, the data is subset to only include the two groups of interest.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>x_subset <span class="ot">&lt;-</span> X <span class="sc">|&gt;</span> </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    MouseType <span class="sc">==</span> <span class="st">"Control runner"</span>,</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    gender <span class="sc">==</span> <span class="st">"Female"</span>,</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    Caffeine <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Red Bull"</span>, <span class="st">"Water"</span>)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>x_subset <span class="ot">&lt;-</span> X <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    MouseType <span class="sc">==</span> <span class="st">"Control runner"</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    gender <span class="sc">==</span> <span class="st">"Female"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    Caffeine <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Red Bull"</span>, <span class="st">"Water"</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>After subsetting the data to only include these two groups a plot of the raw data looks like the following, and consists of <span class="math inline">\(n = n_1 + n_2 = 11+ 9 = 20\)</span> samples.</p>
+<p>After subsetting the data to only include these two groups a plot of the raw data looks like the following, and consists of <span class="math inline">\(n = n_1 + n_2 = 11+ 9 = 20\)</span> samples (<a href="#fig-mouse-subset" class="quarto-xref">figure&nbsp;<span>7.3</span></a>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(x_subset, <span class="fu">aes</span>(Caffeine, RPM7, <span class="at">color =</span> Caffeine)) <span class="sc">+</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="co"># Remove legend</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(x_subset, <span class="fu">aes</span>(Caffeine, RPM7, <span class="at">color =</span> Caffeine)) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="co"># Remove legend</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><a href="normal_distribution_files/figure-html/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="normal_distribution_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></a></p>
+<div id="fig-mouse-subset" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mouse-subset-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="normal_distribution_files/figure-html/fig-mouse-subset-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Figure&nbsp;7.3: Box n’ jitter plot of the mouse data subset."><img src="normal_distribution_files/figure-html/fig-mouse-subset-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mouse-subset-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7.3: Box n’ jitter plot of the mouse data subset.
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>The mean and standard deviation for the two groups can be calculated using <code>summarise()</code> via Tidyverse or <code>aggregate()</code> in base R (see <a href="#exa-effect-of-caffeine" class="quarto-xref">Example&nbsp;<span>7.1</span></a> for an example on <code>aggregate</code>).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>x_subset <span class="sc">|&gt;</span> </span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Caffeine) <span class="sc">|&gt;</span> </span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">N =</span> <span class="fu">n</span>(),</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(RPM7),</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fu">sd</span>(RPM7)</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="co"># For pretty tables in markdown</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>x_subset <span class="sc">|&gt;</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Caffeine) <span class="sc">|&gt;</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">N =</span> <span class="fu">n</span>(),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(RPM7),</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fu">sd</span>(RPM7)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="co"># For pretty tables in markdown</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <thead>
@@ -1153,15 +1097,15 @@ CI_{\mu}: &amp; \hat{\mu} \pm t_{0.975,n-1} \cdot \hat{\sigma} / \sqrt(n) \\
 CI_{\mu_{water}}:  [8.6 - 2.23 \cdot 2.1 / \sqrt{11}; 8.6 + 2.23 \cdot 2.1/ \sqrt{11}]  =  [7.3; 10.0]
 \]</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">11</span> <span class="co"># Number of obs in water group</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>t_frac <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, n <span class="sc">-</span> <span class="dv">1</span>) <span class="co"># T-value</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x_subset[x_subset<span class="sc">$</span>Caffeine <span class="sc">==</span> <span class="st">"Water"</span>, <span class="st">"RPM7"</span>])</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">mean</span>(x_subset[x_subset<span class="sc">$</span>Caffeine <span class="sc">==</span> <span class="st">"Water"</span>, <span class="st">"RPM7"</span>])</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>ci_lower <span class="ot">&lt;-</span> m <span class="sc">-</span> t_frac <span class="sc">*</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>ci_upper <span class="ot">&lt;-</span> m <span class="sc">+</span> t_frac <span class="sc">*</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"95% confidence interval for water group:</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">c</span>(ci_lower, ci_upper))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">11</span> <span class="co"># Number of obs in water group</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>t_frac <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, n <span class="sc">-</span> <span class="dv">1</span>) <span class="co"># T-value</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x_subset[x_subset<span class="sc">$</span>Caffeine <span class="sc">==</span> <span class="st">"Water"</span>, <span class="st">"RPM7"</span>])</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">mean</span>(x_subset[x_subset<span class="sc">$</span>Caffeine <span class="sc">==</span> <span class="st">"Water"</span>, <span class="st">"RPM7"</span>])</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>ci_lower <span class="ot">&lt;-</span> m <span class="sc">-</span> t_frac <span class="sc">*</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>ci_upper <span class="ot">&lt;-</span> m <span class="sc">+</span> t_frac <span class="sc">*</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"95% confidence interval for water group:</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">c</span>(ci_lower, ci_upper))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>95% confidence interval for water group:
  7.253336 10.04543</code></pre>
@@ -1173,7 +1117,7 @@ CI_{\mu_{Red Bull}}: [8.5; 11.8]
 \end{equation}\]</span></p>
 <p>In R this can be assesed via the <code>t.test()</code> function.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x_subset[x_subset<span class="sc">$</span>Caffeine <span class="sc">==</span> <span class="st">"Water"</span>, <span class="st">"RPM7"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x_subset[x_subset<span class="sc">$</span>Caffeine <span class="sc">==</span> <span class="st">"Water"</span>, <span class="st">"RPM7"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     One Sample t-test
@@ -1437,7 +1381,7 @@ Tasks
 <div class="callout-task">
 <ol type="1">
 <li>Start by importing the <em>GrowthData.xlsx</em> dataset into R. Check that all the info from the excel file was imported correctly using the commands <code>dim()</code> and <code>head()</code>. You can ’chop’ the dataframe in R to isolate the variables of importance (length, sex, age etc.).</li>
-<li>Using the following graphs (<a href="#fig-length-for-age" class="quarto-xref">figure&nbsp;<span>7.1</span></a>), find the mean and standard deviation for boys and girls at age 15 months.</li>
+<li>Using the following graphs (<a href="#fig-length-for-age" class="quarto-xref">figure&nbsp;<span>7.4</span></a>), find the mean and standard deviation for boys and girls at age 15 months.</li>
 </ol>
 </div>
 </div>
@@ -1451,7 +1395,7 @@ Tasks
 <div id="fig-length-for-age-girls" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-length-for-age-girls-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="length-for-age-girls.png" class="lightbox" data-gallery="fig-length-for-age" title="Figure&nbsp;7.1&nbsp;(a): Z-scores for the length-to-age ratio for girls"><img src="length-for-age-girls.png" class="img-fluid figure-img" data-ref-parent="fig-length-for-age"></a>
+<a href="length-for-age-girls.png" class="lightbox" data-gallery="fig-length-for-age" title="Figure&nbsp;7.4&nbsp;(a): Z-scores for the length-to-age ratio for girls"><img src="length-for-age-girls.png" class="img-fluid figure-img" data-ref-parent="fig-length-for-age"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-length-for-age-girls-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Z-scores for the length-to-age ratio for girls
@@ -1463,7 +1407,7 @@ Tasks
 <div id="fig-length-for-age-boys" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-length-for-age-boys-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="length-for-age-boys.png" class="lightbox" data-gallery="fig-length-for-age" title="Figure&nbsp;7.1&nbsp;(b): Z-scores for the length-to-age ratio for boys."><img src="length-for-age-boys.png" class="img-fluid figure-img" data-ref-parent="fig-length-for-age"></a>
+<a href="length-for-age-boys.png" class="lightbox" data-gallery="fig-length-for-age" title="Figure&nbsp;7.4&nbsp;(b): Z-scores for the length-to-age ratio for boys."><img src="length-for-age-boys.png" class="img-fluid figure-img" data-ref-parent="fig-length-for-age"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-length-for-age-boys-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Z-scores for the length-to-age ratio for boys.
@@ -1474,7 +1418,7 @@ Tasks
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-length-for-age-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.1: Z-scores for the length-to-age ratio for girls and boys aged 0 to 2 years. Source: WHO. <strong>Click on the images to enlargen them.</strong>
+Figure&nbsp;7.4: Z-scores for the length-to-age ratio for girls and boys aged 0 to 2 years. Source: WHO. <strong>Click on the images to enlargen them.</strong>
 </figcaption>
 </figure>
 </div>
@@ -1923,491 +1867,500 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb24" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># The normal distribution</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: normal dist setup</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"MouseWheelCaffeine.RData"</span>))</span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Learning objectives</span></span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Introduce the predominant distribution within biological data; The normal distribution. </span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Be able to characterize the distribution by a set of parameters, and be able to calculate the precision of these parameters (give confidence intervals) based on data. </span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Know which graphics that are useful for visualizing normally distributed data (histogram, boxplot, qq-plot), and be able to use this to judge whether normality is fulfilled. </span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>For a given distribution to be able to calculate the probability of a given observation.</span>
-<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reading material</span></span>
-<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="co">[</span><span class="ot">The normal distribution - in short</span><span class="co">](#sec-intro-to-normal)</span></span>
-<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Videos giving short condensed introduction to the normal distribution:</span>
-<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="co">[</span><span class="ot">The Normal Distribution</span><span class="co">](#sec-the-normal-distribution)</span></span>
-<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="co">[</span><span class="ot">An Introduction to the Normal Distribution</span><span class="co">](#sec-intro-to-the-normal-distribution)</span></span>
-<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="co">[</span><span class="ot">The Normal Distribution, Clearly Explained</span><span class="co">](#sec-the-normal-distribution-clearly-explained)</span></span>
-<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Video on confidence intervals: </span>
-<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="co">[</span><span class="ot">Confidence intervals</span><span class="co">](#sec-confidence-intervals)</span></span>
-<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Chapter 2 and 3 of <span class="co">[</span><span class="ot">*Introduction to Statistics*</span><span class="co">](https://02402.compute.dtu.dk/enotes/book-IntroStatistics)</span> by Brockhoff</span>
-<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Especially 2.1 to 2.4 (you can skip 2.2 on discrete distributions, which is the subject of week 4) and 3.1 - 3.1.6.</span>
-<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## The normal distribution - in short {#sec-intro-to-normal}</span></span>
-<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a>If $X$ is normaly distributed with mean $\mu$ and variance $\sigma^2$, then the probability density function for a given draw from that distribution $x$ is given by </span>
-<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a>P(x) = \frac{1}{{\sigma \sqrt {2\pi } }}e^{{{ - \left( {x - \mu } \right)^2 } {2\sigma ^2 }}}</span>
-<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-47"><a href="#cb24-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-48"><a href="#cb24-48" aria-hidden="true" tabindex="-1"></a>Further, the cumulative density function can be found by integration of this formula</span>
-<span id="cb24-49"><a href="#cb24-49" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-50"><a href="#cb24-50" aria-hidden="true" tabindex="-1"></a>P(X \leq x) = \frac{1}{{\sigma \sqrt {2\pi } }} \int_{-\inf}^x e^{{{ - \left( {x - \mu } \right)^2 } {2\sigma ^2 }}} \, dx</span>
-<span id="cb24-51"><a href="#cb24-51" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-52"><a href="#cb24-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-53"><a href="#cb24-53" aria-hidden="true" tabindex="-1"></a>The short notation for this distribution is</span>
-<span id="cb24-54"><a href="#cb24-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-55"><a href="#cb24-55" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-56"><a href="#cb24-56" aria-hidden="true" tabindex="-1"></a>X \sim \mathcal{N}(\mu,\sigma^2)</span>
-<span id="cb24-57"><a href="#cb24-57" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-58"><a href="#cb24-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-59"><a href="#cb24-59" aria-hidden="true" tabindex="-1"></a><span class="fu">### Estimation of $\mu$ and $\sigma$</span></span>
-<span id="cb24-60"><a href="#cb24-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-61"><a href="#cb24-61" aria-hidden="true" tabindex="-1"></a>More often than not, the distribution is unknown. That is the values of $\mu$ and $\sigma$ are unknown and must then be estimated from data.</span>
-<span id="cb24-62"><a href="#cb24-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-63"><a href="#cb24-63" aria-hidden="true" tabindex="-1"></a>$\mu$ characterizes the center of the distribution, and is naturally estimated by the mean-value of the data-points ($\bar{X}$). $\sigma$ reflects the spread around the mean, and is in a similar fashion estimated by the standard deviation ($\hat{\sigma}$ or $s$). </span>
-<span id="cb24-64"><a href="#cb24-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-65"><a href="#cb24-65" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-66"><a href="#cb24-66" aria-hidden="true" tabindex="-1"></a>\hat{\mu} = \bar{X} = \sum_{i = 1}^n X_i / n = (X_1 + X_2 + X_3 + \ldots + X_n) / n</span>
-<span id="cb24-67"><a href="#cb24-67" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-68"><a href="#cb24-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-69"><a href="#cb24-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-70"><a href="#cb24-70" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-71"><a href="#cb24-71" aria-hidden="true" tabindex="-1"></a>\hat{\sigma}^2 = s^2 = \sum_{i = 1}^n (X_i - \bar{X})^2 / (n-1) = ((X_1 - \bar{X})^2 + (X_2 - \bar{X})^2 + (X_3 - \bar{X})^2 + \ldots + (X_n - \bar{X})^2 ) / (n-1)</span>
-<span id="cb24-72"><a href="#cb24-72" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-73"><a href="#cb24-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-74"><a href="#cb24-74" aria-hidden="true" tabindex="-1"></a>::: {#exa-effect-of-caffeine}</span>
-<span id="cb24-75"><a href="#cb24-75" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
-<span id="cb24-76"><a href="#cb24-76" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb24-77"><a href="#cb24-77" aria-hidden="true" tabindex="-1"></a>::: {.callout-example}</span>
-<span id="cb24-78"><a href="#cb24-78" aria-hidden="true" tabindex="-1"></a><span class="fu">### Effect of caffeine on activity</span></span>
-<span id="cb24-79"><a href="#cb24-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-80"><a href="#cb24-80" aria-hidden="true" tabindex="-1"></a>Caffeine is a central neurvous system stimulant, which can have several positive- and negative effects. In this study, the level of activity is up for examination, and for this purpose a model-system; the runing activity of mice in a wheel reflected as the number of rounds pr minutes recorded over 7 minutes. Here a total of 249 mice from two species; one breed to be high in running performance, and one control, where given either Water, Gatorade or Red Bull followed by measuring their voluentary wheel run activiy. Of interest is the average actvity within each mouse type and for each caffeine type and how large the spread is.</span>
-<span id="cb24-81"><a href="#cb24-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-82"><a href="#cb24-82" aria-hidden="true" tabindex="-1"></a>The data is listed in a table with 249 rows (here, the first five samples are shown):</span>
-<span id="cb24-83"><a href="#cb24-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-86"><a href="#cb24-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-87"><a href="#cb24-87" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(X), <span class="at">digits =</span> <span class="dv">1</span>) </span>
-<span id="cb24-88"><a href="#cb24-88" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-89"><a href="#cb24-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-90"><a href="#cb24-90" aria-hidden="true" tabindex="-1"></a>To get the experimental design, the table() function nicely summarize the numbers within each group:</span>
-<span id="cb24-91"><a href="#cb24-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-94"><a href="#cb24-94" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-95"><a href="#cb24-95" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">table</span>(X<span class="sc">$</span>gender<span class="sc">:</span>X<span class="sc">$</span>MouseType, X<span class="sc">$</span>Caffeine))</span>
-<span id="cb24-96"><a href="#cb24-96" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-97"><a href="#cb24-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-98"><a href="#cb24-98" aria-hidden="true" tabindex="-1"></a>Before doing anythingelse, the data is plotted to visualize the response as function of the design.</span>
-<span id="cb24-99"><a href="#cb24-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-102"><a href="#cb24-102" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-103"><a href="#cb24-103" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(X, <span class="fu">aes</span>(Caffeine, RPM7, <span class="at">color =</span> Caffeine)) <span class="sc">+</span></span>
-<span id="cb24-104"><a href="#cb24-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb24-105"><a href="#cb24-105" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> .<span class="dv">75</span>) <span class="sc">+</span> <span class="co"># Alpha controls opacity</span></span>
-<span id="cb24-106"><a href="#cb24-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>MouseType) <span class="sc">+</span></span>
-<span id="cb24-107"><a href="#cb24-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb24-108"><a href="#cb24-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="co"># Remove the legend</span></span>
-<span id="cb24-109"><a href="#cb24-109" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-110"><a href="#cb24-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-111"><a href="#cb24-111" aria-hidden="true" tabindex="-1"></a>As an example, the mean and standard deviation is calculated for females of the unselected breed given water. The example is given using both base R and Tidyverse.</span>
-<span id="cb24-112"><a href="#cb24-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-113"><a href="#cb24-113" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
-<span id="cb24-114"><a href="#cb24-114" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using base R</span></span>
-<span id="cb24-115"><a href="#cb24-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-116"><a href="#cb24-116" aria-hidden="true" tabindex="-1"></a>First, the information is extracted from the dataset:</span>
-<span id="cb24-117"><a href="#cb24-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-120"><a href="#cb24-120" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-121"><a href="#cb24-121" aria-hidden="true" tabindex="-1"></a>extracted_x <span class="ot">&lt;-</span> X[</span>
-<span id="cb24-122"><a href="#cb24-122" aria-hidden="true" tabindex="-1"></a>  X<span class="sc">$</span>MouseType <span class="sc">==</span> <span class="st">"Control runner"</span> <span class="sc">&amp;</span> X<span class="sc">$</span>gender <span class="sc">==</span> <span class="st">"Female"</span> <span class="sc">&amp;</span> X<span class="sc">$</span>Caffeine <span class="sc">==</span> <span class="st">"Water"</span>, <span class="co"># Rows</span></span>
-<span id="cb24-123"><a href="#cb24-123" aria-hidden="true" tabindex="-1"></a>  <span class="st">"RPM7"</span>] <span class="co"># Column</span></span>
-<span id="cb24-124"><a href="#cb24-124" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-125"><a href="#cb24-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-126"><a href="#cb24-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-127"><a href="#cb24-127" aria-hidden="true" tabindex="-1"></a>And then the extracted information can be fed into the <span class="in">`mean()`</span> and <span class="in">`sd()`</span> functions.</span>
-<span id="cb24-128"><a href="#cb24-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-131"><a href="#cb24-131" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-132"><a href="#cb24-132" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(extracted_x)</span>
-<span id="cb24-133"><a href="#cb24-133" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(extracted_x)</span>
-<span id="cb24-134"><a href="#cb24-134" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-135"><a href="#cb24-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-136"><a href="#cb24-136" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using Tidyverse</span></span>
-<span id="cb24-137"><a href="#cb24-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-138"><a href="#cb24-138" aria-hidden="true" tabindex="-1"></a>In Tidyverse the <span class="in">`filter`</span>-function is used to filter by the <span class="in">`MouseType`</span>, <span class="in">`gender`</span>, and <span class="in">`Caffeine`</span> levels of interest. Afterwards, the mean and standard deviation are computed using <span class="in">`summarise`</span>. </span>
-<span id="cb24-139"><a href="#cb24-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-142"><a href="#cb24-142" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-143"><a href="#cb24-143" aria-hidden="true" tabindex="-1"></a>X <span class="sc">|&gt;</span> </span>
-<span id="cb24-144"><a href="#cb24-144" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb24-145"><a href="#cb24-145" aria-hidden="true" tabindex="-1"></a>    MouseType <span class="sc">==</span> <span class="st">"Control runner"</span>,</span>
-<span id="cb24-146"><a href="#cb24-146" aria-hidden="true" tabindex="-1"></a>    gender <span class="sc">==</span> <span class="st">"Female"</span>,</span>
-<span id="cb24-147"><a href="#cb24-147" aria-hidden="true" tabindex="-1"></a>    Caffeine <span class="sc">==</span> <span class="st">"Water"</span></span>
-<span id="cb24-148"><a href="#cb24-148" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb24-149"><a href="#cb24-149" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb24-150"><a href="#cb24-150" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(RPM7),</span>
-<span id="cb24-151"><a href="#cb24-151" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fu">sd</span>(RPM7)</span>
-<span id="cb24-152"><a href="#cb24-152" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb24-153"><a href="#cb24-153" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-154"><a href="#cb24-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-155"><a href="#cb24-155" aria-hidden="true" tabindex="-1"></a>::: </span>
-<span id="cb24-156"><a href="#cb24-156" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End tabset --&gt;</span></span>
-<span id="cb24-157"><a href="#cb24-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-158"><a href="#cb24-158" aria-hidden="true" tabindex="-1"></a>Both methods output a mean and standard deviation of </span>
-<span id="cb24-159"><a href="#cb24-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-160"><a href="#cb24-160" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-161"><a href="#cb24-161" aria-hidden="true" tabindex="-1"></a>\bar{x} = \sum_{i=1}^{n} \frac{x_i}{n} \approx 8.6</span>
-<span id="cb24-162"><a href="#cb24-162" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-163"><a href="#cb24-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-164"><a href="#cb24-164" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-165"><a href="#cb24-165" aria-hidden="true" tabindex="-1"></a>\hat{\sigma} = \sum_{i=1}^{n} \frac{(x_i - \bar{x})}{n - 1} \approx 2.1</span>
-<span id="cb24-166"><a href="#cb24-166" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-167"><a href="#cb24-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-168"><a href="#cb24-168" aria-hidden="true" tabindex="-1"></a>for the particular group of interest.</span>
-<span id="cb24-169"><a href="#cb24-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-170"><a href="#cb24-170" aria-hidden="true" tabindex="-1"></a>A more efficient way of doing this would be to calculate the mean and standard deviation of each combination and display them in a table. The example below is given using both base R and Tidyverse.</span>
-<span id="cb24-171"><a href="#cb24-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-172"><a href="#cb24-172" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
-<span id="cb24-173"><a href="#cb24-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-174"><a href="#cb24-174" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using base R</span></span>
-<span id="cb24-175"><a href="#cb24-175" aria-hidden="true" tabindex="-1"></a>In base R <span class="in">`aggregate()`</span> can be used to calculate a function over a group. </span>
-<span id="cb24-176"><a href="#cb24-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-179"><a href="#cb24-179" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-180"><a href="#cb24-180" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute number of observations, mean and sd across groups</span></span>
-<span id="cb24-181"><a href="#cb24-181" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(X<span class="sc">$</span>RPM7, <span class="at">by =</span> <span class="fu">list</span>(X<span class="sc">$</span>MouseType, X<span class="sc">$</span>gender, X<span class="sc">$</span>Caffeine), length)</span>
-<span id="cb24-182"><a href="#cb24-182" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(X<span class="sc">$</span>RPM7, <span class="at">by =</span> <span class="fu">list</span>(X<span class="sc">$</span>MouseType, X<span class="sc">$</span>gender, X<span class="sc">$</span>Caffeine), mean)</span>
-<span id="cb24-183"><a href="#cb24-183" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(X<span class="sc">$</span>RPM7, <span class="at">by =</span> <span class="fu">list</span>(X<span class="sc">$</span>MouseType, X<span class="sc">$</span>gender, X<span class="sc">$</span>Caffeine), sd)</span>
-<span id="cb24-184"><a href="#cb24-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-185"><a href="#cb24-185" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine and set column names</span></span>
-<span id="cb24-186"><a href="#cb24-186" aria-hidden="true" tabindex="-1"></a>stat_table <span class="ot">&lt;-</span> <span class="fu">cbind</span>(n, m<span class="sc">$</span>x, s<span class="sc">$</span>x)</span>
-<span id="cb24-187"><a href="#cb24-187" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(stat_table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"MouseType"</span>,<span class="st">"Gender"</span>,<span class="st">"Caffeine"</span>,<span class="st">"N"</span>,<span class="st">"mean"</span>,<span class="st">"sd"</span>)</span>
-<span id="cb24-188"><a href="#cb24-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-189"><a href="#cb24-189" aria-hidden="true" tabindex="-1"></a><span class="co"># Print as nice markdown table</span></span>
-<span id="cb24-190"><a href="#cb24-190" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(stat_table, <span class="at">digits =</span> <span class="dv">2</span>)</span>
-<span id="cb24-191"><a href="#cb24-191" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-192"><a href="#cb24-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-193"><a href="#cb24-193" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using Tidyverse</span></span>
-<span id="cb24-194"><a href="#cb24-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-195"><a href="#cb24-195" aria-hidden="true" tabindex="-1"></a>In Tidyverse, the <span class="in">`group_by()`</span>-function is used to group the observations by everything but the column <span class="in">`RPM7`</span> (so that will be type, gender and caffeine). Then, the number of observations, mean and standard devations are calculated across groups, giving the information for each group in one go.</span>
-<span id="cb24-196"><a href="#cb24-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-199"><a href="#cb24-199" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-200"><a href="#cb24-200" aria-hidden="true" tabindex="-1"></a>X <span class="sc">|&gt;</span> </span>
-<span id="cb24-201"><a href="#cb24-201" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="fu">across</span>(<span class="sc">-</span>RPM7)) <span class="sc">|&gt;</span> </span>
-<span id="cb24-202"><a href="#cb24-202" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb24-203"><a href="#cb24-203" aria-hidden="true" tabindex="-1"></a>    <span class="at">N =</span> <span class="fu">n</span>(),</span>
-<span id="cb24-204"><a href="#cb24-204" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(RPM7),</span>
-<span id="cb24-205"><a href="#cb24-205" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fu">sd</span>(RPM7)</span>
-<span id="cb24-206"><a href="#cb24-206" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb24-207"><a href="#cb24-207" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="co"># Output pretty table in markdown</span></span>
-<span id="cb24-208"><a href="#cb24-208" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-209"><a href="#cb24-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-210"><a href="#cb24-210" aria-hidden="true" tabindex="-1"></a>::: </span>
-<span id="cb24-211"><a href="#cb24-211" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End tabset --&gt;</span></span>
-<span id="cb24-212"><a href="#cb24-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-213"><a href="#cb24-213" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb24-214"><a href="#cb24-214" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End example callout --&gt;</span></span>
-<span id="cb24-215"><a href="#cb24-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-216"><a href="#cb24-216" aria-hidden="true" tabindex="-1"></a>::: {#exa-effect-of-caffeine-probability}</span>
-<span id="cb24-217"><a href="#cb24-217" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
-<span id="cb24-218"><a href="#cb24-218" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb24-219"><a href="#cb24-219" aria-hidden="true" tabindex="-1"></a>::: {.callout-example}</span>
-<span id="cb24-220"><a href="#cb24-220" aria-hidden="true" tabindex="-1"></a><span class="fu">### Effect of caffeine on activity - probability</span></span>
-<span id="cb24-221"><a href="#cb24-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-222"><a href="#cb24-222" aria-hidden="true" tabindex="-1"></a>Example @exa-effect-of-caffeine estimates the activity distribution of mice based on experimental data. Under the assumption that these metrics, the mean and the standard deviation, perfectly describe the distribution of the data, and further that this distribution is the normal distribution, we wish to calculate the probability of a given female mice, from normal breed, assigned water to perform *higher than 10 RPM7*.</span>
-<span id="cb24-223"><a href="#cb24-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-224"><a href="#cb24-224" aria-hidden="true" tabindex="-1"></a>That is: </span>
-<span id="cb24-225"><a href="#cb24-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-226"><a href="#cb24-226" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
-<span id="cb24-227"><a href="#cb24-227" aria-hidden="true" tabindex="-1"></a>P(X \geq 10) &amp;= \frac{1}{\sqrt{2\pi\sigma^2}}\int_{10}^{\infty} e^{-\frac{(z - \mu)^2}{2\sigma}} dz <span class="sc">\\</span></span>
-<span id="cb24-228"><a href="#cb24-228" aria-hidden="true" tabindex="-1"></a>&amp;= 1 - P(X &lt; 10) <span class="sc">\\</span></span>
-<span id="cb24-229"><a href="#cb24-229" aria-hidden="true" tabindex="-1"></a>%X &amp;= X <span class="sc">\\</span></span>
-<span id="cb24-230"><a href="#cb24-230" aria-hidden="true" tabindex="-1"></a>%X &amp;= X</span>
-<span id="cb24-231"><a href="#cb24-231" aria-hidden="true" tabindex="-1"></a>&amp;= 1 - \frac{1}{\sqrt{2\pi\sigma^2}}\int_{-\infty}^{10} e^{-\frac{(z - \mu)^2}{2\sigma}} dz <span class="sc">\\</span></span>
-<span id="cb24-232"><a href="#cb24-232" aria-hidden="true" tabindex="-1"></a>%N(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{x} e^{-\frac{1}{2}z^2} dz</span>
-<span id="cb24-233"><a href="#cb24-233" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
-<span id="cb24-234"><a href="#cb24-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-235"><a href="#cb24-235" aria-hidden="true" tabindex="-1"></a>where $X$ is assummed normally distributed with mean $\mu$ and standard deviation $\sigma$.  </span>
-<span id="cb24-236"><a href="#cb24-236" aria-hidden="true" tabindex="-1"></a>That is: $X \sim \mathcal{N} (\mu,\sigma^2)$. <span class="sc">\\</span> </span>
-<span id="cb24-237"><a href="#cb24-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-238"><a href="#cb24-238" aria-hidden="true" tabindex="-1"></a>A small illustration below shows the area of interest</span>
-<span id="cb24-239"><a href="#cb24-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-242"><a href="#cb24-242" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-243"><a href="#cb24-243" aria-hidden="true" tabindex="-1"></a><span class="co"># Create normal distributed data using estimated mean and sd</span></span>
-<span id="cb24-244"><a href="#cb24-244" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">16</span>, <span class="fl">0.01</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb24-245"><a href="#cb24-245" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">dnorm</span>(x, <span class="fu">mean</span>(extracted_x), <span class="fu">sd</span>(extracted_x))) </span>
-<span id="cb24-246"><a href="#cb24-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-247"><a href="#cb24-247" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot normal curve </span></span>
-<span id="cb24-248"><a href="#cb24-248" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
-<span id="cb24-249"><a href="#cb24-249" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb24-250"><a href="#cb24-250" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">data =</span> <span class="fu">subset</span>(df, x <span class="sc">&gt;=</span> <span class="dv">10</span>), <span class="at">fill =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb24-251"><a href="#cb24-251" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb24-252"><a href="#cb24-252" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"RPM7"</span>,</span>
-<span id="cb24-253"><a href="#cb24-253" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Probability"</span></span>
-<span id="cb24-254"><a href="#cb24-254" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb24-255"><a href="#cb24-255" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
-<span id="cb24-256"><a href="#cb24-256" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-257"><a href="#cb24-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-258"><a href="#cb24-258" aria-hidden="true" tabindex="-1"></a>The size of the red area is simply calculated via the <span class="in">`pnorm()`</span> function.</span>
-<span id="cb24-259"><a href="#cb24-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-262"><a href="#cb24-262" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-263"><a href="#cb24-263" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">10</span>, <span class="fu">mean</span>(extracted_x), <span class="fu">sd</span>(extracted_x))</span>
-<span id="cb24-264"><a href="#cb24-264" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-265"><a href="#cb24-265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-266"><a href="#cb24-266" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-267"><a href="#cb24-267" aria-hidden="true" tabindex="-1"></a>P(X \geq 10) \approx 0.26</span>
-<span id="cb24-268"><a href="#cb24-268" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-269"><a href="#cb24-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-270"><a href="#cb24-270" aria-hidden="true" tabindex="-1"></a>The probability of a single female mice, from normal breed, administered with water to perform higher than $10 RPM7$ is hence $0.26$. </span>
-<span id="cb24-271"><a href="#cb24-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-272"><a href="#cb24-272" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb24-273"><a href="#cb24-273" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End example callout --&gt;</span></span>
-<span id="cb24-274"><a href="#cb24-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-275"><a href="#cb24-275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-276"><a href="#cb24-276" aria-hidden="true" tabindex="-1"></a><span class="fu">### Confidence interval for $\mu$</span></span>
-<span id="cb24-277"><a href="#cb24-277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-278"><a href="#cb24-278" aria-hidden="true" tabindex="-1"></a>The confidence interval for the center of a normal distribution ($\mu$) is calculated as follows: </span>
-<span id="cb24-279"><a href="#cb24-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-280"><a href="#cb24-280" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-281"><a href="#cb24-281" aria-hidden="true" tabindex="-1"></a>CI_{\mu,1-\alpha}:  \hat{\mu} \pm t_{1-\alpha/2,df} \cdot \hat{\sigma} / \sqrt(n)</span>
-<span id="cb24-282"><a href="#cb24-282" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-283"><a href="#cb24-283" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-284"><a href="#cb24-284" aria-hidden="true" tabindex="-1"></a>\bar{X} \pm t_{1-\alpha/2,df} \cdot s / \sqrt(n) </span>
-<span id="cb24-285"><a href="#cb24-285" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-286"><a href="#cb24-286" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-287"><a href="#cb24-287" aria-hidden="true" tabindex="-1"></a>where $t_{1-\alpha/2,df}$ is a fractile, a number, which determines the coverage. Here, $\alpha$ is the left ot part. I.e. if a $90 \%$ confidence interval is wanted, the left out part is $\alpha = 0.10$. $n$ is the number of samples on which the mean ($\bar{X}$) is estimated, and $df$ is the degrees of freedom, which refers to how well the standard deviation is estimated. </span>
-<span id="cb24-288"><a href="#cb24-288" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-289"><a href="#cb24-289" aria-hidden="true" tabindex="-1"></a>For instance, if one needs a $95 \%$ confidence interval ($\alpha = 0.05$) based on a sample of $20$ observations $t_{1-\alpha/2,df} = t_{0.975,20-1} = 2.093$.</span>
-<span id="cb24-290"><a href="#cb24-290" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-291"><a href="#cb24-291" aria-hidden="true" tabindex="-1"></a>It is further noticed that the interval is symmetric around the mean, and that the more samples ($n$) the lower the spread as the standard deviation is divided by $\sqrt{n}$. </span>
-<span id="cb24-292"><a href="#cb24-292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-293"><a href="#cb24-293" aria-hidden="true" tabindex="-1"></a>::: {#exa-effect-of-caffeine-conf-int}</span>
-<span id="cb24-294"><a href="#cb24-294" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
-<span id="cb24-295"><a href="#cb24-295" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb24-296"><a href="#cb24-296" aria-hidden="true" tabindex="-1"></a>::: {.callout-example}</span>
-<span id="cb24-297"><a href="#cb24-297" aria-hidden="true" tabindex="-1"></a><span class="fu">### Effect of caffeine on activity - confidence intervals</span></span>
-<span id="cb24-298"><a href="#cb24-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-299"><a href="#cb24-299" aria-hidden="true" tabindex="-1"></a>In example @exa-effect-of-caffeine concerning the relation between caffeine and voluntary activity of mice, the running activity of mice in a wheel is recorded. In this example we wish to estimate the mean activity of the two groups with either water- or Red bull as caffeine source in control runner female mice, and give a confidence interval for these means. </span>
-<span id="cb24-300"><a href="#cb24-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-301"><a href="#cb24-301" aria-hidden="true" tabindex="-1"></a>First, the data is subset to only include the two groups of interest. </span>
-<span id="cb24-302"><a href="#cb24-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-305"><a href="#cb24-305" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-306"><a href="#cb24-306" aria-hidden="true" tabindex="-1"></a>x_subset <span class="ot">&lt;-</span> X <span class="sc">|&gt;</span> </span>
-<span id="cb24-307"><a href="#cb24-307" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb24-308"><a href="#cb24-308" aria-hidden="true" tabindex="-1"></a>    MouseType <span class="sc">==</span> <span class="st">"Control runner"</span>,</span>
-<span id="cb24-309"><a href="#cb24-309" aria-hidden="true" tabindex="-1"></a>    gender <span class="sc">==</span> <span class="st">"Female"</span>,</span>
-<span id="cb24-310"><a href="#cb24-310" aria-hidden="true" tabindex="-1"></a>    Caffeine <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Red Bull"</span>, <span class="st">"Water"</span>)</span>
-<span id="cb24-311"><a href="#cb24-311" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb24-312"><a href="#cb24-312" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-313"><a href="#cb24-313" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-314"><a href="#cb24-314" aria-hidden="true" tabindex="-1"></a>After subsetting the data to only include these two groups a plot of the raw data looks like the following, and consists of $n = n_1 + n_2 = 11+ 9 = 20$ samples.</span>
-<span id="cb24-315"><a href="#cb24-315" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-318"><a href="#cb24-318" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-319"><a href="#cb24-319" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(x_subset, <span class="fu">aes</span>(Caffeine, RPM7, <span class="at">color =</span> Caffeine)) <span class="sc">+</span></span>
-<span id="cb24-320"><a href="#cb24-320" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb24-321"><a href="#cb24-321" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
-<span id="cb24-322"><a href="#cb24-322" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb24-323"><a href="#cb24-323" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="co"># Remove legend</span></span>
-<span id="cb24-324"><a href="#cb24-324" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-325"><a href="#cb24-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-326"><a href="#cb24-326" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-327"><a href="#cb24-327" aria-hidden="true" tabindex="-1"></a>The mean and standard deviation for the two groups can be calculated using <span class="in">`summarise()`</span> via Tidyverse or <span class="in">`aggregate()`</span> in base R (see @exa-effect-of-caffeine for an example on <span class="in">`aggregate`</span>).</span>
-<span id="cb24-328"><a href="#cb24-328" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-331"><a href="#cb24-331" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-332"><a href="#cb24-332" aria-hidden="true" tabindex="-1"></a>x_subset <span class="sc">|&gt;</span> </span>
-<span id="cb24-333"><a href="#cb24-333" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Caffeine) <span class="sc">|&gt;</span> </span>
-<span id="cb24-334"><a href="#cb24-334" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb24-335"><a href="#cb24-335" aria-hidden="true" tabindex="-1"></a>    <span class="at">N =</span> <span class="fu">n</span>(),</span>
-<span id="cb24-336"><a href="#cb24-336" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(RPM7),</span>
-<span id="cb24-337"><a href="#cb24-337" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fu">sd</span>(RPM7)</span>
-<span id="cb24-338"><a href="#cb24-338" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb24-339"><a href="#cb24-339" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="co"># For pretty tables in markdown</span></span>
-<span id="cb24-340"><a href="#cb24-340" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-341"><a href="#cb24-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-342"><a href="#cb24-342" aria-hidden="true" tabindex="-1"></a>The confidence interval is calculated as follows: </span>
-<span id="cb24-343"><a href="#cb24-343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-344"><a href="#cb24-344" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
-<span id="cb24-345"><a href="#cb24-345" aria-hidden="true" tabindex="-1"></a>CI_{\mu}: &amp; \hat{\mu} \pm t_{0.975,n-1} \cdot \hat{\sigma} / \sqrt(n) <span class="sc">\\</span></span>
-<span id="cb24-346"><a href="#cb24-346" aria-hidden="true" tabindex="-1"></a>&amp; \bar{X} \pm t_{0.975,n-1} \cdot s / \sqrt(n) </span>
-<span id="cb24-347"><a href="#cb24-347" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
-<span id="cb24-348"><a href="#cb24-348" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-349"><a href="#cb24-349" aria-hidden="true" tabindex="-1"></a>With a total of $df_1 = n_1 - 1 = 10$ degress of freedom the t-fractileat level $95 \%$ is $t_{0.975,10} = 2.23$ why the confidence interval for the water treated group is:</span>
-<span id="cb24-350"><a href="#cb24-350" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-351"><a href="#cb24-351" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-352"><a href="#cb24-352" aria-hidden="true" tabindex="-1"></a>CI_{\mu_{water}}:  <span class="co">[</span><span class="ot">8.6 - 2.23 \cdot 2.1 / \sqrt{11}; 8.6 + 2.23 \cdot 2.1/ \sqrt{11}</span><span class="co">]</span>  =  <span class="co">[</span><span class="ot">7.3; 10.0</span><span class="co">]</span> </span>
-<span id="cb24-353"><a href="#cb24-353" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-354"><a href="#cb24-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-357"><a href="#cb24-357" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-358"><a href="#cb24-358" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">11</span> <span class="co"># Number of obs in water group</span></span>
-<span id="cb24-359"><a href="#cb24-359" aria-hidden="true" tabindex="-1"></a>t_frac <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, n <span class="sc">-</span> <span class="dv">1</span>) <span class="co"># T-value</span></span>
-<span id="cb24-360"><a href="#cb24-360" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x_subset[x_subset<span class="sc">$</span>Caffeine <span class="sc">==</span> <span class="st">"Water"</span>, <span class="st">"RPM7"</span>])</span>
-<span id="cb24-361"><a href="#cb24-361" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">mean</span>(x_subset[x_subset<span class="sc">$</span>Caffeine <span class="sc">==</span> <span class="st">"Water"</span>, <span class="st">"RPM7"</span>])</span>
-<span id="cb24-362"><a href="#cb24-362" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-363"><a href="#cb24-363" aria-hidden="true" tabindex="-1"></a>ci_lower <span class="ot">&lt;-</span> m <span class="sc">-</span> t_frac <span class="sc">*</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
-<span id="cb24-364"><a href="#cb24-364" aria-hidden="true" tabindex="-1"></a>ci_upper <span class="ot">&lt;-</span> m <span class="sc">+</span> t_frac <span class="sc">*</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
-<span id="cb24-365"><a href="#cb24-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-366"><a href="#cb24-366" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"95% confidence interval for water group:</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">c</span>(ci_lower, ci_upper))</span>
-<span id="cb24-367"><a href="#cb24-367" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-368"><a href="#cb24-368" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-369"><a href="#cb24-369" aria-hidden="true" tabindex="-1"></a>And similar for the Red bull treated group.</span>
-<span id="cb24-370"><a href="#cb24-370" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-371"><a href="#cb24-371" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
-<span id="cb24-372"><a href="#cb24-372" aria-hidden="true" tabindex="-1"></a>CI_{\mu_{Red Bull}}: <span class="co">[</span><span class="ot">8.5; 11.8</span><span class="co">]</span></span>
-<span id="cb24-373"><a href="#cb24-373" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
-<span id="cb24-374"><a href="#cb24-374" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-375"><a href="#cb24-375" aria-hidden="true" tabindex="-1"></a>\vspace{10mm}</span>
-<span id="cb24-376"><a href="#cb24-376" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-377"><a href="#cb24-377" aria-hidden="true" tabindex="-1"></a>In R this can be assesed via the <span class="in">`t.test()`</span> function.</span>
-<span id="cb24-378"><a href="#cb24-378" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-381"><a href="#cb24-381" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb24-382"><a href="#cb24-382" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x_subset[x_subset<span class="sc">$</span>Caffeine <span class="sc">==</span> <span class="st">"Water"</span>, <span class="st">"RPM7"</span>])</span>
-<span id="cb24-383"><a href="#cb24-383" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb24-384"><a href="#cb24-384" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-385"><a href="#cb24-385" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb24-386"><a href="#cb24-386" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End example callout --&gt;</span></span>
-<span id="cb24-387"><a href="#cb24-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-388"><a href="#cb24-388" aria-hidden="true" tabindex="-1"></a><span class="fu">## Videos</span></span>
-<span id="cb24-389"><a href="#cb24-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-390"><a href="#cb24-390" aria-hidden="true" tabindex="-1"></a><span class="fu">### The Normal Distribution - *CrashCourse* {#sec-the-normal-distribution}</span></span>
-<span id="cb24-391"><a href="#cb24-391" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=rBjft49MAO8 &gt;}}</span>
-<span id="cb24-392"><a href="#cb24-392" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-393"><a href="#cb24-393" aria-hidden="true" tabindex="-1"></a><span class="fu">### An Introduction to the Normal Distribution - *jbstatistics* {#sec-intro-to-the-normal-distribution}</span></span>
-<span id="cb24-394"><a href="#cb24-394" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=iYiOVISWXS4 &gt;}}</span>
-<span id="cb24-395"><a href="#cb24-395" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-396"><a href="#cb24-396" aria-hidden="true" tabindex="-1"></a><span class="fu">### The Normal Distribution, Clearly Explained - *StatQuest* {#sec-the-normal-distribution-clearly-explained}</span></span>
-<span id="cb24-397"><a href="#cb24-397" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=rzFX5NWojp0 &gt;}}</span>
-<span id="cb24-398"><a href="#cb24-398" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-399"><a href="#cb24-399" aria-hidden="true" tabindex="-1"></a><span class="fu">### Confidence Intervals - *CrashCourse* {#sec-confidence-intervals}</span></span>
-<span id="cb24-400"><a href="#cb24-400" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=yDEvXB6ApWc &gt;}}</span>
-<span id="cb24-401"><a href="#cb24-401" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-402"><a href="#cb24-402" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-403"><a href="#cb24-403" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercises</span></span>
-<span id="cb24-404"><a href="#cb24-404" aria-hidden="true" tabindex="-1"></a>::: {#ex-normal-distribution}</span>
-<span id="cb24-405"><a href="#cb24-405" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
-<span id="cb24-406"><a href="#cb24-406" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb24-407"><a href="#cb24-407" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise}</span>
-<span id="cb24-408"><a href="#cb24-408" aria-hidden="true" tabindex="-1"></a><span class="fu">### Normal Distribution</span></span>
-<span id="cb24-409"><a href="#cb24-409" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-410"><a href="#cb24-410" aria-hidden="true" tabindex="-1"></a>Serum cholestorol level is a biomarker of health in relation to a range of life-style related diseases. A population of adults have mean values of $178 mg/100mL$ and $207 mg/100mL$, standard deviations of $31 mg/100mL$ and $37 mg/100mL$ in males and females respectively. </span>
-<span id="cb24-411"><a href="#cb24-411" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-412"><a href="#cb24-412" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb24-413"><a href="#cb24-413" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Draw curves (by hand - with pen on paper!) and plug in the parameters for these distributions.</span>
-<span id="cb24-414"><a href="#cb24-414" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>What percentage are below $150, 178$ and $200 mg/100 mL$ respectively (for males and females separately)?</span>
-<span id="cb24-415"><a href="#cb24-415" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>What percentage are above $140 mg/100 mL$</span>
-<span id="cb24-416"><a href="#cb24-416" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb24-417"><a href="#cb24-417" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-418"><a href="#cb24-418" aria-hidden="true" tabindex="-1"></a>A level above $240 mg/100 mL$ is considered high risk, whereas the range between $200$ and $239 mg/100 mL$ is considered borderline high risk. </span>
-<span id="cb24-419"><a href="#cb24-419" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-420"><a href="#cb24-420" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb24-421"><a href="#cb24-421" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>How big a proportion is considered at high risk (for males and females seperately)? </span>
-<span id="cb24-422"><a href="#cb24-422" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>How big a proportion is considered borderline high risk (for males and females seperately)? </span>
-<span id="cb24-423"><a href="#cb24-423" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Now assume that the above metrics describing the distribution (mean and standard deviation) is estimated based on samples of $30$ males and $30$ females. What it the changes to the calculations above? </span>
-<span id="cb24-424"><a href="#cb24-424" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb24-425"><a href="#cb24-425" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-426"><a href="#cb24-426" aria-hidden="true" tabindex="-1"></a>A population consists of $40\%$ males and $60\%$ females.</span>
-<span id="cb24-427"><a href="#cb24-427" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-428"><a href="#cb24-428" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb24-429"><a href="#cb24-429" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>What is the propability that a random person from that population have a serum cholesterol level higher than $240 mg/100mL$.</span>
-<span id="cb24-430"><a href="#cb24-430" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb24-431"><a href="#cb24-431" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-432"><a href="#cb24-432" aria-hidden="true" tabindex="-1"></a> Use that the mean and variance of a sum of two populations is the sum of the means and variance respectively. That is; Let $X$ and $Y$ be two indepedent random variables with mean $\mu_X$ and $\mu_y$ and variance $\sigma^2_X$ and $\sigma^2_Y$ respectively. And let: </span>
-<span id="cb24-433"><a href="#cb24-433" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-434"><a href="#cb24-434" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-435"><a href="#cb24-435" aria-hidden="true" tabindex="-1"></a>Z = c_1X+ c_2Y</span>
-<span id="cb24-436"><a href="#cb24-436" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-437"><a href="#cb24-437" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-438"><a href="#cb24-438" aria-hidden="true" tabindex="-1"></a>Then the mean and variance of $Z$ is:</span>
-<span id="cb24-439"><a href="#cb24-439" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-440"><a href="#cb24-440" aria-hidden="true" tabindex="-1"></a>\mu_Z = c_1\mu_X + c_2\mu_Y</span>
-<span id="cb24-441"><a href="#cb24-441" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-442"><a href="#cb24-442" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-443"><a href="#cb24-443" aria-hidden="true" tabindex="-1"></a>\sigma^2_Z = c_1\sigma^2_X + c_2\sigma^2_Y</span>
-<span id="cb24-444"><a href="#cb24-444" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb24-445"><a href="#cb24-445" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-446"><a href="#cb24-446" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb24-447"><a href="#cb24-447" aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span>What is the population mean and standard deviation of a population made up of $40\%$ males and $60\%$ females? </span>
-<span id="cb24-448"><a href="#cb24-448" aria-hidden="true" tabindex="-1"></a><span class="ss">9. </span>Use this mean and standard deviation to calculate the probability of a random person from that population having a serum cholesterol level higher than $240 mg/100mL$. How is that different from question 7? and why so? </span>
-<span id="cb24-449"><a href="#cb24-449" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb24-450"><a href="#cb24-450" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-451"><a href="#cb24-451" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb24-452"><a href="#cb24-452" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-453"><a href="#cb24-453" aria-hidden="true" tabindex="-1"></a>::: {#ex-transformations-and-the-normal-distribution}</span>
-<span id="cb24-454"><a href="#cb24-454" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
-<span id="cb24-455"><a href="#cb24-455" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb24-456"><a href="#cb24-456" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise}</span>
-<span id="cb24-457"><a href="#cb24-457" aria-hidden="true" tabindex="-1"></a><span class="fu">### Transformations and the normal distribution</span></span>
-<span id="cb24-458"><a href="#cb24-458" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-459"><a href="#cb24-459" aria-hidden="true" tabindex="-1"></a>The normal distribution (also known as the Gaussian distribution) are central in biology as such, and in data analysis especially.</span>
-<span id="cb24-460"><a href="#cb24-460" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-461"><a href="#cb24-461" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb24-462"><a href="#cb24-462" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Why do we (sometimes) transform data before making statistical analysis?</span>
-<span id="cb24-463"><a href="#cb24-463" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Make a histogram plot and a qqplot (use <span class="in">`qqnorm()`</span> and <span class="in">`qqline()`</span> functions) on the variable *Ethyl.pyruvate* from the "Wine" data set. Are the data normal distributed?</span>
-<span id="cb24-464"><a href="#cb24-464" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Try to Log transform the variable *Ethyl.pyruvate*. Make a new histogram plot and a corresponding qqplot. Compare with question 1.</span>
-<span id="cb24-465"><a href="#cb24-465" aria-hidden="true" tabindex="-1"></a>    a. Use the command <span class="in">`par(mfrow = c(1,2))`</span> (in front of your plotting commands) to get the plots side by side which makes it easier to compare the results.</span>
-<span id="cb24-466"><a href="#cb24-466" aria-hidden="true" tabindex="-1"></a>    a. Add a suitable title on both plots using the argument <span class="in">`main="a very nice title"`</span>.</span>
-<span id="cb24-467"><a href="#cb24-467" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-468"><a href="#cb24-468" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Does it seem possible to get all samples to match the same distribution?</span>
-<span id="cb24-469"><a href="#cb24-469" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Do the same for the variable *Benxyl.alcohol*. </span>
-<span id="cb24-470"><a href="#cb24-470" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Does the log transformation work? What is the problem? </span>
-<span id="cb24-471"><a href="#cb24-471" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Try the square root transformation.</span>
-<span id="cb24-472"><a href="#cb24-472" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb24-473"><a href="#cb24-473" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-474"><a href="#cb24-474" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb24-475"><a href="#cb24-475" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-476"><a href="#cb24-476" aria-hidden="true" tabindex="-1"></a>::: {#ex-who-height-and-weight-standard-normal-distribution}</span>
-<span id="cb24-477"><a href="#cb24-477" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
-<span id="cb24-478"><a href="#cb24-478" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb24-479"><a href="#cb24-479" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise }</span>
-<span id="cb24-480"><a href="#cb24-480" aria-hidden="true" tabindex="-1"></a><span class="fu">### WHO height and weight - standard normal distribution</span></span>
-<span id="cb24-481"><a href="#cb24-481" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-482"><a href="#cb24-482" aria-hidden="true" tabindex="-1"></a>Height and weight are important measures of growth during childhood. However, the largest factor impacting these measures are naturally the age of the child. In order to be able to compare children with slightly different ages such data are transformed using so-called growth curves. These are provided by the WHO and are constructed to represent the world wide distribution at specific ages for boys and girl. In this exercise you are supposed to take height and weight measures from African children living under different circumstances, transform them using WHO numbers for the world wide distribution, and further look for explanatory variables causing differences in growth.</span>
-<span id="cb24-483"><a href="#cb24-483" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-484"><a href="#cb24-484" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb24-485"><a href="#cb24-485" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Start by importing the *GrowthData.xlsx* dataset into R. Check that all the info from the excel file was imported correctly using the commands <span class="in">`dim()`</span> and <span class="in">`head()`</span>. You can ’chop’ the dataframe in R to isolate the variables of importance (length, sex, age etc.).</span>
-<span id="cb24-486"><a href="#cb24-486" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Using the following graphs (@fig-length-for-age), find the mean and standard deviation for boys and girls at age 15 months.</span>
-<span id="cb24-487"><a href="#cb24-487" aria-hidden="true" tabindex="-1"></a>::: </span>
-<span id="cb24-488"><a href="#cb24-488" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-489"><a href="#cb24-489" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-490"><a href="#cb24-490" aria-hidden="true" tabindex="-1"></a>::: {#fig-length-for-age layout-ncol=2}</span>
-<span id="cb24-491"><a href="#cb24-491" aria-hidden="true" tabindex="-1"></a><span class="al">![Z-scores for the length-to-age ratio for girls](length-for-age-girls.png)</span>{#fig-length-for-age-girls}</span>
-<span id="cb24-492"><a href="#cb24-492" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-493"><a href="#cb24-493" aria-hidden="true" tabindex="-1"></a><span class="al">![Z-scores for the length-to-age ratio for boys.](length-for-age-boys.png)</span>{#fig-length-for-age-boys}</span>
-<span id="cb24-494"><a href="#cb24-494" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-495"><a href="#cb24-495" aria-hidden="true" tabindex="-1"></a>Z-scores for the length-to-age ratio for girls and boys aged 0 to 2 years. Source: WHO. **Click on the images to enlargen them.**</span>
-<span id="cb24-496"><a href="#cb24-496" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb24-497"><a href="#cb24-497" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-498"><a href="#cb24-498" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb24-499"><a href="#cb24-499" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Based on the dataset imported, calculate mean and standard deviation for the girls and the boys, how does it relate to the data from WHO?</span>
-<span id="cb24-500"><a href="#cb24-500" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb24-501"><a href="#cb24-501" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-502"><a href="#cb24-502" aria-hidden="true" tabindex="-1"></a>You can use the command <span class="in">`X &lt;- X[complete.cases(X),]`</span> to remove the empty rows in the dataframe <span class="in">`X`</span>, or google how to compute descriptive statistics in the case of missing values. </span>
-<span id="cb24-503"><a href="#cb24-503" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-504"><a href="#cb24-504" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb24-505"><a href="#cb24-505" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>What is the Z-value? How can you use it to relate the dataset to the WHO data?</span>
-<span id="cb24-506"><a href="#cb24-506" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Calculate the Z-scores for all the boys and girls.</span>
-<span id="cb24-507"><a href="#cb24-507" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb24-508"><a href="#cb24-508" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-509"><a href="#cb24-509" aria-hidden="true" tabindex="-1"></a>This can be done by creating a new vector inserting the length-vector from the previous dataframe to the equation for Z-score.</span>
-<span id="cb24-510"><a href="#cb24-510" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-511"><a href="#cb24-511" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb24-512"><a href="#cb24-512" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>What does it mean that a child is above or below 0 in Z-score? How many children has a Z-score below -2 and -3?</span>
-<span id="cb24-513"><a href="#cb24-513" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>How many children are longer/taller than the world average? </span>
-<span id="cb24-514"><a href="#cb24-514" aria-hidden="true" tabindex="-1"></a><span class="ss">8.  </span>Investigate whether some of the other variables (source of water *primary_watersource* or treatment of water *water_treatment_type*) impact the length at 15 months. Use `ggplot()` to do the plotting, and then use `ggplot(...) + facet_wrap(~SEX)` to split the plot in two corresponding to the variable *SEX*. Are the trends similar for the two sexes?</span>
-<span id="cb24-515"><a href="#cb24-515" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb24-516"><a href="#cb24-516" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-517"><a href="#cb24-517" aria-hidden="true" tabindex="-1"></a>:::</span>
+<div class="sourceCode" id="cb26" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># The normal distribution</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: normal dist setup</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"MouseWheelCaffeine.RData"</span>))</span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip}</span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Learning objectives</span></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Introduce the predominant distribution within biological data; The normal distribution. </span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Be able to characterize the distribution by a set of parameters, and be able to calculate the precision of these parameters (give confidence intervals) based on data. </span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Know which graphics that are useful for visualizing normally distributed data (histogram, boxplot, qq-plot), and be able to use this to judge whether normality is fulfilled. </span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>For a given distribution to be able to calculate the probability of a given observation.</span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reading material</span></span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="co">[</span><span class="ot">The normal distribution - in short</span><span class="co">](#sec-intro-to-normal)</span></span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Videos giving short condensed introduction to the normal distribution:</span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="co">[</span><span class="ot">The Normal Distribution</span><span class="co">](#sec-the-normal-distribution)</span></span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="co">[</span><span class="ot">An Introduction to the Normal Distribution</span><span class="co">](#sec-intro-to-the-normal-distribution)</span></span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="co">[</span><span class="ot">The Normal Distribution, Clearly Explained</span><span class="co">](#sec-the-normal-distribution-clearly-explained)</span></span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Video on confidence intervals: </span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="co">[</span><span class="ot">Confidence intervals</span><span class="co">](#sec-confidence-intervals)</span></span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Chapter 2 and 3 of <span class="co">[</span><span class="ot">*Introduction to Statistics*</span><span class="co">](https://02402.compute.dtu.dk/enotes/book-IntroStatistics)</span> by Brockhoff</span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Especially 2.1 to 2.4 (you can skip 2.2 on discrete distributions, which is the subject of week 4) and 3.1 - 3.1.6.</span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## The normal distribution - in short {#sec-intro-to-normal}</span></span>
+<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a>If $X$ is normaly distributed with mean $\mu$ and variance $\sigma^2$, then the probability density function for a given draw from that distribution $x$ is given by </span>
+<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a>P(x) = \frac{1}{{\sigma \sqrt {2\pi } }}e^{{{ - \left( {x - \mu } \right)^2 } {2\sigma ^2 }}}</span>
+<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a>Further, the cumulative density function can be found by integration of this formula</span>
+<span id="cb26-49"><a href="#cb26-49" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-50"><a href="#cb26-50" aria-hidden="true" tabindex="-1"></a>P(X \leq x) = \frac{1}{{\sigma \sqrt {2\pi } }} \int_{-\inf}^x e^{{{ - \left( {x - \mu } \right)^2 } {2\sigma ^2 }}} \, dx</span>
+<span id="cb26-51"><a href="#cb26-51" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-52"><a href="#cb26-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-53"><a href="#cb26-53" aria-hidden="true" tabindex="-1"></a>The short notation for this distribution is</span>
+<span id="cb26-54"><a href="#cb26-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-55"><a href="#cb26-55" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-56"><a href="#cb26-56" aria-hidden="true" tabindex="-1"></a>X \sim \mathcal{N}(\mu,\sigma^2)</span>
+<span id="cb26-57"><a href="#cb26-57" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-58"><a href="#cb26-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-59"><a href="#cb26-59" aria-hidden="true" tabindex="-1"></a><span class="fu">### Estimation of $\mu$ and $\sigma$</span></span>
+<span id="cb26-60"><a href="#cb26-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-61"><a href="#cb26-61" aria-hidden="true" tabindex="-1"></a>More often than not, the distribution is unknown. That is the values of $\mu$ and $\sigma$ are unknown and must then be estimated from data.</span>
+<span id="cb26-62"><a href="#cb26-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-63"><a href="#cb26-63" aria-hidden="true" tabindex="-1"></a>$\mu$ characterizes the center of the distribution, and is naturally estimated by the mean-value of the data-points ($\bar{X}$). $\sigma$ reflects the spread around the mean, and is in a similar fashion estimated by the standard deviation ($\hat{\sigma}$ or $s$). </span>
+<span id="cb26-64"><a href="#cb26-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-65"><a href="#cb26-65" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-66"><a href="#cb26-66" aria-hidden="true" tabindex="-1"></a>\hat{\mu} = \bar{X} = \sum_{i = 1}^n X_i / n = (X_1 + X_2 + X_3 + \ldots + X_n) / n</span>
+<span id="cb26-67"><a href="#cb26-67" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-68"><a href="#cb26-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-69"><a href="#cb26-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-70"><a href="#cb26-70" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-71"><a href="#cb26-71" aria-hidden="true" tabindex="-1"></a>\hat{\sigma}^2 = s^2 = \sum_{i = 1}^n (X_i - \bar{X})^2 / (n-1) = ((X_1 - \bar{X})^2 + (X_2 - \bar{X})^2 + (X_3 - \bar{X})^2 + \ldots + (X_n - \bar{X})^2 ) / (n-1)</span>
+<span id="cb26-72"><a href="#cb26-72" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-73"><a href="#cb26-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-74"><a href="#cb26-74" aria-hidden="true" tabindex="-1"></a>::: {#exa-effect-of-caffeine}</span>
+<span id="cb26-75"><a href="#cb26-75" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
+<span id="cb26-76"><a href="#cb26-76" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-77"><a href="#cb26-77" aria-hidden="true" tabindex="-1"></a>::: {.callout-example}</span>
+<span id="cb26-78"><a href="#cb26-78" aria-hidden="true" tabindex="-1"></a><span class="fu">### Effect of caffeine on activity</span></span>
+<span id="cb26-79"><a href="#cb26-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-80"><a href="#cb26-80" aria-hidden="true" tabindex="-1"></a>Caffeine is a central neurvous system stimulant, which can have several positive- and negative effects. In this study, the level of activity is up for examination, and for this purpose a model-system; the runing activity of mice in a wheel reflected as the number of rounds pr minutes recorded over 7 minutes. Here a total of 249 mice from two species; one breed to be high in running performance, and one control, where given either Water, Gatorade or Red Bull followed by measuring their voluentary wheel run activiy. Of interest is the average actvity within each mouse type and for each caffeine type and how large the spread is.</span>
+<span id="cb26-81"><a href="#cb26-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-82"><a href="#cb26-82" aria-hidden="true" tabindex="-1"></a>The data is listed in a table with 249 rows (here, the first five samples are shown):</span>
+<span id="cb26-83"><a href="#cb26-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-86"><a href="#cb26-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-87"><a href="#cb26-87" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(X)</span>
+<span id="cb26-88"><a href="#cb26-88" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-89"><a href="#cb26-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-90"><a href="#cb26-90" aria-hidden="true" tabindex="-1"></a>To get the experimental design, the table() function nicely summarize the numbers within each group:</span>
+<span id="cb26-91"><a href="#cb26-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-94"><a href="#cb26-94" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-95"><a href="#cb26-95" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(X<span class="sc">$</span>gender<span class="sc">:</span>X<span class="sc">$</span>MouseType, X<span class="sc">$</span>Caffeine)</span>
+<span id="cb26-96"><a href="#cb26-96" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-97"><a href="#cb26-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-98"><a href="#cb26-98" aria-hidden="true" tabindex="-1"></a>Before doing anything else, the data is plotted to visualize the response as function of the design (@fig-caffeine-vs-rpm).</span>
+<span id="cb26-99"><a href="#cb26-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-102"><a href="#cb26-102" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-103"><a href="#cb26-103" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-caffeine-vs-rpm</span></span>
+<span id="cb26-104"><a href="#cb26-104" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Box n' jitter plot of the RPM7 variable as a function of treatment. </span></span>
+<span id="cb26-105"><a href="#cb26-105" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(X, <span class="fu">aes</span>(Caffeine, RPM7, <span class="at">color =</span> Caffeine)) <span class="sc">+</span></span>
+<span id="cb26-106"><a href="#cb26-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb26-107"><a href="#cb26-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha =</span> .<span class="dv">75</span>) <span class="sc">+</span> <span class="co"># Alpha controls opacity</span></span>
+<span id="cb26-108"><a href="#cb26-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>MouseType) <span class="sc">+</span></span>
+<span id="cb26-109"><a href="#cb26-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb26-110"><a href="#cb26-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="co"># Remove the legend</span></span>
+<span id="cb26-111"><a href="#cb26-111" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-112"><a href="#cb26-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-113"><a href="#cb26-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-114"><a href="#cb26-114" aria-hidden="true" tabindex="-1"></a>As an example, the mean and standard deviation is calculated for females of the unselected breed given water. The example is given using both base R and Tidyverse.</span>
+<span id="cb26-115"><a href="#cb26-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-116"><a href="#cb26-116" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
+<span id="cb26-117"><a href="#cb26-117" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using base R</span></span>
+<span id="cb26-118"><a href="#cb26-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-119"><a href="#cb26-119" aria-hidden="true" tabindex="-1"></a>First, the information is extracted from the dataset:</span>
+<span id="cb26-120"><a href="#cb26-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-123"><a href="#cb26-123" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-124"><a href="#cb26-124" aria-hidden="true" tabindex="-1"></a>extracted_x <span class="ot">&lt;-</span> X[</span>
+<span id="cb26-125"><a href="#cb26-125" aria-hidden="true" tabindex="-1"></a>  X<span class="sc">$</span>MouseType <span class="sc">==</span> <span class="st">"Control runner"</span> <span class="sc">&amp;</span> X<span class="sc">$</span>gender <span class="sc">==</span> <span class="st">"Female"</span> <span class="sc">&amp;</span> X<span class="sc">$</span>Caffeine <span class="sc">==</span> <span class="st">"Water"</span>, <span class="co"># Rows</span></span>
+<span id="cb26-126"><a href="#cb26-126" aria-hidden="true" tabindex="-1"></a>  <span class="st">"RPM7"</span>] <span class="co"># Column</span></span>
+<span id="cb26-127"><a href="#cb26-127" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-128"><a href="#cb26-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-129"><a href="#cb26-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-130"><a href="#cb26-130" aria-hidden="true" tabindex="-1"></a>And then the extracted information can be fed into the <span class="in">`mean()`</span> and <span class="in">`sd()`</span> functions.</span>
+<span id="cb26-131"><a href="#cb26-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-134"><a href="#cb26-134" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-135"><a href="#cb26-135" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(extracted_x)</span>
+<span id="cb26-136"><a href="#cb26-136" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(extracted_x)</span>
+<span id="cb26-137"><a href="#cb26-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-138"><a href="#cb26-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-139"><a href="#cb26-139" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using Tidyverse</span></span>
+<span id="cb26-140"><a href="#cb26-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-141"><a href="#cb26-141" aria-hidden="true" tabindex="-1"></a>In Tidyverse the <span class="in">`filter`</span>-function is used to filter by the <span class="in">`MouseType`</span>, <span class="in">`gender`</span>, and <span class="in">`Caffeine`</span> levels of interest. Afterwards, the mean and standard deviation are computed using <span class="in">`summarise`</span>. </span>
+<span id="cb26-142"><a href="#cb26-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-145"><a href="#cb26-145" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-146"><a href="#cb26-146" aria-hidden="true" tabindex="-1"></a>X <span class="sc">|&gt;</span> </span>
+<span id="cb26-147"><a href="#cb26-147" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb26-148"><a href="#cb26-148" aria-hidden="true" tabindex="-1"></a>    MouseType <span class="sc">==</span> <span class="st">"Control runner"</span>,</span>
+<span id="cb26-149"><a href="#cb26-149" aria-hidden="true" tabindex="-1"></a>    gender <span class="sc">==</span> <span class="st">"Female"</span>,</span>
+<span id="cb26-150"><a href="#cb26-150" aria-hidden="true" tabindex="-1"></a>    Caffeine <span class="sc">==</span> <span class="st">"Water"</span></span>
+<span id="cb26-151"><a href="#cb26-151" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb26-152"><a href="#cb26-152" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb26-153"><a href="#cb26-153" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(RPM7),</span>
+<span id="cb26-154"><a href="#cb26-154" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fu">sd</span>(RPM7)</span>
+<span id="cb26-155"><a href="#cb26-155" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb26-156"><a href="#cb26-156" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-157"><a href="#cb26-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-158"><a href="#cb26-158" aria-hidden="true" tabindex="-1"></a>::: </span>
+<span id="cb26-159"><a href="#cb26-159" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End tabset --&gt;</span></span>
+<span id="cb26-160"><a href="#cb26-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-161"><a href="#cb26-161" aria-hidden="true" tabindex="-1"></a>Both methods output a mean and standard deviation of </span>
+<span id="cb26-162"><a href="#cb26-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-163"><a href="#cb26-163" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-164"><a href="#cb26-164" aria-hidden="true" tabindex="-1"></a>\bar{x} = \sum_{i=1}^{n} \frac{x_i}{n} \approx 8.6</span>
+<span id="cb26-165"><a href="#cb26-165" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-166"><a href="#cb26-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-167"><a href="#cb26-167" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-168"><a href="#cb26-168" aria-hidden="true" tabindex="-1"></a>\hat{\sigma} = \sum_{i=1}^{n} \frac{(x_i - \bar{x})}{n - 1} \approx 2.1</span>
+<span id="cb26-169"><a href="#cb26-169" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-170"><a href="#cb26-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-171"><a href="#cb26-171" aria-hidden="true" tabindex="-1"></a>for the particular group of interest.</span>
+<span id="cb26-172"><a href="#cb26-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-173"><a href="#cb26-173" aria-hidden="true" tabindex="-1"></a>A more efficient way of doing this would be to calculate the mean and standard deviation of each combination and display them in a table. The example below is given using both base R and Tidyverse.</span>
+<span id="cb26-174"><a href="#cb26-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-175"><a href="#cb26-175" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset}</span>
+<span id="cb26-176"><a href="#cb26-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-177"><a href="#cb26-177" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using base R</span></span>
+<span id="cb26-178"><a href="#cb26-178" aria-hidden="true" tabindex="-1"></a>In base R <span class="in">`aggregate()`</span> can be used to calculate a function over a group. </span>
+<span id="cb26-179"><a href="#cb26-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-182"><a href="#cb26-182" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-183"><a href="#cb26-183" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute number of observations, mean and sd across groups</span></span>
+<span id="cb26-184"><a href="#cb26-184" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(X<span class="sc">$</span>RPM7, <span class="at">by =</span> <span class="fu">list</span>(X<span class="sc">$</span>MouseType, X<span class="sc">$</span>gender, X<span class="sc">$</span>Caffeine), length)</span>
+<span id="cb26-185"><a href="#cb26-185" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(X<span class="sc">$</span>RPM7, <span class="at">by =</span> <span class="fu">list</span>(X<span class="sc">$</span>MouseType, X<span class="sc">$</span>gender, X<span class="sc">$</span>Caffeine), mean)</span>
+<span id="cb26-186"><a href="#cb26-186" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(X<span class="sc">$</span>RPM7, <span class="at">by =</span> <span class="fu">list</span>(X<span class="sc">$</span>MouseType, X<span class="sc">$</span>gender, X<span class="sc">$</span>Caffeine), sd)</span>
+<span id="cb26-187"><a href="#cb26-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-188"><a href="#cb26-188" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine and set column names</span></span>
+<span id="cb26-189"><a href="#cb26-189" aria-hidden="true" tabindex="-1"></a>stat_table <span class="ot">&lt;-</span> <span class="fu">cbind</span>(n, m<span class="sc">$</span>x, s<span class="sc">$</span>x)</span>
+<span id="cb26-190"><a href="#cb26-190" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(stat_table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"MouseType"</span>,<span class="st">"Gender"</span>,<span class="st">"Caffeine"</span>,<span class="st">"N"</span>,<span class="st">"mean"</span>,<span class="st">"sd"</span>)</span>
+<span id="cb26-191"><a href="#cb26-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-192"><a href="#cb26-192" aria-hidden="true" tabindex="-1"></a><span class="co"># Print as nice markdown table</span></span>
+<span id="cb26-193"><a href="#cb26-193" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(stat_table, <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb26-194"><a href="#cb26-194" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-195"><a href="#cb26-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-196"><a href="#cb26-196" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Using Tidyverse</span></span>
+<span id="cb26-197"><a href="#cb26-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-198"><a href="#cb26-198" aria-hidden="true" tabindex="-1"></a>In Tidyverse, the <span class="in">`group_by()`</span>-function is used to group the observations by everything but the column <span class="in">`RPM7`</span> (so that will be type, gender and caffeine). Then, the number of observations, mean and standard devations are calculated across groups, giving the information for each group in one go.</span>
+<span id="cb26-199"><a href="#cb26-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-202"><a href="#cb26-202" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-203"><a href="#cb26-203" aria-hidden="true" tabindex="-1"></a>X <span class="sc">|&gt;</span> </span>
+<span id="cb26-204"><a href="#cb26-204" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="fu">across</span>(<span class="sc">-</span>RPM7)) <span class="sc">|&gt;</span> </span>
+<span id="cb26-205"><a href="#cb26-205" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb26-206"><a href="#cb26-206" aria-hidden="true" tabindex="-1"></a>    <span class="at">N =</span> <span class="fu">n</span>(),</span>
+<span id="cb26-207"><a href="#cb26-207" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(RPM7),</span>
+<span id="cb26-208"><a href="#cb26-208" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fu">sd</span>(RPM7)</span>
+<span id="cb26-209"><a href="#cb26-209" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb26-210"><a href="#cb26-210" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="co"># Output pretty table in markdown</span></span>
+<span id="cb26-211"><a href="#cb26-211" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-212"><a href="#cb26-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-213"><a href="#cb26-213" aria-hidden="true" tabindex="-1"></a>::: </span>
+<span id="cb26-214"><a href="#cb26-214" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End tabset --&gt;</span></span>
+<span id="cb26-215"><a href="#cb26-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-216"><a href="#cb26-216" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-217"><a href="#cb26-217" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End example callout --&gt;</span></span>
+<span id="cb26-218"><a href="#cb26-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-219"><a href="#cb26-219" aria-hidden="true" tabindex="-1"></a>::: {#exa-effect-of-caffeine-probability}</span>
+<span id="cb26-220"><a href="#cb26-220" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
+<span id="cb26-221"><a href="#cb26-221" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-222"><a href="#cb26-222" aria-hidden="true" tabindex="-1"></a>::: {.callout-example}</span>
+<span id="cb26-223"><a href="#cb26-223" aria-hidden="true" tabindex="-1"></a><span class="fu">### Effect of caffeine on activity - probability</span></span>
+<span id="cb26-224"><a href="#cb26-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-225"><a href="#cb26-225" aria-hidden="true" tabindex="-1"></a>Example @exa-effect-of-caffeine estimates the activity distribution of mice based on experimental data. Under the assumption that these metrics, the mean and the standard deviation, perfectly describe the distribution of the data, and further that this distribution is the normal distribution, we wish to calculate the probability of a given female mice, from normal breed, assigned water to perform *higher than 10 RPM7*.</span>
+<span id="cb26-226"><a href="#cb26-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-227"><a href="#cb26-227" aria-hidden="true" tabindex="-1"></a>That is: </span>
+<span id="cb26-228"><a href="#cb26-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-229"><a href="#cb26-229" aria-hidden="true" tabindex="-1"></a>\begin{align*}</span>
+<span id="cb26-230"><a href="#cb26-230" aria-hidden="true" tabindex="-1"></a>P(X \geq 10) &amp;= \frac{1}{\sqrt{2\pi\sigma^2}}\int_{10}^{\infty} e^{-\frac{(z - \mu)^2}{2\sigma}} dz <span class="sc">\\</span></span>
+<span id="cb26-231"><a href="#cb26-231" aria-hidden="true" tabindex="-1"></a>&amp;= 1 - P(X &lt; 10) <span class="sc">\\</span></span>
+<span id="cb26-232"><a href="#cb26-232" aria-hidden="true" tabindex="-1"></a>%X &amp;= X <span class="sc">\\</span></span>
+<span id="cb26-233"><a href="#cb26-233" aria-hidden="true" tabindex="-1"></a>%X &amp;= X</span>
+<span id="cb26-234"><a href="#cb26-234" aria-hidden="true" tabindex="-1"></a>&amp;= 1 - \frac{1}{\sqrt{2\pi\sigma^2}}\int_{-\infty}^{10} e^{-\frac{(z - \mu)^2}{2\sigma}} dz <span class="sc">\\</span></span>
+<span id="cb26-235"><a href="#cb26-235" aria-hidden="true" tabindex="-1"></a>%N(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{x} e^{-\frac{1}{2}z^2} dz</span>
+<span id="cb26-236"><a href="#cb26-236" aria-hidden="true" tabindex="-1"></a>\end{align*}</span>
+<span id="cb26-237"><a href="#cb26-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-238"><a href="#cb26-238" aria-hidden="true" tabindex="-1"></a>where $X$ is assummed normally distributed with mean $\mu$ and standard deviation $\sigma$.  </span>
+<span id="cb26-239"><a href="#cb26-239" aria-hidden="true" tabindex="-1"></a>That is: $X \sim \mathcal{N} (\mu,\sigma^2)$. <span class="sc">\\</span> </span>
+<span id="cb26-240"><a href="#cb26-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-241"><a href="#cb26-241" aria-hidden="true" tabindex="-1"></a>A small illustration below (@fig-normal-dist-rpm7) shows the area of interest.</span>
+<span id="cb26-242"><a href="#cb26-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-245"><a href="#cb26-245" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-246"><a href="#cb26-246" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-normal-dist-rpm7</span></span>
+<span id="cb26-247"><a href="#cb26-247" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Normal density function fitted to the selected mouse population. The red area is the density for RPM7 &gt;= 10. </span></span>
+<span id="cb26-248"><a href="#cb26-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-249"><a href="#cb26-249" aria-hidden="true" tabindex="-1"></a><span class="co"># Create normal distributed data using estimated mean and sd</span></span>
+<span id="cb26-250"><a href="#cb26-250" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">16</span>, <span class="fl">0.01</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb26-251"><a href="#cb26-251" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> <span class="fu">dnorm</span>(x, <span class="fu">mean</span>(extracted_x), <span class="fu">sd</span>(extracted_x))) </span>
+<span id="cb26-252"><a href="#cb26-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-253"><a href="#cb26-253" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot normal curve </span></span>
+<span id="cb26-254"><a href="#cb26-254" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb26-255"><a href="#cb26-255" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb26-256"><a href="#cb26-256" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">data =</span> <span class="fu">subset</span>(df, x <span class="sc">&gt;=</span> <span class="dv">10</span>), <span class="at">fill =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb26-257"><a href="#cb26-257" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb26-258"><a href="#cb26-258" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"RPM7"</span>,</span>
+<span id="cb26-259"><a href="#cb26-259" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Probability"</span></span>
+<span id="cb26-260"><a href="#cb26-260" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb26-261"><a href="#cb26-261" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb26-262"><a href="#cb26-262" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-263"><a href="#cb26-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-264"><a href="#cb26-264" aria-hidden="true" tabindex="-1"></a>The size of the red area is simply calculated via the <span class="in">`pnorm()`</span> function.</span>
+<span id="cb26-265"><a href="#cb26-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-268"><a href="#cb26-268" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-269"><a href="#cb26-269" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="dv">10</span>, <span class="fu">mean</span>(extracted_x), <span class="fu">sd</span>(extracted_x))</span>
+<span id="cb26-270"><a href="#cb26-270" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-271"><a href="#cb26-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-272"><a href="#cb26-272" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-273"><a href="#cb26-273" aria-hidden="true" tabindex="-1"></a>P(X \geq 10) \approx 0.26</span>
+<span id="cb26-274"><a href="#cb26-274" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-275"><a href="#cb26-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-276"><a href="#cb26-276" aria-hidden="true" tabindex="-1"></a>The probability of a single female mice, from normal breed, administered with water to perform higher than $10 RPM7$ is hence $0.26$. </span>
+<span id="cb26-277"><a href="#cb26-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-278"><a href="#cb26-278" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-279"><a href="#cb26-279" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End example callout --&gt;</span></span>
+<span id="cb26-280"><a href="#cb26-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-281"><a href="#cb26-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-282"><a href="#cb26-282" aria-hidden="true" tabindex="-1"></a><span class="fu">### Confidence interval for $\mu$</span></span>
+<span id="cb26-283"><a href="#cb26-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-284"><a href="#cb26-284" aria-hidden="true" tabindex="-1"></a>The confidence interval for the center of a normal distribution ($\mu$) is calculated as follows: </span>
+<span id="cb26-285"><a href="#cb26-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-286"><a href="#cb26-286" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-287"><a href="#cb26-287" aria-hidden="true" tabindex="-1"></a>CI_{\mu,1-\alpha}:  \hat{\mu} \pm t_{1-\alpha/2,df} \cdot \hat{\sigma} / \sqrt(n)</span>
+<span id="cb26-288"><a href="#cb26-288" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-289"><a href="#cb26-289" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-290"><a href="#cb26-290" aria-hidden="true" tabindex="-1"></a>\bar{X} \pm t_{1-\alpha/2,df} \cdot s / \sqrt(n) </span>
+<span id="cb26-291"><a href="#cb26-291" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-292"><a href="#cb26-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-293"><a href="#cb26-293" aria-hidden="true" tabindex="-1"></a>where $t_{1-\alpha/2,df}$ is a fractile, a number, which determines the coverage. Here, $\alpha$ is the left ot part. I.e. if a $90 \%$ confidence interval is wanted, the left out part is $\alpha = 0.10$. $n$ is the number of samples on which the mean ($\bar{X}$) is estimated, and $df$ is the degrees of freedom, which refers to how well the standard deviation is estimated. </span>
+<span id="cb26-294"><a href="#cb26-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-295"><a href="#cb26-295" aria-hidden="true" tabindex="-1"></a>For instance, if one needs a $95 \%$ confidence interval ($\alpha = 0.05$) based on a sample of $20$ observations $t_{1-\alpha/2,df} = t_{0.975,20-1} = 2.093$.</span>
+<span id="cb26-296"><a href="#cb26-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-297"><a href="#cb26-297" aria-hidden="true" tabindex="-1"></a>It is further noticed that the interval is symmetric around the mean, and that the more samples ($n$) the lower the spread as the standard deviation is divided by $\sqrt{n}$. </span>
+<span id="cb26-298"><a href="#cb26-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-299"><a href="#cb26-299" aria-hidden="true" tabindex="-1"></a>::: {#exa-effect-of-caffeine-conf-int}</span>
+<span id="cb26-300"><a href="#cb26-300" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
+<span id="cb26-301"><a href="#cb26-301" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-302"><a href="#cb26-302" aria-hidden="true" tabindex="-1"></a>::: {.callout-example}</span>
+<span id="cb26-303"><a href="#cb26-303" aria-hidden="true" tabindex="-1"></a><span class="fu">### Effect of caffeine on activity - confidence intervals</span></span>
+<span id="cb26-304"><a href="#cb26-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-305"><a href="#cb26-305" aria-hidden="true" tabindex="-1"></a>In example @exa-effect-of-caffeine concerning the relation between caffeine and voluntary activity of mice, the running activity of mice in a wheel is recorded. In this example we wish to estimate the mean activity of the two groups with either water- or Red bull as caffeine source in control runner female mice, and give a confidence interval for these means. </span>
+<span id="cb26-306"><a href="#cb26-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-307"><a href="#cb26-307" aria-hidden="true" tabindex="-1"></a>First, the data is subset to only include the two groups of interest. </span>
+<span id="cb26-308"><a href="#cb26-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-311"><a href="#cb26-311" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-312"><a href="#cb26-312" aria-hidden="true" tabindex="-1"></a>x_subset <span class="ot">&lt;-</span> X <span class="sc">|&gt;</span> </span>
+<span id="cb26-313"><a href="#cb26-313" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb26-314"><a href="#cb26-314" aria-hidden="true" tabindex="-1"></a>    MouseType <span class="sc">==</span> <span class="st">"Control runner"</span>,</span>
+<span id="cb26-315"><a href="#cb26-315" aria-hidden="true" tabindex="-1"></a>    gender <span class="sc">==</span> <span class="st">"Female"</span>,</span>
+<span id="cb26-316"><a href="#cb26-316" aria-hidden="true" tabindex="-1"></a>    Caffeine <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Red Bull"</span>, <span class="st">"Water"</span>)</span>
+<span id="cb26-317"><a href="#cb26-317" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb26-318"><a href="#cb26-318" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-319"><a href="#cb26-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-320"><a href="#cb26-320" aria-hidden="true" tabindex="-1"></a>After subsetting the data to only include these two groups a plot of the raw data looks like the following, and consists of $n = n_1 + n_2 = 11+ 9 = 20$ samples (@fig-mouse-subset).</span>
+<span id="cb26-321"><a href="#cb26-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-324"><a href="#cb26-324" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-325"><a href="#cb26-325" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-mouse-subset</span></span>
+<span id="cb26-326"><a href="#cb26-326" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Box n' jitter plot of the mouse data subset. </span></span>
+<span id="cb26-327"><a href="#cb26-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-328"><a href="#cb26-328" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(x_subset, <span class="fu">aes</span>(Caffeine, RPM7, <span class="at">color =</span> Caffeine)) <span class="sc">+</span></span>
+<span id="cb26-329"><a href="#cb26-329" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb26-330"><a href="#cb26-330" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
+<span id="cb26-331"><a href="#cb26-331" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb26-332"><a href="#cb26-332" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="co"># Remove legend</span></span>
+<span id="cb26-333"><a href="#cb26-333" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-334"><a href="#cb26-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-335"><a href="#cb26-335" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-336"><a href="#cb26-336" aria-hidden="true" tabindex="-1"></a>The mean and standard deviation for the two groups can be calculated using <span class="in">`summarise()`</span> via Tidyverse or <span class="in">`aggregate()`</span> in base R (see @exa-effect-of-caffeine for an example on <span class="in">`aggregate`</span>).</span>
+<span id="cb26-337"><a href="#cb26-337" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-340"><a href="#cb26-340" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-341"><a href="#cb26-341" aria-hidden="true" tabindex="-1"></a>x_subset <span class="sc">|&gt;</span> </span>
+<span id="cb26-342"><a href="#cb26-342" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Caffeine) <span class="sc">|&gt;</span> </span>
+<span id="cb26-343"><a href="#cb26-343" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb26-344"><a href="#cb26-344" aria-hidden="true" tabindex="-1"></a>    <span class="at">N =</span> <span class="fu">n</span>(),</span>
+<span id="cb26-345"><a href="#cb26-345" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(RPM7),</span>
+<span id="cb26-346"><a href="#cb26-346" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fu">sd</span>(RPM7)</span>
+<span id="cb26-347"><a href="#cb26-347" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
+<span id="cb26-348"><a href="#cb26-348" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="co"># For pretty tables in markdown</span></span>
+<span id="cb26-349"><a href="#cb26-349" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-350"><a href="#cb26-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-351"><a href="#cb26-351" aria-hidden="true" tabindex="-1"></a>The confidence interval is calculated as follows: </span>
+<span id="cb26-352"><a href="#cb26-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-353"><a href="#cb26-353" aria-hidden="true" tabindex="-1"></a>\begin{align}</span>
+<span id="cb26-354"><a href="#cb26-354" aria-hidden="true" tabindex="-1"></a>CI_{\mu}: &amp; \hat{\mu} \pm t_{0.975,n-1} \cdot \hat{\sigma} / \sqrt(n) <span class="sc">\\</span></span>
+<span id="cb26-355"><a href="#cb26-355" aria-hidden="true" tabindex="-1"></a>&amp; \bar{X} \pm t_{0.975,n-1} \cdot s / \sqrt(n) </span>
+<span id="cb26-356"><a href="#cb26-356" aria-hidden="true" tabindex="-1"></a>\end{align}</span>
+<span id="cb26-357"><a href="#cb26-357" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-358"><a href="#cb26-358" aria-hidden="true" tabindex="-1"></a>With a total of $df_1 = n_1 - 1 = 10$ degress of freedom the t-fractileat level $95 \%$ is $t_{0.975,10} = 2.23$ why the confidence interval for the water treated group is:</span>
+<span id="cb26-359"><a href="#cb26-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-360"><a href="#cb26-360" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-361"><a href="#cb26-361" aria-hidden="true" tabindex="-1"></a>CI_{\mu_{water}}:  <span class="co">[</span><span class="ot">8.6 - 2.23 \cdot 2.1 / \sqrt{11}; 8.6 + 2.23 \cdot 2.1/ \sqrt{11}</span><span class="co">]</span>  =  <span class="co">[</span><span class="ot">7.3; 10.0</span><span class="co">]</span> </span>
+<span id="cb26-362"><a href="#cb26-362" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-363"><a href="#cb26-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-366"><a href="#cb26-366" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-367"><a href="#cb26-367" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">11</span> <span class="co"># Number of obs in water group</span></span>
+<span id="cb26-368"><a href="#cb26-368" aria-hidden="true" tabindex="-1"></a>t_frac <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.05</span><span class="sc">/</span><span class="dv">2</span>, n <span class="sc">-</span> <span class="dv">1</span>) <span class="co"># T-value</span></span>
+<span id="cb26-369"><a href="#cb26-369" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">sd</span>(x_subset[x_subset<span class="sc">$</span>Caffeine <span class="sc">==</span> <span class="st">"Water"</span>, <span class="st">"RPM7"</span>])</span>
+<span id="cb26-370"><a href="#cb26-370" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">mean</span>(x_subset[x_subset<span class="sc">$</span>Caffeine <span class="sc">==</span> <span class="st">"Water"</span>, <span class="st">"RPM7"</span>])</span>
+<span id="cb26-371"><a href="#cb26-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-372"><a href="#cb26-372" aria-hidden="true" tabindex="-1"></a>ci_lower <span class="ot">&lt;-</span> m <span class="sc">-</span> t_frac <span class="sc">*</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb26-373"><a href="#cb26-373" aria-hidden="true" tabindex="-1"></a>ci_upper <span class="ot">&lt;-</span> m <span class="sc">+</span> t_frac <span class="sc">*</span> s <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span>
+<span id="cb26-374"><a href="#cb26-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-375"><a href="#cb26-375" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"95% confidence interval for water group:</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">c</span>(ci_lower, ci_upper))</span>
+<span id="cb26-376"><a href="#cb26-376" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-377"><a href="#cb26-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-378"><a href="#cb26-378" aria-hidden="true" tabindex="-1"></a>And similar for the Red bull treated group.</span>
+<span id="cb26-379"><a href="#cb26-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-380"><a href="#cb26-380" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb26-381"><a href="#cb26-381" aria-hidden="true" tabindex="-1"></a>CI_{\mu_{Red Bull}}: <span class="co">[</span><span class="ot">8.5; 11.8</span><span class="co">]</span></span>
+<span id="cb26-382"><a href="#cb26-382" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb26-383"><a href="#cb26-383" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-384"><a href="#cb26-384" aria-hidden="true" tabindex="-1"></a>\vspace{10mm}</span>
+<span id="cb26-385"><a href="#cb26-385" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-386"><a href="#cb26-386" aria-hidden="true" tabindex="-1"></a>In R this can be assesed via the <span class="in">`t.test()`</span> function.</span>
+<span id="cb26-387"><a href="#cb26-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-390"><a href="#cb26-390" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb26-391"><a href="#cb26-391" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x_subset[x_subset<span class="sc">$</span>Caffeine <span class="sc">==</span> <span class="st">"Water"</span>, <span class="st">"RPM7"</span>])</span>
+<span id="cb26-392"><a href="#cb26-392" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb26-393"><a href="#cb26-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-394"><a href="#cb26-394" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-395"><a href="#cb26-395" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End example callout --&gt;</span></span>
+<span id="cb26-396"><a href="#cb26-396" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-397"><a href="#cb26-397" aria-hidden="true" tabindex="-1"></a><span class="fu">## Videos</span></span>
+<span id="cb26-398"><a href="#cb26-398" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-399"><a href="#cb26-399" aria-hidden="true" tabindex="-1"></a><span class="fu">### The Normal Distribution - *CrashCourse* {#sec-the-normal-distribution}</span></span>
+<span id="cb26-400"><a href="#cb26-400" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=rBjft49MAO8 &gt;}}</span>
+<span id="cb26-401"><a href="#cb26-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-402"><a href="#cb26-402" aria-hidden="true" tabindex="-1"></a><span class="fu">### An Introduction to the Normal Distribution - *jbstatistics* {#sec-intro-to-the-normal-distribution}</span></span>
+<span id="cb26-403"><a href="#cb26-403" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=iYiOVISWXS4 &gt;}}</span>
+<span id="cb26-404"><a href="#cb26-404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-405"><a href="#cb26-405" aria-hidden="true" tabindex="-1"></a><span class="fu">### The Normal Distribution, Clearly Explained - *StatQuest* {#sec-the-normal-distribution-clearly-explained}</span></span>
+<span id="cb26-406"><a href="#cb26-406" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=rzFX5NWojp0 &gt;}}</span>
+<span id="cb26-407"><a href="#cb26-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-408"><a href="#cb26-408" aria-hidden="true" tabindex="-1"></a><span class="fu">### Confidence Intervals - *CrashCourse* {#sec-confidence-intervals}</span></span>
+<span id="cb26-409"><a href="#cb26-409" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=yDEvXB6ApWc &gt;}}</span>
+<span id="cb26-410"><a href="#cb26-410" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-411"><a href="#cb26-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-412"><a href="#cb26-412" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercises</span></span>
+<span id="cb26-413"><a href="#cb26-413" aria-hidden="true" tabindex="-1"></a>::: {#ex-normal-distribution}</span>
+<span id="cb26-414"><a href="#cb26-414" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
+<span id="cb26-415"><a href="#cb26-415" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-416"><a href="#cb26-416" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise}</span>
+<span id="cb26-417"><a href="#cb26-417" aria-hidden="true" tabindex="-1"></a><span class="fu">### Normal Distribution</span></span>
+<span id="cb26-418"><a href="#cb26-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-419"><a href="#cb26-419" aria-hidden="true" tabindex="-1"></a>Serum cholestorol level is a biomarker of health in relation to a range of life-style related diseases. A population of adults have mean values of $178 mg/100mL$ and $207 mg/100mL$, standard deviations of $31 mg/100mL$ and $37 mg/100mL$ in males and females respectively. </span>
+<span id="cb26-420"><a href="#cb26-420" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-421"><a href="#cb26-421" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb26-422"><a href="#cb26-422" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Draw curves (by hand - with pen on paper!) and plug in the parameters for these distributions.</span>
+<span id="cb26-423"><a href="#cb26-423" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>What percentage are below $150, 178$ and $200 mg/100 mL$ respectively (for males and females separately)?</span>
+<span id="cb26-424"><a href="#cb26-424" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>What percentage are above $140 mg/100 mL$</span>
+<span id="cb26-425"><a href="#cb26-425" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-426"><a href="#cb26-426" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-427"><a href="#cb26-427" aria-hidden="true" tabindex="-1"></a>A level above $240 mg/100 mL$ is considered high risk, whereas the range between $200$ and $239 mg/100 mL$ is considered borderline high risk. </span>
+<span id="cb26-428"><a href="#cb26-428" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-429"><a href="#cb26-429" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb26-430"><a href="#cb26-430" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>How big a proportion is considered at high risk (for males and females seperately)? </span>
+<span id="cb26-431"><a href="#cb26-431" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>How big a proportion is considered borderline high risk (for males and females seperately)? </span>
+<span id="cb26-432"><a href="#cb26-432" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Now assume that the above metrics describing the distribution (mean and standard deviation) is estimated based on samples of $30$ males and $30$ females. What it the changes to the calculations above? </span>
+<span id="cb26-433"><a href="#cb26-433" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-434"><a href="#cb26-434" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-435"><a href="#cb26-435" aria-hidden="true" tabindex="-1"></a>A population consists of $40\%$ males and $60\%$ females.</span>
+<span id="cb26-436"><a href="#cb26-436" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-437"><a href="#cb26-437" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb26-438"><a href="#cb26-438" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>What is the propability that a random person from that population have a serum cholesterol level higher than $240 mg/100mL$.</span>
+<span id="cb26-439"><a href="#cb26-439" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-440"><a href="#cb26-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-441"><a href="#cb26-441" aria-hidden="true" tabindex="-1"></a> Use that the mean and variance of a sum of two populations is the sum of the means and variance respectively. That is; Let $X$ and $Y$ be two indepedent random variables with mean $\mu_X$ and $\mu_y$ and variance $\sigma^2_X$ and $\sigma^2_Y$ respectively. And let: </span>
+<span id="cb26-442"><a href="#cb26-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-443"><a href="#cb26-443" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-444"><a href="#cb26-444" aria-hidden="true" tabindex="-1"></a>Z = c_1X+ c_2Y</span>
+<span id="cb26-445"><a href="#cb26-445" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-446"><a href="#cb26-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-447"><a href="#cb26-447" aria-hidden="true" tabindex="-1"></a>Then the mean and variance of $Z$ is:</span>
+<span id="cb26-448"><a href="#cb26-448" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-449"><a href="#cb26-449" aria-hidden="true" tabindex="-1"></a>\mu_Z = c_1\mu_X + c_2\mu_Y</span>
+<span id="cb26-450"><a href="#cb26-450" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-451"><a href="#cb26-451" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-452"><a href="#cb26-452" aria-hidden="true" tabindex="-1"></a>\sigma^2_Z = c_1\sigma^2_X + c_2\sigma^2_Y</span>
+<span id="cb26-453"><a href="#cb26-453" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb26-454"><a href="#cb26-454" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-455"><a href="#cb26-455" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb26-456"><a href="#cb26-456" aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span>What is the population mean and standard deviation of a population made up of $40\%$ males and $60\%$ females? </span>
+<span id="cb26-457"><a href="#cb26-457" aria-hidden="true" tabindex="-1"></a><span class="ss">9. </span>Use this mean and standard deviation to calculate the probability of a random person from that population having a serum cholesterol level higher than $240 mg/100mL$. How is that different from question 7? and why so? </span>
+<span id="cb26-458"><a href="#cb26-458" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-459"><a href="#cb26-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-460"><a href="#cb26-460" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-461"><a href="#cb26-461" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-462"><a href="#cb26-462" aria-hidden="true" tabindex="-1"></a>::: {#ex-transformations-and-the-normal-distribution}</span>
+<span id="cb26-463"><a href="#cb26-463" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
+<span id="cb26-464"><a href="#cb26-464" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-465"><a href="#cb26-465" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise}</span>
+<span id="cb26-466"><a href="#cb26-466" aria-hidden="true" tabindex="-1"></a><span class="fu">### Transformations and the normal distribution</span></span>
+<span id="cb26-467"><a href="#cb26-467" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-468"><a href="#cb26-468" aria-hidden="true" tabindex="-1"></a>The normal distribution (also known as the Gaussian distribution) are central in biology as such, and in data analysis especially.</span>
+<span id="cb26-469"><a href="#cb26-469" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-470"><a href="#cb26-470" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb26-471"><a href="#cb26-471" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Why do we (sometimes) transform data before making statistical analysis?</span>
+<span id="cb26-472"><a href="#cb26-472" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Make a histogram plot and a qqplot (use <span class="in">`qqnorm()`</span> and <span class="in">`qqline()`</span> functions) on the variable *Ethyl.pyruvate* from the "Wine" data set. Are the data normal distributed?</span>
+<span id="cb26-473"><a href="#cb26-473" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Try to Log transform the variable *Ethyl.pyruvate*. Make a new histogram plot and a corresponding qqplot. Compare with question 1.</span>
+<span id="cb26-474"><a href="#cb26-474" aria-hidden="true" tabindex="-1"></a>    a. Use the command <span class="in">`par(mfrow = c(1,2))`</span> (in front of your plotting commands) to get the plots side by side which makes it easier to compare the results.</span>
+<span id="cb26-475"><a href="#cb26-475" aria-hidden="true" tabindex="-1"></a>    a. Add a suitable title on both plots using the argument <span class="in">`main="a very nice title"`</span>.</span>
+<span id="cb26-476"><a href="#cb26-476" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-477"><a href="#cb26-477" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Does it seem possible to get all samples to match the same distribution?</span>
+<span id="cb26-478"><a href="#cb26-478" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Do the same for the variable *Benxyl.alcohol*. </span>
+<span id="cb26-479"><a href="#cb26-479" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Does the log transformation work? What is the problem? </span>
+<span id="cb26-480"><a href="#cb26-480" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Try the square root transformation.</span>
+<span id="cb26-481"><a href="#cb26-481" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-482"><a href="#cb26-482" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-483"><a href="#cb26-483" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-484"><a href="#cb26-484" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-485"><a href="#cb26-485" aria-hidden="true" tabindex="-1"></a>::: {#ex-who-height-and-weight-standard-normal-distribution}</span>
+<span id="cb26-486"><a href="#cb26-486" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
+<span id="cb26-487"><a href="#cb26-487" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-488"><a href="#cb26-488" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise }</span>
+<span id="cb26-489"><a href="#cb26-489" aria-hidden="true" tabindex="-1"></a><span class="fu">### WHO height and weight - standard normal distribution</span></span>
+<span id="cb26-490"><a href="#cb26-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-491"><a href="#cb26-491" aria-hidden="true" tabindex="-1"></a>Height and weight are important measures of growth during childhood. However, the largest factor impacting these measures are naturally the age of the child. In order to be able to compare children with slightly different ages such data are transformed using so-called growth curves. These are provided by the WHO and are constructed to represent the world wide distribution at specific ages for boys and girl. In this exercise you are supposed to take height and weight measures from African children living under different circumstances, transform them using WHO numbers for the world wide distribution, and further look for explanatory variables causing differences in growth.</span>
+<span id="cb26-492"><a href="#cb26-492" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-493"><a href="#cb26-493" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb26-494"><a href="#cb26-494" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Start by importing the *GrowthData.xlsx* dataset into R. Check that all the info from the excel file was imported correctly using the commands <span class="in">`dim()`</span> and <span class="in">`head()`</span>. You can ’chop’ the dataframe in R to isolate the variables of importance (length, sex, age etc.).</span>
+<span id="cb26-495"><a href="#cb26-495" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Using the following graphs (@fig-length-for-age), find the mean and standard deviation for boys and girls at age 15 months.</span>
+<span id="cb26-496"><a href="#cb26-496" aria-hidden="true" tabindex="-1"></a>::: </span>
+<span id="cb26-497"><a href="#cb26-497" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-498"><a href="#cb26-498" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-499"><a href="#cb26-499" aria-hidden="true" tabindex="-1"></a>::: {#fig-length-for-age layout-ncol=2}</span>
+<span id="cb26-500"><a href="#cb26-500" aria-hidden="true" tabindex="-1"></a><span class="al">![Z-scores for the length-to-age ratio for girls](length-for-age-girls.png)</span>{#fig-length-for-age-girls}</span>
+<span id="cb26-501"><a href="#cb26-501" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-502"><a href="#cb26-502" aria-hidden="true" tabindex="-1"></a><span class="al">![Z-scores for the length-to-age ratio for boys.](length-for-age-boys.png)</span>{#fig-length-for-age-boys}</span>
+<span id="cb26-503"><a href="#cb26-503" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-504"><a href="#cb26-504" aria-hidden="true" tabindex="-1"></a>Z-scores for the length-to-age ratio for girls and boys aged 0 to 2 years. Source: WHO. **Click on the images to enlargen them.**</span>
+<span id="cb26-505"><a href="#cb26-505" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-506"><a href="#cb26-506" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-507"><a href="#cb26-507" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb26-508"><a href="#cb26-508" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Based on the dataset imported, calculate mean and standard deviation for the girls and the boys, how does it relate to the data from WHO?</span>
+<span id="cb26-509"><a href="#cb26-509" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-510"><a href="#cb26-510" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-511"><a href="#cb26-511" aria-hidden="true" tabindex="-1"></a>You can use the command <span class="in">`X &lt;- X[complete.cases(X),]`</span> to remove the empty rows in the dataframe <span class="in">`X`</span>, or google how to compute descriptive statistics in the case of missing values. </span>
+<span id="cb26-512"><a href="#cb26-512" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-513"><a href="#cb26-513" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb26-514"><a href="#cb26-514" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>What is the Z-value? How can you use it to relate the dataset to the WHO data?</span>
+<span id="cb26-515"><a href="#cb26-515" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Calculate the Z-scores for all the boys and girls.</span>
+<span id="cb26-516"><a href="#cb26-516" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-517"><a href="#cb26-517" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-518"><a href="#cb26-518" aria-hidden="true" tabindex="-1"></a>This can be done by creating a new vector inserting the length-vector from the previous dataframe to the equation for Z-score.</span>
+<span id="cb26-519"><a href="#cb26-519" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-520"><a href="#cb26-520" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb26-521"><a href="#cb26-521" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>What does it mean that a child is above or below 0 in Z-score? How many children has a Z-score below -2 and -3?</span>
+<span id="cb26-522"><a href="#cb26-522" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>How many children are longer/taller than the world average? </span>
+<span id="cb26-523"><a href="#cb26-523" aria-hidden="true" tabindex="-1"></a><span class="ss">8.  </span>Investigate whether some of the other variables (source of water *primary_watersource* or treatment of water *water_treatment_type*) impact the length at 15 months. Use `ggplot()` to do the plotting, and then use `ggplot(...) + facet_wrap(~SEX)` to split the plot in two corresponding to the variable *SEX*. Are the trends similar for the two sexes?</span>
+<span id="cb26-524"><a href="#cb26-524" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb26-525"><a href="#cb26-525" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-526"><a href="#cb26-526" aria-hidden="true" tabindex="-1"></a>:::</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
