@@ -74,8 +74,6 @@ book:
 # Global format options ----
 format:
   html:
-    toc-depth: 4
-    crossrefs-hover: false
     theme:
       - default
       - style.scss
@@ -111,10 +109,17 @@ format:
       body-width: 1000px # Max width of body (standard is 800px)
       margin-width: 350px # Max width of right sidebar (standard is 250px)
       gutter-width: 3em #Max width of space between grid components (standard is 1.5em)
-  
-  ## Other format options ----
+    
+  ## Sections and TOC ----
     number-depth: 3 # Numbering depth for sections
+    toc-depth: 4 # Depth of sections in the table of contents
+    toc-expand: 3 # Expand all sections in the table of contents
+
+  ## Other format options ----
+    html-table-processing: none # Disable Quarto HTML table processing
     lightbox: true # Use lightbox for figs
+    crossrefs-hover: false # Show cross-references preview on hover
+
 
 # lua filters ----
 filters:

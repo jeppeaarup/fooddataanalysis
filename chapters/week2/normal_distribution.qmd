@@ -80,18 +80,20 @@ Caffeine is a central neurvous system stimulant, which can have several positive
 The data is listed in a table with 249 rows (here, the first five samples are shown):
 
 ```{r}
-kable(head(X), digits = 1) 
+head(X)
 ```
 
 To get the experimental design, the table() function nicely summarize the numbers within each group:
 
 ```{r}
-kable(table(X$gender:X$MouseType, X$Caffeine))
+table(X$gender:X$MouseType, X$Caffeine)
 ```
 
-Before doing anythingelse, the data is plotted to visualize the response as function of the design.
+Before doing anything else, the data is plotted to visualize the response as function of the design (@fig-caffeine-vs-rpm).
 
 ```{r}
+#| label: fig-caffeine-vs-rpm
+#| fig-cap: Box n' jitter plot of the RPM7 variable as a function of treatment. 
 ggplot(X, aes(Caffeine, RPM7, color = Caffeine)) +
   geom_boxplot() +
   geom_jitter(alpha = .75) + # Alpha controls opacity
@@ -99,6 +101,7 @@ ggplot(X, aes(Caffeine, RPM7, color = Caffeine)) +
   theme_bw() +
   theme(legend.position = "none") # Remove the legend
 ```
+
 
 As an example, the mean and standard deviation is calculated for females of the unselected breed given water. The example is given using both base R and Tidyverse.
 
@@ -217,9 +220,12 @@ P(X \geq 10) &= \frac{1}{\sqrt{2\pi\sigma^2}}\int_{10}^{\infty} e^{-\frac{(z - \
 where $X$ is assummed normally distributed with mean $\mu$ and standard deviation $\sigma$.  
 That is: $X \sim \mathcal{N} (\mu,\sigma^2)$. \\ 
 
-A small illustration below shows the area of interest
+A small illustration below (@fig-normal-dist-rpm7) shows the area of interest.
 
 ```{r}
+#| label: fig-normal-dist-rpm7
+#| fig-cap: Normal density function fitted to the selected mouse population. The red area is the density for RPM7 >= 10. 
+
 # Create normal distributed data using estimated mean and sd
 df <- data.frame(x = seq(2, 16, 0.01)) |> 
   mutate(y = dnorm(x, mean(extracted_x), sd(extracted_x))) 
@@ -287,9 +293,12 @@ x_subset <- X |>
   )
 ```
 
-After subsetting the data to only include these two groups a plot of the raw data looks like the following, and consists of $n = n_1 + n_2 = 11+ 9 = 20$ samples.
+After subsetting the data to only include these two groups a plot of the raw data looks like the following, and consists of $n = n_1 + n_2 = 11+ 9 = 20$ samples (@fig-mouse-subset).
 
 ```{r}
+#| label: fig-mouse-subset
+#| fig-cap: Box n' jitter plot of the mouse data subset. 
+
 ggplot(x_subset, aes(Caffeine, RPM7, color = Caffeine)) +
   geom_boxplot() +
   geom_jitter() +

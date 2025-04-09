@@ -210,13 +210,13 @@ For this exercise we are going to focus on predicting different biomarkers from 
 ::: {.callout-task}
 1. Set the independent variable ($X$) to be weight at 14 weeks (measured in grams), and let the dependent variable ($Y$) be the cholesterol level. Write up the model for the relation between $X$ and $Y$.
 2. Make a small drawing, and infer all the model parameters on this figure.
-3. Estimate the parameters based on the descriptive numbers in the @tbl-diet-descriptors-regression.
+3. Estimate the parameters based on the descriptive numbers in the table below.
 :::
 
 | $\sum{X}$ | $\sum{(X - \bar{X})^2}$ | $\sum{Y}$ | $\sum{(Y - \bar{Y})^2}$ | $\sum{(X - \bar{X})(Y - \bar{Y})}$ | $\sum{(Y - \hat{Y})^2}$ |
 |----------:|-------------------------:|----------:|-------------------------:|-----------------------------------:|-------------------------:|
 | 1426.2 | 1099.3 | 156.5 | 18.99 | 116.44 | 6.65 |
-: Some descriptive numbers computed on the data. {#tbl-diet-descriptors-regression .hover. responsive}
+: Some descriptive numbers computed on the data. {#tbl-diet-reg .hover. responsive}
 
 ::: {.callout-task}
 4. Construct confidence intervals for the intercept and the slope for this model, and judge whether there seem to be a relation between weight and cholesterol level. 
