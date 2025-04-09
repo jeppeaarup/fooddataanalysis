@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.41">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,10 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-48ffa3e5b9d089919c6712c39e5b00f2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-030c138b47736e5750b8595abfdab90a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-e99addfda45989f4d1ddd86d8d3f206e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -399,12 +399,6 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Wrangling data in R</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/appendix/ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Plotting with ggplot2</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
     </ul>
@@ -418,7 +412,15 @@ window.Quarto = {
    
   <ul>
   <li><a href="#reading-material" id="toc-reading-material" class="nav-link active" data-scroll-target="#reading-material"><span class="header-section-number">11.1</span> Reading material</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">11.2</span> Exercises</a></li>
+  <li><a href="#sec-intro-to-binom" id="toc-sec-intro-to-binom" class="nav-link" data-scroll-target="#sec-intro-to-binom"><span class="header-section-number">11.2</span> Binomial data - in short</a></li>
+  <li><a href="#videos" id="toc-videos" class="nav-link" data-scroll-target="#videos"><span class="header-section-number">11.3</span> Videos</a>
+  <ul>
+  <li><a href="#sec-binom-dist-crashcourse" id="toc-sec-binom-dist-crashcourse" class="nav-link" data-scroll-target="#sec-binom-dist-crashcourse"><span class="header-section-number">11.3.1</span> The Binomial Distribution - <em>CrashCourse</em></a></li>
+  <li><a href="#sec-binom-dist-jb" id="toc-sec-binom-dist-jb" class="nav-link" data-scroll-target="#sec-binom-dist-jb"><span class="header-section-number">11.3.2</span> An Introduction to the Binomial Distribution - <em>jbstatistics</em></a></li>
+  <li><a href="#sec-binom-dist-statquest" id="toc-sec-binom-dist-statquest" class="nav-link" data-scroll-target="#sec-binom-dist-statquest"><span class="header-section-number">11.3.3</span> The Binomial Distribution and Test, Clearly Explained - <em>StatQuest</em></a></li>
+  <li><a href="#sec-ideas-behind-prob-dist" id="toc-sec-ideas-behind-prob-dist" class="nav-link" data-scroll-target="#sec-ideas-behind-prob-dist"><span class="header-section-number">11.3.4</span> The Main Ideas behind Probability Distributions - <em>StatQuest</em></a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">11.4</span> Exercises</a></li>
   </ul>
 </nav>
     </div>
@@ -464,6 +466,25 @@ Learning objectives
 </ul>
 </div>
 </div>
+<section id="reading-material" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="reading-material"><span class="header-section-number">11.1</span> Reading material</h2>
+<ul>
+<li><a href="#sec-intro-to-binom">Binomial data - in short</a></li>
+<li>Introductory videos to the binomial distribution:
+<ul>
+<li><a href="#sec-binom-dist-crashcourse">The Binomial Distribution</a></li>
+<li><a href="#sec-binom-dist-jb">An Introduction to the Binomial Distribution</a></li>
+<li><a href="#sec-binom-dist-statquest">The Binomial Distribution and Test, Clearly Explained</a></li>
+</ul></li>
+<li>Video on probability distribution:
+<ul>
+<li><a href="#sec-ideas-behind-prob-dist">The Main Ideas behind Probability Distributions</a></li>
+</ul></li>
+<li>Chapter 2.1 and 2.2 of <a href="https://02402.compute.dtu.dk/enotes/book-IntroStatistics"><em>Introduction to Statistics</em></a> by Brockhoff</li>
+</ul>
+</section>
+<section id="sec-intro-to-binom" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="sec-intro-to-binom"><span class="header-section-number">11.2</span> Binomial data - in short</h2>
 <p>In short, binomial data are of the type <em>either / or</em>, and is normally recorded as a list of <span class="math inline">\(0\)</span>’s and <span class="math inline">\(1\)</span>’s. The binomial distribution is characterized by <em>how many</em> trials there is conducted (<span class="math inline">\(n\)</span>) and the probability of a positive (<span class="math inline">\("1"\)</span>) response (<span class="math inline">\(p\)</span>). In notation that is:</p>
 <p><span class="math display">\[\begin{equation}
 X \sim \mathcal{B}(n,p)
@@ -500,6 +521,16 @@ CI_{p}: \hat{p} \pm z_{1-\alpha/2}S_{p}
 <p><span class="math display">\[\begin{equation}
 P(X=0) = (1-p)^{n}&gt;\alpha
 \end{equation}\]</span></p>
+<div id="exa-qa-estimation" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-exa figure">
+<div aria-describedby="exa-qa-estimation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<!-- Cross-ref anchor -->
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-exa quarto-uncaptioned" id="exa-qa-estimation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;11.1
+</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-example no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -512,7 +543,7 @@ Example 11.1 - Quality control - estimation
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div id="exa-qa-estimation" class="callout-example">
+<div class="callout-example">
 <p>As a production engineer you are responsible for keeping the product quality high, which specifically means that the number of nonconforming products from the your production facility should be low.</p>
 <p>In order to establish what the rate of nonconforming products is, you choose to randomly select <span class="math inline">\(200\)</span> products and check their quality.</p>
 <p>Of these 6 are nonconforming. So on average <span class="math inline">\(3\%\)</span>.</p>
@@ -541,40 +572,38 @@ Example 11.1 - Quality control - estimation
 </div>
 </div>
 <!-- End example callout -->
-<section id="reading-material" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="reading-material"><span class="header-section-number">11.1</span> Reading material</h2>
-<ul>
-<li>Introductory videos to the binomial distribution:
-<ul>
-<li><a href="#sec-binom-dist-crashcourse">The Binomial Distribution</a></li>
-<li><a href="#sec-binom-dist-jb">An Introduction to the Binomial Distribution</a></li>
-<li><a href="#sec-binom-dist-statquest">The Binomial Distribution and Test, Clearly Explained</a></li>
-</ul></li>
-<li>Video on probability distribution:
-<ul>
-<li><a href="#sec-ideas-behind-prob-dist">The Main Ideas behind Probability Distributions</a></li>
-</ul></li>
-<li>Chapter 2.1 and 2.2 of <a href="https://02402.compute.dtu.dk/enotes/book-IntroStatistics"><em>Introduction to Statistics</em></a> by Brockhoff</li>
-</ul>
-<section id="sec-binom-dist-crashcourse" class="level5">
-<h5 class="anchored" data-anchor-id="sec-binom-dist-crashcourse">The Binomial Distribution - <em>CrashCourse</em></h5>
+</section>
+<section id="videos" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="videos"><span class="header-section-number">11.3</span> Videos</h2>
+<section id="sec-binom-dist-crashcourse" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="sec-binom-dist-crashcourse"><span class="header-section-number">11.3.1</span> The Binomial Distribution - <em>CrashCourse</em></h3>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/WR0nMTr6uOo" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </section>
-<section id="sec-binom-dist-jb" class="level5">
-<h5 class="anchored" data-anchor-id="sec-binom-dist-jb">An Introduction to the Binomial Distribution - <em>jbstatistics</em></h5>
+<section id="sec-binom-dist-jb" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="sec-binom-dist-jb"><span class="header-section-number">11.3.2</span> An Introduction to the Binomial Distribution - <em>jbstatistics</em></h3>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/qIzC1-9PwQo" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </section>
-<section id="sec-binom-dist-statquest" class="level5">
-<h5 class="anchored" data-anchor-id="sec-binom-dist-statquest">The Binomial Distribution and Test, Clearly Explained - <em>StatQuest</em></h5>
+<section id="sec-binom-dist-statquest" class="level3" data-number="11.3.3">
+<h3 data-number="11.3.3" class="anchored" data-anchor-id="sec-binom-dist-statquest"><span class="header-section-number">11.3.3</span> The Binomial Distribution and Test, Clearly Explained - <em>StatQuest</em></h3>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/J8jNoF-K8E8" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </section>
-<section id="sec-ideas-behind-prob-dist" class="level5">
-<h5 class="anchored" data-anchor-id="sec-ideas-behind-prob-dist">The Main Ideas behind Probability Distributions - <em>StatQuest</em></h5>
+<section id="sec-ideas-behind-prob-dist" class="level3" data-number="11.3.4">
+<h3 data-number="11.3.4" class="anchored" data-anchor-id="sec-ideas-behind-prob-dist"><span class="header-section-number">11.3.4</span> The Main Ideas behind Probability Distributions - <em>StatQuest</em></h3>
 <div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/oI3hZJqXJuc" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
 </section>
 </section>
-<section id="exercises" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="exercises"><span class="header-section-number">11.2</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="exercises"><span class="header-section-number">11.4</span> Exercises</h2>
+<div id="ex-chocolate-and-binomial-data" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-ex figure">
+<div aria-describedby="ex-chocolate-and-binomial-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<!-- Cross-ref anchor -->
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-ex quarto-uncaptioned" id="ex-chocolate-and-binomial-data-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Exercise&nbsp;11.1
+</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-exercise no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -587,7 +616,7 @@ Exercise 11.1 - Chocolate and binomial data
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div id="ex-chocolate-and-binomial-data" class="callout-exercise">
+<div class="callout-exercise">
 <p>A chocholate factory discards 68 chocolates out of 300 produced in a day.</p>
 <div class="callout callout-style-default callout-task no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
@@ -616,6 +645,16 @@ Tasks
 </div>
 </div>
 <!-- End exercise callout -->
+<div id="ex-triangle-test" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-ex figure">
+<div aria-describedby="ex-triangle-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<!-- Cross-ref anchor -->
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-ex quarto-uncaptioned" id="ex-triangle-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Exercise&nbsp;11.2
+</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-exercise no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -628,7 +667,7 @@ Exercise 11.2 - Triangle test
 </div>
 <div id="callout-8" class="callout-8-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div id="ex-triangle-test" class="callout-exercise">
+<div class="callout-exercise">
 <p>In sensorical science several types of experiments can be used for measuring (dis-)similarity between products. One of those is the Triangle Test.</p>
 <div class="callout callout-style-default callout-task no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
@@ -748,6 +787,16 @@ Tasks
 </div>
 </div>
 <!-- End exercise callout -->
+<div id="ex-uncertainty-of-the-binomial-dist" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-ex figure">
+<div aria-describedby="ex-uncertainty-of-the-binomial-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<!-- Cross-ref anchor -->
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-ex quarto-uncaptioned" id="ex-uncertainty-of-the-binomial-dist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Exercise&nbsp;11.3
+</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-exercise no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -760,7 +809,7 @@ Exercise 11.3 - Uncertainty of the binomial distribution
 </div>
 <div id="callout-9" class="callout-9-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div id="ex-uncertainty-of-the-binomial-dist" class="callout-exercise">
+<div class="callout-exercise">
 <p>This exercises examines the relation between the probability parameter <span class="math inline">\(p\)</span> and the uncertainty on this <span class="math inline">\(S_p\)</span> for the binomial distribution.</p>
 <ol type="1">
 <li>Let <span class="math inline">\(X\)</span> describe the number of successes out of <span class="math inline">\(n\)</span> trial. Write op the model for <span class="math inline">\(X\)</span></li>
@@ -777,6 +826,16 @@ Exercise 11.3 - Uncertainty of the binomial distribution
 </div>
 </div>
 <!-- End exercise callout -->
+<div id="ex-fig-bars" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-ex figure">
+<div aria-describedby="ex-fig-bars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<!-- Cross-ref anchor -->
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-ex quarto-uncaptioned" id="ex-fig-bars-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Exercise&nbsp;11.4
+</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-exercise no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -789,7 +848,7 @@ Exercise 11.4 - Fig bars
 </div>
 <div id="callout-13" class="callout-13-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div id="ex-fig-bars" class="callout-exercise">
+<div class="callout-exercise">
 <p>A company is producing fig and date bars and they are considering changing their date supplier. The company would like to produce fig and date bars with the same taste, smell and appearance as they have done for many years. It is therefore important that a new date supplier will not result in fig and date bars that differ from the original bars. The company asked the Department of Food Science at University of Copenhagen to perform a sensory test with five possible date suppliers. The Department of Food Science performed a triangle test with a trained sensory panel to detect if the new date suppliers would change the organoleptic (in this case smell, taste and sight) properties of the bars. The same <span class="math inline">\(23\)</span> sensory judges performed the triangle test on smell, taste and appearance.</p>
 <div class="callout callout-style-default callout-task no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="true" aria-label="Toggle callout">
@@ -890,6 +949,16 @@ Tasks
 </div>
 </div>
 <!-- End exercise callout -->
+<div id="ex-dist-of-extreme-values" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-ex figure">
+<div aria-describedby="ex-dist-of-extreme-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<!-- Cross-ref anchor -->
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-ex quarto-uncaptioned" id="ex-dist-of-extreme-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Exercise&nbsp;11.5
+</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-exercise no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -902,7 +971,7 @@ Exercise 11.5 - Distribution of extreme values in the normal distribution
 </div>
 <div id="callout-16" class="callout-16-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div id="ex-dist-of-extreme-values" class="callout-exercise">
+<div class="callout-exercise">
 <p>This exercise combines the (standard) normal distribution with the binomial distribution in order to calculate the distribution of the maximum (or minimum) value from a sample of size <span class="math inline">\(n\)</span>.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1158,124 +1227,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     });
   }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
       let selectedAnnoteEl;
       const selectorForAnnotation = ( cell, annotation) => {
         let cellAttr = 'data-code-cell="' + cell + '"';
@@ -1453,301 +1404,318 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>In short, binomial data are of the type *either / or*, and is normally recorded as a list of $0$'s and $1$'s. The binomial distribution is characterized by *how many* trials there is conducted ($n$) and the probability of a positive ($"1"$) response ($p$). In notation that is:  </span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reading material</span></span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>X \sim \mathcal{B}(n,p)</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>The probability density function (pdf) evaluating the probability of $x$ (out of $n$) positive responses is:</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>%\binom{N}{K}</span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>P(X=x) = \binom{n}{x} \cdot p^x(1-p)^{n-x}</span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>Where </span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>%\binom{N}{K}</span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>\binom{n}{x} = \frac{{n!}}{{x!\left( {n - x} \right)!}}</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Binomial data - in short</span><span class="co">](#sec-intro-to-binom)</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Introductory videos to the binomial distribution:</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="co">[</span><span class="ot">The Binomial Distribution</span><span class="co">](#sec-binom-dist-crashcourse)</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="co">[</span><span class="ot">An Introduction to the Binomial Distribution</span><span class="co">](#sec-binom-dist-jb)</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="co">[</span><span class="ot">The Binomial Distribution and Test, Clearly Explained</span><span class="co">](#sec-binom-dist-statquest)</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Video on probability distribution:</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="co">[</span><span class="ot">The Main Ideas behind Probability Distributions</span><span class="co">](#sec-ideas-behind-prob-dist)</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Chapter 2.1 and 2.2 of <span class="co">[</span><span class="ot">*Introduction to Statistics*</span><span class="co">](https://02402.compute.dtu.dk/enotes/book-IntroStatistics)</span> by Brockhoff</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Binomial data - in short {#sec-intro-to-binom}</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>In short, binomial data are of the type *either / or*, and is normally recorded as a list of $0$'s and $1$'s. The binomial distribution is characterized by *how many* trials there is conducted ($n$) and the probability of a positive ($"1"$) response ($p$). In notation that is:  </span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>X \sim \mathcal{B}(n,p)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>The probability density function (pdf) evaluating the probability of $x$ (out of $n$) positive responses is:</span>
 <span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>is the binomial coefficient, which calculates how many combinations of $x$ in $n$ there exists.</span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>The cumulative density function (cdf) simply sums op the individual point probabilities. </span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>%\binom{N}{K}</span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>P(X \leq x) = P(X=0) + P(X=1) + ... + P(X=x) </span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>Based on data from $n$ trials with $x$ positive responses, the parameter $p$ can be estimated as the frequency: </span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>\hat{p} = \frac{x}{n}</span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>With the following standard error: </span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>S_{p} = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>%\binom{N}{K}</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>P(X=x) = \binom{n}{x} \cdot p^x(1-p)^{n-x}</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>Where </span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>%\binom{N}{K}</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>\binom{n}{x} = \frac{{n!}}{{x!\left( {n - x} \right)!}}</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>is the binomial coefficient, which calculates how many combinations of $x$ in $n$ there exists.</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>The cumulative density function (cdf) simply sums op the individual point probabilities. </span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>%\binom{N}{K}</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>P(X \leq x) = P(X=0) + P(X=1) + ... + P(X=x) </span>
 <span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
 <span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>From the Central Limit Theorem follows that the point estimate for $p$ is approximately normally distributed, why the confidence interval is as follows: </span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>Based on data from $n$ trials with $x$ positive responses, the parameter $p$ can be estimated as the frequency: </span>
 <span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
-<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>CI_{p}: \hat{p} \pm z_{1-\alpha/2}S_{p}</span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>\hat{p} = \frac{x}{n}</span>
 <span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
 <span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>Be aware that the extreme cases where $x = 0$ or $x = n$ does not comply with the above mentioned method for calculating the confidence interval, as $S_{p} = 0$. A surpass in this situation is to find a value for $p$ under which the observed data is still likely. For instance; find $p$ such that:</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>With the following standard error: </span>
 <span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
-<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>P(X=0) = (1-p)^{n}&gt;\alpha</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>S_{p} = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}</span>
 <span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
 <span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>::: {.callout-example #exa-qa-estimation}</span>
-<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a><span class="fu">### Quality control - estimation</span></span>
-<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>As a production engineer you are responsible for keeping the product quality high, which specifically means that the number of nonconforming products from the your production facility should be low.</span>
-<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>In order to establish what the rate of nonconforming products is, you choose to randomly select $200$ products and check their quality. </span>
-<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>Of these 6 are nonconforming. So on average $3\%$.</span>
-<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>However, the production facility produces a very large number of elements, and your boss wish to know whether the $3\%$ holds for the entire production. In order to answer this you calculate a confidence interval:</span>
-<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span> <span class="co"># Number of samples</span></span>
-<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">6</span> <span class="co"># Number of "positive" (non-conforming)</span></span>
-<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>pHat <span class="ot">&lt;-</span> x <span class="sc">/</span> n <span class="co"># Estimate of probability of "positive"</span></span>
-<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>seHat <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(pHat <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> pHat) <span class="sc">/</span> n) <span class="co"># Standard error of pHat</span></span>
-<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>zFrac <span class="ot">&lt;-</span> <span class="fl">1.96</span> <span class="co"># Critical value of 95% standard normal</span></span>
-<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>lwrCI <span class="ot">&lt;-</span> pHat <span class="sc">-</span> zFrac <span class="sc">*</span> seHat <span class="co"># Lower value of 95% confidence interval</span></span>
-<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>uprCI <span class="ot">&lt;-</span> pHat <span class="sc">+</span> zFrac <span class="sc">*</span> seHat <span class="co"># Upper value of 95% confidence interval</span></span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>From the Central Limit Theorem follows that the point estimate for $p$ is approximately normally distributed, why the confidence interval is as follows: </span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>CI_{p}: \hat{p} \pm z_{1-\alpha/2}S_{p}</span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>Be aware that the extreme cases where $x = 0$ or $x = n$ does not comply with the above mentioned method for calculating the confidence interval, as $S_{p} = 0$. A surpass in this situation is to find a value for $p$ under which the observed data is still likely. For instance; find $p$ such that:</span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>\begin{equation}</span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>P(X=0) = (1-p)^{n}&gt;\alpha</span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>\end{equation}</span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>::: {#exa-qa-estimation}</span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>::: {.callout-example}</span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a><span class="fu">### Quality control - estimation</span></span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>As a production engineer you are responsible for keeping the product quality high, which specifically means that the number of nonconforming products from the your production facility should be low.</span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>In order to establish what the rate of nonconforming products is, you choose to randomly select $200$ products and check their quality. </span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>Of these 6 are nonconforming. So on average $3\%$.</span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>However, the production facility produces a very large number of elements, and your boss wish to know whether the $3\%$ holds for the entire production. In order to answer this you calculate a confidence interval:</span>
 <span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(lwrCI, uprCI)</span>
-<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>You return these numbers to your boss, stating that there is probably 3% nonconforming products, and that it is very unlikely that there are more than 5.4% based on the 95% confidence bounds.</span>
-<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">200</span> <span class="co"># Number of samples</span></span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">6</span> <span class="co"># Number of "positive" (non-conforming)</span></span>
 <span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End example callout --&gt;</span></span>
-<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reading material</span></span>
-<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Introductory videos to the binomial distribution:</span>
-<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="co">[</span><span class="ot">The Binomial Distribution</span><span class="co">](#sec-binom-dist-crashcourse)</span></span>
-<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="co">[</span><span class="ot">An Introduction to the Binomial Distribution</span><span class="co">](#sec-binom-dist-jb)</span></span>
-<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="co">[</span><span class="ot">The Binomial Distribution and Test, Clearly Explained</span><span class="co">](#sec-binom-dist-statquest)</span></span>
-<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Video on probability distribution:</span>
-<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="co">[</span><span class="ot">The Main Ideas behind Probability Distributions</span><span class="co">](#sec-ideas-behind-prob-dist)</span></span>
-<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Chapter 2.1 and 2.2 of <span class="co">[</span><span class="ot">*Introduction to Statistics*</span><span class="co">](https://02402.compute.dtu.dk/enotes/book-IntroStatistics)</span> by Brockhoff</span>
-<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>pHat <span class="ot">&lt;-</span> x <span class="sc">/</span> n <span class="co"># Estimate of probability of "positive"</span></span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>seHat <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(pHat <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> pHat) <span class="sc">/</span> n) <span class="co"># Standard error of pHat</span></span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>zFrac <span class="ot">&lt;-</span> <span class="fl">1.96</span> <span class="co"># Critical value of 95% standard normal</span></span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>lwrCI <span class="ot">&lt;-</span> pHat <span class="sc">-</span> zFrac <span class="sc">*</span> seHat <span class="co"># Lower value of 95% confidence interval</span></span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>uprCI <span class="ot">&lt;-</span> pHat <span class="sc">+</span> zFrac <span class="sc">*</span> seHat <span class="co"># Upper value of 95% confidence interval</span></span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(lwrCI, uprCI)</span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>You return these numbers to your boss, stating that there is probably 3% nonconforming products, and that it is very unlikely that there are more than 5.4% based on the 95% confidence bounds.</span>
 <span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a><span class="fu">##### The Binomial Distribution - *CrashCourse* {#sec-binom-dist-crashcourse}</span></span>
-<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=WR0nMTr6uOo &gt;}}</span>
-<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a><span class="fu">##### An Introduction to the Binomial Distribution - *jbstatistics* {#sec-binom-dist-jb}</span></span>
-<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=qIzC1-9PwQo &gt;}}</span>
-<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a><span class="fu">##### The Binomial Distribution and Test, Clearly Explained - *StatQuest* {#sec-binom-dist-statquest}</span></span>
-<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=J8jNoF-K8E8 &gt;}}</span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End example callout --&gt;</span></span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a><span class="fu">## Videos</span></span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a><span class="fu">### The Binomial Distribution - *CrashCourse* {#sec-binom-dist-crashcourse}</span></span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=WR0nMTr6uOo &gt;}}</span>
 <span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a><span class="fu">##### The Main Ideas behind Probability Distributions - *StatQuest* {#sec-ideas-behind-prob-dist}</span></span>
-<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=oI3hZJqXJuc &gt;}}</span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a><span class="fu">### An Introduction to the Binomial Distribution - *jbstatistics* {#sec-binom-dist-jb}</span></span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=qIzC1-9PwQo &gt;}}</span>
 <span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercises</span></span>
-<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise id=ex-chocolate-and-binomial-data}</span>
-<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a><span class="fu">### Chocolate and binomial data</span></span>
-<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>A chocholate factory discards 68 chocolates out of 300 produced in a day.</span>
-<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>State the model for these data</span>
-<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Calculate the probability of discarding a chocolate ($\hat{p}$)</span>
-<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Calculate the confidence interval for $\hat{p}$. </span>
-<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a><span class="fu">### The Binomial Distribution and Test, Clearly Explained - *StatQuest* {#sec-binom-dist-statquest}</span></span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=J8jNoF-K8E8 &gt;}}</span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a><span class="fu">### The Main Ideas behind Probability Distributions - *StatQuest* {#sec-ideas-behind-prob-dist}</span></span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=oI3hZJqXJuc &gt;}}</span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercises</span></span>
+<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>::: {#ex-chocolate-and-binomial-data}</span>
+<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise}</span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a><span class="fu">### Chocolate and binomial data</span></span>
+<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a>A chocholate factory discards 68 chocolates out of 300 produced in a day.</span>
 <span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise id=ex-triangle-test}</span>
-<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a><span class="fu">### Triangle test</span></span>
-<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a>In sensorical science several types of experiments can be used for measuring (dis-)similarity between products. One of those is the Triangle Test. </span>
+<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>State the model for these data</span>
+<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Calculate the probability of discarding a chocolate ($\hat{p}$)</span>
+<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Calculate the confidence interval for $\hat{p}$. </span>
+<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Check out on the internet how this test is conducted. </span>
-<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Assume that you run a Triangle test with $n$ judges. What is the nature- and statistical model for the data obtained from such a trial? </span>
-<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>State a null hypothesis, relating to the question of similarity of products in the study. </span>
-<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Assume that you include $n = 20$ judges in your experiment. How many correct answers do you need in order to statistically prove difference between products? </span>
-<span id="cb6-152"><a href="#cb6-152" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>You need to define what *statistically prove* means. </span>
-<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Hint: The result is found by *trial and error* computation - see code below.</span>
-<span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a>:::  </span>
+<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
+<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a>::: {#ex-triangle-test}</span>
+<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
+<span id="cb6-152"><a href="#cb6-152" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise}</span>
+<span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a><span class="fu">### Triangle test</span></span>
 <span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-158"><a href="#cb6-158" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb6-159"><a href="#cb6-159" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb6-160"><a href="#cb6-160" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span> <span class="co"># Parameter under the null hypothesis</span></span>
-<span id="cb6-161"><a href="#cb6-161" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span> <span class="co"># Number of trials </span></span>
-<span id="cb6-162"><a href="#cb6-162" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span>n <span class="co"># Define all possible outcomes</span></span>
-<span id="cb6-163"><a href="#cb6-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-164"><a href="#cb6-164" aria-hidden="true" tabindex="-1"></a><span class="co"># Outcome probability under the null distribution</span></span>
-<span id="cb6-165"><a href="#cb6-165" aria-hidden="true" tabindex="-1"></a>nullProb <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pbinom</span>(x <span class="sc">-</span> <span class="dv">1</span>, n, p)</span>
+<span id="cb6-156"><a href="#cb6-156" aria-hidden="true" tabindex="-1"></a>In sensorical science several types of experiments can be used for measuring (dis-)similarity between products. One of those is the Triangle Test. </span>
+<span id="cb6-157"><a href="#cb6-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-158"><a href="#cb6-158" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb6-159"><a href="#cb6-159" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Check out on the internet how this test is conducted. </span>
+<span id="cb6-160"><a href="#cb6-160" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Assume that you run a Triangle test with $n$ judges. What is the nature- and statistical model for the data obtained from such a trial? </span>
+<span id="cb6-161"><a href="#cb6-161" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>State a null hypothesis, relating to the question of similarity of products in the study. </span>
+<span id="cb6-162"><a href="#cb6-162" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Assume that you include $n = 20$ judges in your experiment. How many correct answers do you need in order to statistically prove difference between products? </span>
+<span id="cb6-163"><a href="#cb6-163" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>You need to define what *statistically prove* means. </span>
+<span id="cb6-164"><a href="#cb6-164" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Hint: The result is found by *trial and error* computation - see code below.</span>
+<span id="cb6-165"><a href="#cb6-165" aria-hidden="true" tabindex="-1"></a>:::  </span>
 <span id="cb6-166"><a href="#cb6-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-167"><a href="#cb6-167" aria-hidden="true" tabindex="-1"></a><span class="co"># Put results into dataframe</span></span>
-<span id="cb6-168"><a href="#cb6-168" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( </span>
-<span id="cb6-169"><a href="#cb6-169" aria-hidden="true" tabindex="-1"></a>  <span class="at">nCorrect =</span> x,</span>
-<span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a>  nullProb</span>
-<span id="cb6-171"><a href="#cb6-171" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb6-172"><a href="#cb6-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot data</span></span>
-<span id="cb6-174"><a href="#cb6-174" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(nCorrect, nullProb)) <span class="sc">+</span></span>
-<span id="cb6-175"><a href="#cb6-175" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb6-176"><a href="#cb6-176" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.05</span>) <span class="co"># Alpha value</span></span>
-<span id="cb6-177"><a href="#cb6-177" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-178"><a href="#cb6-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-179"><a href="#cb6-179" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb6-180"><a href="#cb6-180" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Generalize this to $n = 1,2,3,...,100$ and plot the results (x-axis: number of trials, y-axis: frequency of correct answers). </span>
-<span id="cb6-181"><a href="#cb6-181" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Hint: You need to put this in a for loop over $n$ and record the least number of samples needed for a significant results within each iteration. The code below can be used as inspiration. </span>
-<span id="cb6-182"><a href="#cb6-182" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-169"><a href="#cb6-169" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb6-171"><a href="#cb6-171" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span> <span class="co"># Parameter under the null hypothesis</span></span>
+<span id="cb6-172"><a href="#cb6-172" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span> <span class="co"># Number of trials </span></span>
+<span id="cb6-173"><a href="#cb6-173" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span>n <span class="co"># Define all possible outcomes</span></span>
+<span id="cb6-174"><a href="#cb6-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-175"><a href="#cb6-175" aria-hidden="true" tabindex="-1"></a><span class="co"># Outcome probability under the null distribution</span></span>
+<span id="cb6-176"><a href="#cb6-176" aria-hidden="true" tabindex="-1"></a>nullProb <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pbinom</span>(x <span class="sc">-</span> <span class="dv">1</span>, n, p)</span>
+<span id="cb6-177"><a href="#cb6-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-178"><a href="#cb6-178" aria-hidden="true" tabindex="-1"></a><span class="co"># Put results into dataframe</span></span>
+<span id="cb6-179"><a href="#cb6-179" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( </span>
+<span id="cb6-180"><a href="#cb6-180" aria-hidden="true" tabindex="-1"></a>  <span class="at">nCorrect =</span> x,</span>
+<span id="cb6-181"><a href="#cb6-181" aria-hidden="true" tabindex="-1"></a>  nullProb</span>
+<span id="cb6-182"><a href="#cb6-182" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb6-183"><a href="#cb6-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-186"><a href="#cb6-186" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb6-187"><a href="#cb6-187" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb6-188"><a href="#cb6-188" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span> <span class="co"># Parameter under the null hypothesis</span></span>
-<span id="cb6-189"><a href="#cb6-189" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fl">0.05</span> <span class="co"># Set the significance threshold </span></span>
-<span id="cb6-190"><a href="#cb6-190" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">c</span>() <span class="co"># Predefine vector for storing results</span></span>
-<span id="cb6-191"><a href="#cb6-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-192"><a href="#cb6-192" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) {</span>
-<span id="cb6-193"><a href="#cb6-193" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-194"><a href="#cb6-194" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define all possible outcomes for this round of the loop</span></span>
-<span id="cb6-195"><a href="#cb6-195" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span>n</span>
-<span id="cb6-196"><a href="#cb6-196" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-197"><a href="#cb6-197" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Outcome probability under the null distribution</span></span>
-<span id="cb6-198"><a href="#cb6-198" aria-hidden="true" tabindex="-1"></a>  nullProb <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pbinom</span>(x <span class="sc">-</span> <span class="dv">1</span>, n, p) </span>
-<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-200"><a href="#cb6-200" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Find all x-values where the null prob. is less than alpha</span></span>
-<span id="cb6-201"><a href="#cb6-201" aria-hidden="true" tabindex="-1"></a>  underAlpha <span class="ot">&lt;-</span> x[nullProb <span class="sc">&lt;</span> a]</span>
-<span id="cb6-202"><a href="#cb6-202" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-203"><a href="#cb6-203" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Find the minimum x where the null prob is less than alpha and divide with n</span></span>
-<span id="cb6-204"><a href="#cb6-204" aria-hidden="true" tabindex="-1"></a>  results[n] <span class="ot">&lt;-</span> <span class="fu">min</span>(underAlpha) <span class="sc">/</span> n</span>
-<span id="cb6-205"><a href="#cb6-205" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-206"><a href="#cb6-206" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-207"><a href="#cb6-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-208"><a href="#cb6-208" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb6-209"><a href="#cb6-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-210"><a href="#cb6-210" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>In a population you think that $40\%$ are capable of answering correct for discrimination of two products. The rest ($60\%$) will simply just give a blind guess. How large a proportion of correct answers would you expect in such a population? </span>
-<span id="cb6-211"><a href="#cb6-211" aria-hidden="true" tabindex="-1"></a><span class="ss">     * </span>Hint: Think of $100$ persons. </span>
-<span id="cb6-212"><a href="#cb6-212" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Compare the results for the later two questions, and give a frank idea of the number of participants needed for an experiment with the purpose of discriminating the products. </span>
-<span id="cb6-213"><a href="#cb6-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb6-215"><a href="#cb6-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-216"><a href="#cb6-216" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb6-217"><a href="#cb6-217" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
+<span id="cb6-184"><a href="#cb6-184" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot data</span></span>
+<span id="cb6-185"><a href="#cb6-185" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(nCorrect, nullProb)) <span class="sc">+</span></span>
+<span id="cb6-186"><a href="#cb6-186" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb6-187"><a href="#cb6-187" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.05</span>) <span class="co"># Alpha value</span></span>
+<span id="cb6-188"><a href="#cb6-188" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-189"><a href="#cb6-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-190"><a href="#cb6-190" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb6-191"><a href="#cb6-191" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Generalize this to $n = 1,2,3,...,100$ and plot the results (x-axis: number of trials, y-axis: frequency of correct answers). </span>
+<span id="cb6-192"><a href="#cb6-192" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Hint: You need to put this in a for loop over $n$ and record the least number of samples needed for a significant results within each iteration. The code below can be used as inspiration. </span>
+<span id="cb6-193"><a href="#cb6-193" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-194"><a href="#cb6-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-197"><a href="#cb6-197" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-198"><a href="#cb6-198" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb6-199"><a href="#cb6-199" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span> <span class="co"># Parameter under the null hypothesis</span></span>
+<span id="cb6-200"><a href="#cb6-200" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fl">0.05</span> <span class="co"># Set the significance threshold </span></span>
+<span id="cb6-201"><a href="#cb6-201" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">c</span>() <span class="co"># Predefine vector for storing results</span></span>
+<span id="cb6-202"><a href="#cb6-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-203"><a href="#cb6-203" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (n <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) {</span>
+<span id="cb6-204"><a href="#cb6-204" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-205"><a href="#cb6-205" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define all possible outcomes for this round of the loop</span></span>
+<span id="cb6-206"><a href="#cb6-206" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span>n</span>
+<span id="cb6-207"><a href="#cb6-207" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-208"><a href="#cb6-208" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Outcome probability under the null distribution</span></span>
+<span id="cb6-209"><a href="#cb6-209" aria-hidden="true" tabindex="-1"></a>  nullProb <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pbinom</span>(x <span class="sc">-</span> <span class="dv">1</span>, n, p) </span>
+<span id="cb6-210"><a href="#cb6-210" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-211"><a href="#cb6-211" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Find all x-values where the null prob. is less than alpha</span></span>
+<span id="cb6-212"><a href="#cb6-212" aria-hidden="true" tabindex="-1"></a>  underAlpha <span class="ot">&lt;-</span> x[nullProb <span class="sc">&lt;</span> a]</span>
+<span id="cb6-213"><a href="#cb6-213" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-214"><a href="#cb6-214" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Find the minimum x where the null prob is less than alpha and divide with n</span></span>
+<span id="cb6-215"><a href="#cb6-215" aria-hidden="true" tabindex="-1"></a>  results[n] <span class="ot">&lt;-</span> <span class="fu">min</span>(underAlpha) <span class="sc">/</span> n</span>
+<span id="cb6-216"><a href="#cb6-216" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-217"><a href="#cb6-217" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb6-218"><a href="#cb6-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-219"><a href="#cb6-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-220"><a href="#cb6-220" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise id=ex-uncertainty-of-the-binomial-dist}</span>
-<span id="cb6-221"><a href="#cb6-221" aria-hidden="true" tabindex="-1"></a><span class="fu">### Uncertainty of the binomial distribution</span></span>
-<span id="cb6-222"><a href="#cb6-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-223"><a href="#cb6-223" aria-hidden="true" tabindex="-1"></a>This exercises examines the relation between the probability parameter $p$ and the uncertainty on this $S_p$ for the binomial distribution.</span>
+<span id="cb6-219"><a href="#cb6-219" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb6-220"><a href="#cb6-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-221"><a href="#cb6-221" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>In a population you think that $40\%$ are capable of answering correct for discrimination of two products. The rest ($60\%$) will simply just give a blind guess. How large a proportion of correct answers would you expect in such a population? </span>
+<span id="cb6-222"><a href="#cb6-222" aria-hidden="true" tabindex="-1"></a><span class="ss">     * </span>Hint: Think of $100$ persons. </span>
+<span id="cb6-223"><a href="#cb6-223" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Compare the results for the later two questions, and give a frank idea of the number of participants needed for an experiment with the purpose of discriminating the products. </span>
 <span id="cb6-224"><a href="#cb6-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-225"><a href="#cb6-225" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Let $X$ describe the number of successes out of $n$ trial. Write op the model for $X$</span>
-<span id="cb6-226"><a href="#cb6-226" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Let $x$ be the observed number of successes from such a trial. Estimate the parameter of interest. </span>
-<span id="cb6-227"><a href="#cb6-227" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Use the central limit theorem to approximate the standard error on this estimate, and write up the standard error for the parameter. </span>
-<span id="cb6-228"><a href="#cb6-228" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Draw the relation between the parameter estimate and the standard error for the same estimate in a graph. </span>
-<span id="cb6-229"><a href="#cb6-229" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>At which point is the uncertainty lowest/highest?</span>
-<span id="cb6-230"><a href="#cb6-230" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Hint: You can either solve this analytically by differentiation with respect to $\hat{p}$ or use the graph. </span>
-<span id="cb6-231"><a href="#cb6-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-225"><a href="#cb6-225" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-226"><a href="#cb6-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-227"><a href="#cb6-227" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-228"><a href="#cb6-228" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
+<span id="cb6-229"><a href="#cb6-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-230"><a href="#cb6-230" aria-hidden="true" tabindex="-1"></a>::: {#ex-uncertainty-of-the-binomial-dist}</span>
+<span id="cb6-231"><a href="#cb6-231" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
 <span id="cb6-232"><a href="#cb6-232" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb6-233"><a href="#cb6-233" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
-<span id="cb6-234"><a href="#cb6-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-233"><a href="#cb6-233" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise}</span>
+<span id="cb6-234"><a href="#cb6-234" aria-hidden="true" tabindex="-1"></a><span class="fu">### Uncertainty of the binomial distribution</span></span>
 <span id="cb6-235"><a href="#cb6-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-236"><a href="#cb6-236" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise id=ex-fig-bars}</span>
-<span id="cb6-237"><a href="#cb6-237" aria-hidden="true" tabindex="-1"></a><span class="fu">### Fig bars</span></span>
-<span id="cb6-238"><a href="#cb6-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-239"><a href="#cb6-239" aria-hidden="true" tabindex="-1"></a>A company is producing fig and date bars and they are considering changing their date supplier. The company would like to produce fig and date bars with the same taste, smell and appearance as they have done for many years. It is therefore important that a new date supplier will not result in fig and date bars that differ from the original bars. The company asked the Department of Food Science at University of Copenhagen to perform a sensory test with five possible date suppliers. The Department of Food Science performed a triangle test with a trained sensory panel to detect if the new date suppliers would change the organoleptic (in this case smell, taste and sight) properties of the bars. The same $23$ sensory judges performed the triangle test on smell, taste and appearance.</span>
-<span id="cb6-240"><a href="#cb6-240" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-241"><a href="#cb6-241" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb6-242"><a href="#cb6-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-243"><a href="#cb6-243" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Open the file <span class="in">`dates.xlsx`</span> in Excel or in R. The results of the triangle test were either $1$ for a correct assignment of the deviating sample or $0$ for an incorrect assignment. Get a first impression of</span>
-<span id="cb6-244"><a href="#cb6-244" aria-hidden="true" tabindex="-1"></a>the data by looking at the raw data (the $1's$ and $0's$). </span>
-<span id="cb6-245"><a href="#cb6-245" aria-hidden="true" tabindex="-1"></a>    a. Is there a judge that is good at finding the deviating sample from the smell but bad a finding the deviating sample from the taste? </span>
-<span id="cb6-246"><a href="#cb6-246" aria-hidden="true" tabindex="-1"></a>    a. Is there a judge that is good at finding the deviating sample from smell, taste and appearance?</span>
+<span id="cb6-236"><a href="#cb6-236" aria-hidden="true" tabindex="-1"></a>This exercises examines the relation between the probability parameter $p$ and the uncertainty on this $S_p$ for the binomial distribution.</span>
+<span id="cb6-237"><a href="#cb6-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-238"><a href="#cb6-238" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Let $X$ describe the number of successes out of $n$ trial. Write op the model for $X$</span>
+<span id="cb6-239"><a href="#cb6-239" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Let $x$ be the observed number of successes from such a trial. Estimate the parameter of interest. </span>
+<span id="cb6-240"><a href="#cb6-240" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Use the central limit theorem to approximate the standard error on this estimate, and write up the standard error for the parameter. </span>
+<span id="cb6-241"><a href="#cb6-241" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Draw the relation between the parameter estimate and the standard error for the same estimate in a graph. </span>
+<span id="cb6-242"><a href="#cb6-242" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>At which point is the uncertainty lowest/highest?</span>
+<span id="cb6-243"><a href="#cb6-243" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Hint: You can either solve this analytically by differentiation with respect to $\hat{p}$ or use the graph. </span>
+<span id="cb6-244"><a href="#cb6-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-245"><a href="#cb6-245" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-246"><a href="#cb6-246" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
 <span id="cb6-247"><a href="#cb6-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-248"><a href="#cb6-248" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Import the data into R by making a data matrix like this (i.e. no need to read the excel file):</span>
-<span id="cb6-249"><a href="#cb6-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-248"><a href="#cb6-248" aria-hidden="true" tabindex="-1"></a>::: {#ex-fig-bars}</span>
+<span id="cb6-249"><a href="#cb6-249" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
 <span id="cb6-250"><a href="#cb6-250" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb6-251"><a href="#cb6-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-254"><a href="#cb6-254" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb6-255"><a href="#cb6-255" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb6-256"><a href="#cb6-256" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data into matrix</span></span>
-<span id="cb6-257"><a href="#cb6-257" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">14</span>, <span class="dv">19</span>, <span class="dv">11</span>, <span class="dv">9</span>, <span class="dv">9</span>,</span>
-<span id="cb6-258"><a href="#cb6-258" aria-hidden="true" tabindex="-1"></a>                  <span class="dv">16</span>, <span class="dv">9</span>, <span class="dv">9</span>, <span class="dv">18</span>, <span class="dv">14</span>, <span class="dv">22</span>, <span class="dv">16</span>, <span class="dv">11</span>), </span>
-<span id="cb6-259"><a href="#cb6-259" aria-hidden="true" tabindex="-1"></a>                <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>) </span>
-<span id="cb6-260"><a href="#cb6-260" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-261"><a href="#cb6-261" aria-hidden="true" tabindex="-1"></a><span class="co"># Set column and row names</span></span>
-<span id="cb6-262"><a href="#cb6-262" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(dates) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A - R"</span>, <span class="st">"B - R "</span>, <span class="st">"C - R "</span>, <span class="st">"D - R "</span>, <span class="st">"E - R"</span>)</span>
-<span id="cb6-263"><a href="#cb6-263" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(dates) <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">"Smell"</span>, <span class="st">"Taste"</span>, <span class="st">"Appearance"</span>)</span>
+<span id="cb6-251"><a href="#cb6-251" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise}</span>
+<span id="cb6-252"><a href="#cb6-252" aria-hidden="true" tabindex="-1"></a><span class="fu">### Fig bars</span></span>
+<span id="cb6-253"><a href="#cb6-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-254"><a href="#cb6-254" aria-hidden="true" tabindex="-1"></a>A company is producing fig and date bars and they are considering changing their date supplier. The company would like to produce fig and date bars with the same taste, smell and appearance as they have done for many years. It is therefore important that a new date supplier will not result in fig and date bars that differ from the original bars. The company asked the Department of Food Science at University of Copenhagen to perform a sensory test with five possible date suppliers. The Department of Food Science performed a triangle test with a trained sensory panel to detect if the new date suppliers would change the organoleptic (in this case smell, taste and sight) properties of the bars. The same $23$ sensory judges performed the triangle test on smell, taste and appearance.</span>
+<span id="cb6-255"><a href="#cb6-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-256"><a href="#cb6-256" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb6-257"><a href="#cb6-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-258"><a href="#cb6-258" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Open the file <span class="in">`dates.xlsx`</span> in Excel or in R. The results of the triangle test were either $1$ for a correct assignment of the deviating sample or $0$ for an incorrect assignment. Get a first impression of</span>
+<span id="cb6-259"><a href="#cb6-259" aria-hidden="true" tabindex="-1"></a>the data by looking at the raw data (the $1's$ and $0's$). </span>
+<span id="cb6-260"><a href="#cb6-260" aria-hidden="true" tabindex="-1"></a>    a. Is there a judge that is good at finding the deviating sample from the smell but bad a finding the deviating sample from the taste? </span>
+<span id="cb6-261"><a href="#cb6-261" aria-hidden="true" tabindex="-1"></a>    a. Is there a judge that is good at finding the deviating sample from smell, taste and appearance?</span>
+<span id="cb6-262"><a href="#cb6-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-263"><a href="#cb6-263" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Import the data into R by making a data matrix like this (i.e. no need to read the excel file):</span>
 <span id="cb6-264"><a href="#cb6-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-265"><a href="#cb6-265" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the percent of correct</span></span>
-<span id="cb6-266"><a href="#cb6-266" aria-hidden="true" tabindex="-1"></a>datesPercent <span class="ot">&lt;-</span> dates <span class="sc">/</span> <span class="dv">23</span></span>
-<span id="cb6-267"><a href="#cb6-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-268"><a href="#cb6-268" aria-hidden="true" tabindex="-1"></a><span class="co"># Show summary table</span></span>
-<span id="cb6-269"><a href="#cb6-269" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dates)</span>
-<span id="cb6-270"><a href="#cb6-270" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb6-271"><a href="#cb6-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-272"><a href="#cb6-272" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-273"><a href="#cb6-273" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb6-274"><a href="#cb6-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-275"><a href="#cb6-275" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Make a descriptive plot to visualize the data. </span>
-<span id="cb6-276"><a href="#cb6-276" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>You can for example take inspiration from the plot in exercise 7.23 from <span class="co">[</span><span class="ot">*Introduction to Statistics*</span><span class="co">](https://02402.compute.dtu.dk/enotes/book-IntroStatistics)</span> by Brockhoff. </span>
-<span id="cb6-277"><a href="#cb6-277" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>You can also use ggplot2 by first making dates into a Tidy dataframe: <span class="in">`reshape::melt(dates)`</span> and then use <span class="in">`geom_bar(stat = 'identity')`</span>.</span>
-<span id="cb6-278"><a href="#cb6-278" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>By looking at the plotted data, does it seem likely that some of the new date producers could be used to produce fig and date bars that are similar to the reference/original bar?</span>
-<span id="cb6-279"><a href="#cb6-279" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>State a model for $X$, where $X$ is the number of correct answers in comparing a single product with the reference for a single sense, and state the chance probability. What is the probability of *by random chance* guessing the correct deviating sample?</span>
-<span id="cb6-280"><a href="#cb6-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-281"><a href="#cb6-281" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Now, state a null hypothesis and an alternative hypothesis. </span>
-<span id="cb6-282"><a href="#cb6-282" aria-hidden="true" tabindex="-1"></a>    a. Is the alternative hypothesis directional ($&gt;$ or $&lt;$) or non-directional ($\neq$)? </span>
-<span id="cb6-283"><a href="#cb6-283" aria-hidden="true" tabindex="-1"></a>    a. What does the three alternatives correspond to in terms of probability of correct answer compared to unqualified guessing? </span>
-<span id="cb6-284"><a href="#cb6-284" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Test this hypothesis for a triangle test result of $19$ correct and $4$ incorrect assignments (which is the result of the <span class="in">`D - R`</span> smell triangle test). </span>
-<span id="cb6-285"><a href="#cb6-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-286"><a href="#cb6-286" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-265"><a href="#cb6-265" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-266"><a href="#cb6-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-269"><a href="#cb6-269" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb6-270"><a href="#cb6-270" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb6-271"><a href="#cb6-271" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data into matrix</span></span>
+<span id="cb6-272"><a href="#cb6-272" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">14</span>, <span class="dv">19</span>, <span class="dv">11</span>, <span class="dv">9</span>, <span class="dv">9</span>,</span>
+<span id="cb6-273"><a href="#cb6-273" aria-hidden="true" tabindex="-1"></a>                  <span class="dv">16</span>, <span class="dv">9</span>, <span class="dv">9</span>, <span class="dv">18</span>, <span class="dv">14</span>, <span class="dv">22</span>, <span class="dv">16</span>, <span class="dv">11</span>), </span>
+<span id="cb6-274"><a href="#cb6-274" aria-hidden="true" tabindex="-1"></a>                <span class="at">ncol =</span> <span class="dv">5</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb6-275"><a href="#cb6-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-276"><a href="#cb6-276" aria-hidden="true" tabindex="-1"></a><span class="co"># Set column and row names</span></span>
+<span id="cb6-277"><a href="#cb6-277" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(dates) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"A - R"</span>, <span class="st">"B - R "</span>, <span class="st">"C - R "</span>, <span class="st">"D - R "</span>, <span class="st">"E - R"</span>)</span>
+<span id="cb6-278"><a href="#cb6-278" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(dates) <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">"Smell"</span>, <span class="st">"Taste"</span>, <span class="st">"Appearance"</span>)</span>
+<span id="cb6-279"><a href="#cb6-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-280"><a href="#cb6-280" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the percent of correct</span></span>
+<span id="cb6-281"><a href="#cb6-281" aria-hidden="true" tabindex="-1"></a>datesPercent <span class="ot">&lt;-</span> dates <span class="sc">/</span> <span class="dv">23</span></span>
+<span id="cb6-282"><a href="#cb6-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-283"><a href="#cb6-283" aria-hidden="true" tabindex="-1"></a><span class="co"># Show summary table</span></span>
+<span id="cb6-284"><a href="#cb6-284" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dates)</span>
+<span id="cb6-285"><a href="#cb6-285" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-286"><a href="#cb6-286" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-287"><a href="#cb6-287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-288"><a href="#cb6-288" aria-hidden="true" tabindex="-1"></a>**Note:** A number of tests could be applied to test the hypothesis but since the sample size is fairly small then an exact binomial test is a good choice. This is found in the R function<span class="in">` binom.test()`</span> (remember to specify the alternative hypothesis).</span>
+<span id="cb6-288"><a href="#cb6-288" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
 <span id="cb6-289"><a href="#cb6-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-290"><a href="#cb6-290" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb6-291"><a href="#cb6-291" aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span>On the basis of this exercise, which date suppliers would you recommend to the company?</span>
-<span id="cb6-292"><a href="#cb6-292" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb6-293"><a href="#cb6-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-294"><a href="#cb6-294" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb6-295"><a href="#cb6-295" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
-<span id="cb6-296"><a href="#cb6-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-297"><a href="#cb6-297" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-298"><a href="#cb6-298" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise id=ex-dist-of-extreme-values}</span>
-<span id="cb6-299"><a href="#cb6-299" aria-hidden="true" tabindex="-1"></a><span class="fu">### Distribution of extreme values in the normal distribution</span></span>
+<span id="cb6-290"><a href="#cb6-290" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Make a descriptive plot to visualize the data. </span>
+<span id="cb6-291"><a href="#cb6-291" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>You can for example take inspiration from the plot in exercise 7.23 from <span class="co">[</span><span class="ot">*Introduction to Statistics*</span><span class="co">](https://02402.compute.dtu.dk/enotes/book-IntroStatistics)</span> by Brockhoff. </span>
+<span id="cb6-292"><a href="#cb6-292" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>You can also use ggplot2 by first making dates into a Tidy dataframe: <span class="in">`reshape::melt(dates)`</span> and then use <span class="in">`geom_bar(stat = 'identity')`</span>.</span>
+<span id="cb6-293"><a href="#cb6-293" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>By looking at the plotted data, does it seem likely that some of the new date producers could be used to produce fig and date bars that are similar to the reference/original bar?</span>
+<span id="cb6-294"><a href="#cb6-294" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>State a model for $X$, where $X$ is the number of correct answers in comparing a single product with the reference for a single sense, and state the chance probability. What is the probability of *by random chance* guessing the correct deviating sample?</span>
+<span id="cb6-295"><a href="#cb6-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-296"><a href="#cb6-296" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Now, state a null hypothesis and an alternative hypothesis. </span>
+<span id="cb6-297"><a href="#cb6-297" aria-hidden="true" tabindex="-1"></a>    a. Is the alternative hypothesis directional ($&gt;$ or $&lt;$) or non-directional ($\neq$)? </span>
+<span id="cb6-298"><a href="#cb6-298" aria-hidden="true" tabindex="-1"></a>    a. What does the three alternatives correspond to in terms of probability of correct answer compared to unqualified guessing? </span>
+<span id="cb6-299"><a href="#cb6-299" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Test this hypothesis for a triangle test result of $19$ correct and $4$ incorrect assignments (which is the result of the <span class="in">`D - R`</span> smell triangle test). </span>
 <span id="cb6-300"><a href="#cb6-300" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-301"><a href="#cb6-301" aria-hidden="true" tabindex="-1"></a>This exercise combines the (standard) normal distribution with the binomial distribution in order to calculate the distribution of the maximum (or minimum) value from a sample of size $n$. </span>
+<span id="cb6-301"><a href="#cb6-301" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb6-302"><a href="#cb6-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-303"><a href="#cb6-303" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
-<span id="cb6-304"><a href="#cb6-304" aria-hidden="true" tabindex="-1"></a>This is a hard exercise, and not a part of the curriculum. However, the ideas used for solving the task is central in a number of applications. </span>
-<span id="cb6-305"><a href="#cb6-305" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb6-306"><a href="#cb6-306" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-307"><a href="#cb6-307" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb6-308"><a href="#cb6-308" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Consider a single random draw $X$ from the standard normal distribution. Calculate the probability of getting $x$ or less. That is $P(X\leq x)$. If it helps, then set $x$ to some specific number, say $1.2$. </span>
-<span id="cb6-309"><a href="#cb6-309" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Now consider a draw of size $n$ from the same distribution ($X_1,..,X_n$). Write up the model for the number of data points less than $x$ (from Q1). </span>
-<span id="cb6-310"><a href="#cb6-310" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Set $n$ to a specific number, and calculate the probability of non of the data points being larger than $x$. </span>
-<span id="cb6-311"><a href="#cb6-311" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Generalize the above and write up the distribution for the maximum value in a finite sample from the standard normal distribution. </span>
-<span id="cb6-312"><a href="#cb6-312" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Simulate some data, and check that your analytical solution match. </span>
-<span id="cb6-313"><a href="#cb6-313" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb6-314"><a href="#cb6-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-315"><a href="#cb6-315" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb6-316"><a href="#cb6-316" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
+<span id="cb6-303"><a href="#cb6-303" aria-hidden="true" tabindex="-1"></a>**Note:** A number of tests could be applied to test the hypothesis but since the sample size is fairly small then an exact binomial test is a good choice. This is found in the R function<span class="in">` binom.test()`</span> (remember to specify the alternative hypothesis).</span>
+<span id="cb6-304"><a href="#cb6-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-305"><a href="#cb6-305" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb6-306"><a href="#cb6-306" aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span>On the basis of this exercise, which date suppliers would you recommend to the company?</span>
+<span id="cb6-307"><a href="#cb6-307" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-308"><a href="#cb6-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-309"><a href="#cb6-309" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-310"><a href="#cb6-310" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
+<span id="cb6-311"><a href="#cb6-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-312"><a href="#cb6-312" aria-hidden="true" tabindex="-1"></a>::: {#ex-dist-of-extreme-values}</span>
+<span id="cb6-313"><a href="#cb6-313" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
+<span id="cb6-314"><a href="#cb6-314" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-315"><a href="#cb6-315" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise}</span>
+<span id="cb6-316"><a href="#cb6-316" aria-hidden="true" tabindex="-1"></a><span class="fu">### Distribution of extreme values in the normal distribution</span></span>
+<span id="cb6-317"><a href="#cb6-317" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-318"><a href="#cb6-318" aria-hidden="true" tabindex="-1"></a>This exercise combines the (standard) normal distribution with the binomial distribution in order to calculate the distribution of the maximum (or minimum) value from a sample of size $n$. </span>
+<span id="cb6-319"><a href="#cb6-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-320"><a href="#cb6-320" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
+<span id="cb6-321"><a href="#cb6-321" aria-hidden="true" tabindex="-1"></a>This is a hard exercise, and not a part of the curriculum. However, the ideas used for solving the task is central in a number of applications. </span>
+<span id="cb6-322"><a href="#cb6-322" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-323"><a href="#cb6-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-324"><a href="#cb6-324" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb6-325"><a href="#cb6-325" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Consider a single random draw $X$ from the standard normal distribution. Calculate the probability of getting $x$ or less. That is $P(X\leq x)$. If it helps, then set $x$ to some specific number, say $1.2$. </span>
+<span id="cb6-326"><a href="#cb6-326" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Now consider a draw of size $n$ from the same distribution ($X_1,..,X_n$). Write up the model for the number of data points less than $x$ (from Q1). </span>
+<span id="cb6-327"><a href="#cb6-327" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Set $n$ to a specific number, and calculate the probability of non of the data points being larger than $x$. </span>
+<span id="cb6-328"><a href="#cb6-328" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Generalize the above and write up the distribution for the maximum value in a finite sample from the standard normal distribution. </span>
+<span id="cb6-329"><a href="#cb6-329" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Simulate some data, and check that your analytical solution match. </span>
+<span id="cb6-330"><a href="#cb6-330" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-331"><a href="#cb6-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-332"><a href="#cb6-332" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb6-333"><a href="#cb6-333" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

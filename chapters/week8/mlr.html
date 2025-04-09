@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.41">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,10 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-48ffa3e5b9d089919c6712c39e5b00f2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-030c138b47736e5750b8595abfdab90a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-e99addfda45989f4d1ddd86d8d3f206e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -402,12 +402,6 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Wrangling data in R</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/appendix/ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Plotting with ggplot2</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
     </ul>
@@ -422,10 +416,14 @@ window.Quarto = {
   <ul>
   <li><a href="#reading-material" id="toc-reading-material" class="nav-link active" data-scroll-target="#reading-material"><span class="header-section-number">19.1</span> Reading material</a></li>
   <li><a href="#intro-to-multiple-linear-regression" id="toc-intro-to-multiple-linear-regression" class="nav-link" data-scroll-target="#intro-to-multiple-linear-regression"><span class="header-section-number">19.2</span> Intro to multiple linear regression</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#marginal-and-crude-estimates" id="toc-marginal-and-crude-estimates" class="nav-link" data-scroll-target="#marginal-and-crude-estimates"><span class="header-section-number">19.2.1</span> Marginal and Crude estimates</a></li>
   </ul></li>
-  <li><a href="#videos" id="toc-videos" class="nav-link" data-scroll-target="#videos"><span class="header-section-number">19.3</span> Videos</a></li>
+  <li><a href="#videos" id="toc-videos" class="nav-link" data-scroll-target="#videos"><span class="header-section-number">19.3</span> Videos</a>
+  <ul>
+  <li><a href="#sec-mlr-lee-waller" id="toc-sec-mlr-lee-waller" class="nav-link" data-scroll-target="#sec-mlr-lee-waller">Multiple Linear Regression - An Introduction - <em>Lee Rusty Waller</em></a></li>
+  <li><a href="#sec-mlr-statquest" id="toc-sec-mlr-statquest" class="nav-link" data-scroll-target="#sec-mlr-statquest">Multiple Regression, Clearly Explained - <em>StatQuest</em></a></li>
+  </ul></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">19.4</span> Exercises</a></li>
   </ul>
 </nav>
@@ -506,6 +504,16 @@ for \ i=1,...,n
 <li>A multiple regression model: <span class="math inline">\(Y_i = \alpha + \beta_1 X1_i +\beta_2 X2_i + e_i\)</span></li>
 </ul>
 <p>Naturally these two approaches yield different results due to the absence/presence of the variable <span class="math inline">\(X2\)</span>. From the simple regression model <span class="math inline">\(\beta\)</span> shows the crude effect of <span class="math inline">\(X1\)</span> on <span class="math inline">\(Y\)</span>, whereas in the multiple regression model <span class="math inline">\(\beta_1\)</span> shows the marginal effect of <span class="math inline">\(X1\)</span> on <span class="math inline">\(Y\)</span>. Sometimes comparison of these models are referred to as <em>adjusting</em> for <span class="math inline">\(X2\)</span> or <em>controlling</em> for <span class="math inline">\(X2\)</span>. These models often elucidate the direct and indirect relation between predictors and responses as is seen in exercise 1.</p>
+<div id="exa-nir-of-marcipan-mlr" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-exa figure">
+<div aria-describedby="exa-nir-of-marcipan-mlr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<!-- Cross-ref anchor -->
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-exa quarto-uncaptioned" id="exa-nir-of-marcipan-mlr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Example&nbsp;19.1
+</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-example no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -518,9 +526,9 @@ Example 19.1 - Near-infrared spectroscopy of marzipan - regression
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div id="exa-nir-of-marcipan-mlr" class="callout-example">
+<div class="callout-example">
 <p>In the following example we want to investigate if we can improve a prediction model by using scores from more than one principal component to predict the sugar content in marzipan bread (marcipanbrød).</p>
-<p>The PCA model is exactly the same as in <span class="citation" data-cites="exa-nir-marzipan-least-squares">(<a href="#ref-exa-nir-marzipan-least-squares" role="doc-biblioref"><strong>exa-nir-marzipan-least-squares?</strong></a>)</span>.</p>
+<p>The PCA model is exactly the same as in <a href="../week7/least_squares.html#exa-nir-marzipan-least-squares" class="quarto-xref">Example&nbsp;<span>18.1</span></a>.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -557,7 +565,7 @@ Figure&nbsp;19.1: Score plot of PC1 vs PC2 on a PCA model computed on NIR spectr
 </div>
 <p>We now make two models:</p>
 <ul>
-<li>A linear regression model on the sugar content versus the scores from PC1 (see @<span class="citation" data-cites="exa-nir-marzipan-least-squares">(<a href="#ref-exa-nir-marzipan-least-squares" role="doc-biblioref"><strong>exa-nir-marzipan-least-squares?</strong></a>)</span>).</li>
+<li>A linear regression model on the sugar content versus the scores from PC1 (see @<a href="../week7/least_squares.html#exa-nir-marzipan-least-squares" class="quarto-xref">Example&nbsp;<span>18.1</span></a>).</li>
 <li>A linear regression model on the sugar content versus the scores from PC1 and PC2.</li>
 </ul>
 <div class="cell">
@@ -610,7 +618,7 @@ Multiple R-squared:  0.8827,    Adjusted R-squared:  0.8747
 F-statistic: 109.2 on 2 and 29 DF,  p-value: 3.178e-14</code></pre>
 </div>
 </div>
-<p>From the summary of <code>linreg2</code> we see that the PC2 estimate is slightly significantly different from <span class="math inline">\(0\)</span> (<span class="math inline">\(p-value = 0.01\)</span>) and does contribute to improving the model. If we think back on example <span class="citation" data-cites="exa-nirs-marzipan-pca">(<a href="#ref-exa-nirs-marzipan-pca" role="doc-biblioref"><strong>exa-nirs-marzipan-pca?</strong></a>)</span>, we learned that the second principal component had something to do with the color of the marzipan bread. In that regard it does not make a lot of sense that adding a color term (captured by the scores on PC2) into your model improve the prediction of the sugar content. However, when comparing the <span class="math inline">\(R^2\)</span> values for the model including only one component (<span class="math inline">\(R^2 = 0.85\)</span>) and a model with two components (<span class="math inline">\(R^2 = 0.88\)</span>) it is seen that the improvement does not practically make a difference.</p>
+<p>From the summary of <code>linreg2</code> we see that the PC2 estimate is slightly significantly different from <span class="math inline">\(0\)</span> (<span class="math inline">\(p-value = 0.01\)</span>) and does contribute to improving the model. If we think back on example <a href="../week1/pca.html#exa-nirs-marzipan-pca" class="quarto-xref">Example&nbsp;<span>5.2</span></a>, we learned that the second principal component had something to do with the color of the marzipan bread. In that regard it does not make a lot of sense that adding a color term (captured by the scores on PC2) into your model improve the prediction of the sugar content. However, when comparing the <span class="math inline">\(R^2\)</span> values for the model including only one component (<span class="math inline">\(R^2 = 0.85\)</span>) and a model with two components (<span class="math inline">\(R^2 = 0.88\)</span>) it is seen that the improvement does not practically make a difference.</p>
 <p>One should always be careful not to build models on meaningless data. PCA is a powerful tool for exploring data, but you need to choose meaningful principal components for your analysis. This is also relevant when selecting variables for the analysis.</p>
 <p>Maybe the wavelengths covering the visible part of the spectrum should have been left out of the analysis from the beginning as they do not contain information about the sugar content?</p>
 </div>
@@ -633,6 +641,16 @@ F-statistic: 109.2 on 2 and 29 DF,  p-value: 3.178e-14</code></pre>
 </section>
 <section id="exercises" class="level2" data-number="19.4">
 <h2 data-number="19.4" class="anchored" data-anchor-id="exercises"><span class="header-section-number">19.4</span> Exercises</h2>
+<div id="ex-diet-mlr" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-ex figure">
+<div aria-describedby="ex-diet-mlr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<!-- Cross-ref anchor -->
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-ex quarto-uncaptioned" id="ex-diet-mlr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Exercise&nbsp;19.1
+</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-exercise no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -645,7 +663,7 @@ Exercise 19.1 - Diet and fat metabolism - regression with several variables
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div id="ex-diet-mlr" class="callout-exercise">
+<div class="callout-exercise">
 <p>This exercise examines the relation between a biomarker, dietary intervention and weight in order to disentangle the effects causing elevated levels of cholesterol.</p>
 <p>The data for this exercise is the same as for Exercise “Diet and Fat”.</p>
 <p>In this exercise we are going to focus on predicting cholesterol from both weight and dietary intervention.</p>
@@ -918,124 +936,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     });
   }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
       let selectedAnnoteEl;
       const selectorForAnnotation = ( cell, annotation) => {
         let cellAttr = 'data-code-cell="' + cell + '"';
@@ -1261,104 +1161,109 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>Naturally these two approaches yield different results due to the absence/presence of the variable $X2$. From the simple regression model $\beta$ shows the crude effect of $X1$ on $Y$, whereas in the multiple regression model $\beta_1$ shows the marginal effect of $X1$ on $Y$. Sometimes comparison of these models are referred to as *adjusting* for $X2$ or *controlling* for $X2$. These models often elucidate the direct and indirect relation between predictors and responses as is seen in exercise 1.</span>
 <span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>::: {.callout-example #exa-nir-of-marcipan-mlr}</span>
-<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a><span class="fu">### Near-infrared spectroscopy of marzipan - regression</span></span>
-<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a>In the following example we want to investigate if we can improve a prediction model by using scores from more than one principal component to predict the sugar content in marzipan bread (marcipanbrød).</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>::: {#exa-nir-of-marcipan-mlr}</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>::: {.callout-example}</span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a><span class="fu">### Near-infrared spectroscopy of marzipan - regression</span></span>
 <span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>The PCA model is exactly the same as in @exa-nir-marzipan-least-squares. </span>
+<span id="cb7-70"><a href="#cb7-70" aria-hidden="true" tabindex="-1"></a>In the following example we want to investigate if we can improve a prediction model by using scores from more than one principal component to predict the sugar content in marzipan bread (marcipanbrød).</span>
 <span id="cb7-71"><a href="#cb7-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-74"><a href="#cb7-74" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-75"><a href="#cb7-75" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-nir-pc1-pc2</span></span>
-<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Score plot of PC1 vs PC2 on a PCA model computed on NIR spectra of marzipan samples</span></span>
-<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(<span class="fu">t</span>(X[, <span class="sc">-</span><span class="dv">1</span>]), <span class="at">center =</span> T, <span class="at">scale =</span> F)</span>
-<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a>var_exp <span class="ot">&lt;-</span> <span class="fu">summary</span>(pca)<span class="sc">$</span>importance[<span class="dv">2</span>, ] <span class="sc">*</span> <span class="dv">100</span></span>
-<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>  pca<span class="sc">$</span>x,</span>
-<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>  <span class="at">sugar =</span> Y<span class="sc">$</span>sugar</span>
-<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(PC1, PC2)) <span class="sc">+</span> </span>
-<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>, <span class="fu">aes</span>(<span class="at">color =</span> sugar)) <span class="sc">+</span></span>
-<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradient</span>(<span class="at">low =</span> <span class="st">"green"</span>, <span class="at">high =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">paste</span>(<span class="st">"PC2 ("</span>, var_exp[<span class="dv">2</span>], <span class="st">"%)"</span>, <span class="at">sep =</span> <span class="st">""</span>),</span>
-<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">paste</span>(<span class="st">"PC1 ("</span>, var_exp[<span class="dv">1</span>], <span class="st">"%)"</span>, <span class="at">sep =</span> <span class="st">""</span>),</span>
-<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Sugar content (%)"</span></span>
-<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
-<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-72"><a href="#cb7-72" aria-hidden="true" tabindex="-1"></a>The PCA model is exactly the same as in @exa-nir-marzipan-least-squares. </span>
+<span id="cb7-73"><a href="#cb7-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-76"><a href="#cb7-76" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-77"><a href="#cb7-77" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-nir-pc1-pc2</span></span>
+<span id="cb7-78"><a href="#cb7-78" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Score plot of PC1 vs PC2 on a PCA model computed on NIR spectra of marzipan samples</span></span>
+<span id="cb7-79"><a href="#cb7-79" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb7-80"><a href="#cb7-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-81"><a href="#cb7-81" aria-hidden="true" tabindex="-1"></a>pca <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(<span class="fu">t</span>(X[, <span class="sc">-</span><span class="dv">1</span>]), <span class="at">center =</span> T, <span class="at">scale =</span> F)</span>
+<span id="cb7-82"><a href="#cb7-82" aria-hidden="true" tabindex="-1"></a>var_exp <span class="ot">&lt;-</span> <span class="fu">summary</span>(pca)<span class="sc">$</span>importance[<span class="dv">2</span>, ] <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb7-83"><a href="#cb7-83" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-84"><a href="#cb7-84" aria-hidden="true" tabindex="-1"></a>  pca<span class="sc">$</span>x,</span>
+<span id="cb7-85"><a href="#cb7-85" aria-hidden="true" tabindex="-1"></a>  <span class="at">sugar =</span> Y<span class="sc">$</span>sugar</span>
+<span id="cb7-86"><a href="#cb7-86" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-87"><a href="#cb7-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-88"><a href="#cb7-88" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(PC1, PC2)) <span class="sc">+</span> </span>
+<span id="cb7-89"><a href="#cb7-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>, <span class="fu">aes</span>(<span class="at">color =</span> sugar)) <span class="sc">+</span></span>
+<span id="cb7-90"><a href="#cb7-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_gradient</span>(<span class="at">low =</span> <span class="st">"green"</span>, <span class="at">high =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb7-91"><a href="#cb7-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-92"><a href="#cb7-92" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">paste</span>(<span class="st">"PC2 ("</span>, var_exp[<span class="dv">2</span>], <span class="st">"%)"</span>, <span class="at">sep =</span> <span class="st">""</span>),</span>
+<span id="cb7-93"><a href="#cb7-93" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">paste</span>(<span class="st">"PC1 ("</span>, var_exp[<span class="dv">1</span>], <span class="st">"%)"</span>, <span class="at">sep =</span> <span class="st">""</span>),</span>
+<span id="cb7-94"><a href="#cb7-94" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Sugar content (%)"</span></span>
+<span id="cb7-95"><a href="#cb7-95" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-96"><a href="#cb7-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb7-97"><a href="#cb7-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
 <span id="cb7-98"><a href="#cb7-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a>We now make two models:</span>
+<span id="cb7-99"><a href="#cb7-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb7-100"><a href="#cb7-100" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-101"><a href="#cb7-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>A linear regression model on the sugar content versus the scores from PC1 (see @@exa-nir-marzipan-least-squares).</span>
-<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>A linear regression model on the sugar content versus the scores from PC1 and PC2.</span>
-<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-107"><a href="#cb7-107" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-108"><a href="#cb7-108" aria-hidden="true" tabindex="-1"></a>linreg1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(sugar <span class="sc">~</span> PC1, df)</span>
-<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a>linreg2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(sugar <span class="sc">~</span> PC1 <span class="sc">+</span> PC2, df)</span>
-<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a>Let us look at the summary of the two models:</span>
+<span id="cb7-102"><a href="#cb7-102" aria-hidden="true" tabindex="-1"></a>We now make two models:</span>
+<span id="cb7-103"><a href="#cb7-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-104"><a href="#cb7-104" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>A linear regression model on the sugar content versus the scores from PC1 (see @@exa-nir-marzipan-least-squares).</span>
+<span id="cb7-105"><a href="#cb7-105" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>A linear regression model on the sugar content versus the scores from PC1 and PC2.</span>
+<span id="cb7-106"><a href="#cb7-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-109"><a href="#cb7-109" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-110"><a href="#cb7-110" aria-hidden="true" tabindex="-1"></a>linreg1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(sugar <span class="sc">~</span> PC1, df)</span>
+<span id="cb7-111"><a href="#cb7-111" aria-hidden="true" tabindex="-1"></a>linreg2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(sugar <span class="sc">~</span> PC1 <span class="sc">+</span> PC2, df)</span>
+<span id="cb7-112"><a href="#cb7-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb7-113"><a href="#cb7-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-116"><a href="#cb7-116" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb7-117"><a href="#cb7-117" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(linreg1)</span>
-<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(linreg2)</span>
-<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a>From the summary of <span class="in">`linreg2`</span> we see that the PC2 estimate is slightly significantly different from $0$ ($p-value = 0.01$) and does contribute to improving the model. If we think back on example @exa-nirs-marzipan-pca, we learned that the second principal component had something to do with the color of the marzipan bread. In that regard it does not make a lot of sense that adding a color term (captured by the scores on PC2) into your model improve the prediction of the sugar content. However, when comparing the $R^2$ values for the model including only one component ($R^2 = 0.85$) and a model with two components ($R^2 = 0.88$) it is seen that the improvement does not practically make a difference.</span>
+<span id="cb7-114"><a href="#cb7-114" aria-hidden="true" tabindex="-1"></a>Let us look at the summary of the two models:</span>
+<span id="cb7-115"><a href="#cb7-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-118"><a href="#cb7-118" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb7-119"><a href="#cb7-119" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(linreg1)</span>
+<span id="cb7-120"><a href="#cb7-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-121"><a href="#cb7-121" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(linreg2)</span>
+<span id="cb7-122"><a href="#cb7-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb7-123"><a href="#cb7-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a>One should always be careful not to build models on meaningless data. PCA is a powerful tool for exploring data, but you need to choose meaningful principal components for your analysis. This is also relevant when selecting variables for the analysis.</span>
+<span id="cb7-124"><a href="#cb7-124" aria-hidden="true" tabindex="-1"></a>From the summary of <span class="in">`linreg2`</span> we see that the PC2 estimate is slightly significantly different from $0$ ($p-value = 0.01$) and does contribute to improving the model. If we think back on example @exa-nirs-marzipan-pca, we learned that the second principal component had something to do with the color of the marzipan bread. In that regard it does not make a lot of sense that adding a color term (captured by the scores on PC2) into your model improve the prediction of the sugar content. However, when comparing the $R^2$ values for the model including only one component ($R^2 = 0.85$) and a model with two components ($R^2 = 0.88$) it is seen that the improvement does not practically make a difference.</span>
 <span id="cb7-125"><a href="#cb7-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a>Maybe the wavelengths covering the visible part of the spectrum should have been left out of the analysis from the beginning as they do not contain information about the sugar content?</span>
+<span id="cb7-126"><a href="#cb7-126" aria-hidden="true" tabindex="-1"></a>One should always be careful not to build models on meaningless data. PCA is a powerful tool for exploring data, but you need to choose meaningful principal components for your analysis. This is also relevant when selecting variables for the analysis.</span>
 <span id="cb7-127"><a href="#cb7-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End example callout --&gt;</span></span>
-<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a><span class="fu">## Videos</span></span>
-<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Multiple Linear Regression - An Introduction - *Lee Rusty Waller* {#sec-mlr-lee-waller}</span></span>
-<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=G4ZlC9zKfII &gt;}}</span>
-<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-135"><a href="#cb7-135" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Multiple Regression, Clearly Explained - *StatQuest* {#sec-mlr-statquest}</span></span>
-<span id="cb7-136"><a href="#cb7-136" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=EkAQAi3a4js &gt;}}</span>
-<span id="cb7-137"><a href="#cb7-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-138"><a href="#cb7-138" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercises </span></span>
+<span id="cb7-128"><a href="#cb7-128" aria-hidden="true" tabindex="-1"></a>Maybe the wavelengths covering the visible part of the spectrum should have been left out of the analysis from the beginning as they do not contain information about the sugar content?</span>
+<span id="cb7-129"><a href="#cb7-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-130"><a href="#cb7-130" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-131"><a href="#cb7-131" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End example callout --&gt;</span></span>
+<span id="cb7-132"><a href="#cb7-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-133"><a href="#cb7-133" aria-hidden="true" tabindex="-1"></a><span class="fu">## Videos</span></span>
+<span id="cb7-134"><a href="#cb7-134" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Multiple Linear Regression - An Introduction - *Lee Rusty Waller* {#sec-mlr-lee-waller}</span></span>
+<span id="cb7-135"><a href="#cb7-135" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=G4ZlC9zKfII &gt;}}</span>
+<span id="cb7-136"><a href="#cb7-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-137"><a href="#cb7-137" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Multiple Regression, Clearly Explained - *StatQuest* {#sec-mlr-statquest}</span></span>
+<span id="cb7-138"><a href="#cb7-138" aria-hidden="true" tabindex="-1"></a>{{&lt; video https://www.youtube.com/watch?v=EkAQAi3a4js &gt;}}</span>
 <span id="cb7-139"><a href="#cb7-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-140"><a href="#cb7-140" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise id=ex-diet-mlr}</span>
-<span id="cb7-141"><a href="#cb7-141" aria-hidden="true" tabindex="-1"></a><span class="fu">### Diet and fat metabolism - regression with several variables</span></span>
-<span id="cb7-142"><a href="#cb7-142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-143"><a href="#cb7-143" aria-hidden="true" tabindex="-1"></a>This exercise examines the relation between a biomarker, dietary intervention and weight in order to disentangle the effects causing elevated levels of cholesterol.</span>
-<span id="cb7-144"><a href="#cb7-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-145"><a href="#cb7-145" aria-hidden="true" tabindex="-1"></a>The data for this exercise is the same as for Exercise "Diet and Fat".</span>
-<span id="cb7-146"><a href="#cb7-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-147"><a href="#cb7-147" aria-hidden="true" tabindex="-1"></a>In this exercise we are going to focus on predicting cholesterol from both weight and dietary intervention.</span>
-<span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Plot, formulate and build univariate models predicting cholesterol level from:</span>
-<span id="cb7-151"><a href="#cb7-151" aria-hidden="true" tabindex="-1"></a>  a. Dietary intervention (<span class="in">`$Fat_Protein`</span>) - A oneway ANOVA model.</span>
-<span id="cb7-152"><a href="#cb7-152" aria-hidden="true" tabindex="-1"></a>  b. Body weight at $14$ weeks (<span class="in">`$bw_w14`</span>) - A regression model.</span>
-<span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>State and test relevant hypothesis for these two models.</span>
-<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Comment on the relations between the conclusions of the two models.</span>
-<span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Make a scatter plot of cholesterol versus weight colored or shaped according to dietary intervention.</span>
-<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Make a regression model for cholesterol with two predictors: i) Weight at week $14$ and ii) Dietary intervention, and test the factors.</span>
-<span id="cb7-157"><a href="#cb7-157" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-159"><a href="#cb7-159" aria-hidden="true" tabindex="-1"></a>Note: In contrast to ANOVA with one dependent variable, the order of the dependent variables makes a difference in the <span class="in">`anova()`</span>. In order to surpass this, use the <span class="in">`drop1(aov(),test='F')`</span> function to get results independent of order.</span>
-<span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-161"><a href="#cb7-161" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>What happens to the significance of the individual factors when you change the analysis as described above?</span>
-<span id="cb7-163"><a href="#cb7-163" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Do you think that the dietary intervention *directly* affects the cholesterol level, or that it is mediated through body weight?</span>
-<span id="cb7-164"><a href="#cb7-164" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-140"><a href="#cb7-140" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercises </span></span>
+<span id="cb7-141"><a href="#cb7-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-142"><a href="#cb7-142" aria-hidden="true" tabindex="-1"></a>::: {#ex-diet-mlr}</span>
+<span id="cb7-143"><a href="#cb7-143" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
+<span id="cb7-144"><a href="#cb7-144" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-145"><a href="#cb7-145" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise}</span>
+<span id="cb7-146"><a href="#cb7-146" aria-hidden="true" tabindex="-1"></a><span class="fu">### Diet and fat metabolism - regression with several variables</span></span>
+<span id="cb7-147"><a href="#cb7-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a>This exercise examines the relation between a biomarker, dietary intervention and weight in order to disentangle the effects causing elevated levels of cholesterol.</span>
+<span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a>The data for this exercise is the same as for Exercise "Diet and Fat".</span>
+<span id="cb7-151"><a href="#cb7-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-152"><a href="#cb7-152" aria-hidden="true" tabindex="-1"></a>In this exercise we are going to focus on predicting cholesterol from both weight and dietary intervention.</span>
+<span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Plot, formulate and build univariate models predicting cholesterol level from:</span>
+<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a>  a. Dietary intervention (<span class="in">`$Fat_Protein`</span>) - A oneway ANOVA model.</span>
+<span id="cb7-157"><a href="#cb7-157" aria-hidden="true" tabindex="-1"></a>  b. Body weight at $14$ weeks (<span class="in">`$bw_w14`</span>) - A regression model.</span>
+<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>State and test relevant hypothesis for these two models.</span>
+<span id="cb7-159"><a href="#cb7-159" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Comment on the relations between the conclusions of the two models.</span>
+<span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Make a scatter plot of cholesterol versus weight colored or shaped according to dietary intervention.</span>
+<span id="cb7-161"><a href="#cb7-161" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Make a regression model for cholesterol with two predictors: i) Weight at week $14$ and ii) Dietary intervention, and test the factors.</span>
+<span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-163"><a href="#cb7-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-164"><a href="#cb7-164" aria-hidden="true" tabindex="-1"></a>Note: In contrast to ANOVA with one dependent variable, the order of the dependent variables makes a difference in the <span class="in">`anova()`</span>. In order to surpass this, use the <span class="in">`drop1(aov(),test='F')`</span> function to get results independent of order.</span>
 <span id="cb7-165"><a href="#cb7-165" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-166"><a href="#cb7-166" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb7-167"><a href="#cb7-167" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
+<span id="cb7-166"><a href="#cb7-166" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb7-167"><a href="#cb7-167" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>What happens to the significance of the individual factors when you change the analysis as described above?</span>
+<span id="cb7-168"><a href="#cb7-168" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Do you think that the dietary intervention *directly* affects the cholesterol level, or that it is mediated through body weight?</span>
+<span id="cb7-169"><a href="#cb7-169" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-170"><a href="#cb7-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-171"><a href="#cb7-171" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb7-172"><a href="#cb7-172" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

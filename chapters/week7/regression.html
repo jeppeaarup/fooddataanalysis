@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.41">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,10 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-48ffa3e5b9d089919c6712c39e5b00f2.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-030c138b47736e5750b8595abfdab90a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-e99addfda45989f4d1ddd86d8d3f206e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -402,12 +402,6 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Wrangling data in R</span></span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/appendix/ggplot2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Plotting with ggplot2</span></span></a>
-  </div>
-</li>
       </ul>
   </li>
     </ul>
@@ -421,8 +415,8 @@ window.Quarto = {
    
   <ul>
   <li><a href="#reading-material" id="toc-reading-material" class="nav-link active" data-scroll-target="#reading-material"><span class="header-section-number">17.1</span> Reading material</a></li>
-  <li><a href="#sec-intro-to-regression" id="toc-sec-intro-to-regression" class="nav-link" data-scroll-target="#sec-intro-to-regression"><span class="header-section-number">17.2</span> Intro to regression</a>
-  <ul class="collapse">
+  <li><a href="#sec-intro-to-regression" id="toc-sec-intro-to-regression" class="nav-link" data-scroll-target="#sec-intro-to-regression"><span class="header-section-number">17.2</span> Regression - in short</a>
+  <ul>
   <li><a href="#the-model" id="toc-the-model" class="nav-link" data-scroll-target="#the-model"><span class="header-section-number">17.2.1</span> The model</a></li>
   <li><a href="#hypotheses" id="toc-hypotheses" class="nav-link" data-scroll-target="#hypotheses"><span class="header-section-number">17.2.2</span> Hypotheses</a></li>
   <li><a href="#estimation" id="toc-estimation" class="nav-link" data-scroll-target="#estimation"><span class="header-section-number">17.2.3</span> Estimation</a></li>
@@ -431,7 +425,11 @@ window.Quarto = {
   <li><a href="#model-assumptions" id="toc-model-assumptions" class="nav-link" data-scroll-target="#model-assumptions"><span class="header-section-number">17.2.6</span> Model assumptions</a></li>
   <li><a href="#transformations" id="toc-transformations" class="nav-link" data-scroll-target="#transformations"><span class="header-section-number">17.2.7</span> Transformations</a></li>
   </ul></li>
-  <li><a href="#videos" id="toc-videos" class="nav-link" data-scroll-target="#videos"><span class="header-section-number">17.3</span> Videos</a></li>
+  <li><a href="#videos" id="toc-videos" class="nav-link" data-scroll-target="#videos"><span class="header-section-number">17.3</span> Videos</a>
+  <ul>
+  <li><a href="#sec-linereg-statquest" id="toc-sec-linereg-statquest" class="nav-link" data-scroll-target="#sec-linereg-statquest">Linear Regression, Clearly Explained - <em>StatQuest</em></a></li>
+  <li><a href="#sec-lm-statquest" id="toc-sec-lm-statquest" class="nav-link" data-scroll-target="#sec-lm-statquest">Using Linear Models for t-tests and ANOVA, Clearly Explained - <em>StatQuest</em></a></li>
+  </ul></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">17.4</span> Exercises</a></li>
   </ul>
 </nav>
@@ -481,7 +479,7 @@ Learning objectives
 <section id="reading-material" class="level2" data-number="17.1">
 <h2 data-number="17.1" class="anchored" data-anchor-id="reading-material"><span class="header-section-number">17.1</span> Reading material</h2>
 <ul>
-<li><a href="#sec-intro-to-regression">Intro to regression</a></li>
+<li><a href="#sec-intro-to-regression">Regression - in short</a></li>
 <li>Videos on linear regression:
 <ul>
 <li><a href="#sec-linereg-statquest">Linear Regression, Clearly Explained</a></li>
@@ -491,7 +489,7 @@ Learning objectives
 </ul>
 </section>
 <section id="sec-intro-to-regression" class="level2" data-number="17.2">
-<h2 data-number="17.2" class="anchored" data-anchor-id="sec-intro-to-regression"><span class="header-section-number">17.2</span> Intro to regression</h2>
+<h2 data-number="17.2" class="anchored" data-anchor-id="sec-intro-to-regression"><span class="header-section-number">17.2</span> Regression - in short</h2>
 <p>Regression models are simply extensions of the ANOVA framework allowing for descriptive variables being continuous.</p>
 <p>The simplest form is univariate regression with a single response variable (<span class="math inline">\(Y\)</span>) described by a single predictor (<span class="math inline">\(X\)</span>).</p>
 <section id="the-model" class="level3" data-number="17.2.1">
@@ -581,6 +579,16 @@ PI_{Y(X^*),1-\alpha}: \hat{\alpha} + \hat{\beta}\cdot X^* \pm t_{1-\alpha/2,df} 
 </section>
 <section id="exercises" class="level2" data-number="17.4">
 <h2 data-number="17.4" class="anchored" data-anchor-id="exercises"><span class="header-section-number">17.4</span> Exercises</h2>
+<div id="ex-linear-regression" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-ex figure">
+<div aria-describedby="ex-linear-regression-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<!-- Cross-ref anchor -->
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-ex quarto-uncaptioned" id="ex-linear-regression-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Exercise&nbsp;17.1
+</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-exercise no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -593,7 +601,7 @@ Exercise 17.1 - Linear regression
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div id="ex-linear-regression" class="callout-exercise">
+<div class="callout-exercise">
 <p>To get a feeling of how linear regression works we can consider two variables, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, that are linearly dependent. We generate <span class="math inline">\(x\)</span> as a random variable and <span class="math inline">\(y\)</span> is related to <span class="math inline">\(x\)</span> plus some noise.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate 20 normally distributed data points (mean = 0, sd = 1)</span></span>
@@ -669,6 +677,16 @@ Tasks
 </div>
 </div>
 <!-- End exercise callout -->
+<div id="ex-diet-regression-by-hand" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-ex figure">
+<div aria-describedby="ex-diet-regression-by-hand-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<!-- Cross-ref anchor -->
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-ex quarto-uncaptioned" id="ex-diet-regression-by-hand-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Exercise&nbsp;17.2
+</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-exercise no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -681,9 +699,9 @@ Exercise 17.2 - Diet and fat metabolism - regression by hand
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div id="ex-diet-regression-by-hand" class="callout-exercise">
+<div class="callout-exercise">
 <p>The diet is a central factor involved in general health, and especially in relation to obesity, where a balance between intake of protein, fat and carbohydrates, as well as type of these nutrients seems important. Therefore various controlled studies are conducted to show the effect of different diets. A study examining the effect of protein from milk (casein or whey) and amount of fat on growth biomarkers of fat metabolism and type I diabetes was conducted in 40 mouse over an intervention period of 14 weeks.</p>
-<p>The data for this exercise is the same as for <span class="citation" data-cites="ex-diet-and-fat-metabolism-in-r">(<a href="#ref-ex-diet-and-fat-metabolism-in-r" role="doc-biblioref"><strong>ex-diet-and-fat-metabolism-in-r?</strong></a>)</span>.</p>
+<p>The data for this exercise is the same as for <a href="../week3/t_test.html#ex-diet-and-fat-metabolism-in-r" class="quarto-xref">Exercise&nbsp;<span>9.3</span></a>.</p>
 <p>For this exercise we are going to focus on predicting different biomarkers from weight data.</p>
 <div class="callout callout-style-default callout-task no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="true" aria-label="Toggle callout">
@@ -701,19 +719,19 @@ Tasks
 <ol type="1">
 <li>Set the independent variable (<span class="math inline">\(X\)</span>) to be weight at 14 weeks (measured in grams), and let the dependent variable (<span class="math inline">\(Y\)</span>) be the cholesterol level. Write up the model for the relation between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</li>
 <li>Make a small drawing, and infer all the model parameters on this figure.</li>
-<li>Estimate the parameters based on the descriptive numbers in the <a href="#tbl-diet-descriptors-regression" class="quarto-xref">table&nbsp;<span>17.1</span></a>.</li>
+<li>Estimate the parameters based on the descriptive numbers in the <span class="quarto-unresolved-ref">?tbl-diet-descriptors-regression</span>.</li>
 </ol>
 </div>
 </div>
 </div>
 </div>
-<div id="tbl-diet-descriptors-regression" class="table-sm quarto-float quarto-figure quarto-figure-center anchored">
+<div id="tbl-diet-descriptors-regression-.hover.-responsive" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-diet-descriptors-regression-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-diet-descriptors-regression-.hover.-responsive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;17.1: Some descriptive numbers computed on the data.
 </figcaption>
-<div aria-describedby="tbl-diet-descriptors-regression-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-sm small caption-top table">
+<div aria-describedby="tbl-diet-descriptors-regression-.hover.-responsive-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 8%">
 <col style="width: 19%">
@@ -779,6 +797,16 @@ Tasks
 </div>
 </div>
 <!-- End exercise callout -->
+<div id="ex-diet-regression-and-pca" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-ex figure">
+<div aria-describedby="ex-diet-regression-and-pca-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<!-- Cross-ref anchor -->
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-ex quarto-uncaptioned" id="ex-diet-regression-and-pca-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Exercise&nbsp;17.3
+</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-exercise no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -791,8 +819,8 @@ Exercise 17.3 - Diet and fat metabolism - regression and PCA
 </div>
 <div id="callout-8" class="callout-8-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div id="ex-diet-regression-and-pca" class="callout-exercise">
-<p>This exercise is an extension of <a href="regression.html#ex-diet-regression-by-hand">Exercise 17.2</a>.</p>
+<div class="callout-exercise">
+<p>This exercise is an extension of <a href="#ex-diet-regression-by-hand" class="quarto-xref">Exercise&nbsp;<span>17.2</span></a>.</p>
 <ol type="1">
 <li>Make regression models between weight at week 14 and all 7 biomarkers. That includes: Scatter plot, regression modeling and check of model assumptions.</li>
 <li>For the response variable <code>insulin</code>, there are 3 outlying points. Is the results robust towards removal of those?</li>
@@ -806,6 +834,16 @@ Exercise 17.3 - Diet and fat metabolism - regression and PCA
 </div>
 </div>
 <!-- End exercise callout -->
+<div id="ex-standard-addition" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-ex figure">
+<div aria-describedby="ex-standard-addition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<!-- Cross-ref anchor -->
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-ex quarto-uncaptioned" id="ex-standard-addition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Exercise&nbsp;17.4
+</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-exercise no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -818,7 +856,7 @@ Exercise 17.4 - Standard addition
 </div>
 <div id="callout-11" class="callout-11-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div id="ex-standard-addition" class="callout-exercise">
+<div class="callout-exercise">
 <p>This exercise shows how regression modeling is used for calculating the concentration of a chemical substance in a sample.</p>
 <p>The setup is: We have a sample with a molecule of unknown concentration (<span class="math inline">\(C\)</span>). We have an indirect technique which gives a response (<span class="math inline">\(y\)</span>) proportional to the concentration of this molecule. That is <span class="math inline">\(y \propto C\)</span> or <span class="math inline">\(y = \alpha C\)</span>. However, we do not know the coefficient <span class="math inline">\(\alpha\)</span>. In order to determine this, a series of five measurements with added volume of the molecule is conducted. Schematically that results in measurements like in <a href="#fig-standard-addition" class="quarto-xref">figure&nbsp;<span>17.1</span></a>. Due to proportionality then the concentration in the sample is simply the value where the line crosses the <span class="math inline">\(x\)</span>-axis.</p>
 <div class="cell">
@@ -851,13 +889,14 @@ Figure&nbsp;17.1: Principle in standard addition. Sample concentration is read o
 </div>
 </div>
 <p>In <a href="#tbl-standard-addition" class="quarto-xref">table&nbsp;<span>17.2</span></a> are listed five measurements from a standard addition experiment.</p>
-<div id="tbl-standard-addition" class="table-sm quarto-float quarto-figure quarto-figure-center anchored">
+<div id="tbl-standard-addition" class="hover responsive quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-standard-addition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;17.2: Standard addition vs signal for a calibration set.
 </figcaption>
 <div aria-describedby="tbl-standard-addition-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-sm small caption-top table">
+<div class="table-responsive">
+<table class="table-hover caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
@@ -887,6 +926,7 @@ Table&nbsp;17.2: Standard addition vs signal for a calibration set.
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 </figure>
 </div>
@@ -966,6 +1006,16 @@ Tasks
 </div>
 </div>
 <!-- End exercise callout -->
+<div id="ex-standard-curve-by-hand" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-ex figure">
+<div aria-describedby="ex-standard-curve-by-hand-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<!-- Cross-ref anchor -->
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-ex quarto-uncaptioned" id="ex-standard-curve-by-hand-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Exercise&nbsp;17.5
+</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-exercise no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -978,16 +1028,22 @@ Exercise 17.5 - Standard curve for calcium in milk - hand calculations using R
 </div>
 <div id="callout-18" class="callout-18-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div id="ex-standard-curve-by-hand" class="callout-exercise">
+<div class="callout-exercise">
 <p>Milk coagulation is needed during cheese making. A number of factors influence the coagulation properties of milk. Obviously <span class="math inline">\(\kappa\)</span>-casein is important. However, also the amount of calcium (Ca<span class="math inline">\(^{2+}\)</span>) is essential during milk coagulation.</p>
 <p>Calcium in a milk sample may be quantified by atom absorption spectroscopy. This technique relies on Beer’s law:</p>
 <p><span class="math display">\[
 A = \varepsilon \times L \times C
 \]</span></p>
 <p>Where <span class="math inline">\(A\)</span> is the absorbance, <span class="math inline">\(\varepsilon\)</span> is the molar absorptivity (constant), <span class="math inline">\(L\)</span> is the path length of the sample (constant) and <span class="math inline">\(C\)</span> is the concentration. Hence, Beer’s law reveals proportionality between absorbance and concentration.</p>
-<p>In this exercise we determine the concentration of Ca<span class="math inline">\(^{2+}\)</span> from a standard curve. Five standard solutions with known Ca<span class="math inline">\(^{2+}\)</span> concentrations were prepared and the absorbance for each sample was measured (<span class="quarto-unresolved-ref">?tbl-standard-curve</span>).</p>
-<table class="caption-top table">
-<caption>Measured absorbance of standard solutions .{tbl-standard-curve .table-sm}</caption>
+<p>In this exercise we determine the concentration of Ca<span class="math inline">\(^{2+}\)</span> from a standard curve. Five standard solutions with known Ca<span class="math inline">\(^{2+}\)</span> concentrations were prepared and the absorbance for each sample was measured (<a href="#tbl-standard-curve" class="quarto-xref">table&nbsp;<span>17.3</span></a>).</p>
+<div id="tbl-standard-curve" class="hover responsive quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-standard-curve-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;17.3: Measured absorbance of standard solutions.
+</figcaption>
+<div aria-describedby="tbl-standard-curve-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="table-responsive">
+<table class="table-hover caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: right;">Ca<span class="math inline">\(^{2+}\)</span> (ppm)</th>
@@ -1017,6 +1073,10 @@ A = \varepsilon \times L \times C
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</figure>
+</div>
 <p>Use the following code to get the data into Rstudio and plot the data. We want to find the relationship between concentration of Ca<span class="math inline">\(^{2+}\)</span> and Absorbance. This is a linear model: <span class="math inline">\(y = b + ax + e\)</span></p>
 <p>In this case we control the concentration of Ca<span class="math inline">\(^{2+}\)</span> and we measure the absorbance. Hence, in the linear model <span class="math inline">\(y\)</span> is the absorbance and <span class="math inline">\(x\)</span> is the concentration of Ca<span class="math inline">\(^{2+}\)</span>. Here, <span class="math inline">\(e\)</span> is the part of the variation not captured by the model.</p>
 <div class="cell">
@@ -1108,19 +1168,20 @@ Tasks
 <div class="callout-body-container callout-body">
 <div class="callout-task">
 <ol start="3" type="1">
-<li>Three new milk samples with unknown concentration of Ca<span class="math inline">\(^{2+}\)</span> were measured with atom absorption spectroscopy. Use the standard curve to quantify the concentrations of Ca<span class="math inline">\(^{2+}\)</span> in the new samples. The absorbance values for the three new samples are found in <span class="quarto-unresolved-ref">?tbl-unkown-concentration</span>.</li>
+<li>Three new milk samples with unknown concentration of Ca<span class="math inline">\(^{2+}\)</span> were measured with atom absorption spectroscopy. Use the standard curve to quantify the concentrations of Ca<span class="math inline">\(^{2+}\)</span> in the new samples. The absorbance values for the three new samples are found in <a href="#tbl-unknown-concentration" class="quarto-xref">table&nbsp;<span>17.4</span></a>.</li>
 </ol>
 </div>
 </div>
 </div>
 </div>
-<div id="tbl-unknown-concentration" class="table-sm quarto-float quarto-figure quarto-figure-center anchored">
+<div id="tbl-unknown-concentration" class="hover responsive quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-unknown-concentration-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;17.3: Absorbances for samples with unknown Ca<span class="math inline">\(^{2+}\)</span> concentration.
+Table&nbsp;17.4: Absorbances for samples with unknown Ca<span class="math inline">\(^{2+}\)</span> concentration.
 </figcaption>
 <div aria-describedby="tbl-unknown-concentration-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-sm small caption-top table">
+<div class="table-responsive">
+<table class="table-hover caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: left;">Sample</th>
@@ -1146,6 +1207,7 @@ Table&nbsp;17.3: Absorbances for samples with unknown Ca<span class="math inline
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 </figure>
 </div>
@@ -1272,6 +1334,16 @@ Tasks
 </div>
 </div>
 <!-- End exercise callout -->
+<div id="ex-standard-curve-phenols" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-ex figure">
+<div aria-describedby="ex-standard-curve-phenols-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<!-- Cross-ref anchor -->
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-ex quarto-uncaptioned" id="ex-standard-curve-phenols-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Exercise&nbsp;17.6
+</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-exercise no-icon callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1284,17 +1356,18 @@ Exercise 17.6 - Standard curve - quantification of phenol content in spice extra
 </div>
 <div id="callout-23" class="callout-23-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<div id="ex-standard-curve-phenols" class="callout-exercise">
+<div class="callout-exercise">
 <p>Oxidation of foodstuff is one of the main reasons leading to decreased quality. During lipid oxidation, lipid radicals are formed, which will increase the speed of oxidation. However, a number of spices contain antioxidants. These antioxidants are often phenol-containing molecules, which are able to donate a hydrogen atom to the lipid radicals and thereby decrease the speed of oxidation. By using a standard curve, we will in this exercise estimate the phenol content (and thereby the antioxidative effect) of extracts originating from oregano and tarragon (estragon).</p>
-<p>Six standard solutions have been prepared and measured with a spectrophotometer (absorbance at <span class="math inline">\(765 nm\)</span>). Find the data in <a href="#tbl-phenol-standards" class="quarto-xref">table&nbsp;<span>17.4</span></a>.</p>
+<p>Six standard solutions have been prepared and measured with a spectrophotometer (absorbance at <span class="math inline">\(765 nm\)</span>). Find the data in <a href="#tbl-phenol-standards" class="quarto-xref">table&nbsp;<span>17.5</span></a>.</p>
 <p>In the previous exercise on standard curves we did <em>hand</em> calculations. In this exercise we will solve the problems using the built-in functions in R.</p>
-<div id="tbl-phenol-standards" class="table-sm quarto-float quarto-figure quarto-figure-center anchored">
+<div id="tbl-phenol-standards" class="hover responsive quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-phenol-standards-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;17.4: Concentrations and absorbances of standard solutions.
+Table&nbsp;17.5: Concentrations and absorbances of standard solutions.
 </figcaption>
 <div aria-describedby="tbl-phenol-standards-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-sm small caption-top table">
+<div class="table-responsive">
+<table class="table-hover caption-top table">
 <thead>
 <tr class="header">
 <th>Concentration (mg/L)</th>
@@ -1328,6 +1401,7 @@ Table&nbsp;17.4: Concentrations and absorbances of standard solutions.
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 </figure>
 </div>
@@ -1388,19 +1462,20 @@ Tasks
 <ol start="5" type="1">
 <li>Inspect the plot of the standard curve and decide whether some points should be excluded from the analyses. If you remove some data points, plot the reduced data, recalculate your model (reduced data) and investigate the coefficients (like question 4).</li>
 <li>Make a Q-Q plot to investigate whether the model residuals are normally distributed. You can extract your model residuals by <code>mod_new$residuals</code>, where <code>mod_new</code> is your model object. Are the residuals approximately normally distributed?</li>
-<li>Use the standard curve to estimate the antioxidative effect (phenol concentration) of the oregano and tarragon extracts. The two extracts were measured with a spectrophotometer (absorbance at 765 nm). Find the absorbance values in <a href="#tbl-spice-extracts" class="quarto-xref">table&nbsp;<span>17.5</span></a>.</li>
+<li>Use the standard curve to estimate the antioxidative effect (phenol concentration) of the oregano and tarragon extracts. The two extracts were measured with a spectrophotometer (absorbance at 765 nm). Find the absorbance values in <a href="#tbl-spice-extracts" class="quarto-xref">table&nbsp;<span>17.6</span></a>.</li>
 </ol>
 </div>
 </div>
 </div>
 </div>
-<div id="tbl-spice-extracts" class="table-sm quarto-float quarto-figure quarto-figure-center anchored">
+<div id="tbl-spice-extracts" class="hover responsive quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-spice-extracts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;17.5: Spice extracts and their absorbances.
+Table&nbsp;17.6: Spice extracts and their absorbances.
 </figcaption>
 <div aria-describedby="tbl-spice-extracts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-sm small caption-top table">
+<div class="table-responsive">
+<table class="table-hover caption-top table">
 <thead>
 <tr class="header">
 <th>Sample</th>
@@ -1421,6 +1496,7 @@ Table&nbsp;17.5: Spice extracts and their absorbances.
 </tr>
 </tbody>
 </table>
+</div>
 </div>
 </figure>
 </div>
@@ -1702,124 +1778,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     });
   }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
       let selectedAnnoteEl;
       const selectorForAnnotation = ( cell, annotation) => {
         let cellAttr = 'data-code-cell="' + cell + '"';
@@ -2011,13 +1969,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="fu">## Reading material</span></span>
 <span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Intro to regression </span><span class="co">](#sec-intro-to-regression)</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="co">[</span><span class="ot">Regression - in short</span><span class="co">](#sec-intro-to-regression)</span></span>
 <span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Videos on linear regression:</span>
 <span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="ss">   * </span><span class="co">[</span><span class="ot">Linear Regression, Clearly Explained</span><span class="co">](#sec-linereg-statquest)</span></span>
 <span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="ss">   * </span><span class="co">[</span><span class="ot">Using Linear Models for t-tests and ANOVA, Clearly Explained</span><span class="co">](#sec-lm-statquest)</span></span>
 <span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Chapter 5 of <span class="co">[</span><span class="ot">*Introduction to Statistics*</span><span class="co">](https://02402.compute.dtu.dk/enotes/book-IntroStatistics)</span> by Brockhoff</span>
 <span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Intro to regression {#sec-intro-to-regression}</span></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Regression - in short {#sec-intro-to-regression}</span></span>
 <span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>Regression models are simply extensions of the ANOVA framework allowing for descriptive variables being continuous.</span>
 <span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a></span>
@@ -2127,457 +2085,474 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb13-143"><a href="#cb13-143" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-144"><a href="#cb13-144" aria-hidden="true" tabindex="-1"></a><span class="fu">## Exercises</span></span>
 <span id="cb13-145"><a href="#cb13-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-146"><a href="#cb13-146" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise id=ex-linear-regression}</span>
-<span id="cb13-147"><a href="#cb13-147" aria-hidden="true" tabindex="-1"></a><span class="fu">### Linear regression</span></span>
-<span id="cb13-148"><a href="#cb13-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-149"><a href="#cb13-149" aria-hidden="true" tabindex="-1"></a>To get a feeling of how linear regression works we can consider two variables, $x$ and $y$, that are linearly dependent. We generate $x$ as a random variable and $y$ is related to $x$ plus some noise.</span>
-<span id="cb13-150"><a href="#cb13-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-153"><a href="#cb13-153" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-154"><a href="#cb13-154" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-155"><a href="#cb13-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-156"><a href="#cb13-156" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate 20 normally distributed data points (mean = 0, sd = 1)</span></span>
-<span id="cb13-157"><a href="#cb13-157" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">20</span>) </span>
+<span id="cb13-146"><a href="#cb13-146" aria-hidden="true" tabindex="-1"></a>::: {#ex-linear-regression}</span>
+<span id="cb13-147"><a href="#cb13-147" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
+<span id="cb13-148"><a href="#cb13-148" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-149"><a href="#cb13-149" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise}</span>
+<span id="cb13-150"><a href="#cb13-150" aria-hidden="true" tabindex="-1"></a><span class="fu">### Linear regression</span></span>
+<span id="cb13-151"><a href="#cb13-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-152"><a href="#cb13-152" aria-hidden="true" tabindex="-1"></a>To get a feeling of how linear regression works we can consider two variables, $x$ and $y$, that are linearly dependent. We generate $x$ as a random variable and $y$ is related to $x$ plus some noise.</span>
+<span id="cb13-153"><a href="#cb13-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-156"><a href="#cb13-156" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-157"><a href="#cb13-157" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
 <span id="cb13-158"><a href="#cb13-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-159"><a href="#cb13-159" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a slope (m = 2) and normally distributed noise (mean = 0, sd = 1)</span></span>
-<span id="cb13-160"><a href="#cb13-160" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> x <span class="sc">*</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">20</span>) </span>
+<span id="cb13-159"><a href="#cb13-159" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate 20 normally distributed data points (mean = 0, sd = 1)</span></span>
+<span id="cb13-160"><a href="#cb13-160" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">20</span>) </span>
 <span id="cb13-161"><a href="#cb13-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-162"><a href="#cb13-162" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to dataframe</span></span>
-<span id="cb13-163"><a href="#cb13-163" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y)</span>
+<span id="cb13-162"><a href="#cb13-162" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a slope (m = 2) and normally distributed noise (mean = 0, sd = 1)</span></span>
+<span id="cb13-163"><a href="#cb13-163" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> x <span class="sc">*</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">20</span>) </span>
 <span id="cb13-164"><a href="#cb13-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-165"><a href="#cb13-165" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot</span></span>
-<span id="cb13-166"><a href="#cb13-166" aria-hidden="true" tabindex="-1"></a>plt <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
-<span id="cb13-167"><a href="#cb13-167" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb13-168"><a href="#cb13-168" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>) <span class="co"># Add straight line</span></span>
-<span id="cb13-169"><a href="#cb13-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-170"><a href="#cb13-170" aria-hidden="true" tabindex="-1"></a><span class="co"># Show plot</span></span>
-<span id="cb13-171"><a href="#cb13-171" aria-hidden="true" tabindex="-1"></a>plt</span>
-<span id="cb13-172"><a href="#cb13-172" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-173"><a href="#cb13-173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-174"><a href="#cb13-174" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb13-175"><a href="#cb13-175" aria-hidden="true" tabindex="-1"></a><span class="ss"> 1. </span>Change the slope and intercept of <span class="in">`geom_abline()`</span> to get the line to fit the data as well as possible. </span>
-<span id="cb13-176"><a href="#cb13-176" aria-hidden="true" tabindex="-1"></a><span class="ss"> 2. </span>Add a line estimated by least squares (see code below). Does the manually estimated line fit with the regression line? </span>
-<span id="cb13-177"><a href="#cb13-177" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-178"><a href="#cb13-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-181"><a href="#cb13-181" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-182"><a href="#cb13-182" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-183"><a href="#cb13-183" aria-hidden="true" tabindex="-1"></a><span class="co"># Add regression line</span></span>
-<span id="cb13-184"><a href="#cb13-184" aria-hidden="true" tabindex="-1"></a>plt <span class="ot">&lt;-</span> plt <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F, <span class="at">color =</span> <span class="st">"red"</span>)</span>
-<span id="cb13-185"><a href="#cb13-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-186"><a href="#cb13-186" aria-hidden="true" tabindex="-1"></a><span class="co"># Show plot</span></span>
-<span id="cb13-187"><a href="#cb13-187" aria-hidden="true" tabindex="-1"></a>plt</span>
-<span id="cb13-188"><a href="#cb13-188" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-189"><a href="#cb13-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-190"><a href="#cb13-190" aria-hidden="true" tabindex="-1"></a>From the data generation step above we can see that the true relationship is <span class="in">`slope = 2`</span> and <span class="in">`intercept = 0`</span>. Add a line reflecting the thr</span>
-<span id="cb13-191"><a href="#cb13-191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-192"><a href="#cb13-192" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb13-193"><a href="#cb13-193" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Add a line reflecting the true relationship of $x$ and $y$.</span>
-<span id="cb13-194"><a href="#cb13-194" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Is the estimated line the same as your new line (the truth)? Why/why not? Try to run the script a couple of times.</span>
-<span id="cb13-195"><a href="#cb13-195" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>How does the least squares line relate to the true relationship line?</span>
-<span id="cb13-196"><a href="#cb13-196" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-197"><a href="#cb13-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-198"><a href="#cb13-198" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-199"><a href="#cb13-199" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
+<span id="cb13-165"><a href="#cb13-165" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to dataframe</span></span>
+<span id="cb13-166"><a href="#cb13-166" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, y)</span>
+<span id="cb13-167"><a href="#cb13-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-168"><a href="#cb13-168" aria-hidden="true" tabindex="-1"></a><span class="co"># Create plot</span></span>
+<span id="cb13-169"><a href="#cb13-169" aria-hidden="true" tabindex="-1"></a>plt <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb13-170"><a href="#cb13-170" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb13-171"><a href="#cb13-171" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>) <span class="co"># Add straight line</span></span>
+<span id="cb13-172"><a href="#cb13-172" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-173"><a href="#cb13-173" aria-hidden="true" tabindex="-1"></a><span class="co"># Show plot</span></span>
+<span id="cb13-174"><a href="#cb13-174" aria-hidden="true" tabindex="-1"></a>plt</span>
+<span id="cb13-175"><a href="#cb13-175" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-176"><a href="#cb13-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-177"><a href="#cb13-177" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb13-178"><a href="#cb13-178" aria-hidden="true" tabindex="-1"></a><span class="ss"> 1. </span>Change the slope and intercept of <span class="in">`geom_abline()`</span> to get the line to fit the data as well as possible. </span>
+<span id="cb13-179"><a href="#cb13-179" aria-hidden="true" tabindex="-1"></a><span class="ss"> 2. </span>Add a line estimated by least squares (see code below). Does the manually estimated line fit with the regression line? </span>
+<span id="cb13-180"><a href="#cb13-180" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-181"><a href="#cb13-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-184"><a href="#cb13-184" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-185"><a href="#cb13-185" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb13-186"><a href="#cb13-186" aria-hidden="true" tabindex="-1"></a><span class="co"># Add regression line</span></span>
+<span id="cb13-187"><a href="#cb13-187" aria-hidden="true" tabindex="-1"></a>plt <span class="ot">&lt;-</span> plt <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F, <span class="at">color =</span> <span class="st">"red"</span>)</span>
+<span id="cb13-188"><a href="#cb13-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-189"><a href="#cb13-189" aria-hidden="true" tabindex="-1"></a><span class="co"># Show plot</span></span>
+<span id="cb13-190"><a href="#cb13-190" aria-hidden="true" tabindex="-1"></a>plt</span>
+<span id="cb13-191"><a href="#cb13-191" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-192"><a href="#cb13-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-193"><a href="#cb13-193" aria-hidden="true" tabindex="-1"></a>From the data generation step above we can see that the true relationship is <span class="in">`slope = 2`</span> and <span class="in">`intercept = 0`</span>. Add a line reflecting the thr</span>
+<span id="cb13-194"><a href="#cb13-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-195"><a href="#cb13-195" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb13-196"><a href="#cb13-196" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Add a line reflecting the true relationship of $x$ and $y$.</span>
+<span id="cb13-197"><a href="#cb13-197" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Is the estimated line the same as your new line (the truth)? Why/why not? Try to run the script a couple of times.</span>
+<span id="cb13-198"><a href="#cb13-198" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>How does the least squares line relate to the true relationship line?</span>
+<span id="cb13-199"><a href="#cb13-199" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb13-200"><a href="#cb13-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-201"><a href="#cb13-201" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise id=ex-diet-regression-by-hand}</span>
-<span id="cb13-202"><a href="#cb13-202" aria-hidden="true" tabindex="-1"></a><span class="fu">### Diet and fat metabolism - regression by hand</span></span>
+<span id="cb13-201"><a href="#cb13-201" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-202"><a href="#cb13-202" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
 <span id="cb13-203"><a href="#cb13-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-204"><a href="#cb13-204" aria-hidden="true" tabindex="-1"></a>The diet is a central factor involved in general health, and especially in relation to obesity, where a balance between intake of protein, fat and carbohydrates, as well as type of these nutrients seems important. Therefore various controlled studies are conducted to show the effect of different diets. A study examining the effect of protein from milk (casein or whey) and amount of fat on growth biomarkers of fat metabolism and type I diabetes was conducted in 40 mouse over an intervention period of 14 weeks.</span>
-<span id="cb13-205"><a href="#cb13-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-206"><a href="#cb13-206" aria-hidden="true" tabindex="-1"></a>The data for this exercise is the same as for @ex-diet-and-fat-metabolism-in-r.</span>
-<span id="cb13-207"><a href="#cb13-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-208"><a href="#cb13-208" aria-hidden="true" tabindex="-1"></a>For this exercise we are going to focus on predicting different biomarkers from weight data.</span>
+<span id="cb13-204"><a href="#cb13-204" aria-hidden="true" tabindex="-1"></a>::: {#ex-diet-regression-by-hand}</span>
+<span id="cb13-205"><a href="#cb13-205" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
+<span id="cb13-206"><a href="#cb13-206" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-207"><a href="#cb13-207" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise}</span>
+<span id="cb13-208"><a href="#cb13-208" aria-hidden="true" tabindex="-1"></a><span class="fu">### Diet and fat metabolism - regression by hand</span></span>
 <span id="cb13-209"><a href="#cb13-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-210"><a href="#cb13-210" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb13-211"><a href="#cb13-211" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Set the independent variable ($X$) to be weight at 14 weeks (measured in grams), and let the dependent variable ($Y$) be the cholesterol level. Write up the model for the relation between $X$ and $Y$.</span>
-<span id="cb13-212"><a href="#cb13-212" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Make a small drawing, and infer all the model parameters on this figure.</span>
-<span id="cb13-213"><a href="#cb13-213" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Estimate the parameters based on the descriptive numbers in the @tbl-diet-descriptors-regression.</span>
-<span id="cb13-214"><a href="#cb13-214" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-210"><a href="#cb13-210" aria-hidden="true" tabindex="-1"></a>The diet is a central factor involved in general health, and especially in relation to obesity, where a balance between intake of protein, fat and carbohydrates, as well as type of these nutrients seems important. Therefore various controlled studies are conducted to show the effect of different diets. A study examining the effect of protein from milk (casein or whey) and amount of fat on growth biomarkers of fat metabolism and type I diabetes was conducted in 40 mouse over an intervention period of 14 weeks.</span>
+<span id="cb13-211"><a href="#cb13-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-212"><a href="#cb13-212" aria-hidden="true" tabindex="-1"></a>The data for this exercise is the same as for @ex-diet-and-fat-metabolism-in-r.</span>
+<span id="cb13-213"><a href="#cb13-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-214"><a href="#cb13-214" aria-hidden="true" tabindex="-1"></a>For this exercise we are going to focus on predicting different biomarkers from weight data.</span>
 <span id="cb13-215"><a href="#cb13-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-216"><a href="#cb13-216" aria-hidden="true" tabindex="-1"></a>| $\sum{X}$ | $\sum{(X - \bar{X})^2}$ | $\sum{Y}$ | $\sum{(Y - \bar{Y})^2}$ | $\sum{(X - \bar{X})(Y - \bar{Y})}$ | $\sum{(Y - \hat{Y})^2}$ |</span>
-<span id="cb13-217"><a href="#cb13-217" aria-hidden="true" tabindex="-1"></a>|----------:|-------------------------:|----------:|-------------------------:|-----------------------------------:|-------------------------:|</span>
-<span id="cb13-218"><a href="#cb13-218" aria-hidden="true" tabindex="-1"></a>| 1426.2 | 1099.3 | 156.5 | 18.99 | 116.44 | 6.65 |</span>
-<span id="cb13-219"><a href="#cb13-219" aria-hidden="true" tabindex="-1"></a>: Some descriptive numbers computed on the data. {#tbl-diet-descriptors-regression .table-sm}</span>
-<span id="cb13-220"><a href="#cb13-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-221"><a href="#cb13-221" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb13-222"><a href="#cb13-222" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Construct confidence intervals for the intercept and the slope for this model, and judge whether there seem to be a relation between weight and cholesterol level. </span>
-<span id="cb13-223"><a href="#cb13-223" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Hint: Chapter 5.4 in Brockhoff have formulas for the variance of the parameters.</span>
-<span id="cb13-224"><a href="#cb13-224" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Calculate a prediction interval for a <span class="in">`new`</span> mouse with a weight of 40g </span>
-<span id="cb13-225"><a href="#cb13-225" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Hint: Box 5.17 in Brockhoff have the relevant formulas.</span>
-<span id="cb13-226"><a href="#cb13-226" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Load data, plot it, and verify the results using <span class="in">`aov()`</span> for construction of a regression model, and <span class="in">`predict()`</span> for the prediction of new samples.</span>
-<span id="cb13-227"><a href="#cb13-227" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-228"><a href="#cb13-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-229"><a href="#cb13-229" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-230"><a href="#cb13-230" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
-<span id="cb13-231"><a href="#cb13-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-232"><a href="#cb13-232" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise id=ex-diet-regression-and-pca}</span>
-<span id="cb13-233"><a href="#cb13-233" aria-hidden="true" tabindex="-1"></a><span class="fu">### Diet and fat metabolism - regression and PCA</span></span>
+<span id="cb13-216"><a href="#cb13-216" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb13-217"><a href="#cb13-217" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Set the independent variable ($X$) to be weight at 14 weeks (measured in grams), and let the dependent variable ($Y$) be the cholesterol level. Write up the model for the relation between $X$ and $Y$.</span>
+<span id="cb13-218"><a href="#cb13-218" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Make a small drawing, and infer all the model parameters on this figure.</span>
+<span id="cb13-219"><a href="#cb13-219" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Estimate the parameters based on the descriptive numbers in the @tbl-diet-descriptors-regression.</span>
+<span id="cb13-220"><a href="#cb13-220" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-221"><a href="#cb13-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-222"><a href="#cb13-222" aria-hidden="true" tabindex="-1"></a>| $\sum{X}$ | $\sum{(X - \bar{X})^2}$ | $\sum{Y}$ | $\sum{(Y - \bar{Y})^2}$ | $\sum{(X - \bar{X})(Y - \bar{Y})}$ | $\sum{(Y - \hat{Y})^2}$ |</span>
+<span id="cb13-223"><a href="#cb13-223" aria-hidden="true" tabindex="-1"></a>|----------:|-------------------------:|----------:|-------------------------:|-----------------------------------:|-------------------------:|</span>
+<span id="cb13-224"><a href="#cb13-224" aria-hidden="true" tabindex="-1"></a>| 1426.2 | 1099.3 | 156.5 | 18.99 | 116.44 | 6.65 |</span>
+<span id="cb13-225"><a href="#cb13-225" aria-hidden="true" tabindex="-1"></a>: Some descriptive numbers computed on the data. {#tbl-diet-descriptors-regression .hover. responsive}</span>
+<span id="cb13-226"><a href="#cb13-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-227"><a href="#cb13-227" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb13-228"><a href="#cb13-228" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Construct confidence intervals for the intercept and the slope for this model, and judge whether there seem to be a relation between weight and cholesterol level. </span>
+<span id="cb13-229"><a href="#cb13-229" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Hint: Chapter 5.4 in Brockhoff have formulas for the variance of the parameters.</span>
+<span id="cb13-230"><a href="#cb13-230" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Calculate a prediction interval for a <span class="in">`new`</span> mouse with a weight of 40g </span>
+<span id="cb13-231"><a href="#cb13-231" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Hint: Box 5.17 in Brockhoff have the relevant formulas.</span>
+<span id="cb13-232"><a href="#cb13-232" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Load data, plot it, and verify the results using <span class="in">`aov()`</span> for construction of a regression model, and <span class="in">`predict()`</span> for the prediction of new samples.</span>
+<span id="cb13-233"><a href="#cb13-233" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb13-234"><a href="#cb13-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-235"><a href="#cb13-235" aria-hidden="true" tabindex="-1"></a>This exercise is an extension of @ex-diet-regression-by-hand.</span>
-<span id="cb13-236"><a href="#cb13-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-237"><a href="#cb13-237" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Make regression models between weight at week 14 and all 7 biomarkers. That includes: Scatter plot, regression modeling and check of model assumptions.</span>
-<span id="cb13-238"><a href="#cb13-238" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>For the response variable <span class="in">`insulin`</span>, there are 3 outlying points. Is the results robust towards removal of those?</span>
-<span id="cb13-239"><a href="#cb13-239" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Make a PCA on the biomarkers and plot it using <span class="in">`ggbiplot()`</span>.</span>
-<span id="cb13-240"><a href="#cb13-240" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Infer the external information <span class="in">`$bw_w14`</span> on the plot using <span class="in">`geom_point(aes(color = ...))`</span>. If you are not satisfied with the colors, then use <span class="in">`scale_color_gradient(low=-..., high=...)`</span> to modify it.</span>
-<span id="cb13-241"><a href="#cb13-241" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Extract the first couple of components and use those as response variables in regression models versus weight.</span>
-<span id="cb13-242"><a href="#cb13-242" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Compile the results, and give an answer to which pattern of biomarkers that are related to weight.</span>
+<span id="cb13-235"><a href="#cb13-235" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-236"><a href="#cb13-236" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
+<span id="cb13-237"><a href="#cb13-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-238"><a href="#cb13-238" aria-hidden="true" tabindex="-1"></a>::: {#ex-diet-regression-and-pca}</span>
+<span id="cb13-239"><a href="#cb13-239" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
+<span id="cb13-240"><a href="#cb13-240" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-241"><a href="#cb13-241" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise}</span>
+<span id="cb13-242"><a href="#cb13-242" aria-hidden="true" tabindex="-1"></a><span class="fu">### Diet and fat metabolism - regression and PCA</span></span>
 <span id="cb13-243"><a href="#cb13-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-244"><a href="#cb13-244" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-245"><a href="#cb13-245" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
-<span id="cb13-246"><a href="#cb13-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-247"><a href="#cb13-247" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise id=ex-standard-addition}</span>
-<span id="cb13-248"><a href="#cb13-248" aria-hidden="true" tabindex="-1"></a><span class="fu">### Standard addition</span></span>
-<span id="cb13-249"><a href="#cb13-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-250"><a href="#cb13-250" aria-hidden="true" tabindex="-1"></a>This exercise shows how regression modeling is used for calculating the concentration of a chemical substance in a sample.</span>
-<span id="cb13-251"><a href="#cb13-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-252"><a href="#cb13-252" aria-hidden="true" tabindex="-1"></a>The setup is: We have a sample with a molecule of unknown concentration ($C$). We have an indirect technique which gives a response ($y$) proportional to the concentration of this molecule. That is $y \propto C$ or $y = \alpha C$. However, we do not know the coefficient $\alpha$. In order to determine this, a series of five measurements with added volume of the molecule is conducted. Schematically that results in measurements like in @fig-standard-addition. Due to proportionality then the concentration in the sample is simply the value where the line crosses the $x$-axis.</span>
-<span id="cb13-253"><a href="#cb13-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-256"><a href="#cb13-256" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-257"><a href="#cb13-257" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-standard-addition</span></span>
-<span id="cb13-258"><a href="#cb13-258" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Principle in standard addition. Sample concentration is read off in the point where the line crosses the x-axis.</span></span>
-<span id="cb13-259"><a href="#cb13-259" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb13-260"><a href="#cb13-260" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb13-244"><a href="#cb13-244" aria-hidden="true" tabindex="-1"></a>This exercise is an extension of @ex-diet-regression-by-hand.</span>
+<span id="cb13-245"><a href="#cb13-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-246"><a href="#cb13-246" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Make regression models between weight at week 14 and all 7 biomarkers. That includes: Scatter plot, regression modeling and check of model assumptions.</span>
+<span id="cb13-247"><a href="#cb13-247" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>For the response variable <span class="in">`insulin`</span>, there are 3 outlying points. Is the results robust towards removal of those?</span>
+<span id="cb13-248"><a href="#cb13-248" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Make a PCA on the biomarkers and plot it using <span class="in">`ggbiplot()`</span>.</span>
+<span id="cb13-249"><a href="#cb13-249" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Infer the external information <span class="in">`$bw_w14`</span> on the plot using <span class="in">`geom_point(aes(color = ...))`</span>. If you are not satisfied with the colors, then use <span class="in">`scale_color_gradient(low=-..., high=...)`</span> to modify it.</span>
+<span id="cb13-250"><a href="#cb13-250" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Extract the first couple of components and use those as response variables in regression models versus weight.</span>
+<span id="cb13-251"><a href="#cb13-251" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Compile the results, and give an answer to which pattern of biomarkers that are related to weight.</span>
+<span id="cb13-252"><a href="#cb13-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-253"><a href="#cb13-253" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-254"><a href="#cb13-254" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
+<span id="cb13-255"><a href="#cb13-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-256"><a href="#cb13-256" aria-hidden="true" tabindex="-1"></a>::: {#ex-standard-addition}</span>
+<span id="cb13-257"><a href="#cb13-257" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
+<span id="cb13-258"><a href="#cb13-258" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-259"><a href="#cb13-259" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise}</span>
+<span id="cb13-260"><a href="#cb13-260" aria-hidden="true" tabindex="-1"></a><span class="fu">### Standard addition</span></span>
 <span id="cb13-261"><a href="#cb13-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-262"><a href="#cb13-262" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
-<span id="cb13-263"><a href="#cb13-263" aria-hidden="true" tabindex="-1"></a>  <span class="at">conc =</span> <span class="fu">c</span>(<span class="fl">0.0</span>, <span class="fl">0.8</span>, <span class="fl">1.5</span>, <span class="fl">2.2</span>, <span class="fl">3.0</span>),</span>
-<span id="cb13-264"><a href="#cb13-264" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig  =</span> <span class="fu">c</span>(<span class="fl">2.2</span>, <span class="fl">3.3</span>, <span class="fl">4.0</span>, <span class="fl">4.8</span>, <span class="fl">6.0</span>) </span>
-<span id="cb13-265"><a href="#cb13-265" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> </span>
-<span id="cb13-266"><a href="#cb13-266" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(conc, sig)) <span class="sc">+</span></span>
-<span id="cb13-267"><a href="#cb13-267" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F, <span class="at">fullrange =</span> T, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb13-268"><a href="#cb13-268" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb13-269"><a href="#cb13-269" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb13-270"><a href="#cb13-270" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Concentration added"</span>,</span>
-<span id="cb13-271"><a href="#cb13-271" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Signal"</span></span>
-<span id="cb13-272"><a href="#cb13-272" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb13-273"><a href="#cb13-273" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span>
-<span id="cb13-274"><a href="#cb13-274" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-275"><a href="#cb13-275" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-276"><a href="#cb13-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-277"><a href="#cb13-277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-278"><a href="#cb13-278" aria-hidden="true" tabindex="-1"></a>In @tbl-standard-addition are listed five measurements from a standard addition experiment.</span>
-<span id="cb13-279"><a href="#cb13-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-280"><a href="#cb13-280" aria-hidden="true" tabindex="-1"></a>| | 1 | 2 | 3 | 4 | 5 |</span>
-<span id="cb13-281"><a href="#cb13-281" aria-hidden="true" tabindex="-1"></a>|:--|--:|--:|--:|--:|--:|</span>
-<span id="cb13-282"><a href="#cb13-282" aria-hidden="true" tabindex="-1"></a>| Concentration added ($x$) | 0.0 | 0.8 | 1.5 | 2.2 | 3.0 |</span>
-<span id="cb13-283"><a href="#cb13-283" aria-hidden="true" tabindex="-1"></a>| Signal ($y$) | 2.2 | 3.3 | 4.0 | 4.8 | 6.0 |</span>
-<span id="cb13-284"><a href="#cb13-284" aria-hidden="true" tabindex="-1"></a>: Standard addition vs signal for a calibration set. {#tbl-standard-addition .table-sm}</span>
-<span id="cb13-285"><a href="#cb13-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-286"><a href="#cb13-286" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb13-287"><a href="#cb13-287" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Chuck the data into R.</span>
-<span id="cb13-288"><a href="#cb13-288" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Make a scatter plot, and add a straight line indicating the best fit. </span>
-<span id="cb13-289"><a href="#cb13-289" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>If you use <span class="in">`ggplot2`</span> then adding <span class="in">`+ geom_smooth(method = 'lm', fullrange = T)`</span> to the plot will do it.</span>
-<span id="cb13-290"><a href="#cb13-290" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>State a statistical model between $y$ and $x$, and fit it using either <span class="in">`aov()`</span> or <span class="in">`lm()`</span>.</span>
-<span id="cb13-291"><a href="#cb13-291" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Based on the model parameters (slope and intercept) derive an expression for $-x_{y=0}$.</span>
-<span id="cb13-292"><a href="#cb13-292" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Based on the estimated model, estimate the concentration in the sample.</span>
-<span id="cb13-293"><a href="#cb13-293" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-294"><a href="#cb13-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-295"><a href="#cb13-295" aria-hidden="true" tabindex="-1"></a>It should be quite easy to give a central estimate for the concentration. However, giving a confidence interval for this measure is not so easy. In order to do so, confidence limits for the estimated line is used to assess the bounds of the confidence interval.</span>
-<span id="cb13-296"><a href="#cb13-296" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-297"><a href="#cb13-297" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb13-298"><a href="#cb13-298" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Construct confidence intervals for a broad range of $x$-values. This is done by constructing a new data frame and predicting responses for this using the estimated model (see code below).</span>
-<span id="cb13-299"><a href="#cb13-299" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Use the upper, central and lower limits of this series of x-values to estimate the limits for $-x_{y=0}$.</span>
-<span id="cb13-300"><a href="#cb13-300" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-301"><a href="#cb13-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-304"><a href="#cb13-304" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-305"><a href="#cb13-305" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-306"><a href="#cb13-306" aria-hidden="true" tabindex="-1"></a><span class="co"># Load in data</span></span>
-<span id="cb13-307"><a href="#cb13-307" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb13-308"><a href="#cb13-308" aria-hidden="true" tabindex="-1"></a>  <span class="at">conc =</span> <span class="fu">c</span>(<span class="fl">0.0</span>, <span class="fl">0.8</span>, <span class="fl">1.5</span>, <span class="fl">2.2</span>, <span class="fl">3.0</span>),</span>
-<span id="cb13-309"><a href="#cb13-309" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig  =</span> <span class="fu">c</span>(<span class="fl">2.2</span>, <span class="fl">3.3</span>, <span class="fl">4.0</span>, <span class="fl">4.8</span>, <span class="fl">6.0</span>) </span>
-<span id="cb13-310"><a href="#cb13-310" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-311"><a href="#cb13-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-312"><a href="#cb13-312" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit linear model</span></span>
-<span id="cb13-313"><a href="#cb13-313" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(sig <span class="sc">~</span> conc, <span class="at">data =</span> df)</span>
-<span id="cb13-314"><a href="#cb13-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-315"><a href="#cb13-315" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data for prediction</span></span>
-<span id="cb13-316"><a href="#cb13-316" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb13-317"><a href="#cb13-317" aria-hidden="true" tabindex="-1"></a>  <span class="at">conc =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">7</span>, <span class="at">length.out =</span> <span class="dv">1000</span>)</span>
-<span id="cb13-318"><a href="#cb13-318" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-319"><a href="#cb13-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-320"><a href="#cb13-320" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict data using fitted lm</span></span>
-<span id="cb13-321"><a href="#cb13-321" aria-hidden="true" tabindex="-1"></a>sig_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, new_data, <span class="at">interval =</span> <span class="st">"confidence"</span>)</span>
-<span id="cb13-322"><a href="#cb13-322" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-323"><a href="#cb13-323" aria-hidden="true" tabindex="-1"></a>sig_pred[ , <span class="dv">1</span>] <span class="co"># Fitted values</span></span>
-<span id="cb13-324"><a href="#cb13-324" aria-hidden="true" tabindex="-1"></a>sig_pred[ , <span class="dv">2</span>] <span class="co"># Lower CI</span></span>
-<span id="cb13-325"><a href="#cb13-325" aria-hidden="true" tabindex="-1"></a>sig_pred[ , <span class="dv">3</span>] <span class="co"># Upper CI</span></span>
+<span id="cb13-262"><a href="#cb13-262" aria-hidden="true" tabindex="-1"></a>This exercise shows how regression modeling is used for calculating the concentration of a chemical substance in a sample.</span>
+<span id="cb13-263"><a href="#cb13-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-264"><a href="#cb13-264" aria-hidden="true" tabindex="-1"></a>The setup is: We have a sample with a molecule of unknown concentration ($C$). We have an indirect technique which gives a response ($y$) proportional to the concentration of this molecule. That is $y \propto C$ or $y = \alpha C$. However, we do not know the coefficient $\alpha$. In order to determine this, a series of five measurements with added volume of the molecule is conducted. Schematically that results in measurements like in @fig-standard-addition. Due to proportionality then the concentration in the sample is simply the value where the line crosses the $x$-axis.</span>
+<span id="cb13-265"><a href="#cb13-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-268"><a href="#cb13-268" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-269"><a href="#cb13-269" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-standard-addition</span></span>
+<span id="cb13-270"><a href="#cb13-270" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Principle in standard addition. Sample concentration is read off in the point where the line crosses the x-axis.</span></span>
+<span id="cb13-271"><a href="#cb13-271" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb13-272"><a href="#cb13-272" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb13-273"><a href="#cb13-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-274"><a href="#cb13-274" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
+<span id="cb13-275"><a href="#cb13-275" aria-hidden="true" tabindex="-1"></a>  <span class="at">conc =</span> <span class="fu">c</span>(<span class="fl">0.0</span>, <span class="fl">0.8</span>, <span class="fl">1.5</span>, <span class="fl">2.2</span>, <span class="fl">3.0</span>),</span>
+<span id="cb13-276"><a href="#cb13-276" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig  =</span> <span class="fu">c</span>(<span class="fl">2.2</span>, <span class="fl">3.3</span>, <span class="fl">4.0</span>, <span class="fl">4.8</span>, <span class="fl">6.0</span>) </span>
+<span id="cb13-277"><a href="#cb13-277" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> </span>
+<span id="cb13-278"><a href="#cb13-278" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(conc, sig)) <span class="sc">+</span></span>
+<span id="cb13-279"><a href="#cb13-279" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> F, <span class="at">fullrange =</span> T, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb13-280"><a href="#cb13-280" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb13-281"><a href="#cb13-281" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-282"><a href="#cb13-282" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Concentration added"</span>,</span>
+<span id="cb13-283"><a href="#cb13-283" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Signal"</span></span>
+<span id="cb13-284"><a href="#cb13-284" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-285"><a href="#cb13-285" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span>
+<span id="cb13-286"><a href="#cb13-286" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-287"><a href="#cb13-287" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-288"><a href="#cb13-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-289"><a href="#cb13-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-290"><a href="#cb13-290" aria-hidden="true" tabindex="-1"></a>In @tbl-standard-addition are listed five measurements from a standard addition experiment.</span>
+<span id="cb13-291"><a href="#cb13-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-292"><a href="#cb13-292" aria-hidden="true" tabindex="-1"></a>| | 1 | 2 | 3 | 4 | 5 |</span>
+<span id="cb13-293"><a href="#cb13-293" aria-hidden="true" tabindex="-1"></a>|:--|--:|--:|--:|--:|--:|</span>
+<span id="cb13-294"><a href="#cb13-294" aria-hidden="true" tabindex="-1"></a>| Concentration added ($x$) | 0.0 | 0.8 | 1.5 | 2.2 | 3.0 |</span>
+<span id="cb13-295"><a href="#cb13-295" aria-hidden="true" tabindex="-1"></a>| Signal ($y$) | 2.2 | 3.3 | 4.0 | 4.8 | 6.0 |</span>
+<span id="cb13-296"><a href="#cb13-296" aria-hidden="true" tabindex="-1"></a>: Standard addition vs signal for a calibration set. {#tbl-standard-addition .hover .responsive}</span>
+<span id="cb13-297"><a href="#cb13-297" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-298"><a href="#cb13-298" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb13-299"><a href="#cb13-299" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Chuck the data into R.</span>
+<span id="cb13-300"><a href="#cb13-300" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Make a scatter plot, and add a straight line indicating the best fit. </span>
+<span id="cb13-301"><a href="#cb13-301" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>If you use <span class="in">`ggplot2`</span> then adding <span class="in">`+ geom_smooth(method = 'lm', fullrange = T)`</span> to the plot will do it.</span>
+<span id="cb13-302"><a href="#cb13-302" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>State a statistical model between $y$ and $x$, and fit it using either <span class="in">`aov()`</span> or <span class="in">`lm()`</span>.</span>
+<span id="cb13-303"><a href="#cb13-303" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Based on the model parameters (slope and intercept) derive an expression for $-x_{y=0}$.</span>
+<span id="cb13-304"><a href="#cb13-304" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Based on the estimated model, estimate the concentration in the sample.</span>
+<span id="cb13-305"><a href="#cb13-305" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-306"><a href="#cb13-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-307"><a href="#cb13-307" aria-hidden="true" tabindex="-1"></a>It should be quite easy to give a central estimate for the concentration. However, giving a confidence interval for this measure is not so easy. In order to do so, confidence limits for the estimated line is used to assess the bounds of the confidence interval.</span>
+<span id="cb13-308"><a href="#cb13-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-309"><a href="#cb13-309" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb13-310"><a href="#cb13-310" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Construct confidence intervals for a broad range of $x$-values. This is done by constructing a new data frame and predicting responses for this using the estimated model (see code below).</span>
+<span id="cb13-311"><a href="#cb13-311" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Use the upper, central and lower limits of this series of x-values to estimate the limits for $-x_{y=0}$.</span>
+<span id="cb13-312"><a href="#cb13-312" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-313"><a href="#cb13-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-316"><a href="#cb13-316" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-317"><a href="#cb13-317" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb13-318"><a href="#cb13-318" aria-hidden="true" tabindex="-1"></a><span class="co"># Load in data</span></span>
+<span id="cb13-319"><a href="#cb13-319" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb13-320"><a href="#cb13-320" aria-hidden="true" tabindex="-1"></a>  <span class="at">conc =</span> <span class="fu">c</span>(<span class="fl">0.0</span>, <span class="fl">0.8</span>, <span class="fl">1.5</span>, <span class="fl">2.2</span>, <span class="fl">3.0</span>),</span>
+<span id="cb13-321"><a href="#cb13-321" aria-hidden="true" tabindex="-1"></a>  <span class="at">sig  =</span> <span class="fu">c</span>(<span class="fl">2.2</span>, <span class="fl">3.3</span>, <span class="fl">4.0</span>, <span class="fl">4.8</span>, <span class="fl">6.0</span>) </span>
+<span id="cb13-322"><a href="#cb13-322" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-323"><a href="#cb13-323" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-324"><a href="#cb13-324" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit linear model</span></span>
+<span id="cb13-325"><a href="#cb13-325" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(sig <span class="sc">~</span> conc, <span class="at">data =</span> df)</span>
 <span id="cb13-326"><a href="#cb13-326" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-327"><a href="#cb13-327" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-328"><a href="#cb13-328" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-329"><a href="#cb13-329" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-330"><a href="#cb13-330" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
+<span id="cb13-327"><a href="#cb13-327" aria-hidden="true" tabindex="-1"></a><span class="co"># Create data for prediction</span></span>
+<span id="cb13-328"><a href="#cb13-328" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb13-329"><a href="#cb13-329" aria-hidden="true" tabindex="-1"></a>  <span class="at">conc =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">7</span>, <span class="at">length.out =</span> <span class="dv">1000</span>)</span>
+<span id="cb13-330"><a href="#cb13-330" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb13-331"><a href="#cb13-331" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-332"><a href="#cb13-332" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-333"><a href="#cb13-333" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise id=ex-standard-curve-by-hand}</span>
-<span id="cb13-334"><a href="#cb13-334" aria-hidden="true" tabindex="-1"></a><span class="fu">### Standard curve for calcium in milk - hand calculations using R</span></span>
-<span id="cb13-335"><a href="#cb13-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-336"><a href="#cb13-336" aria-hidden="true" tabindex="-1"></a>Milk coagulation is needed during cheese making. A number of factors influence the coagulation properties of milk. Obviously $\kappa$-casein is important. However, also the amount of calcium (Ca$^{2+}$) is essential during milk coagulation.</span>
-<span id="cb13-337"><a href="#cb13-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-338"><a href="#cb13-338" aria-hidden="true" tabindex="-1"></a>Calcium in a milk sample may be quantified by atom absorption spectroscopy. This technique relies on Beer's law:</span>
-<span id="cb13-339"><a href="#cb13-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-340"><a href="#cb13-340" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb13-341"><a href="#cb13-341" aria-hidden="true" tabindex="-1"></a>A = \varepsilon \times L \times C</span>
-<span id="cb13-342"><a href="#cb13-342" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb13-332"><a href="#cb13-332" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict data using fitted lm</span></span>
+<span id="cb13-333"><a href="#cb13-333" aria-hidden="true" tabindex="-1"></a>sig_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, new_data, <span class="at">interval =</span> <span class="st">"confidence"</span>)</span>
+<span id="cb13-334"><a href="#cb13-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-335"><a href="#cb13-335" aria-hidden="true" tabindex="-1"></a>sig_pred[ , <span class="dv">1</span>] <span class="co"># Fitted values</span></span>
+<span id="cb13-336"><a href="#cb13-336" aria-hidden="true" tabindex="-1"></a>sig_pred[ , <span class="dv">2</span>] <span class="co"># Lower CI</span></span>
+<span id="cb13-337"><a href="#cb13-337" aria-hidden="true" tabindex="-1"></a>sig_pred[ , <span class="dv">3</span>] <span class="co"># Upper CI</span></span>
+<span id="cb13-338"><a href="#cb13-338" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-339"><a href="#cb13-339" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-340"><a href="#cb13-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-341"><a href="#cb13-341" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-342"><a href="#cb13-342" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
 <span id="cb13-343"><a href="#cb13-343" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-344"><a href="#cb13-344" aria-hidden="true" tabindex="-1"></a>Where $A$ is the absorbance, $\varepsilon$ is the molar absorptivity (constant), $L$ is the path length of the sample (constant) and $C$ is the concentration. Hence, Beer's law reveals proportionality between absorbance and concentration.</span>
-<span id="cb13-345"><a href="#cb13-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-346"><a href="#cb13-346" aria-hidden="true" tabindex="-1"></a>In this exercise we determine the concentration of Ca$^{2+}$ from a standard curve. Five standard solutions with known Ca$^{2+}$ concentrations were prepared and the absorbance for each sample was measured (@tbl-standard-curve).</span>
-<span id="cb13-347"><a href="#cb13-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-348"><a href="#cb13-348" aria-hidden="true" tabindex="-1"></a>| Ca$^{2+}$ (ppm) | Absorbance at 422.7 nm |</span>
-<span id="cb13-349"><a href="#cb13-349" aria-hidden="true" tabindex="-1"></a>|-------------:|---------------------:|</span>
-<span id="cb13-350"><a href="#cb13-350" aria-hidden="true" tabindex="-1"></a>| 0.0 | 0.000 |</span>
-<span id="cb13-351"><a href="#cb13-351" aria-hidden="true" tabindex="-1"></a>| 2.0 | 0.063 |</span>
-<span id="cb13-352"><a href="#cb13-352" aria-hidden="true" tabindex="-1"></a>| 5.0 | 0.141 |</span>
-<span id="cb13-353"><a href="#cb13-353" aria-hidden="true" tabindex="-1"></a>| 8.0 | 0.218 |</span>
-<span id="cb13-354"><a href="#cb13-354" aria-hidden="true" tabindex="-1"></a>| 10.0 | 0.265 |</span>
-<span id="cb13-355"><a href="#cb13-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-356"><a href="#cb13-356" aria-hidden="true" tabindex="-1"></a>: Measured absorbance of standard solutions .{tbl-standard-curve .table-sm}</span>
-<span id="cb13-357"><a href="#cb13-357" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-358"><a href="#cb13-358" aria-hidden="true" tabindex="-1"></a>Use the following code to get the data into Rstudio and plot the data. We want to find the relationship between concentration of Ca$^{2+}$ and Absorbance. This is a linear model: $y = b + ax + e$</span>
-<span id="cb13-359"><a href="#cb13-359" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-360"><a href="#cb13-360" aria-hidden="true" tabindex="-1"></a>In this case we control the concentration of Ca$^{2+}$ and we measure the absorbance. Hence, in the linear model $y$ is the absorbance and $x$ is the concentration of Ca$^{2+}$. Here, $e$ is the part of the variation not captured by the model.</span>
-<span id="cb13-361"><a href="#cb13-361" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-364"><a href="#cb13-364" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-365"><a href="#cb13-365" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-366"><a href="#cb13-366" aria-hidden="true" tabindex="-1"></a><span class="co"># Create dataframe with data</span></span>
-<span id="cb13-367"><a href="#cb13-367" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb13-368"><a href="#cb13-368" aria-hidden="true" tabindex="-1"></a>  <span class="at">calcium =</span> <span class="fu">c</span>(<span class="fl">0.00</span>,  <span class="fl">2.00</span>,  <span class="fl">5.00</span>,  <span class="fl">8.00</span>, <span class="fl">10.00</span>),</span>
-<span id="cb13-369"><a href="#cb13-369" aria-hidden="true" tabindex="-1"></a>  <span class="at">abs     =</span> <span class="fu">c</span>(<span class="fl">0.000</span>, <span class="fl">0.063</span>, <span class="fl">0.141</span>, <span class="fl">0.218</span>, <span class="fl">0.265</span>)</span>
-<span id="cb13-370"><a href="#cb13-370" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-371"><a href="#cb13-371" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-372"><a href="#cb13-372" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data</span></span>
-<span id="cb13-373"><a href="#cb13-373" aria-hidden="true" tabindex="-1"></a>plt <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(calcium, abs)) <span class="sc">+</span></span>
-<span id="cb13-374"><a href="#cb13-374" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb13-375"><a href="#cb13-375" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-344"><a href="#cb13-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-345"><a href="#cb13-345" aria-hidden="true" tabindex="-1"></a>::: {#ex-standard-curve-by-hand}</span>
+<span id="cb13-346"><a href="#cb13-346" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
+<span id="cb13-347"><a href="#cb13-347" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-348"><a href="#cb13-348" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise}</span>
+<span id="cb13-349"><a href="#cb13-349" aria-hidden="true" tabindex="-1"></a><span class="fu">### Standard curve for calcium in milk - hand calculations using R</span></span>
+<span id="cb13-350"><a href="#cb13-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-351"><a href="#cb13-351" aria-hidden="true" tabindex="-1"></a>Milk coagulation is needed during cheese making. A number of factors influence the coagulation properties of milk. Obviously $\kappa$-casein is important. However, also the amount of calcium (Ca$^{2+}$) is essential during milk coagulation.</span>
+<span id="cb13-352"><a href="#cb13-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-353"><a href="#cb13-353" aria-hidden="true" tabindex="-1"></a>Calcium in a milk sample may be quantified by atom absorption spectroscopy. This technique relies on Beer's law:</span>
+<span id="cb13-354"><a href="#cb13-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-355"><a href="#cb13-355" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb13-356"><a href="#cb13-356" aria-hidden="true" tabindex="-1"></a>A = \varepsilon \times L \times C</span>
+<span id="cb13-357"><a href="#cb13-357" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb13-358"><a href="#cb13-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-359"><a href="#cb13-359" aria-hidden="true" tabindex="-1"></a>Where $A$ is the absorbance, $\varepsilon$ is the molar absorptivity (constant), $L$ is the path length of the sample (constant) and $C$ is the concentration. Hence, Beer's law reveals proportionality between absorbance and concentration.</span>
+<span id="cb13-360"><a href="#cb13-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-361"><a href="#cb13-361" aria-hidden="true" tabindex="-1"></a>In this exercise we determine the concentration of Ca$^{2+}$ from a standard curve. Five standard solutions with known Ca$^{2+}$ concentrations were prepared and the absorbance for each sample was measured (@tbl-standard-curve).</span>
+<span id="cb13-362"><a href="#cb13-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-363"><a href="#cb13-363" aria-hidden="true" tabindex="-1"></a>| Ca$^{2+}$ (ppm) | Absorbance at 422.7 nm |</span>
+<span id="cb13-364"><a href="#cb13-364" aria-hidden="true" tabindex="-1"></a>|-------------:|---------------------:|</span>
+<span id="cb13-365"><a href="#cb13-365" aria-hidden="true" tabindex="-1"></a>| 0.0 | 0.000 |</span>
+<span id="cb13-366"><a href="#cb13-366" aria-hidden="true" tabindex="-1"></a>| 2.0 | 0.063 |</span>
+<span id="cb13-367"><a href="#cb13-367" aria-hidden="true" tabindex="-1"></a>| 5.0 | 0.141 |</span>
+<span id="cb13-368"><a href="#cb13-368" aria-hidden="true" tabindex="-1"></a>| 8.0 | 0.218 |</span>
+<span id="cb13-369"><a href="#cb13-369" aria-hidden="true" tabindex="-1"></a>| 10.0 | 0.265 |</span>
+<span id="cb13-370"><a href="#cb13-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-371"><a href="#cb13-371" aria-hidden="true" tabindex="-1"></a>: Measured absorbance of standard solutions. {#tbl-standard-curve .hover .responsive}</span>
+<span id="cb13-372"><a href="#cb13-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-373"><a href="#cb13-373" aria-hidden="true" tabindex="-1"></a>Use the following code to get the data into Rstudio and plot the data. We want to find the relationship between concentration of Ca$^{2+}$ and Absorbance. This is a linear model: $y = b + ax + e$</span>
+<span id="cb13-374"><a href="#cb13-374" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-375"><a href="#cb13-375" aria-hidden="true" tabindex="-1"></a>In this case we control the concentration of Ca$^{2+}$ and we measure the absorbance. Hence, in the linear model $y$ is the absorbance and $x$ is the concentration of Ca$^{2+}$. Here, $e$ is the part of the variation not captured by the model.</span>
 <span id="cb13-376"><a href="#cb13-376" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-377"><a href="#cb13-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-378"><a href="#cb13-378" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb13-379"><a href="#cb13-379" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Calculate slope and offset of the straight line (the standard curve) that best describes the relationship between Ca$^{2+}$ and absorbance. Add it to the plot as a straight line.</span>
-<span id="cb13-380"><a href="#cb13-380" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>See formulas and code below.</span>
-<span id="cb13-381"><a href="#cb13-381" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Hint: <span class="in">`plt &lt;- plt + geom_abline(intercept = b, slope = a)`</span></span>
-<span id="cb13-382"><a href="#cb13-382" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-383"><a href="#cb13-383" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-384"><a href="#cb13-384" aria-hidden="true" tabindex="-1"></a>The slope, $a$ is estimated by</span>
-<span id="cb13-385"><a href="#cb13-385" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-386"><a href="#cb13-386" aria-hidden="true" tabindex="-1"></a>  $$</span>
-<span id="cb13-387"><a href="#cb13-387" aria-hidden="true" tabindex="-1"></a>  \hat{a} =  \frac{\sum_{i=1}^n (y_i - \bar{y})(x_i - \bar{x})}{\sum_{i=1}^n(x_i - \bar{x})^2}</span>
-<span id="cb13-388"><a href="#cb13-388" aria-hidden="true" tabindex="-1"></a>  $$</span>
-<span id="cb13-389"><a href="#cb13-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-390"><a href="#cb13-390" aria-hidden="true" tabindex="-1"></a>And the offset, $b$ is estimated by</span>
-<span id="cb13-391"><a href="#cb13-391" aria-hidden="true" tabindex="-1"></a>  $$</span>
-<span id="cb13-392"><a href="#cb13-392" aria-hidden="true" tabindex="-1"></a>  \hat{b} = \bar{y}-\hat{a}\bar{x}</span>
-<span id="cb13-393"><a href="#cb13-393" aria-hidden="true" tabindex="-1"></a>  $$</span>
-<span id="cb13-394"><a href="#cb13-394" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-395"><a href="#cb13-395" aria-hidden="true" tabindex="-1"></a>Here is some R-code to help you.</span>
-<span id="cb13-396"><a href="#cb13-396" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-399"><a href="#cb13-399" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-400"><a href="#cb13-400" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-401"><a href="#cb13-401" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> df<span class="sc">$</span>calcium</span>
-<span id="cb13-402"><a href="#cb13-402" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> df<span class="sc">$</span>abs</span>
-<span id="cb13-403"><a href="#cb13-403" aria-hidden="true" tabindex="-1"></a>mx <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
-<span id="cb13-404"><a href="#cb13-404" aria-hidden="true" tabindex="-1"></a>my <span class="ot">&lt;-</span> <span class="fu">mean</span>(y)</span>
-<span id="cb13-405"><a href="#cb13-405" aria-hidden="true" tabindex="-1"></a>Sxx <span class="ot">&lt;-</span> <span class="fu">sum</span>((x <span class="sc">-</span> mx)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb13-406"><a href="#cb13-406" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-407"><a href="#cb13-407" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-408"><a href="#cb13-408" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb13-409"><a href="#cb13-409" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Test for proportionality, i.e. no offset ($b = 0$). First calculate a confidence interval around your offset. Then state the null hypothesis and the alternative hypothesis. Test the null hypothesis. Does the t-test result correspond with the confidence interval?</span>
-<span id="cb13-410"><a href="#cb13-410" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-379"><a href="#cb13-379" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-380"><a href="#cb13-380" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb13-381"><a href="#cb13-381" aria-hidden="true" tabindex="-1"></a><span class="co"># Create dataframe with data</span></span>
+<span id="cb13-382"><a href="#cb13-382" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb13-383"><a href="#cb13-383" aria-hidden="true" tabindex="-1"></a>  <span class="at">calcium =</span> <span class="fu">c</span>(<span class="fl">0.00</span>,  <span class="fl">2.00</span>,  <span class="fl">5.00</span>,  <span class="fl">8.00</span>, <span class="fl">10.00</span>),</span>
+<span id="cb13-384"><a href="#cb13-384" aria-hidden="true" tabindex="-1"></a>  <span class="at">abs     =</span> <span class="fu">c</span>(<span class="fl">0.000</span>, <span class="fl">0.063</span>, <span class="fl">0.141</span>, <span class="fl">0.218</span>, <span class="fl">0.265</span>)</span>
+<span id="cb13-385"><a href="#cb13-385" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-386"><a href="#cb13-386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-387"><a href="#cb13-387" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data</span></span>
+<span id="cb13-388"><a href="#cb13-388" aria-hidden="true" tabindex="-1"></a>plt <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(calcium, abs)) <span class="sc">+</span></span>
+<span id="cb13-389"><a href="#cb13-389" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb13-390"><a href="#cb13-390" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-391"><a href="#cb13-391" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-392"><a href="#cb13-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-393"><a href="#cb13-393" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb13-394"><a href="#cb13-394" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Calculate slope and offset of the straight line (the standard curve) that best describes the relationship between Ca$^{2+}$ and absorbance. Add it to the plot as a straight line.</span>
+<span id="cb13-395"><a href="#cb13-395" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>See formulas and code below.</span>
+<span id="cb13-396"><a href="#cb13-396" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Hint: <span class="in">`plt &lt;- plt + geom_abline(intercept = b, slope = a)`</span></span>
+<span id="cb13-397"><a href="#cb13-397" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-398"><a href="#cb13-398" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-399"><a href="#cb13-399" aria-hidden="true" tabindex="-1"></a>The slope, $a$ is estimated by</span>
+<span id="cb13-400"><a href="#cb13-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-401"><a href="#cb13-401" aria-hidden="true" tabindex="-1"></a>  $$</span>
+<span id="cb13-402"><a href="#cb13-402" aria-hidden="true" tabindex="-1"></a>  \hat{a} =  \frac{\sum_{i=1}^n (y_i - \bar{y})(x_i - \bar{x})}{\sum_{i=1}^n(x_i - \bar{x})^2}</span>
+<span id="cb13-403"><a href="#cb13-403" aria-hidden="true" tabindex="-1"></a>  $$</span>
+<span id="cb13-404"><a href="#cb13-404" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-405"><a href="#cb13-405" aria-hidden="true" tabindex="-1"></a>And the offset, $b$ is estimated by</span>
+<span id="cb13-406"><a href="#cb13-406" aria-hidden="true" tabindex="-1"></a>  $$</span>
+<span id="cb13-407"><a href="#cb13-407" aria-hidden="true" tabindex="-1"></a>  \hat{b} = \bar{y}-\hat{a}\bar{x}</span>
+<span id="cb13-408"><a href="#cb13-408" aria-hidden="true" tabindex="-1"></a>  $$</span>
+<span id="cb13-409"><a href="#cb13-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-410"><a href="#cb13-410" aria-hidden="true" tabindex="-1"></a>Here is some R-code to help you.</span>
 <span id="cb13-411"><a href="#cb13-411" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-412"><a href="#cb13-412" aria-hidden="true" tabindex="-1"></a>Here is some code to help you</span>
-<span id="cb13-415"><a href="#cb13-415" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-416"><a href="#cb13-416" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-417"><a href="#cb13-417" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="co"># number of standard solutions</span></span>
-<span id="cb13-418"><a href="#cb13-418" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> y <span class="sc">-</span> (a <span class="sc">*</span> x <span class="sc">+</span> b) <span class="co"># model error</span></span>
-<span id="cb13-419"><a href="#cb13-419" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-420"><a href="#cb13-420" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-421"><a href="#cb13-421" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb13-422"><a href="#cb13-422" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Three new milk samples with unknown concentration of Ca$^{2+}$ were measured with atom absorption spectroscopy. Use the standard curve to quantify the concentrations of Ca$^{2+}$ in the new samples. The absorbance values for the three new samples are found in @tbl-unkown-concentration.</span>
-<span id="cb13-423"><a href="#cb13-423" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-424"><a href="#cb13-424" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-425"><a href="#cb13-425" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-426"><a href="#cb13-426" aria-hidden="true" tabindex="-1"></a>| Sample | Absorbance at 422.7 nm |Ca$^{2+}$ (ppm)       |</span>
-<span id="cb13-427"><a href="#cb13-427" aria-hidden="true" tabindex="-1"></a>|:-------|-----------------------:|---------------------:|</span>
-<span id="cb13-428"><a href="#cb13-428" aria-hidden="true" tabindex="-1"></a>| U1     | 0.101                  |                      |</span>
-<span id="cb13-429"><a href="#cb13-429" aria-hidden="true" tabindex="-1"></a>| U2     | 0.147                  |                      |</span>
-<span id="cb13-430"><a href="#cb13-430" aria-hidden="true" tabindex="-1"></a>| U3     | 0.243                  |                      |</span>
-<span id="cb13-431"><a href="#cb13-431" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-432"><a href="#cb13-432" aria-hidden="true" tabindex="-1"></a>: Absorbances for samples with unknown Ca$^{2+}$ concentration. {#tbl-unknown-concentration .table-sm}</span>
-<span id="cb13-433"><a href="#cb13-433" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-434"><a href="#cb13-434" aria-hidden="true" tabindex="-1"></a>Use the following code to get the unknown samples into R and add the samples to the standard curve.</span>
+<span id="cb13-414"><a href="#cb13-414" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-415"><a href="#cb13-415" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb13-416"><a href="#cb13-416" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> df<span class="sc">$</span>calcium</span>
+<span id="cb13-417"><a href="#cb13-417" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> df<span class="sc">$</span>abs</span>
+<span id="cb13-418"><a href="#cb13-418" aria-hidden="true" tabindex="-1"></a>mx <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="cb13-419"><a href="#cb13-419" aria-hidden="true" tabindex="-1"></a>my <span class="ot">&lt;-</span> <span class="fu">mean</span>(y)</span>
+<span id="cb13-420"><a href="#cb13-420" aria-hidden="true" tabindex="-1"></a>Sxx <span class="ot">&lt;-</span> <span class="fu">sum</span>((x <span class="sc">-</span> mx)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb13-421"><a href="#cb13-421" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-422"><a href="#cb13-422" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-423"><a href="#cb13-423" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb13-424"><a href="#cb13-424" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Test for proportionality, i.e. no offset ($b = 0$). First calculate a confidence interval around your offset. Then state the null hypothesis and the alternative hypothesis. Test the null hypothesis. Does the t-test result correspond with the confidence interval?</span>
+<span id="cb13-425"><a href="#cb13-425" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-426"><a href="#cb13-426" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-427"><a href="#cb13-427" aria-hidden="true" tabindex="-1"></a>Here is some code to help you</span>
+<span id="cb13-430"><a href="#cb13-430" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-431"><a href="#cb13-431" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb13-432"><a href="#cb13-432" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="co"># number of standard solutions</span></span>
+<span id="cb13-433"><a href="#cb13-433" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> y <span class="sc">-</span> (a <span class="sc">*</span> x <span class="sc">+</span> b) <span class="co"># model error</span></span>
+<span id="cb13-434"><a href="#cb13-434" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb13-435"><a href="#cb13-435" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-438"><a href="#cb13-438" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-439"><a href="#cb13-439" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-440"><a href="#cb13-440" aria-hidden="true" tabindex="-1"></a><span class="co"># Add you estimated concentrations here</span></span>
-<span id="cb13-441"><a href="#cb13-441" aria-hidden="true" tabindex="-1"></a>estimated_conc <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb13-442"><a href="#cb13-442" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-443"><a href="#cb13-443" aria-hidden="true" tabindex="-1"></a><span class="co"># Create dataframe with unkown samples</span></span>
-<span id="cb13-444"><a href="#cb13-444" aria-hidden="true" tabindex="-1"></a>df_new <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb13-445"><a href="#cb13-445" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample =</span> <span class="fu">c</span>(<span class="st">"U1"</span>, <span class="st">"U2"</span>, <span class="st">"U3"</span>),</span>
-<span id="cb13-446"><a href="#cb13-446" aria-hidden="true" tabindex="-1"></a>  <span class="at">calcium =</span> estimated_conc,</span>
-<span id="cb13-447"><a href="#cb13-447" aria-hidden="true" tabindex="-1"></a>  <span class="at">abs =</span> <span class="fu">c</span>(<span class="fl">0.101</span>, .<span class="dv">0147</span>, <span class="fl">0.243</span>)</span>
-<span id="cb13-448"><a href="#cb13-448" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-449"><a href="#cb13-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-436"><a href="#cb13-436" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb13-437"><a href="#cb13-437" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Three new milk samples with unknown concentration of Ca$^{2+}$ were measured with atom absorption spectroscopy. Use the standard curve to quantify the concentrations of Ca$^{2+}$ in the new samples. The absorbance values for the three new samples are found in @tbl-unknown-concentration.</span>
+<span id="cb13-438"><a href="#cb13-438" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-439"><a href="#cb13-439" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-440"><a href="#cb13-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-441"><a href="#cb13-441" aria-hidden="true" tabindex="-1"></a>| Sample | Absorbance at 422.7 nm |Ca$^{2+}$ (ppm)       |</span>
+<span id="cb13-442"><a href="#cb13-442" aria-hidden="true" tabindex="-1"></a>|:-------|-----------------------:|---------------------:|</span>
+<span id="cb13-443"><a href="#cb13-443" aria-hidden="true" tabindex="-1"></a>| U1     | 0.101                  |                      |</span>
+<span id="cb13-444"><a href="#cb13-444" aria-hidden="true" tabindex="-1"></a>| U2     | 0.147                  |                      |</span>
+<span id="cb13-445"><a href="#cb13-445" aria-hidden="true" tabindex="-1"></a>| U3     | 0.243                  |                      |</span>
+<span id="cb13-446"><a href="#cb13-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-447"><a href="#cb13-447" aria-hidden="true" tabindex="-1"></a>: Absorbances for samples with unknown Ca$^{2+}$ concentration. {#tbl-unknown-concentration .hover .responsive}</span>
+<span id="cb13-448"><a href="#cb13-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-449"><a href="#cb13-449" aria-hidden="true" tabindex="-1"></a>Use the following code to get the unknown samples into R and add the samples to the standard curve.</span>
 <span id="cb13-450"><a href="#cb13-450" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-451"><a href="#cb13-451" aria-hidden="true" tabindex="-1"></a><span class="co"># Add new samples to plot</span></span>
-<span id="cb13-452"><a href="#cb13-452" aria-hidden="true" tabindex="-1"></a>plt <span class="ot">&lt;-</span> plt <span class="sc">+</span></span>
-<span id="cb13-453"><a href="#cb13-453" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> df_new, <span class="fu">aes</span>(calcium, abs), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="cb13-454"><a href="#cb13-454" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> df_new, <span class="fu">aes</span>(<span class="at">label =</span> sample), <span class="at">nudge_x =</span> <span class="sc">-</span>.<span class="dv">3</span>)</span>
-<span id="cb13-455"><a href="#cb13-455" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-456"><a href="#cb13-456" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-453"><a href="#cb13-453" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-454"><a href="#cb13-454" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb13-455"><a href="#cb13-455" aria-hidden="true" tabindex="-1"></a><span class="co"># Add you estimated concentrations here</span></span>
+<span id="cb13-456"><a href="#cb13-456" aria-hidden="true" tabindex="-1"></a>estimated_conc <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
 <span id="cb13-457"><a href="#cb13-457" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-458"><a href="#cb13-458" aria-hidden="true" tabindex="-1"></a>In order to get the confidence interval for these estimates, we need to calculate the confidence limits for the estimated regression line.</span>
-<span id="cb13-459"><a href="#cb13-459" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-460"><a href="#cb13-460" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb13-461"><a href="#cb13-461" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Calculate confidence bounds for a sequence of $x$-values (concentrations). Add the confidence bounds to the plot.</span>
-<span id="cb13-462"><a href="#cb13-462" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-463"><a href="#cb13-463" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-464"><a href="#cb13-464" aria-hidden="true" tabindex="-1"></a>Here is some code to help you:</span>
+<span id="cb13-458"><a href="#cb13-458" aria-hidden="true" tabindex="-1"></a><span class="co"># Create dataframe with unkown samples</span></span>
+<span id="cb13-459"><a href="#cb13-459" aria-hidden="true" tabindex="-1"></a>df_new <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb13-460"><a href="#cb13-460" aria-hidden="true" tabindex="-1"></a>  <span class="at">sample =</span> <span class="fu">c</span>(<span class="st">"U1"</span>, <span class="st">"U2"</span>, <span class="st">"U3"</span>),</span>
+<span id="cb13-461"><a href="#cb13-461" aria-hidden="true" tabindex="-1"></a>  <span class="at">calcium =</span> estimated_conc,</span>
+<span id="cb13-462"><a href="#cb13-462" aria-hidden="true" tabindex="-1"></a>  <span class="at">abs =</span> <span class="fu">c</span>(<span class="fl">0.101</span>, .<span class="dv">0147</span>, <span class="fl">0.243</span>)</span>
+<span id="cb13-463"><a href="#cb13-463" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-464"><a href="#cb13-464" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-465"><a href="#cb13-465" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-468"><a href="#cb13-468" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-469"><a href="#cb13-469" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-470"><a href="#cb13-470" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a sequence of 1000 x values</span></span>
-<span id="cb13-471"><a href="#cb13-471" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">1000</span>)</span>
+<span id="cb13-466"><a href="#cb13-466" aria-hidden="true" tabindex="-1"></a><span class="co"># Add new samples to plot</span></span>
+<span id="cb13-467"><a href="#cb13-467" aria-hidden="true" tabindex="-1"></a>plt <span class="ot">&lt;-</span> plt <span class="sc">+</span></span>
+<span id="cb13-468"><a href="#cb13-468" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> df_new, <span class="fu">aes</span>(calcium, abs), <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb13-469"><a href="#cb13-469" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> df_new, <span class="fu">aes</span>(<span class="at">label =</span> sample), <span class="at">nudge_x =</span> <span class="sc">-</span>.<span class="dv">3</span>)</span>
+<span id="cb13-470"><a href="#cb13-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-471"><a href="#cb13-471" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb13-472"><a href="#cb13-472" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-473"><a href="#cb13-473" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine data into data frame.</span></span>
-<span id="cb13-474"><a href="#cb13-474" aria-hidden="true" tabindex="-1"></a>df_conf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb13-475"><a href="#cb13-475" aria-hidden="true" tabindex="-1"></a>  <span class="at">calcium =</span> x,</span>
-<span id="cb13-476"><a href="#cb13-476" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> a <span class="sc">*</span> x <span class="sc">+</span> b ..., <span class="co"># Add equation for CI here</span></span>
-<span id="cb13-477"><a href="#cb13-477" aria-hidden="true" tabindex="-1"></a>  <span class="at">upper =</span> a <span class="sc">*</span> x <span class="sc">+</span> b ..., <span class="co"># Add equation for CI here</span></span>
-<span id="cb13-478"><a href="#cb13-478" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-479"><a href="#cb13-479" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-473"><a href="#cb13-473" aria-hidden="true" tabindex="-1"></a>In order to get the confidence interval for these estimates, we need to calculate the confidence limits for the estimated regression line.</span>
+<span id="cb13-474"><a href="#cb13-474" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-475"><a href="#cb13-475" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb13-476"><a href="#cb13-476" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Calculate confidence bounds for a sequence of $x$-values (concentrations). Add the confidence bounds to the plot.</span>
+<span id="cb13-477"><a href="#cb13-477" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-478"><a href="#cb13-478" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-479"><a href="#cb13-479" aria-hidden="true" tabindex="-1"></a>Here is some code to help you:</span>
 <span id="cb13-480"><a href="#cb13-480" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-481"><a href="#cb13-481" aria-hidden="true" tabindex="-1"></a><span class="co"># Add CI to plot</span></span>
-<span id="cb13-482"><a href="#cb13-482" aria-hidden="true" tabindex="-1"></a>plt <span class="ot">&lt;-</span> plt <span class="sc">+</span> </span>
-<span id="cb13-483"><a href="#cb13-483" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> df_conf, <span class="fu">aes</span>(calcium, lower), <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
-<span id="cb13-484"><a href="#cb13-484" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> df_conf, <span class="fu">aes</span>(calcium, upper), <span class="at">color =</span> <span class="st">"blue"</span>)</span>
-<span id="cb13-485"><a href="#cb13-485" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-486"><a href="#cb13-486" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-483"><a href="#cb13-483" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-484"><a href="#cb13-484" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb13-485"><a href="#cb13-485" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a sequence of 1000 x values</span></span>
+<span id="cb13-486"><a href="#cb13-486" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">length.out =</span> <span class="dv">1000</span>)</span>
 <span id="cb13-487"><a href="#cb13-487" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-488"><a href="#cb13-488" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb13-489"><a href="#cb13-489" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Find the confidence interval limits (upper and lower) for each prediction of the new samples (U1, U2, U3). </span>
-<span id="cb13-490"><a href="#cb13-490" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-491"><a href="#cb13-491" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-492"><a href="#cb13-492" aria-hidden="true" tabindex="-1"></a>Here is some code to help you:</span>
-<span id="cb13-493"><a href="#cb13-493" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-496"><a href="#cb13-496" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-497"><a href="#cb13-497" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-498"><a href="#cb13-498" aria-hidden="true" tabindex="-1"></a><span class="co"># Initiate vectors to store data in</span></span>
-<span id="cb13-499"><a href="#cb13-499" aria-hidden="true" tabindex="-1"></a>upper <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb13-500"><a href="#cb13-500" aria-hidden="true" tabindex="-1"></a>lower <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb13-501"><a href="#cb13-501" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-502"><a href="#cb13-502" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
-<span id="cb13-503"><a href="#cb13-503" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb13-504"><a href="#cb13-504" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Find the x-values where the absolute difference is smallest</span></span>
-<span id="cb13-505"><a href="#cb13-505" aria-hidden="true" tabindex="-1"></a>  lower[i] <span class="ot">&lt;-</span> x[<span class="fu">which.min</span>(<span class="fu">abs</span>(df_conf<span class="sc">$</span>lower <span class="sc">-</span> df_new<span class="sc">$</span>abs[i]))]</span>
-<span id="cb13-506"><a href="#cb13-506" aria-hidden="true" tabindex="-1"></a>  upper[i] <span class="ot">&lt;-</span> x[<span class="fu">which.min</span>(<span class="fu">abs</span>(df_conf<span class="sc">$</span>upper <span class="sc">-</span> df_new<span class="sc">$</span>abs[i]))]</span>
-<span id="cb13-507"><a href="#cb13-507" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb13-508"><a href="#cb13-508" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb13-509"><a href="#cb13-509" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-510"><a href="#cb13-510" aria-hidden="true" tabindex="-1"></a><span class="co"># Add to data frame</span></span>
-<span id="cb13-511"><a href="#cb13-511" aria-hidden="true" tabindex="-1"></a>df_new<span class="sc">$</span>lower_ci <span class="ot">&lt;-</span> lower</span>
-<span id="cb13-512"><a href="#cb13-512" aria-hidden="true" tabindex="-1"></a>df_new<span class="sc">$</span>upper_ci <span class="ot">&lt;-</span> upper</span>
-<span id="cb13-513"><a href="#cb13-513" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-514"><a href="#cb13-514" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-515"><a href="#cb13-515" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb13-516"><a href="#cb13-516" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Have a look at the widths of the confidence intervals (lower to upper) for each estimated concentration of Ca$^{2+}$ (the three new samples). </span>
-<span id="cb13-517"><a href="#cb13-517" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Are the confidence intervals having the same widths? Why/why not? </span>
-<span id="cb13-518"><a href="#cb13-518" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-519"><a href="#cb13-519" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-520"><a href="#cb13-520" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-521"><a href="#cb13-521" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
-<span id="cb13-522"><a href="#cb13-522" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-523"><a href="#cb13-523" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-524"><a href="#cb13-524" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise id=ex-standard-curve-phenols}</span>
-<span id="cb13-525"><a href="#cb13-525" aria-hidden="true" tabindex="-1"></a><span class="fu">### Standard curve - quantification of phenol content in spice extracts</span></span>
-<span id="cb13-526"><a href="#cb13-526" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-527"><a href="#cb13-527" aria-hidden="true" tabindex="-1"></a>Oxidation of foodstuff is one of the main reasons leading to decreased quality. During lipid oxidation, lipid radicals are formed, which will increase the speed of oxidation. However, a number of spices contain antioxidants. These antioxidants are often phenol-containing molecules, which are able to donate a hydrogen atom to the lipid radicals and thereby decrease the speed of oxidation. By using a standard curve, we will in this exercise estimate the phenol content (and thereby the antioxidative effect) of extracts originating from oregano and tarragon (estragon).</span>
-<span id="cb13-528"><a href="#cb13-528" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-529"><a href="#cb13-529" aria-hidden="true" tabindex="-1"></a>Six standard solutions have been prepared and measured with a spectrophotometer (absorbance at $765 nm$). Find the data in @tbl-phenol-standards.</span>
-<span id="cb13-530"><a href="#cb13-530" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-531"><a href="#cb13-531" aria-hidden="true" tabindex="-1"></a>In the previous exercise on standard curves we did *hand* calculations. In this exercise we will solve the problems using the built-in functions in R.</span>
-<span id="cb13-532"><a href="#cb13-532" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-533"><a href="#cb13-533" aria-hidden="true" tabindex="-1"></a>| Concentration (mg/L) | Absorbance |</span>
-<span id="cb13-534"><a href="#cb13-534" aria-hidden="true" tabindex="-1"></a>|---------------------|------------|</span>
-<span id="cb13-535"><a href="#cb13-535" aria-hidden="true" tabindex="-1"></a>| 2.5                 | 0.2747     |</span>
-<span id="cb13-536"><a href="#cb13-536" aria-hidden="true" tabindex="-1"></a>| 5.0                 | 0.5541     |</span>
-<span id="cb13-537"><a href="#cb13-537" aria-hidden="true" tabindex="-1"></a>| 7.5                 | 0.8363     |</span>
-<span id="cb13-538"><a href="#cb13-538" aria-hidden="true" tabindex="-1"></a>| 6.5                 | 1.2375     |</span>
-<span id="cb13-539"><a href="#cb13-539" aria-hidden="true" tabindex="-1"></a>| 10.0                | 1.0931     |</span>
-<span id="cb13-540"><a href="#cb13-540" aria-hidden="true" tabindex="-1"></a>| 12.5                | 1.3234     |</span>
-<span id="cb13-541"><a href="#cb13-541" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-542"><a href="#cb13-542" aria-hidden="true" tabindex="-1"></a>: Concentrations and absorbances of standard solutions. {#tbl-phenol-standards .table-sm}</span>
+<span id="cb13-488"><a href="#cb13-488" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine data into data frame.</span></span>
+<span id="cb13-489"><a href="#cb13-489" aria-hidden="true" tabindex="-1"></a>df_conf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb13-490"><a href="#cb13-490" aria-hidden="true" tabindex="-1"></a>  <span class="at">calcium =</span> x,</span>
+<span id="cb13-491"><a href="#cb13-491" aria-hidden="true" tabindex="-1"></a>  <span class="at">lower =</span> a <span class="sc">*</span> x <span class="sc">+</span> b ..., <span class="co"># Add equation for CI here</span></span>
+<span id="cb13-492"><a href="#cb13-492" aria-hidden="true" tabindex="-1"></a>  <span class="at">upper =</span> a <span class="sc">*</span> x <span class="sc">+</span> b ..., <span class="co"># Add equation for CI here</span></span>
+<span id="cb13-493"><a href="#cb13-493" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-494"><a href="#cb13-494" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-495"><a href="#cb13-495" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-496"><a href="#cb13-496" aria-hidden="true" tabindex="-1"></a><span class="co"># Add CI to plot</span></span>
+<span id="cb13-497"><a href="#cb13-497" aria-hidden="true" tabindex="-1"></a>plt <span class="ot">&lt;-</span> plt <span class="sc">+</span> </span>
+<span id="cb13-498"><a href="#cb13-498" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> df_conf, <span class="fu">aes</span>(calcium, lower), <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb13-499"><a href="#cb13-499" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> df_conf, <span class="fu">aes</span>(calcium, upper), <span class="at">color =</span> <span class="st">"blue"</span>)</span>
+<span id="cb13-500"><a href="#cb13-500" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-501"><a href="#cb13-501" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-502"><a href="#cb13-502" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-503"><a href="#cb13-503" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb13-504"><a href="#cb13-504" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Find the confidence interval limits (upper and lower) for each prediction of the new samples (U1, U2, U3). </span>
+<span id="cb13-505"><a href="#cb13-505" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-506"><a href="#cb13-506" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-507"><a href="#cb13-507" aria-hidden="true" tabindex="-1"></a>Here is some code to help you:</span>
+<span id="cb13-508"><a href="#cb13-508" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-511"><a href="#cb13-511" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-512"><a href="#cb13-512" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb13-513"><a href="#cb13-513" aria-hidden="true" tabindex="-1"></a><span class="co"># Initiate vectors to store data in</span></span>
+<span id="cb13-514"><a href="#cb13-514" aria-hidden="true" tabindex="-1"></a>upper <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb13-515"><a href="#cb13-515" aria-hidden="true" tabindex="-1"></a>lower <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb13-516"><a href="#cb13-516" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-517"><a href="#cb13-517" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb13-518"><a href="#cb13-518" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-519"><a href="#cb13-519" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Find the x-values where the absolute difference is smallest</span></span>
+<span id="cb13-520"><a href="#cb13-520" aria-hidden="true" tabindex="-1"></a>  lower[i] <span class="ot">&lt;-</span> x[<span class="fu">which.min</span>(<span class="fu">abs</span>(df_conf<span class="sc">$</span>lower <span class="sc">-</span> df_new<span class="sc">$</span>abs[i]))]</span>
+<span id="cb13-521"><a href="#cb13-521" aria-hidden="true" tabindex="-1"></a>  upper[i] <span class="ot">&lt;-</span> x[<span class="fu">which.min</span>(<span class="fu">abs</span>(df_conf<span class="sc">$</span>upper <span class="sc">-</span> df_new<span class="sc">$</span>abs[i]))]</span>
+<span id="cb13-522"><a href="#cb13-522" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb13-523"><a href="#cb13-523" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-524"><a href="#cb13-524" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-525"><a href="#cb13-525" aria-hidden="true" tabindex="-1"></a><span class="co"># Add to data frame</span></span>
+<span id="cb13-526"><a href="#cb13-526" aria-hidden="true" tabindex="-1"></a>df_new<span class="sc">$</span>lower_ci <span class="ot">&lt;-</span> lower</span>
+<span id="cb13-527"><a href="#cb13-527" aria-hidden="true" tabindex="-1"></a>df_new<span class="sc">$</span>upper_ci <span class="ot">&lt;-</span> upper</span>
+<span id="cb13-528"><a href="#cb13-528" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-529"><a href="#cb13-529" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-530"><a href="#cb13-530" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb13-531"><a href="#cb13-531" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Have a look at the widths of the confidence intervals (lower to upper) for each estimated concentration of Ca$^{2+}$ (the three new samples). </span>
+<span id="cb13-532"><a href="#cb13-532" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Are the confidence intervals having the same widths? Why/why not? </span>
+<span id="cb13-533"><a href="#cb13-533" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-534"><a href="#cb13-534" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-535"><a href="#cb13-535" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-536"><a href="#cb13-536" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
+<span id="cb13-537"><a href="#cb13-537" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-538"><a href="#cb13-538" aria-hidden="true" tabindex="-1"></a>::: {#ex-standard-curve-phenols}</span>
+<span id="cb13-539"><a href="#cb13-539" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- Cross-ref anchor --&gt;</span></span>
+<span id="cb13-540"><a href="#cb13-540" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-541"><a href="#cb13-541" aria-hidden="true" tabindex="-1"></a>::: {.callout-exercise}</span>
+<span id="cb13-542"><a href="#cb13-542" aria-hidden="true" tabindex="-1"></a><span class="fu">### Standard curve - quantification of phenol content in spice extracts</span></span>
 <span id="cb13-543"><a href="#cb13-543" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-544"><a href="#cb13-544" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb13-545"><a href="#cb13-545" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>State the statistical model for the linear relationship between the phenol concentration and the absorbance at $765 nm$.</span>
-<span id="cb13-546"><a href="#cb13-546" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Type the data into R and plot it using the following code. Here the shaded area corresponds to the confidence interval for the regression line.</span>
-<span id="cb13-547"><a href="#cb13-547" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-548"><a href="#cb13-548" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-551"><a href="#cb13-551" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-552"><a href="#cb13-552" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-553"><a href="#cb13-553" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the data frame</span></span>
-<span id="cb13-554"><a href="#cb13-554" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb13-555"><a href="#cb13-555" aria-hidden="true" tabindex="-1"></a>  <span class="at">conc =</span> <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="fl">5.0</span>, <span class="fl">7.5</span>, <span class="fl">6.5</span>, <span class="fl">10.0</span>, <span class="fl">12.5</span>),</span>
-<span id="cb13-556"><a href="#cb13-556" aria-hidden="true" tabindex="-1"></a>  <span class="at">abs  =</span> <span class="fu">c</span>(<span class="fl">0.2747</span>, <span class="fl">0.5541</span>, <span class="fl">0.8363</span>, <span class="fl">1.2375</span>, <span class="fl">1.0931</span>, <span class="fl">1.3234</span>)</span>
-<span id="cb13-557"><a href="#cb13-557" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-544"><a href="#cb13-544" aria-hidden="true" tabindex="-1"></a>Oxidation of foodstuff is one of the main reasons leading to decreased quality. During lipid oxidation, lipid radicals are formed, which will increase the speed of oxidation. However, a number of spices contain antioxidants. These antioxidants are often phenol-containing molecules, which are able to donate a hydrogen atom to the lipid radicals and thereby decrease the speed of oxidation. By using a standard curve, we will in this exercise estimate the phenol content (and thereby the antioxidative effect) of extracts originating from oregano and tarragon (estragon).</span>
+<span id="cb13-545"><a href="#cb13-545" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-546"><a href="#cb13-546" aria-hidden="true" tabindex="-1"></a>Six standard solutions have been prepared and measured with a spectrophotometer (absorbance at $765 nm$). Find the data in @tbl-phenol-standards.</span>
+<span id="cb13-547"><a href="#cb13-547" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-548"><a href="#cb13-548" aria-hidden="true" tabindex="-1"></a>In the previous exercise on standard curves we did *hand* calculations. In this exercise we will solve the problems using the built-in functions in R.</span>
+<span id="cb13-549"><a href="#cb13-549" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-550"><a href="#cb13-550" aria-hidden="true" tabindex="-1"></a>| Concentration (mg/L) | Absorbance |</span>
+<span id="cb13-551"><a href="#cb13-551" aria-hidden="true" tabindex="-1"></a>|---------------------|------------|</span>
+<span id="cb13-552"><a href="#cb13-552" aria-hidden="true" tabindex="-1"></a>| 2.5                 | 0.2747     |</span>
+<span id="cb13-553"><a href="#cb13-553" aria-hidden="true" tabindex="-1"></a>| 5.0                 | 0.5541     |</span>
+<span id="cb13-554"><a href="#cb13-554" aria-hidden="true" tabindex="-1"></a>| 7.5                 | 0.8363     |</span>
+<span id="cb13-555"><a href="#cb13-555" aria-hidden="true" tabindex="-1"></a>| 6.5                 | 1.2375     |</span>
+<span id="cb13-556"><a href="#cb13-556" aria-hidden="true" tabindex="-1"></a>| 10.0                | 1.0931     |</span>
+<span id="cb13-557"><a href="#cb13-557" aria-hidden="true" tabindex="-1"></a>| 12.5                | 1.3234     |</span>
 <span id="cb13-558"><a href="#cb13-558" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-559"><a href="#cb13-559" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot data with regression line</span></span>
-<span id="cb13-560"><a href="#cb13-560" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(conc, abs)) <span class="sc">+</span></span>
-<span id="cb13-561"><a href="#cb13-561" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb13-562"><a href="#cb13-562" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span>
-<span id="cb13-563"><a href="#cb13-563" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-564"><a href="#cb13-564" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-559"><a href="#cb13-559" aria-hidden="true" tabindex="-1"></a>: Concentrations and absorbances of standard solutions. {#tbl-phenol-standards .hover .responsive}</span>
+<span id="cb13-560"><a href="#cb13-560" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-561"><a href="#cb13-561" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb13-562"><a href="#cb13-562" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>State the statistical model for the linear relationship between the phenol concentration and the absorbance at $765 nm$.</span>
+<span id="cb13-563"><a href="#cb13-563" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Type the data into R and plot it using the following code. Here the shaded area corresponds to the confidence interval for the regression line.</span>
+<span id="cb13-564"><a href="#cb13-564" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb13-565"><a href="#cb13-565" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-566"><a href="#cb13-566" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb13-567"><a href="#cb13-567" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Fit the model using the function <span class="in">`lm(y ~ x, data = df)`</span>, where <span class="in">`y`</span> is your absorbance values and <span class="in">`x`</span> is the concentrations.</span>
-<span id="cb13-568"><a href="#cb13-568" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>State the null hypothesis and the alternative hypothesis for both the slope and the intercept. </span>
-<span id="cb13-569"><a href="#cb13-569" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Check your coefficients with the function <span class="in">`coef(mod)`</span>, where <span class="in">`mod`</span> is the estimated model object. Anything that seems suspicious? Look into the confidence interval for each coefficient. You can get the confidence interval using the function <span class="in">`confint(mod)`</span>. Anything here that seems suspicious? </span>
-<span id="cb13-570"><a href="#cb13-570" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>In R, try to call; <span class="in">`summary(mod)$coefficients`</span>. This will return your estimates, std. errors, t-values and the probabilities of your null hypotheses being true. Is the slope significantly different from 0?</span>
-<span id="cb13-571"><a href="#cb13-571" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Inspect the plot of the standard curve and decide whether some points should be excluded from the analyses. If you remove some data points, plot the reduced data, recalculate your model (reduced data) and investigate the coefficients (like question 4).</span>
-<span id="cb13-572"><a href="#cb13-572" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Make a Q-Q plot to investigate whether the model residuals are normally distributed. You can extract your model residuals by <span class="in">`mod_new$residuals`</span>, where <span class="in">`mod_new`</span> is your model object. Are the residuals approximately normally distributed?</span>
-<span id="cb13-573"><a href="#cb13-573" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Use the standard curve to estimate the antioxidative effect (phenol concentration) of the oregano and tarragon extracts. The two extracts were measured with a spectrophotometer (absorbance at 765 nm). Find the absorbance values in @tbl-spice-extracts.</span>
-<span id="cb13-574"><a href="#cb13-574" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-568"><a href="#cb13-568" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-569"><a href="#cb13-569" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb13-570"><a href="#cb13-570" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the data frame</span></span>
+<span id="cb13-571"><a href="#cb13-571" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb13-572"><a href="#cb13-572" aria-hidden="true" tabindex="-1"></a>  <span class="at">conc =</span> <span class="fu">c</span>(<span class="fl">2.5</span>, <span class="fl">5.0</span>, <span class="fl">7.5</span>, <span class="fl">6.5</span>, <span class="fl">10.0</span>, <span class="fl">12.5</span>),</span>
+<span id="cb13-573"><a href="#cb13-573" aria-hidden="true" tabindex="-1"></a>  <span class="at">abs  =</span> <span class="fu">c</span>(<span class="fl">0.2747</span>, <span class="fl">0.5541</span>, <span class="fl">0.8363</span>, <span class="fl">1.2375</span>, <span class="fl">1.0931</span>, <span class="fl">1.3234</span>)</span>
+<span id="cb13-574"><a href="#cb13-574" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb13-575"><a href="#cb13-575" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-576"><a href="#cb13-576" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-577"><a href="#cb13-577" aria-hidden="true" tabindex="-1"></a>| Sample   | Absorbance (765 nm) | Concentration (mg/L) |</span>
-<span id="cb13-578"><a href="#cb13-578" aria-hidden="true" tabindex="-1"></a>|----------|--------------------|--------------------|</span>
-<span id="cb13-579"><a href="#cb13-579" aria-hidden="true" tabindex="-1"></a>| Oregano  | 0.2911            |                    |</span>
-<span id="cb13-580"><a href="#cb13-580" aria-hidden="true" tabindex="-1"></a>| Tarragon | 0.9413            |                    |</span>
+<span id="cb13-576"><a href="#cb13-576" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot data with regression line</span></span>
+<span id="cb13-577"><a href="#cb13-577" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(conc, abs)) <span class="sc">+</span></span>
+<span id="cb13-578"><a href="#cb13-578" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb13-579"><a href="#cb13-579" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span>
+<span id="cb13-580"><a href="#cb13-580" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb13-581"><a href="#cb13-581" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-582"><a href="#cb13-582" aria-hidden="true" tabindex="-1"></a>: Spice extracts and their absorbances. {#tbl-spice-extracts .table-sm}</span>
-<span id="cb13-583"><a href="#cb13-583" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-584"><a href="#cb13-584" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-585"><a href="#cb13-585" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb13-586"><a href="#cb13-586" aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span>Estimate the confidence bounds around the phenol concentration of both Oregano and Tarragon extracts. Again we need to calculate confidence bounds for a sequence of $x$-values (concentrations) and then look for the point in each confidence band (lower and upper) where $y$ equals the measured absorbance for each sample.</span>
-<span id="cb13-587"><a href="#cb13-587" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-588"><a href="#cb13-588" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-589"><a href="#cb13-589" aria-hidden="true" tabindex="-1"></a>Here is some code to help you:</span>
-<span id="cb13-590"><a href="#cb13-590" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-593"><a href="#cb13-593" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-594"><a href="#cb13-594" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
-<span id="cb13-595"><a href="#cb13-595" aria-hidden="true" tabindex="-1"></a><span class="co"># Sequence of x-values (Concentrations)</span></span>
-<span id="cb13-596"><a href="#cb13-596" aria-hidden="true" tabindex="-1"></a>xx <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="at">length.out =</span> <span class="dv">1000</span>) </span>
-<span id="cb13-597"><a href="#cb13-597" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-598"><a href="#cb13-598" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict y for each value in xx - including the confidence interval</span></span>
-<span id="cb13-599"><a href="#cb13-599" aria-hidden="true" tabindex="-1"></a>yy <span class="ot">&lt;-</span> <span class="fu">predict</span>(</span>
-<span id="cb13-600"><a href="#cb13-600" aria-hidden="true" tabindex="-1"></a>  your_model_object, </span>
-<span id="cb13-601"><a href="#cb13-601" aria-hidden="true" tabindex="-1"></a>  <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">Conc =</span> xx),</span>
-<span id="cb13-602"><a href="#cb13-602" aria-hidden="true" tabindex="-1"></a>  <span class="at">interval =</span> ’confidence’</span>
-<span id="cb13-603"><a href="#cb13-603" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-604"><a href="#cb13-604" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-605"><a href="#cb13-605" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize vectors for storage</span></span>
-<span id="cb13-606"><a href="#cb13-606" aria-hidden="true" tabindex="-1"></a>upper <span class="ot">&lt;-</span> <span class="fu">vector</span>()</span>
-<span id="cb13-607"><a href="#cb13-607" aria-hidden="true" tabindex="-1"></a>lower <span class="ot">&lt;-</span> <span class="fu">vector</span>()</span>
-<span id="cb13-608"><a href="#cb13-608" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-609"><a href="#cb13-609" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>) {</span>
-<span id="cb13-610"><a href="#cb13-610" aria-hidden="true" tabindex="-1"></a>  upper[i] <span class="ot">&lt;-</span> xx[<span class="fu">which.min</span>(<span class="fu">abs</span>(yy[,<span class="dv">3</span>]<span class="sc">-</span>UK[i,<span class="dv">1</span>]))]</span>
-<span id="cb13-611"><a href="#cb13-611" aria-hidden="true" tabindex="-1"></a>  lower[i] <span class="ot">&lt;-</span> xx[<span class="fu">which.min</span>(<span class="fu">abs</span>(yy[,<span class="dv">2</span>]<span class="sc">-</span>UK[i,<span class="dv">1</span>]))]</span>
-<span id="cb13-612"><a href="#cb13-612" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb13-613"><a href="#cb13-613" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-582"><a href="#cb13-582" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-583"><a href="#cb13-583" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb13-584"><a href="#cb13-584" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Fit the model using the function <span class="in">`lm(y ~ x, data = df)`</span>, where <span class="in">`y`</span> is your absorbance values and <span class="in">`x`</span> is the concentrations.</span>
+<span id="cb13-585"><a href="#cb13-585" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>State the null hypothesis and the alternative hypothesis for both the slope and the intercept. </span>
+<span id="cb13-586"><a href="#cb13-586" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Check your coefficients with the function <span class="in">`coef(mod)`</span>, where <span class="in">`mod`</span> is the estimated model object. Anything that seems suspicious? Look into the confidence interval for each coefficient. You can get the confidence interval using the function <span class="in">`confint(mod)`</span>. Anything here that seems suspicious? </span>
+<span id="cb13-587"><a href="#cb13-587" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>In R, try to call; <span class="in">`summary(mod)$coefficients`</span>. This will return your estimates, std. errors, t-values and the probabilities of your null hypotheses being true. Is the slope significantly different from 0?</span>
+<span id="cb13-588"><a href="#cb13-588" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Inspect the plot of the standard curve and decide whether some points should be excluded from the analyses. If you remove some data points, plot the reduced data, recalculate your model (reduced data) and investigate the coefficients (like question 4).</span>
+<span id="cb13-589"><a href="#cb13-589" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>Make a Q-Q plot to investigate whether the model residuals are normally distributed. You can extract your model residuals by <span class="in">`mod_new$residuals`</span>, where <span class="in">`mod_new`</span> is your model object. Are the residuals approximately normally distributed?</span>
+<span id="cb13-590"><a href="#cb13-590" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>Use the standard curve to estimate the antioxidative effect (phenol concentration) of the oregano and tarragon extracts. The two extracts were measured with a spectrophotometer (absorbance at 765 nm). Find the absorbance values in @tbl-spice-extracts.</span>
+<span id="cb13-591"><a href="#cb13-591" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-592"><a href="#cb13-592" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-593"><a href="#cb13-593" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-594"><a href="#cb13-594" aria-hidden="true" tabindex="-1"></a>| Sample   | Absorbance (765 nm) | Concentration (mg/L) |</span>
+<span id="cb13-595"><a href="#cb13-595" aria-hidden="true" tabindex="-1"></a>|----------|--------------------|--------------------|</span>
+<span id="cb13-596"><a href="#cb13-596" aria-hidden="true" tabindex="-1"></a>| Oregano  | 0.2911            |                    |</span>
+<span id="cb13-597"><a href="#cb13-597" aria-hidden="true" tabindex="-1"></a>| Tarragon | 0.9413            |                    |</span>
+<span id="cb13-598"><a href="#cb13-598" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-599"><a href="#cb13-599" aria-hidden="true" tabindex="-1"></a>: Spice extracts and their absorbances. {#tbl-spice-extracts .hover .responsive}</span>
+<span id="cb13-600"><a href="#cb13-600" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-601"><a href="#cb13-601" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-602"><a href="#cb13-602" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb13-603"><a href="#cb13-603" aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span>Estimate the confidence bounds around the phenol concentration of both Oregano and Tarragon extracts. Again we need to calculate confidence bounds for a sequence of $x$-values (concentrations) and then look for the point in each confidence band (lower and upper) where $y$ equals the measured absorbance for each sample.</span>
+<span id="cb13-604"><a href="#cb13-604" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-605"><a href="#cb13-605" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-606"><a href="#cb13-606" aria-hidden="true" tabindex="-1"></a>Here is some code to help you:</span>
+<span id="cb13-607"><a href="#cb13-607" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-610"><a href="#cb13-610" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-611"><a href="#cb13-611" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb13-612"><a href="#cb13-612" aria-hidden="true" tabindex="-1"></a><span class="co"># Sequence of x-values (Concentrations)</span></span>
+<span id="cb13-613"><a href="#cb13-613" aria-hidden="true" tabindex="-1"></a>xx <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">12</span>, <span class="at">length.out =</span> <span class="dv">1000</span>) </span>
 <span id="cb13-614"><a href="#cb13-614" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-615"><a href="#cb13-615" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
-<span id="cb13-616"><a href="#cb13-616" aria-hidden="true" tabindex="-1"></a><span class="ss">9. </span>Use these confidence bounds to decide if the concentration of phenol is different in the two extracts. What extract is having the best antioxidative effect?</span>
-<span id="cb13-617"><a href="#cb13-617" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-618"><a href="#cb13-618" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-619"><a href="#cb13-619" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb13-620"><a href="#cb13-620" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
+<span id="cb13-615"><a href="#cb13-615" aria-hidden="true" tabindex="-1"></a><span class="co"># Predict y for each value in xx - including the confidence interval</span></span>
+<span id="cb13-616"><a href="#cb13-616" aria-hidden="true" tabindex="-1"></a>yy <span class="ot">&lt;-</span> <span class="fu">predict</span>(</span>
+<span id="cb13-617"><a href="#cb13-617" aria-hidden="true" tabindex="-1"></a>  your_model_object, </span>
+<span id="cb13-618"><a href="#cb13-618" aria-hidden="true" tabindex="-1"></a>  <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">Conc =</span> xx),</span>
+<span id="cb13-619"><a href="#cb13-619" aria-hidden="true" tabindex="-1"></a>  <span class="at">interval =</span> ’confidence’</span>
+<span id="cb13-620"><a href="#cb13-620" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-621"><a href="#cb13-621" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-622"><a href="#cb13-622" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize vectors for storage</span></span>
+<span id="cb13-623"><a href="#cb13-623" aria-hidden="true" tabindex="-1"></a>upper <span class="ot">&lt;-</span> <span class="fu">vector</span>()</span>
+<span id="cb13-624"><a href="#cb13-624" aria-hidden="true" tabindex="-1"></a>lower <span class="ot">&lt;-</span> <span class="fu">vector</span>()</span>
+<span id="cb13-625"><a href="#cb13-625" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-626"><a href="#cb13-626" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>) {</span>
+<span id="cb13-627"><a href="#cb13-627" aria-hidden="true" tabindex="-1"></a>  upper[i] <span class="ot">&lt;-</span> xx[<span class="fu">which.min</span>(<span class="fu">abs</span>(yy[,<span class="dv">3</span>]<span class="sc">-</span>UK[i,<span class="dv">1</span>]))]</span>
+<span id="cb13-628"><a href="#cb13-628" aria-hidden="true" tabindex="-1"></a>  lower[i] <span class="ot">&lt;-</span> xx[<span class="fu">which.min</span>(<span class="fu">abs</span>(yy[,<span class="dv">2</span>]<span class="sc">-</span>UK[i,<span class="dv">1</span>]))]</span>
+<span id="cb13-629"><a href="#cb13-629" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-630"><a href="#cb13-630" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-631"><a href="#cb13-631" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-632"><a href="#cb13-632" aria-hidden="true" tabindex="-1"></a>::: {.callout-task}</span>
+<span id="cb13-633"><a href="#cb13-633" aria-hidden="true" tabindex="-1"></a><span class="ss">9. </span>Use these confidence bounds to decide if the concentration of phenol is different in the two extracts. What extract is having the best antioxidative effect?</span>
+<span id="cb13-634"><a href="#cb13-634" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-635"><a href="#cb13-635" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-636"><a href="#cb13-636" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb13-637"><a href="#cb13-637" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!-- End exercise callout --&gt;</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
