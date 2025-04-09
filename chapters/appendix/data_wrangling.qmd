@@ -11,6 +11,14 @@ library(dplyr)
 library(tidyr)
 library(palmerpenguins)
 
+weight_data <- data.frame(
+  person = 1:10,
+  week1  = rnorm(10, 72, 20),
+  week2 = rnorm(10, 72, 30),
+  week3 = rnorm(10, 71, 25),
+  week4 = rnorm(10, 70, 15)
+)
+
 ```
 
 ## Logical indexing
@@ -161,9 +169,50 @@ Without the pipe we would need to create several intermediate variables clutteri
 
 ## Tidy data
 
-### What is tidy data?
+"Tidy data" is a way of storing data in tables that is commonly used in R. A dataset is considered tidy when it adheres to these two principles:
+
+1. Each column is variable.
+2. Each row is an observation.
+
+It is easier to understand by looking at an example:
+
+Let us imagine that we have conducted a weight loss study by weighing 10 persons each week for 4 weeks total. That is 
+
+$$
+n = 10 \times 4 = 40 \text{ observations.}
+$$
+
+The data from the study is loaded into R and displayed.
+
+```{r}
+head(weight_data) # Show the first 6 rows of the data
+```
+
+It is clear that this data does not currently conform to the principles of tidy data. The variable "Which week is this measurement from?" is spread out across the column names of the last 4 columns. That is not practical for working with it in R, and something as simple as plotting the data using `ggplot2` would be almost impossible.
+
+In the next section, we use a bit of code to convert this into a tidy data format.
 
 ### How to convert to tidy data
+
+Using Tidyverse (remember to load it with `library(tidyverse)`), it is possible to *pivot* our current data frame into the longer tidy format.
+
+```{r}
+weight_data_tidy <- weight_data |> 
+  pivot_longer(
+    cols = -person, # Which columns to pivot (everything but "person")
+    names_to = "week", # Name of the column to store previous column names
+    values_to = "weight" # Name of the column to store data in
+  )
+
+head(weight_data_tidy)
+
+```
+
+Now the data has been converted into a tidy format. Each row is an observation, and each column is a variable describing a parameter of the observation:
+
+* `person` is the person number.
+* `week` is the week of the weight measurement.
+* `weight` is the weight recorded in that observation.
 
 ## Summarise by group {#sec-summarise-by-group}
 

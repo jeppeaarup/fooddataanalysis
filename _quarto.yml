@@ -6,7 +6,7 @@ book:
   date: 10-09-2024
   favicon: fda_favicon.png
   
-  # Chapters
+  # Chapters ----
   chapters:
     - index.qmd
 
@@ -65,20 +65,17 @@ book:
   # Appendices
   appendices:
   - chapters/appendix/data_wrangling.qmd
-  - chapters/appendix/ggplot2.qmd
 
 
 # Book layout options ----
   sidebar:
     style: docked
 
-
-bibliography: references.bib
-
-
 # Global format options ----
 format:
   html:
+    toc-depth: 4
+    crossrefs-hover: false
     theme:
       - default
       - style.scss
@@ -99,6 +96,14 @@ format:
       sec-prefix: section     # (default is "Section")
       tbl-prefix: table       # (default is "Table")
       lst-prefix: listing     # (default is "Listing")
+      custom:
+      - kind: float           # Custom cross-ref for exercises
+        reference-prefix: Exercise
+        key: ex
+      - kind: float           # Custom cross-ref for examples
+        reference-prefix: Example
+        key: exa
+      
 
   ## Grid options ----
     grid:
@@ -111,7 +116,6 @@ format:
     number-depth: 3 # Numbering depth for sections
     lightbox: true # Use lightbox for figs
 
-exercises:
-  number: true
+# lua filters ----
 filters:
-  - _extensions/callout-exercise.lua
+  - _extensions/custom-callouts.lua

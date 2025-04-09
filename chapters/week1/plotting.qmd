@@ -62,7 +62,10 @@ There are several ways of importing data into R, depending on which format you h
 
 Assume that you have a single response variable, for instance alcohol content of a series of various types of drinks, measurements of body weight from an nutritional experiment or content of antioxidants for a given product produced under different conditions. For all of these, the variable is continuous in form. As a starting point of every analysis an overview of the distribution of the variable of interest is crucial, and plotting the distribution facilitate insight into character of distribution (bell shaped, skewness, bi modal, zero inflated etc.) and single point information for outlier identification.
 
-:::{.callout-exercise id=ex-plotting-1}
+::: {#ex-plotting-1}
+<!-- Cross-ref anchor -->
+:::
+:::{.callout-exercise}
 ### Plotting distributions with histograms
 
 The histogram is the most basic representation of continuous data. A simple histogram can be produced in the following way with ggplot2.
@@ -123,7 +126,10 @@ ggplot(coffee, aes(Liking)) +
 
 :::
 
-:::{.callout-exercise id=ex-plotting-2}
+::: {#ex-plotting-2}
+<!-- Cross-ref anchor -->
+:::
+:::{.callout-exercise}
 ### Plotting distributions with densitograms
 
 A densitogram is a smoothed extension of the histogram, and as such represents the same type of information. The bin width in the histogram controls the resolution, whereas the counterpart in the densitogram is the degree of smoothing. By changing the geom used in the ggplot call the plot is changed to a densitogram. 
@@ -221,7 +227,11 @@ ggplot(coffee, aes(Liking, fill = Sample)) +
 
 :::
 
-:::{.callout-exercise id=ex-plotting-3}
+
+::: {#ex-plotting-3}
+<!-- Cross-ref anchor -->
+:::
+:::{.callout-exercise}
 ### Boxplot, Jitterplot and Violinplot
 
 In the above, the different temperatures were infered on the plot by overlaying histograms. However, the x-axis can be used for keeping track of this information. This is especially useful when you are comparing more than four levels. The code below produces four different plots for this purpose.
@@ -331,8 +341,10 @@ Sometimes it can be necessarry to play around with the scaling factor `scale =`.
 
 :::
 
-
-::: {.callout-exercise id=ex-analysis-of-coffee-inspection}
+::: {#ex-analysis-of-coffee-inspection}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Analysis of coffee serving temperature - data inspection
 
 Serving temperature of coffee seems of importance on how this drink is perceived. However, it is not totally clear how this relation is. In order to understand this, studies on the same type of coffee served at

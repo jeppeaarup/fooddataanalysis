@@ -1,3 +1,24 @@
+```{r}
+#| label: power-setup
+#| echo: false
+#| message: false
+#| warning: false
+
+library(ggplot2)
+library(here)
+library(dplyr)
+load(here("data", "MouseWheelCaffeine.RData"))
+
+x_subset <- X |> 
+  filter(
+    MouseType == "Control runner",
+    gender == "Female",
+    Caffeine %in% c("Red Bull", "Water")
+  )
+
+```
+
+
 # Power calculation
 
 
@@ -12,9 +33,24 @@ The learning objectives for this theme is to understand the idea behind statisti
 * Be able to calculate power for studies evaluated by the t-test and by the binomial distribution. 
 :::
 
-## Intro to power calculation
+## Reading material
 
-::: {.callout-example #exa-qa-power-calculation}
+* [Power calculation - in short](#sec-intro-to-power)
+* Videos on power calculation:
+  * [Playing with Power: P-Values Pt 3](#sec-power-crashcourse)
+  * [Power Analysis, Clearly Explained](#sec-power-statquest)
+  * [Visualizing a Power Calculation ](#sec-power-ncss)
+* A video on how to do power calculation in R:
+  * [Calculating Power in R](#sec-power-in-r)
+* Chapter 3.2.4 and 3.1.9 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
+
+
+## Power calculation - in short {#sec-intro-to-power}
+
+::: {#exa-qa-power-calculation}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-example}
 ### Quality control - power calculation
 
 This example extends @exa-qa-estimation.
@@ -109,24 +145,124 @@ It is seen that indeed a very high number of samples needs to be collected in or
 :::
 <!-- End example callout -->
 
-
-::: {.callout-example #exa-effect-of-caffeine-}
+::: {##exa-effect-of-caffeine}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-example}
 ### Effect of caffeine on activity - power
 
 The test in @exa-effect-of-caffeine-hypothesis-test reveal a p-value of p = 0.12 (see test below), which is not to be considered as strong support/evidence of a difference between the two groups. However, we do believe that there should be a difference between whether a mice is given water or red bull on their level of activity, and hence speculates that the study design is too small to be able to show a statistical significant difference between the two groups.
+
+```{r}
+t.test(x_subset[x_subset$Caffeine == "Water", "RPM7"],
+       x_subset[x_subset$Caffeine == "Red Bull", "RPM7"],
+       var.equal = T)
+```
+
+
+The null hypothesis assumes equal means between the two groups. However, if we believe that this is *not* true. I.e. that there is a difference of say 2 points, then given a sample size of $n \ ( = n1 + n2)$ what is the chance that the study turns out to give data that accepts (or rejects) the null hypothesis of no difference? 
+
+To answer this, we simulate a bunch of trials and check how many times $H0$ is accepted:
+
+```{r}
+m1 <- 8 # Mean of group 1
+m2 <- 10 # Mean of group 2
+
+s <- 2.1 # Standard deviation in both groups
+
+n1 <- n2 <- 10 # Number of observations in each group
+
+set.seed(2000) # Set seed for reproducibility of simulation
+
+x1 <- rnorm(n1, m1, s) # Simulated normal distributed data for group 1
+x2 <- rnorm(n2, m2, s) # Simulated normal distributed data for group 2
+
+t.test(x1, x2, var.equal = T)$p.value # p-value from t-test
+```
+
+In this first trial $p = 0.085$ and $H0$ is hence accepted.
+
+Now, let us simulate this 1000 times to see how often the null-hypothesis is accepted.
+
+```{r}
+k <- 1000 # Number of simulations
+p_values <- numeric(k) # Initialize vector for storage of values
+
+
+for (i in 1:k) {
+  
+  x1 <- rnorm(n1, m1, s) # Simulated normal distributed data for group 1
+  x2 <- rnorm(n2, m2, s) # Simulated normal distributed data for group 2
+  
+  p_values[i] <- t.test(x1, x2, var.equal = T)$p.value # p-value from t-test
+  
+}
+```
+
+We now have a vector of p-values from 1000 simulations.
+
+```{r}
+hist(p_values)
+```
+
+We can calculate how big a fraction of these simulated p-values that are under 0.05. That is, how many times the null-hypothesis was rejected.
+
+```{r}
+sum(p_values < 0.05) / k
+```
+
+For the $1000$ repeated trials half of them ($501$ out of $1000$) accepts $H0$ even thoug WE KNOW that the two groups are different (as they were simulated to be).
+
+As such this is unacceptable, and we need to increase the power of our study. 
+
+There are several ways to increase the power:
+
+* The two groups can be selected to be even more different (increse the effect size).
+* The spread could be lowered.
+* The number of observations ($n1$ and $n2$) could be increased.
+
+The function in R `power.t.test()` calculates the power as a function of these different settings.
+
+```{r}
+power.t.test(delta = m2 - m1, sd = s, power = 0.8)
+```
+
+So, in order to achieve a power of $0.8$ with the current population settings (mean and std) at least $18.3$ samples ($n1 = n2 = 18.3$) should be included in each group of the study.
+
+A more generic overview can also be achieved, where the power is calculated based on effect size (x-axis) and number of samples.
+
+```{r}
+effect_sizes <- seq(-5, 5, by = 0.01) # Vector of effect sizes (delta)
+sample_sizes <- c(5, 10, 20, 50, 100) # Vector of sample sizes (n)
+
+pwr_df <- data.frame() # Empty data frame for storage
+
+for (n in sample_sizes) { # Calculate for each sample size
+
+  pwr <- power.t.test(delta = effect_sizes, sd = s, n = n)$power
+    
+  # Add data row by row
+  pwr_df <- rbind(pwr_df, 
+                  data.frame(delta = effect_sizes, N = n, power = pwr))
+  
+}
+
+# Plot data
+ggplot(pwr_df, aes(delta, power, color = factor(N))) +
+  geom_line() +
+  labs(
+    x = "Effect size",
+    y = "Power",
+    color = "Sample size"
+  ) +
+  theme_bw()
+```
+
 :::
 <!-- End example callout -->
 
 
-## Reading material
-
-* Videos on power calculation:
-  * [Playing with Power: P-Values Pt 3](#sec-power-crashcourse)
-  * [Power Analysis, Clearly Explained](#sec-power-statquest)
-  * [Visualizing a Power Calculation ](#sec-power-ncss)
-* A video on how to do power calculation in R:
-  * [Calculating Power in R](#sec-power-in-r)
-* Chapter 3.2.4 and 3.1.9 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
+## Videos
 
 ### Playing with Power: P-Values Pt 3 - *CrashCourse* {#sec-power-crashcourse}
 {{< video https://www.youtube.com/watch?v=WWagtGT1zH4 >}}
@@ -143,7 +279,10 @@ The test in @exa-effect-of-caffeine-hypothesis-test reveal a p-value of p = 0.12
 
 ## Exercises
 
-::: {.callout-exercise id=ex-comparison-of-senses}
+::: {#ex-comparison-of-senses}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Comparison of senses
 A study wants to compare two types of trout samples, being meat stored under different conditions. The instrument used is a sensorical panel of 23 judges using either their visual sense, smelling sense or tasting sense. At each trial, each judges is presented with three pieces of meat - two similar and one odd. The task for the judge is to identify the odd sample using one of the senses. Data from such an experiment is presented in @tbl-sensory-study.
 
@@ -153,7 +292,7 @@ A study wants to compare two types of trout samples, being meat stored under dif
 | Taste             | 16       | 7           |
 | Visual appearance | 22       | 1           |
 
-: Data from a sensory study using 23 judges. {#tbl-sensory-study .responsive}
+: Data from a sensory study using 23 judges. {#tbl-sensory-study .hover .responsive}
 
 ::: {.callout-task}
 1. For now, stick to the sense *Taste*. State a statistical model for the outcome of each trial.
@@ -179,19 +318,20 @@ Based on the previous result, it seems like the different meat pieces is identif
 
 <!-- End exercise callout -->
 
-::: {.callout-exercise id=ex-our-sensorical-trial}
+::: {#ex-our-sensorical-trial}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Our sensorical trial
 
 In September 2015 the students in food science conducted two sensorical trials. A triangle test and a duo trio test. Both on apple juice for discrimination between normal juice and juice with added citric acid. In @tbl-sensorical-trials is listed the results from the 69 judges in the study.
 
-<div style="width: 60%; margin: auto;">
 |          | N  | Correct |
 |----------|:--:|:-------:| 
 | Duo-Trio | 29 | 12      |
 | Triangle | 40 | 20      |
 
-: Results of the two sensorical trials. {#tbl-sensorical-trials}
-</div>
+: Results of the two sensorical trials. {#tbl-sensorical-trials .hover .responsive}
 
 
 ::: {.callout-task}
@@ -211,7 +351,10 @@ hypothesis) under the null-assumption.
 :::
 <!-- End exercise callout -->
 
-::: {.callout-exercise id=ex-power-calculation-triangle-test}
+::: {#ex-power-calculation-triangle-test}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Power calculation - triangle test
 
 A chocolate company have a product, which they want to improve the quality of. In order to do so, they change some of the raw material to a more expensive alternative. In order to test whether this change actually ”pays of” they set up an experiment - A triangle test. Among a set of consumers ($n$), each consumer is presented to three pieces of chocolate, two of type $A$ and one of type $B$, with the task of finding type $B$. The recorded data from such an experiment may look like:
@@ -244,8 +387,10 @@ The product manager is not satisfied with the results, after all half of the con
 :::
 <!-- End exercise callout -->
 
-
-::: {.callout-exercise id=ex-triangle-or-duo-trio}
+::: {#ex-triangle-or-duo-trio}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Triangle or Duo-Trio?
 
 There exist a bunch of sensorical discrimination test, which all have the same aim, but are different in setup. In this exercise we are going to deal with the power of Triangle test and Duo-Trio test.
@@ -263,8 +408,10 @@ There exist a bunch of sensorical discrimination test, which all have the same a
 :::
 <!-- End exercise callout -->
 
-
-::: {.callout-exercise id=ex-power-calculation-in-t-test}
+::: {#ex-power-calculation-in-t-test}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Power calculation in T-test
 
 **Short version**  

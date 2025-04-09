@@ -25,8 +25,19 @@ library(here)
 * Know the relation between the PCA loading plot and bi-variate scatterplot.
 :::
 
+## Reading material
 
-## Correlation and covariance - in short
+* [Correlation and covariance - in short](#sec-correlation-intro)
+* Videos on correlation and covariance
+    * [Covariance, clearly explained](#sec-covariance-clearly-explained)
+    * [Pearson's correlation, clearly explained](#sec-pearsons-correlation-clearly-explained)
+    * [Correlation Doesn't Equal Causation: Crash Course Statistics #8](#sec-correlation-doesnt-equal-causation)
+    * [What is correlation?](#sec-what-is-correlation)
+* Chapter 1.4.3 and 2.5 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
+* Chapter 2 in [*Biological Data analysis and Chemometrics*](https://27411.compute.dtu.dk/enotes/02_-_Principal_Component_Analysis_in_R) by Brockhoff
+
+
+## Correlation and covariance - in short {#sec-correlation-intro}
 
 A covariance or correlation is a scalar measure for the association between two (response-) variables. Covariance bewteen two variables $X = (x_1, x_2, ..., x_n)$ and $Y = (y_1, y_2, ..., y_n)$ is defined as:
 
@@ -91,7 +102,10 @@ data.frame(
 
 ```
 
-::: {.callout-example #exa-phenolic-antiox-correlation}
+::: {#exa-phenolic-antiox-correlation}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-example}
 ### Natural phenolic antioxidants for meat preservation - Correlation
 
 ```{r}
@@ -104,7 +118,7 @@ load(here("data", "meat_data.RData"))
 
 ```
 
-This example continues where we left of in example @sec-example-meat-pca with the sensory data on the meat sausages treated with green tea (GT) and rosemary extract (RE) or control.
+This example continues where we left of in @exa-phenolic-antiox-pca with the sensory data on the meat sausages treated with green tea (GT) and rosemary extract (RE) or control.
 
 **Load the data and libraries**
 
@@ -215,19 +229,7 @@ Here, it can be seen that the pink and grey color attributes, which are opposite
 :::
 <!-- End example callout -->
 
-
-## Reading material
-
-* Videos on correlation and covariance
-    * [Covariance, clearly explained](#sec-covariance-clearly-explained)
-    * [Pearson's correlation, clearly explained](#sec-pearsons-correlation-clearly-explained)
-    * [Correlation Doesn't Equal Causation: Crash Course Statistics #8](#sec-correlation-doesnt-equal-causation)
-    * [What is correlation?](#sec-what-is-correlation)
-* Chapter 1.4.3 and 2.5 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
-* Chapter 2 in [*Biological Data analysis and Chemometrics*](https://27411.compute.dtu.dk/enotes/02_-_Principal_Component_Analysis_in_R) by Brockhoff
-
-
-## Videos on correlation and covariance
+## Videos
 
 ### Covariance, clearly explained - *StatQuest* {#sec-covariance-clearly-explained}
 {{< video https://www.youtube.com/watch?v=qtaqvPAeEJY >}}
@@ -244,17 +246,20 @@ Here, it can be seen that the pink and grey color attributes, which are opposite
 
 ## Exercises
 
-::: {.callout-exercise id=ex-correlation-between-aroma-compounds}
+
+
+::: {#ex-correlation-between-aroma-compounds}
+:::
+::: {.callout-exercise }
 ### Correlation between aroma compounds
 
 #### Correlation 
 
 ::: {.callout-task}
 1. What does a correlation coefficient of -1, 0 or +1 tell you?
-2. In the table below the amount of *Nonanal* and *Ethyl.2.methyl.propanoate* in the six Argentine wines are listed. Fill out the blank spaces in the table and calculate the correlation coefficient (r). 
+2. In the table below (@tbl-argentine-wines) the amount of *Nonanal* and *Ethyl.2.methyl.propanoate* in the six Argentine wines are listed. Fill out the blank spaces in the table and calculate the correlation coefficient (r). 
     * Help can be found in example 1.19 in [Introduction to Statistics](http://introstat.compute.dtu.dk/enote/) by Brockhoff.
 :::
-<div style="width: 60%; margin: auto;">
 
 
 | Wine number ($i$)                 | 1     | 2     | 3     | 4     | 5     | 6     |
@@ -265,7 +270,7 @@ Here, it can be seen that the pink and grey color attributes, which are opposite
 | $Y_i - \bar{Y}$                   |       |       |       |       |       |       |
 | $(X_i - \bar{X})(Y_i - \bar{Y})$  |       |       |       |       |       |       |
 
-</div>
+: Noanal and Ethyl-2-methyl-propaonate in six Argentine wines. {#tbl-argentine-wines .hover .responsive}
 
 Remember that the sample covariance and correlation are given as
 
@@ -299,12 +304,14 @@ $$
 
 :::
 
-::: {.callout-exercise id=ex-covariance-and-correlation-by-hand}
+
+::: {#ex-cov-cor-by-hand}
+:::
+::: {.callout-exercise}
 ### Covariance and Correlation - by hand
 
-Certain types of characteristics ”go together”, for instance will a variable that measures the chocolate smell of some food type be related to a variable measuring the chocolate taste of the same food type. We talk about these two types of information being correlated. Below is 48 corresponding measures of the sensorical attributes sour and roasted for coffees at different serving temperatures and different judges (each based on the average of four measurements). Calculate the correlation between these two variables based on the metrics listed below.
+Certain types of characteristics ”go together”, for instance will a variable that measures the chocolate smell of some food type be related to a variable measuring the chocolate taste of the same food type. We talk about these two types of information being correlated. Below (@tbl-coffee-sensorical) is 48 corresponding measures of the sensorical attributes sour and roasted for coffees at different serving temperatures and different judges (each based on the average of four measurements). Calculate the correlation between these two variables based on the metrics listed below.
 
-<div style="width: 40%; margin: auto;">
 
 | Observation      | Sour  | Roasted |
 |------------------|-------|---------|
@@ -320,8 +327,8 @@ Certain types of characteristics ”go together”, for instance will a variable
 | $\sum$           | **91.59** | **76.42**   |
 | $\hat{\sigma}^2$ | **0.90**  | **0.94**    |
 | $\sum_{XY}$      |           | **172.73**  |
+: Ratings of the sensorical attributes *sour* and *roasted* for coffees at different serving temperatures and different judges (each based on the average of four measurements). {#tbl-coffee-sensorical .hover .responsive}
 
-</div>
 
 ::: {.callout-task}
 1. Calculate mean and standard deviation for the two variables using the statistics listed below data. That is WITHOUT importing data into the computer!
@@ -335,7 +342,9 @@ Certain types of characteristics ”go together”, for instance will a variable
 
 :::
 
-::: {.callout-exercise id=ex-correlation-and-pca}
+
+::: {#ex-correlation-and-pca}
+::: {.callout-exercise}
 ### Correlation and PCA
 
 In this exercise the sensorical data from ranking of coffee served at different temperatures are used. The aim is to see how correlations is the vehicle for PCA analysis. The data is named "Results Panel.xlsx".
@@ -363,9 +372,10 @@ ggpairs(coffee_ag, columns = 4:11)
 ```
 
 :::
+:::
 
-
-::: {.callout-exercise id=ex-olive-oil-adulteration}
+::: {#ex-olive-oil-adulteration}
+::: {.callout-exercise}
 ### Olive oil adulteration
 
 Quick detection of adulteration of oils is of growing importance, since high quality oils, such as olive oil, are becoming increasingly popular and expensive, increasing the incentive for adulterating with cheaper oils. Spectroscopic techniques are the preferred measurement choice because they are quick, often non-destructive and in many cases highly selective for oil characterization. 
@@ -456,4 +466,5 @@ Oliveoil <- Oliveoil[-c(" insert outlier ID number here"), ]
     a. Hint: Remember that the dataset is mean centred, so the peaks will be positive or negative. Negative scores have a high absorbance in the negative loading ”peaks”, and positive scores have a high absorbance in the positive loading ”peaks”.
 :::
 
+:::
 :::

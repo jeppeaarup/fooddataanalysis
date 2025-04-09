@@ -10,9 +10,15 @@
 
 :::
 
+## Reading material
+* [Multinomial data - in short](#sec-intro-to-multinomial)
+* A video going through $\chi^2$-test (Goodness of fit test) for frequency tables:
+    * [Chi-Square Tests](#sec-chi-square-crashcourse)
+* Chapter 7 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
+
+## Multinomial data - in short {#sec-intro-to-multinomial}
 Multinomial data are categorical data with *more* than two groups. If there is only two groups, the data follow the binomial distribution. These data are naturally organized in a so-called frequency- or contingency table (see for example @ex-comparison-of-senses). In general terms such a table with $n$ rows and $k$ columns can be shown as in @tbl-multinomial-data.
 
-<div style="width: 60%; margin: auto;">
 |            | Category I | Category II | $\cdots$ | Category $k$ |
 |:-----------|:----------:|:----------:|:---------:|:------------:|
 | Sample I   | $N_{11}$   | $N_{12}$   | $\cdots$  | $N_{1k}$     |
@@ -21,7 +27,6 @@ Multinomial data are categorical data with *more* than two groups. If there is o
 | Sample $n$ | $N_{n1}$   | $N_{n2}$   | $\cdots$  | $N_{nk}$     |
 
 : A table of multinomial data. Each column is a category and each row is a sample {#tbl-multinomial-data}
-</div>
 
 Such data can be collected in two ways following two slightly different models.
 
@@ -98,22 +103,22 @@ P = P(\chi^2_{df} > X^2_{obs})
 
 OBS: Be aware that too low expected values ($E_{ij}$) makes this test unstable. A rule of thumb is that $80\%$ of the cells should be above $5$ and ALL should be above $1$. In the case where this is violated, cells can be merged by summing both the expected and observed values. 
 
-## Reading material
-* A video going through $\chi^2$-test (Goodness of fit test) for frequency tables:
-    * [Chi-Square Tests](#sec-chi-square-crashcourse)
-* Chapter 7 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
+## Videos 
 
-##### Chi-Square Tests - *CrashCourse* {#sec-chi-square-crashcourse}
+### Chi-Square Tests - *CrashCourse* {#sec-chi-square-crashcourse}
 {{< video https://www.youtube.com/watch?v=7_cs1YlZoug >}}
+
 
 ## Exercises
 
-::: {.callout-exercise id=ex-comparison-of-senses}
+::: {#ex-comparison-of-senses}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Comparison of senses
 
 A study wants to compare two types of trout samples, being meat stored under different conditions. The instrument used is a sensorical panel of $23$ judges using either their visual sense, smelling sense or tasting sense. At each trial, each judges is presented with three pieces of meat - two similar and one odd. The task for the judge is to identify the odd sample using one of the senses. Data from such an experiment is presented below (@tbl-exercise-senses).
 
-<div style="width: 40%; margin: auto;">
 
 |                   | Correct | Not correct |
 |------------------:|:-------:|:-----------:|
@@ -121,8 +126,7 @@ A study wants to compare two types of trout samples, being meat stored under dif
 | Taste             | 16      | 7           |
 | Visual appearance | 22      | 1           |
 
-: Counts of outcomes for each sense. {#tbl-exercise-senses}
-</div>
+: Counts of outcomes for each sense. {#tbl-exercise-senses .hover .responsive}
 
 ::: {.callout-task}
 1. For now, stick to the sense *Taste*. State a statistical model for the outcome of each trial. 

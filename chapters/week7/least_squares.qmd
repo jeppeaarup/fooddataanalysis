@@ -26,14 +26,14 @@ The learning objectives for this theme is to understand the mathematical formula
 
 ## Reading material
 
-* [Intro to least squares](#sec-intro-to-least-squares)
+* [Least squares - in short](#sec-intro-to-least-squares)
 * Videos on least squares and linear regression
    * [Linear Regression - Least Squares Criterion Part 1](#sec-ls-patrick-j)
    * [The Main Ideas of Fitting a Line to Data](#sec-ls-statquest)
 * Chapter 5.1 and 5.2 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
 
 
-## Intro to least squares {#sec-intro-to-least-squares}
+## Least squares - in short {#sec-intro-to-least-squares}
 
 A model (ANOVA, linear regression, PCA,...) can be seen as a representation of the observed data, such that:
 
@@ -81,8 +81,10 @@ $$
 
 Contrary to the univariate cases mentioned above, the data and parameters are here matrices, however, the aim is still to find some scores and loadings that minimizes $\mathbf{E}$ in a least squares sense: $\sum{\mathbf{E}_{ij}^2}$, where $i$ refers to the sample $i$ and $j$ refers to variable $j$. I.e. $\mathbf{E}_{3,4}$ is the residual for sample $3$ variable $4$.
 
-
-::: {.callout-example #exa-nir-marzipan-least-squares}
+::: {#exa-nir-marzipan-least-squares}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-example}
 ### Near-infrared spectroscopy of marzipan - least squares
 
 
@@ -208,7 +210,10 @@ This model is explaining $85\%$ of the variance of the response variable (sugar 
 
 ## Exercises
 
-::: {.callout-exercise id=ex-least-squares-estimation}
+::: {#ex-least-squares-estimation}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Least squares estimation
 
 This exercise has the purpose of showing least squares estimation of the center of a distribution.

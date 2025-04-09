@@ -25,13 +25,13 @@ The learning objectives for this theme is to:
 
 ## Reading material
 
-* [Intro to regression ](#sec-intro-to-regression)
+* [Regression - in short](#sec-intro-to-regression)
 * Videos on linear regression:
    * [Linear Regression, Clearly Explained](#sec-linereg-statquest)
    * [Using Linear Models for t-tests and ANOVA, Clearly Explained](#sec-lm-statquest)
 * Chapter 5 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
 
-## Intro to regression {#sec-intro-to-regression}
+## Regression - in short {#sec-intro-to-regression}
 
 Regression models are simply extensions of the ANOVA framework allowing for descriptive variables being continuous.
 
@@ -141,7 +141,10 @@ The model assumes a linear relation between $X$ and $Y$. However, inspection of 
 
 ## Exercises
 
-::: {.callout-exercise id=ex-linear-regression}
+::: {#ex-linear-regression}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Linear regression
 
 To get a feeling of how linear regression works we can consider two variables, $x$ and $y$, that are linearly dependent. We generate $x$ as a random variable and $y$ is related to $x$ plus some noise.
@@ -192,7 +195,10 @@ From the data generation step above we can see that the true relationship is `sl
 :::
 <!-- End exercise callout -->
 
-::: {.callout-exercise id=ex-diet-regression-by-hand}
+::: {#ex-diet-regression-by-hand}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Diet and fat metabolism - regression by hand
 
 The diet is a central factor involved in general health, and especially in relation to obesity, where a balance between intake of protein, fat and carbohydrates, as well as type of these nutrients seems important. Therefore various controlled studies are conducted to show the effect of different diets. A study examining the effect of protein from milk (casein or whey) and amount of fat on growth biomarkers of fat metabolism and type I diabetes was conducted in 40 mouse over an intervention period of 14 weeks.
@@ -210,7 +216,7 @@ For this exercise we are going to focus on predicting different biomarkers from 
 | $\sum{X}$ | $\sum{(X - \bar{X})^2}$ | $\sum{Y}$ | $\sum{(Y - \bar{Y})^2}$ | $\sum{(X - \bar{X})(Y - \bar{Y})}$ | $\sum{(Y - \hat{Y})^2}$ |
 |----------:|-------------------------:|----------:|-------------------------:|-----------------------------------:|-------------------------:|
 | 1426.2 | 1099.3 | 156.5 | 18.99 | 116.44 | 6.65 |
-: Some descriptive numbers computed on the data. {#tbl-diet-descriptors-regression .table-sm}
+: Some descriptive numbers computed on the data. {#tbl-diet-descriptors-regression .hover. responsive}
 
 ::: {.callout-task}
 4. Construct confidence intervals for the intercept and the slope for this model, and judge whether there seem to be a relation between weight and cholesterol level. 
@@ -223,7 +229,10 @@ For this exercise we are going to focus on predicting different biomarkers from 
 :::
 <!-- End exercise callout -->
 
-::: {.callout-exercise id=ex-diet-regression-and-pca}
+::: {#ex-diet-regression-and-pca}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Diet and fat metabolism - regression and PCA
 
 This exercise is an extension of @ex-diet-regression-by-hand.
@@ -238,7 +247,10 @@ This exercise is an extension of @ex-diet-regression-by-hand.
 :::
 <!-- End exercise callout -->
 
-::: {.callout-exercise id=ex-standard-addition}
+::: {#ex-standard-addition}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Standard addition
 
 This exercise shows how regression modeling is used for calculating the concentration of a chemical substance in a sample.
@@ -273,7 +285,7 @@ In @tbl-standard-addition are listed five measurements from a standard addition 
 |:--|--:|--:|--:|--:|--:|
 | Concentration added ($x$) | 0.0 | 0.8 | 1.5 | 2.2 | 3.0 |
 | Signal ($y$) | 2.2 | 3.3 | 4.0 | 4.8 | 6.0 |
-: Standard addition vs signal for a calibration set. {#tbl-standard-addition .table-sm}
+: Standard addition vs signal for a calibration set. {#tbl-standard-addition .hover .responsive}
 
 ::: {.callout-task}
 1. Chuck the data into R.
@@ -320,7 +332,10 @@ sig_pred[ , 3] # Upper CI
 <!-- End exercise callout -->
 
 
-::: {.callout-exercise id=ex-standard-curve-by-hand}
+::: {#ex-standard-curve-by-hand}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Standard curve for calcium in milk - hand calculations using R
 
 Milk coagulation is needed during cheese making. A number of factors influence the coagulation properties of milk. Obviously $\kappa$-casein is important. However, also the amount of calcium (Ca$^{2+}$) is essential during milk coagulation.
@@ -343,7 +358,7 @@ In this exercise we determine the concentration of Ca$^{2+}$ from a standard cur
 | 8.0 | 0.218 |
 | 10.0 | 0.265 |
 
-: Measured absorbance of standard solutions .{tbl-standard-curve .table-sm}
+: Measured absorbance of standard solutions. {#tbl-standard-curve .hover .responsive}
 
 Use the following code to get the data into Rstudio and plot the data. We want to find the relationship between concentration of Ca$^{2+}$ and Absorbance. This is a linear model: $y = b + ax + e$
 
@@ -403,7 +418,7 @@ e <- y - (a * x + b) # model error
 ```
 
 ::: {.callout-task}
-3. Three new milk samples with unknown concentration of Ca$^{2+}$ were measured with atom absorption spectroscopy. Use the standard curve to quantify the concentrations of Ca$^{2+}$ in the new samples. The absorbance values for the three new samples are found in @tbl-unkown-concentration.
+3. Three new milk samples with unknown concentration of Ca$^{2+}$ were measured with atom absorption spectroscopy. Use the standard curve to quantify the concentrations of Ca$^{2+}$ in the new samples. The absorbance values for the three new samples are found in @tbl-unknown-concentration.
 :::
 
 
@@ -413,7 +428,7 @@ e <- y - (a * x + b) # model error
 | U2     | 0.147                  |                      |
 | U3     | 0.243                  |                      |
 
-: Absorbances for samples with unknown Ca$^{2+}$ concentration. {#tbl-unknown-concentration .table-sm}
+: Absorbances for samples with unknown Ca$^{2+}$ concentration. {#tbl-unknown-concentration .hover .responsive}
 
 Use the following code to get the unknown samples into R and add the samples to the standard curve.
 
@@ -498,8 +513,10 @@ df_new$upper_ci <- upper
 :::
 <!-- End exercise callout -->
 
-
-::: {.callout-exercise id=ex-standard-curve-phenols}
+::: {#ex-standard-curve-phenols}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Standard curve - quantification of phenol content in spice extracts
 
 Oxidation of foodstuff is one of the main reasons leading to decreased quality. During lipid oxidation, lipid radicals are formed, which will increase the speed of oxidation. However, a number of spices contain antioxidants. These antioxidants are often phenol-containing molecules, which are able to donate a hydrogen atom to the lipid radicals and thereby decrease the speed of oxidation. By using a standard curve, we will in this exercise estimate the phenol content (and thereby the antioxidative effect) of extracts originating from oregano and tarragon (estragon).
@@ -517,7 +534,7 @@ In the previous exercise on standard curves we did *hand* calculations. In this 
 | 10.0                | 1.0931     |
 | 12.5                | 1.3234     |
 
-: Concentrations and absorbances of standard solutions. {#tbl-phenol-standards .table-sm}
+: Concentrations and absorbances of standard solutions. {#tbl-phenol-standards .hover .responsive}
 
 ::: {.callout-task}
 1. State the statistical model for the linear relationship between the phenol concentration and the absorbance at $765 nm$.
@@ -555,7 +572,7 @@ ggplot(df, aes(conc, abs)) +
 | Oregano  | 0.2911            |                    |
 | Tarragon | 0.9413            |                    |
 
-: Spice extracts and their absorbances. {#tbl-spice-extracts .table-sm}
+: Spice extracts and their absorbances. {#tbl-spice-extracts .hover .responsive}
 
 
 ::: {.callout-task}

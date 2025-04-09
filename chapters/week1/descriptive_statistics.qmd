@@ -36,8 +36,10 @@ options(knitr.kable.NA = '')
 * [Video lecture](https://www.youtube.com/watch?v=SzZ6GpcfoQY) on both central metrics and dispersion.
 
 ## Exercises
-
-:::{.callout-exercise id=ex-descriptive-stats-by-hand}
+::: {#ex-descriptive-stats-by-hand}
+<!-- Cross-ref anchor -->
+:::
+:::{.callout-exercise}
 
 ### Descriptive statistics by hand
 
@@ -79,8 +81,10 @@ $$\sum{(X_i - \bar{X})^2} = 122.7$$
 :::
 
 :::
-
-:::{.callout-exercise id=ex-descriptive-stats}
+::: {#ex-descriptive-stats}
+<!-- Cross-ref anchor -->
+:::
+:::{.callout-exercise}
 
 ### Descriptive statistics
 

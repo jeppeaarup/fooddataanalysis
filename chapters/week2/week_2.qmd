@@ -10,7 +10,7 @@ This week is going to focus on three very central subjects, namely correlation, 
 
 For Monday work through the following exercises:
 
-* @ex-covariance-and-correlation-by-hand
+* @ex-cov-cor-by-hand
 * @ex-correlation-and-pca
 
 For Wednesday work through the following exercises:

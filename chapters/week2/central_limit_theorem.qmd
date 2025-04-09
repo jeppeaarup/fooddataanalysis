@@ -8,7 +8,17 @@
 
 :::
 
-In short, the central limit theorem (CLT) says, that the central parameter (e.g. the mean) obtained from a sample (stikprøve) from ANY distribution is normal distributed with variance equal to the sample variance divided by the sample size. That is:  
+## Reading material
+
+* [Central Limit Theorem (CLT) - in short](#sec-intro-to-clt)
+* Videos on the central limit theorem:
+    * [The Central Limit Theorem, Clearly Explained](#sec-the-central-limit-theorem-clearly-explained)
+    * [What is the central limit theorem? And why is it so hard to understand?](#sec-what-is-the-clt)
+* Chapter 8.3 in *Introduction to Probability and Statistics Using R* by J.G. Kern
+    * Available on Absalon
+
+## Central Limit Theorem (CLT) - in short {#sec-intro-to-clt}
+In short, the Central Limit Theorem (CLT) says, that the central parameter (e.g. the mean) obtained from a sample (stikprøve) from ANY distribution is normal distributed with variance equal to the sample variance divided by the sample size. That is:  
 
 $$
 \bar{X} \sim \mathcal{N}(\mu,\sigma^2/n) \quad for \: n \rightarrow \infty
@@ -22,13 +32,7 @@ $$
 
 Where $df$ (degrees of freedom) is equal to *how well* the variance is estimated (usually $df = n-1$).
 
-## Reading material
-
-* Videos on the central limit theorem:
-    * [The Central Limit Theorem, Clearly Explained](#sec-the-central-limit-theorem-clearly-explained)
-    * [What is the central limit theorem? And why is it so hard to understand?](#sec-what-is-the-clt)
-* Chapter 8.3 in *Introduction to Probability and Statistics Using R* by J.G. Kern
-    * Available on Absalon
+## Videos
 
 ### The Central Limit Theorem, Clearly Explained - *StatQuest* {#sec-the-central-limit-theorem-clearly-explained}
 
@@ -39,8 +43,8 @@ Where $df$ (degrees of freedom) is equal to *how well* the variance is estimated
 {{< video https://www.youtube.com/watch?v=zr-97MVZYb0 >}}
 
 ## Exercises
-
-::: {.callout-exercise id=ex-quality-control-and-clt}
+::: {#ex-quality-control-and-clt}
+::: {.callout-exercise}
 ### Quality control and central limit theorem
 
 Ensuring the end product quality in food production is naturally of utmost interest. In doing so, the production is monitored at several critical points, in order to check that it is \textit{on track}. This is referred to as statistical process control (SPC) and is under the umbrella of process analytical technology (PAT). 
@@ -79,4 +83,5 @@ sum(mX > x) / length(mX)
 ```
 
 
+:::
 :::

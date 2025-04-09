@@ -10,6 +10,15 @@
 
 :::
 
+## Reading material
+
+* [Poisson distribution - in short](#sec-intro-to-poisson)
+* A video with an introduction to the Poisson distribution:
+    * [An Introduction to the Poisson Distribution](#sec-poisson-dist-jb)
+* Chapter 2.2 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
+    * Especially 2.2.4
+
+## Poisson distribution - in short {#sec-intro-to-poisson}
 In short, the Poisson distribution are characterized by observations that are non-negative integers. That is $X \in (0,1,2,...)$, where each observation is a \textit{concentration} in a fixed volume, time, space etc.. I.e. the number of bacteria in $1gram$ of sample or the number of events within one day. The Poisson distribution only have a single parameter $\lambda$, which is both the mean and the variance of the distribution. Formalized the distribution can be written as:
 
 \begin{equation}
@@ -38,15 +47,9 @@ CI_{\lambda}: \hat{\lambda} \pm z_{1-\alpha/2}\sqrt{\hat{\lambda}/n}
 
 Where $z_{1-\alpha/2}$ is a fractile from the standard normal distribution. If $\alpha = 0.05$, then $z_{1-\alpha/2} = 1.96$. 
 
-## Reading material
+## Videos
 
-* A video with an introduction to the Poisson distribution:
-    * [An Introduction to the Poisson Distribution](#sec-poisson-dist-jb)
-* Chapter 2.2 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
-    * Especially 2.2.4
-
-
-##### An Introduction to the Poisson Distribution - *jbstatistics* {#sec-poisson-dist-jb}
+### An Introduction to the Poisson Distribution - *jbstatistics* {#sec-poisson-dist-jb}
 {{< video https://www.youtube.com/watch?v=jmqZG6roVqU >}}
 
 
@@ -58,7 +61,10 @@ Sometimes, when solving exercises you end up by doing what you are asked, withou
 
 :::
 
-::: {.callout-exercise id=ex-qa-poisson}
+::: {#ex-qa-poisson}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Quality assurance
 
 **Short version**  
@@ -111,7 +117,10 @@ You probably assume that in order to observe growth in a single sample there nee
 :::
 <!-- End exercise callout -->
 
-::: {.callout-exercise id=ex-qa-poisson-binomial}
+::: {#ex-qa-poisson-binomial}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Quality assurance - poisson and binomial distribution
 
 **Short version**  
@@ -129,7 +138,10 @@ A quality assurance program uses the test described in @ex-qa-poisson with $n$ s
 :::
 <!-- End exercise callout -->
 
-::: {.callout-exercise id=ex-qa-chance-of-false-rejections}
+::: {#ex-qa-chance-of-false-rejections}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Quality assurance - chance of false rejections
 
 For some types of microorganisms (bacteria or yeast) a product is damaged for very low concentrations, due to the possibility of growth during storage. However, a number of organisms are only damaging the product when present in high amounts - if present in low amounts, they do not affect the quality.

@@ -28,7 +28,16 @@ different treatments. That is:
 In short, ANOVA can be seen as an extention of the t-test. One-way ANOVA is for two sample t-test with more than two samples. And two-way anova is for paired t-test where there are more than just a pair.
 :::
 
-## Intro to ANOVA
+## Reading material
+
+* [Analysis of Variance (ANOVA) - in short](#sec-anova-intro)
+* A brief video going through the concepts of both one-way and two-way ANOVA:
+    * [Analysis of Variance (ANOVA)](#sec-anova-eisenberg)
+* A video going through how to do ANOVA in R:
+    * [ANOVA in R](#sec-anova-boone)
+* Chapter 8 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
+
+## Analysis of Variance (ANOVA) - in short {#sec-anova-intro}
 
 ### Model formulation
 
@@ -90,7 +99,7 @@ A natural way to organize these variances is in an ANOVA table. That is a table 
 | Factor(A)  | $SS_A$   | $df_A = k-1$    | $MS_A = SS_A/df_A$ | $F_A = MS_A/MS_e$ | $p_A$                      |
 | Residuals  | $SS_e$   | $df_e = n-k$    | $MS_e = SS_e/df_e$ |                   |                            |
 | Total      | $SS_{tot}$ | $df_{tot} = n-1$ |                   |                   |                            |
-: ANOVA table for one-way analysis of variance. {#tbl-one-way-anova .table-sm}
+: ANOVA table for one-way analysis of variance. {#tbl-one-way-anova .hover .responsive}
 
 
 Here the total variance is described as the sums of squares across all samples 
@@ -138,7 +147,7 @@ In the test of these hypothesis, the ANOVA table is simply extend with rows in r
 | Factor(B)  | $SS_B$   | $df_B = k_B-1$ | $MS_B = SS_B/df_B$ | $F_B = MS_B/MS_e$ | $p_B$ |
 | Residuals  | $SS_e$   | $df_e = n-df_A - df_B - 1$ | $MS_e = SS_e/df_e$ | |  |
 | Total      | $SS_{tot}$ | $df_{tot} = n-1$ | | | |
-: ANOVA table for a two-way ANOVA. {#tbl-two-way-anova .table-sm}
+: ANOVA table for a two-way ANOVA. {#tbl-two-way-anova .hover .responsive}
 
 #### Interactions
 For some experiments the effect of one factor might be dependent on the other factor, that is referred to as *interaction*. The interaction model for a two factor experiment is written as:
@@ -163,12 +172,16 @@ Testing the interaction leads to an extension of the ANOVA table, as seen in @tb
 | Factor(A*B) | $SS_{AB}$ | $df_{AB} = (k_A-1)(k_B-1)$                                      | $MS_{AB} = SS_{AB}/df_{AB}$ | $F_{AB} = MS_{AB}/MS_e$ | $p_{AB}$                          |
 | Residuals   | $SS_e$    | $df_e = n-df_A - df_B - df_{AB} - 1 = n - (k_A)(k_B)$          | $MS_e = SS_e/df_e$       |                        |                                   |
 | Total       | $SS_{tot}$ | $df_{tot} = n-1$                                                |                          |                        |                                   |
-: ANOVA table for a two-way ANOVA with interaction. {#tbl-two-way-anova-interaction .table-sm}
+
+: ANOVA table for a two-way ANOVA with interaction. {#tbl-two-way-anova-interaction .hover .responsive}
 
 
 We see that the only thing that changes is the sums of squares and the degrees of freedom for the residuals. 
 
-::: {.callout-example #exa-natural-phenolic-antiox-anova}
+::: {#exa-natural-phenolic-antiox-anova}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-example}
 ### Natural phenolic antioxidants for meat preservation - ANOVA
 
 ```{r}
@@ -301,8 +314,10 @@ t_{obs} = \frac{\bar{X_5} - \bar{X_2}} {\sqrt{MS_e}\sqrt{\frac{1}{n_5} + \frac{1
 With the associated (2-sided) p-value: $p = 2 \cdot P(\mathcal{T}_{df=df_e}>t_{obs})$. 
 
 
-
-::: {.callout-example #exa-natual-phenolic-antiox-contrasts}
+::: {#exa-natual-phenolic-antiox-contrasts}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-example}
 ### Natural phenolic antioxidants for meat preservation - contrasts
 
 
@@ -380,13 +395,7 @@ We see that the confidence interval on the difference between the control and RE
 :::
 <!-- End example callout -->
 
-## Reading material
-
-* A brief video going through the concepts of both one-way and two-way ANOVA:
-    * [Analysis of Variance (ANOVA)](#sec-anova-eisenberg)
-* A video going through how to do ANOVA in R:
-    * [ANOVA in R](#sec-anova-boone)
-* Chapter 8 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
+## Videos
 
 ### Analysis of Variance (ANOVA) - *J David Eisenberg* {#sec-anova-eisenberg}
 {{< video https://www.youtube.com/watch?v=ITf4vHhyGpc >}}
@@ -414,7 +423,10 @@ Load `Results panel.xlsx`. Look at the study design and:
 ::: 
 <!-- End exercise callout -->
 
-::: {.callout-exercise id=ex-wine-and-one-way-anova}
+::: {#ex-wine-and-one-way-anova}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Wine and one-way ANOVA
 
 Wines from four different countries (Argentina, Australia, Chile and South Africa) were analyzed for aroma compounds with GC-MS (gas chromatography coupled with mass spectrometry). The dataset can be found in the file “Wine.xlsx”. The wine data should already be familiar to you otherwise look at the exercises from week 1 and 2.
@@ -439,7 +451,10 @@ Wines from four different countries (Argentina, Australia, Chile and South Afric
 :::
 <!-- End exercise callout -->
 
-::: {.callout-exercise id=ex-diet-and-fat-metabolism-anova}
+::: {#ex-diet-and-fat-metabolism-anova}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Diet and fat metabolism - ANOVA
 
 The diet is a central factor involved in general health, and especially in relation to obesity, where a balance between intake of protein, fat and carbohydrates, as well as types of these nutrients seems important. Therefore various controlled studies are conducted to show the effect of different diets. A study examining the effect of protein from milk (casein or whey) and amount of fat on growth biomarkers of fat metabolism and type I diabetes was conducted in 40 mice over an intervention period of 14 weeks.
@@ -454,7 +469,7 @@ For this exercise we are going to focus on cholesterol as a biomarker related to
 2. High fat with whey protein from milk *HF whey* (n=15).
 3. Low fat with the milk protein casein *LF casein* (n=10).
 
-The cholesterol level at the end of the 14 week intervention is listed in @tbl-tbl-diets-summary including some descriptive stats. 
+The cholesterol level at the end of the 14 week intervention is listed in @tbl-diets-summary including some descriptive stats. 
 
 
 |                         | 1    | 2    | ... | 9    | 10   | 11   | ... | 15   | $\sum{X}$ | $\sum{(X - \bar{X})^2}$ | $\bar{X}$ | $s_{X}$ |
@@ -462,7 +477,7 @@ The cholesterol level at the end of the 14 week intervention is listed in @tbl-t
 | Cholesterol (HF casein) | 4.68 | 3.60 | ... | 4.60 | 4.84 | 4.84 | ... | 4.37 | 67.29     | 4.06                    |           |         |
 | Cholesterol (HF whey)   | 3.79 | 2.82 | ... | 3.77 | 4.63 | 3.44 | ... | 3.24 | 54.86     | 4.69                    |           |         |
 | Cholesterol (LF casein) | 3.97 | 3.69 | ... | 3.62 | 3.53 | ...  | ... | ...  | 34.37     | 2.07                    |           |         |
-: Some summary statistics for cholesterol across the three diets. {#tbl-diets-summary .table-sm}
+: Some summary statistics for cholesterol across the three diets. {#tbl-diets-summary .hover .responsive}
 
 The total sums of squares is: $SS_{tot} = \sum{(X_{ij} - \bar{\bar{X}})^2} = 18.99$. 
 
@@ -496,8 +511,10 @@ The data can be found in the file `Mouse_diet_intervention.xlsx`.
 :::
 <!-- End exercise callout -->
 
-
-::: {.callout-exercise id=ex-diet-and-fat-metabolism-anova-multivariate}
+::: {#ex-diet-and-fat-metabolism-anova-multivariate}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Diet and fat metabolism - multivariate ANOVA
 
 In this exercise, we are going to extend the analysis from @ex-diet-and-fat-metabolism-anova to include several biomarkers.
@@ -516,8 +533,10 @@ In this exercise, we are going to extend the analysis from @ex-diet-and-fat-meta
 :::
 <!-- End exercise callout -->
 
-
-::: {.callout-exercise id=ex-analysis-of-coffee-serving-temperature}
+::: {#ex-analysis-of-coffee-serving-temperature}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Analysis of coffee serving temperature
 
 Serving temperature of coffee seems of importance of how this drink is perceived. However, it is not totally clear how this relation is. In order to understand this, studies on the same type of coffee served at different temperature is conducted. In this exercise we are going to use the data from a trained Panel of eight judges, evaluating coffee served at six different temperatures on a set of sensorical descriptors. Each judge is presented with each temperature in a total of four replicates leading to a total of $6 \times 8 \times 4 = 192$ samples. 
@@ -543,7 +562,10 @@ In the dataset `Results Panel.xlsx`  the results are listed. In this exercise we
 :::
 <!-- End exercise callout -->
 
-::: {.callout-exercise id=ex-carcass-suspension}
+::: {#ex-carcass-suspension}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Carcass suspension
 
 Toughness is found to be the most important quality characteristic in beef. Variation in toughness is primarily related to the muscle fibers and the connective tissue. Connective tissue is thought to be responsible for the relative fixed background toughness, largely affected by animal age. The toughness of the muscle fibers depends on a couple of factors and is more likely to be manipulated by e.g. carcass suspension to prevent post-mortem contraction of the muscle fibers.
@@ -565,7 +587,7 @@ In the @tbl-carcass-results are shown the average results from each cell in the 
 | Pelvic (A)  |   58.5 |   65.0 |   66.0 |
 | Achilles (B)|   72.0 |   82.5 |   93.0 |
 
-: Mean values for the design (n = 15 in each group) {#tbl-carcass-results .table-sm}
+: Mean values for the design (n = 15 in each group) {#tbl-carcass-results .hover .responsive}
 
 ::: {.callout-task}
 1. Sketch these results with the response on the y-axis, one factor on the x-axis, and join the points based on the other factor. What is your first impression on the effect of age of the animal and of suspension method. 
@@ -582,7 +604,7 @@ In the @tbl-carcass-results are shown the average results from each cell in the 
 | Error          |         |    | 375.0 | - | -       |
 | Total          | 43715.0 | 89 | -     | - | -       |
 
-: ANOVA table for response `shear force`. {#tbl-shear-force .table-sm}
+: ANOVA table for response `shear force`. {#tbl-shear-force .hover .responsive}
 
 ::: {.callout-task}
 4. Fill the missing values in the @tbl-shear-force.
@@ -596,7 +618,10 @@ In the @tbl-carcass-results are shown the average results from each cell in the 
 :::
 <!-- End exercise callout -->
 
-::: {.callout-exercise id=ex-stability-of-oil-2}
+::: {#ex-stability-of-oil-2}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Stability of oil under different conditions
 
 This exercise is a direct extension of @ex-stability-of-oil-under-different-conditions.

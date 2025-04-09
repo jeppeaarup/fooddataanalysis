@@ -6,6 +6,12 @@
 #| message: false
 #| warning: false
 
+library(kableExtra)
+library(here)
+library(ggplot2)
+library(dplyr)
+
+load(here("data", "MouseWheelCaffeine.RData"))
 ```
 
 ::: {.callout-tip}
@@ -16,6 +22,20 @@
 * Know which graphics that are useful for visualizing normally distributed data (histogram, boxplot, qq-plot), and be able to use this to judge whether normality is fulfilled. 
 * For a given distribution to be able to calculate the probability of a given observation.
 :::
+
+## Reading material
+
+* [The normal distribution - in short](#sec-intro-to-normal)
+* Videos giving short condensed introduction to the normal distribution:
+    * [The Normal Distribution](#sec-the-normal-distribution)
+    * [An Introduction to the Normal Distribution](#sec-intro-to-the-normal-distribution)
+    * [The Normal Distribution, Clearly Explained](#sec-the-normal-distribution-clearly-explained)
+* Video on confidence intervals: 
+    * [Confidence intervals](#sec-confidence-intervals)
+* Chapter 2 and 3 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
+    * Especially 2.1 to 2.4 (you can skip 2.2 on discrete distributions, which is the subject of week 4) and 3.1 - 3.1.6.
+
+## The normal distribution - in short {#sec-intro-to-normal}
 
 If $X$ is normaly distributed with mean $\mu$ and variance $\sigma^2$, then the probability density function for a given draw from that distribution $x$ is given by 
 
@@ -34,7 +54,7 @@ $$
 X \sim \mathcal{N}(\mu,\sigma^2)
 $$
 
-## Estimation of $\mu$ and $\sigma$
+### Estimation of $\mu$ and $\sigma$
 
 More often than not, the distribution is unknown. That is the values of $\mu$ and $\sigma$ are unknown and must then be estimated from data.
 
@@ -49,28 +69,189 @@ $$
 \hat{\sigma}^2 = s^2 = \sum_{i = 1}^n (X_i - \bar{X})^2 / (n-1) = ((X_1 - \bar{X})^2 + (X_2 - \bar{X})^2 + (X_3 - \bar{X})^2 + \ldots + (X_n - \bar{X})^2 ) / (n-1)
 $$
 
-::: {.callout-example #exa-effect-of-caffeine}
+::: {#exa-effect-of-caffeine}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-example}
 ### Effect of caffeine on activity
 
 Caffeine is a central neurvous system stimulant, which can have several positive- and negative effects. In this study, the level of activity is up for examination, and for this purpose a model-system; the runing activity of mice in a wheel reflected as the number of rounds pr minutes recorded over 7 minutes. Here a total of 249 mice from two species; one breed to be high in running performance, and one control, where given either Water, Gatorade or Red Bull followed by measuring their voluentary wheel run activiy. Of interest is the average actvity within each mouse type and for each caffeine type and how large the spread is.
 
 The data is listed in a table with 249 rows (here, the first five samples are shown):
 
-MISSING DATA
+```{r}
+kable(head(X), digits = 1) 
+```
+
+To get the experimental design, the table() function nicely summarize the numbers within each group:
+
+```{r}
+kable(table(X$gender:X$MouseType, X$Caffeine))
+```
+
+Before doing anythingelse, the data is plotted to visualize the response as function of the design.
+
+```{r}
+ggplot(X, aes(Caffeine, RPM7, color = Caffeine)) +
+  geom_boxplot() +
+  geom_jitter(alpha = .75) + # Alpha controls opacity
+  facet_wrap(~MouseType) +
+  theme_bw() +
+  theme(legend.position = "none") # Remove the legend
+```
+
+As an example, the mean and standard deviation is calculated for females of the unselected breed given water. The example is given using both base R and Tidyverse.
+
+::: {.panel-tabset}
+#### Using base R
+
+First, the information is extracted from the dataset:
+
+```{r}
+extracted_x <- X[
+  X$MouseType == "Control runner" & X$gender == "Female" & X$Caffeine == "Water", # Rows
+  "RPM7"] # Column
+```
+
+
+And then the extracted information can be fed into the `mean()` and `sd()` functions.
+
+```{r}
+mean(extracted_x)
+sd(extracted_x)
+```
+
+#### Using Tidyverse
+
+In Tidyverse the `filter`-function is used to filter by the `MouseType`, `gender`, and `Caffeine` levels of interest. Afterwards, the mean and standard deviation are computed using `summarise`. 
+
+```{r}
+X |> 
+  filter(
+    MouseType == "Control runner",
+    gender == "Female",
+    Caffeine == "Water"
+  ) |> 
+  summarise(
+    mean = mean(RPM7),
+    sd = sd(RPM7)
+  )
+```
+
+::: 
+<!-- End tabset -->
+
+Both methods output a mean and standard deviation of 
+
+$$
+\bar{x} = \sum_{i=1}^{n} \frac{x_i}{n} \approx 8.6
+$$
+
+$$
+\hat{\sigma} = \sum_{i=1}^{n} \frac{(x_i - \bar{x})}{n - 1} \approx 2.1
+$$
+
+for the particular group of interest.
+
+A more efficient way of doing this would be to calculate the mean and standard deviation of each combination and display them in a table. The example below is given using both base R and Tidyverse.
+
+::: {.panel-tabset}
+
+#### Using base R
+In base R `aggregate()` can be used to calculate a function over a group. 
+
+```{r}
+# Compute number of observations, mean and sd across groups
+n <- aggregate(X$RPM7, by = list(X$MouseType, X$gender, X$Caffeine), length)
+m <- aggregate(X$RPM7, by = list(X$MouseType, X$gender, X$Caffeine), mean)
+s <- aggregate(X$RPM7, by = list(X$MouseType, X$gender, X$Caffeine), sd)
+
+# Combine and set column names
+stat_table <- cbind(n, m$x, s$x)
+colnames(stat_table) <- c("MouseType","Gender","Caffeine","N","mean","sd")
+
+# Print as nice markdown table
+kable(stat_table, digits = 2)
+```
+
+#### Using Tidyverse
+
+In Tidyverse, the `group_by()`-function is used to group the observations by everything but the column `RPM7` (so that will be type, gender and caffeine). Then, the number of observations, mean and standard devations are calculated across groups, giving the information for each group in one go.
+
+```{r}
+X |> 
+  group_by(across(-RPM7)) |> 
+  summarise(
+    N = n(),
+    mean = mean(RPM7),
+    sd = sd(RPM7)
+  ) |> 
+  kable(digits = 2) # Output pretty table in markdown
+```
+
+::: 
+<!-- End tabset -->
 
 :::
 <!-- End example callout -->
 
-::: {.callout-example #exa-effect-of-caffeine-probability}
+::: {#exa-effect-of-caffeine-probability}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-example}
 ### Effect of caffeine on activity - probability
 
-MISSING DATA
+Example @exa-effect-of-caffeine estimates the activity distribution of mice based on experimental data. Under the assumption that these metrics, the mean and the standard deviation, perfectly describe the distribution of the data, and further that this distribution is the normal distribution, we wish to calculate the probability of a given female mice, from normal breed, assigned water to perform *higher than 10 RPM7*.
+
+That is: 
+
+\begin{align*}
+P(X \geq 10) &= \frac{1}{\sqrt{2\pi\sigma^2}}\int_{10}^{\infty} e^{-\frac{(z - \mu)^2}{2\sigma}} dz \\
+&= 1 - P(X < 10) \\
+%X &= X \\
+%X &= X
+&= 1 - \frac{1}{\sqrt{2\pi\sigma^2}}\int_{-\infty}^{10} e^{-\frac{(z - \mu)^2}{2\sigma}} dz \\
+%N(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{x} e^{-\frac{1}{2}z^2} dz
+\end{align*}
+
+where $X$ is assummed normally distributed with mean $\mu$ and standard deviation $\sigma$.  
+That is: $X \sim \mathcal{N} (\mu,\sigma^2)$. \\ 
+
+A small illustration below shows the area of interest
+
+```{r}
+# Create normal distributed data using estimated mean and sd
+df <- data.frame(x = seq(2, 16, 0.01)) |> 
+  mutate(y = dnorm(x, mean(extracted_x), sd(extracted_x))) 
+
+# Plot normal curve 
+ggplot(df, aes(x, y)) +
+  geom_line(linewidth = 1) +
+  geom_area(data = subset(df, x >= 10), fill = "red") +
+  labs(
+    x = "RPM7",
+    y = "Probability"
+  ) +
+  theme_bw()
+```
+
+The size of the red area is simply calculated via the `pnorm()` function.
+
+```{r}
+1 - pnorm(10, mean(extracted_x), sd(extracted_x))
+```
+
+$$
+P(X \geq 10) \approx 0.26
+$$
+
+The probability of a single female mice, from normal breed, administered with water to perform higher than $10 RPM7$ is hence $0.26$. 
 
 :::
 <!-- End example callout -->
 
 
-## Confidence interval for $\mu$
+### Confidence interval for $\mu$
 
 The confidence interval for the center of a normal distribution ($\mu$) is calculated as follows: 
 
@@ -87,26 +268,92 @@ For instance, if one needs a $95 \%$ confidence interval ($\alpha = 0.05$) based
 
 It is further noticed that the interval is symmetric around the mean, and that the more samples ($n$) the lower the spread as the standard deviation is divided by $\sqrt{n}$. 
 
-::: {.callout-example #exa-effect-of-caffeine-conf-int}
+::: {#exa-effect-of-caffeine-conf-int}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-example}
 ### Effect of caffeine on activity - confidence intervals
 
-MISSING DATA
+In example @exa-effect-of-caffeine concerning the relation between caffeine and voluntary activity of mice, the running activity of mice in a wheel is recorded. In this example we wish to estimate the mean activity of the two groups with either water- or Red bull as caffeine source in control runner female mice, and give a confidence interval for these means. 
+
+First, the data is subset to only include the two groups of interest. 
+
+```{r}
+x_subset <- X |> 
+  filter(
+    MouseType == "Control runner",
+    gender == "Female",
+    Caffeine %in% c("Red Bull", "Water")
+  )
+```
+
+After subsetting the data to only include these two groups a plot of the raw data looks like the following, and consists of $n = n_1 + n_2 = 11+ 9 = 20$ samples.
+
+```{r}
+ggplot(x_subset, aes(Caffeine, RPM7, color = Caffeine)) +
+  geom_boxplot() +
+  geom_jitter() +
+  theme_bw() +
+  theme(legend.position = "none") # Remove legend
+```
+
+
+The mean and standard deviation for the two groups can be calculated using `summarise()` via Tidyverse or `aggregate()` in base R (see @exa-effect-of-caffeine for an example on `aggregate`).
+
+```{r}
+x_subset |> 
+  group_by(Caffeine) |> 
+  summarise(
+    N = n(),
+    mean = mean(RPM7),
+    sd = sd(RPM7)
+  ) |> 
+  kable(digits = 2) # For pretty tables in markdown
+```
+
+The confidence interval is calculated as follows: 
+
+\begin{align}
+CI_{\mu}: & \hat{\mu} \pm t_{0.975,n-1} \cdot \hat{\sigma} / \sqrt(n) \\
+& \bar{X} \pm t_{0.975,n-1} \cdot s / \sqrt(n) 
+\end{align}
+
+With a total of $df_1 = n_1 - 1 = 10$ degress of freedom the t-fractileat level $95 \%$ is $t_{0.975,10} = 2.23$ why the confidence interval for the water treated group is:
+
+$$
+CI_{\mu_{water}}:  [8.6 - 2.23 \cdot 2.1 / \sqrt{11}; 8.6 + 2.23 \cdot 2.1/ \sqrt{11}]  =  [7.3; 10.0] 
+$$
+
+```{r}
+n <- 11 # Number of obs in water group
+t_frac <- qt(1 - 0.05/2, n - 1) # T-value
+s <- sd(x_subset[x_subset$Caffeine == "Water", "RPM7"])
+m <- mean(x_subset[x_subset$Caffeine == "Water", "RPM7"])
+
+ci_lower <- m - t_frac * s / sqrt(n)
+ci_upper <- m + t_frac * s / sqrt(n)
+
+cat("95% confidence interval for water group:\n", c(ci_lower, ci_upper))
+```
+
+And similar for the Red bull treated group.
+
+\begin{equation}
+CI_{\mu_{Red Bull}}: [8.5; 11.8]
+\end{equation}
+
+\vspace{10mm}
+
+In R this can be assesed via the `t.test()` function.
+
+```{r}
+t.test(x_subset[x_subset$Caffeine == "Water", "RPM7"])
+```
 
 :::
 <!-- End example callout -->
 
-
-## Reading material
-
-* Videos giving short condensed introduction to the normal distribution:
-    * [The Normal Distribution](#sec-the-normal-distribution)
-    * [An Introduction to the Normal Distribution](#sec-intro-to-the-normal-distribution)
-    * [The Normal Distribution, Clearly Explained](#sec-the-normal-distribution-clearly-explained)
-* Video on confidence intervals: 
-    * [Confidence intervals](#sec-confidence-intervals)
-* Chapter 2 and 3 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
-    * especially 2.1 to 2.4 (you can skip 2.2 on discrete distributions, which is the subject of week 4) and 3.1 - 3.1.6.
-
+## Videos
 
 ### The Normal Distribution - *CrashCourse* {#sec-the-normal-distribution}
 {{< video https://www.youtube.com/watch?v=rBjft49MAO8 >}}
@@ -122,8 +369,10 @@ MISSING DATA
 
 
 ## Exercises
-
-::: {.callout-exercise id=ex-normal-distribution}
+::: {#ex-normal-distribution}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Normal Distribution
 
 Serum cholestorol level is a biomarker of health in relation to a range of life-style related diseases. A population of adults have mean values of $178 mg/100mL$ and $207 mg/100mL$, standard deviations of $31 mg/100mL$ and $37 mg/100mL$ in males and females respectively. 
@@ -169,8 +418,10 @@ $$
 
 :::
 
-
-::: {.callout-exercise id=ex-transformations-and-the-normal-distribution}
+::: {#ex-transformations-and-the-normal-distribution}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Transformations and the normal distribution
 
 The normal distribution (also known as the Gaussian distribution) are central in biology as such, and in data analysis especially.
@@ -190,8 +441,10 @@ The normal distribution (also known as the Gaussian distribution) are central in
 
 :::
 
-
-::: {.callout-exercise id=ex-who-height-and-weight-standard-normal-distribution}
+::: {#ex-who-height-and-weight-standard-normal-distribution}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise }
 ### WHO height and weight - standard normal distribution
 
 Height and weight are important measures of growth during childhood. However, the largest factor impacting these measures are naturally the age of the child. In order to be able to compare children with slightly different ages such data are transformed using so-called growth curves. These are provided by the WHO and are constructed to represent the world wide distribution at specific ages for boys and girl. In this exercise you are supposed to take height and weight measures from African children living under different circumstances, transform them using WHO numbers for the world wide distribution, and further look for explanatory variables causing differences in growth.

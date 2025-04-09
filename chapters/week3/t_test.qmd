@@ -8,6 +8,17 @@
 
 library(ggplot2)
 library(here)
+library(dplyr)
+
+load(here("data", "MouseWheelCaffeine.RData"))
+
+x_subset <- X |> 
+  filter(
+    MouseType == "Control runner",
+    gender == "Female",
+    Caffeine %in% c("Red Bull", "Water")
+  )
+
 ```
 
 ::: {.callout-tip}
@@ -21,7 +32,19 @@ library(here)
 
 :::
 
-## Independent T-test
+## Reading material 
+
+* [Independent T-test - in short](#sec-independent-t-test)
+* [Paired T-test - in short](#sec-paired-t-test)
+* Videos on the elements of statistical testing focusing on hypothesis testing:
+    * [Hypothesis Testing and The Null Hypothesis, Clearly Explained](#sec-nhst-statquest)
+    * [p-values: What they are and how to interpret them](#sec-p-values-statquest)
+* Videos on the test statistics and the T-test:
+    * [Test Statistics](#sec-test-statistics-crashcourse)
+    * [T-Tests: A Matched Pair Made in Heaven](#sec-t-test-crashcourse)
+* Chapter 3 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
+
+## Independent T-test - in short {#sec-independent-t-test}
 
 ### Models of two samples 
 
@@ -97,7 +120,10 @@ $$
 
 The standard deviation used here ($s_{X_{pooled}}$) is based on weighted average of the individual sample variances. 
 
-::: {.callout-example #exa-effect-of-caffeine-hypothesis-test}
+::: {#exa-effect-of-caffeine-hypothesis-test}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-example}
 ### Effect of caffeine on activity - hypothesis test
 
 In  @exa-effect-of-caffeine concerning the relation between caffeine and voluntary activity of mice, the running activity of mice in a wheel is recorded. In this example we wish to compare the mean activity of the two groups with either water- or Red bull as caffeine source in control runner female mice, and give a confidence interval for these means.
@@ -224,12 +250,16 @@ In conclusion; Although a difference in activity is observed when mice are given
 
 The entire procedure can be done in R:
 
-MISSING DATA
+```{r}
+t.test(x_subset[x_subset$Caffeine == "Water", "RPM7"],
+       x_subset[x_subset$Caffeine == "Red Bull", "RPM7"],
+       var.equal = T)
+```
 
 ::: 
 <!-- End example callout -->
 
-## Paired T-test
+## Paired T-test - in short {#sec-paired-t-test}
 
 A special case, is where the two samples ($X_{11},X_{12},X_{13},...,X_{1n}$ and $X_{21},X_{22},X_{23},...,X_{2n}$) are paired. That is for example measurements before and after treatment on the same set of samples or when the same assessor in a sensorical panel scores two different product types.
 
@@ -271,7 +301,10 @@ Which is translated to a p-value through a $\mathcal{T}_{df}$ with $df = n-1$ de
 
 As such, the test statistics only sees the original data via paired differences, and hence become a specialty of the single-sample case. 
 
-::: {.callout-example #exa-natural-phenolic-antiox-paired-t-test}
+::: {#exa-natural-phenolic-antiox-paired-t-test}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-example}
 ### Natural phenolic antioxidants for meat preservation - paired T-test
 
 ```{r}
@@ -285,7 +318,7 @@ load(here("data", "meat_data.RData"))
 ```
 
 
-This example is based on the sensory data on the meat sausages treated with green tea (GT) and rosemary extract (RE) or control, used previously in a PCA example @sec-example-meat-pca.
+This example is based on the sensory data on the meat sausages treated with green tea (GT) and rosemary extract (RE) or control, used previously in @exa-phenolic-antiox-pca
 
 T-tests can be used to evaluate the effects (the response of a single variable) of two treatments against each other. Here, we use the *week 4* data, and compare the rosemary extract treatment to the control.
 
@@ -393,16 +426,7 @@ When the results obtained from the T-tests are compared to a PCA on the *week 4*
 <!-- End example callout -->
 
 
-## Reading material
-
-* Videos on the elements of statistical testing focusing on hypothesis testing:
-    * [Hypothesis Testing and The Null Hypothesis, Clearly Explained](#sec-nhst-statquest)
-    * [p-values: What they are and how to interpret them](#sec-p-values-statquest)
-* Videos on the test statistics and the T-test:
-    * [Test Statistics](#sec-test-statistics-crashcourse)
-    * [T-Tests: A Matched Pair Made in Heaven](#sec-t-test-crashcourse)
-* Chapter 3 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
-
+## Videos
 
 ### Hypothesis Testing and The Null Hypothesis, Clearly Explained - *StatQuest* {#sec-nhst-statquest}
 {{< video https://www.youtube.com/watch?v=0oc49DyA3hU >}}
@@ -421,7 +445,10 @@ When the results obtained from the T-tests are compared to a PCA on the *week 4*
 
 ## Exercises
 
-::: {.callout-exercise id=ex-t-test}
+::: {#ex-t-test}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### T-test
 
 T-test comparison of a womens football team and a mens football team. The mean weight of the mens team is $\bar{X}_{men} = 82kg$ with a standard deviation of $s_{men} = 8kg$, while the womens team has a mean weight of $\bar{X}_{women} = 61kg$ and a standarddeviation of $s_{women} = 6kg$. There are 11 players on each team.
@@ -435,8 +462,10 @@ T-test comparison of a womens football team and a mens football team. The mean w
 
 :::
 
-
-::: {.callout-exercise id=ex-diet-and-fat-metabolism-by-hand}
+::: {#ex-diet-and-fat-metabolism-by-hand}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Diet and fat metabolism - T-test by hand
 
 The diet is a central factor involved in general health, and especially in relation to obesity, where a balance between intake of protein, fat and carbohydrates, as well as type of these nutrients seems important. Therefor various controlled studies are conducted to show the effect of different diets. A study examining the effect of protein from milk (casein or whey) and amount of fat on growth biomarkers of fat metabolism and type I diabetes was conducted in $40$ mouse over an intervention period of $14$ weeks. 
@@ -448,7 +477,7 @@ For this exercise we are going to focus on cholesterol as a biomarker related to
 | **LF**  | 3.97 | 3.69 | 2.61 | 4.03 | 2.98 | 3.51 | 3.62 | 2.81 | 3.62 | 3.53 |      |      |      |      |     |   **34.37**  |   **120.20**   |
 | **HF** | 4.68 | 3.60 | 4.84 | 4.92 | 3.70 | 4.83 | 3.38 | 4.62 | 4.60 | 4.84 | 4.84 | 4.54 | 5.27 | 4.26 | 4.3 |   **67.29**  |   **305.92**   |
 
-: Cholesterol samples from the end of week 14 for the low-fat (LF) and high-fat (HF) diet. {#tbl-cholesterol .responsive}
+: Cholesterol samples from the end of week 14 for the low-fat (LF) and high-fat (HF) diet. {#tbl-cholesterol .hover .responsive}
 
 This exercise is supposed to be done *by hand* where the computer only is used as a pocket calculator. 
 
@@ -466,8 +495,10 @@ This exercise is supposed to be done *by hand* where the computer only is used a
 
 :::
 
-
-::: {.callout-exercise id=ex-diet-and-fat-metabolism-in-r}
+::: {#ex-diet-and-fat-metabolism-in-r}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Diet and fat metabolism - T-test in R
 
 This exercise repeats some of the elements from @ex-diet-and-fat-metabolism-by-hand using R including an extension of the panel of relevant biomarkers and utilization of PCA to get a comprehensive overview.
@@ -504,8 +535,10 @@ y <- mouse$cholesterol
 ```
 
 :::
-
-::: {.callout-exercise id=ex-fiber-and-cholesterol}
+::: {#ex-fiber-and-cholesterol}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Fiber and cholesterol
 
 Fiber is suspected to have benificial physiological activity if being a part of a regular diet. In this study $n = 13$ healthy young men and women were enroled in a trial to unravel the effect of fiber supplement. At baseline (that is before dietary intervention), the persons were screned for a range of biomarkers in the blood including cholesterol fractions. Then, they were put on a diet with supplementation of dietary fibers for a period of $30$ days. In the dataset `FiberData.xlsx`, the baseline levels (\_t0), and end of trial levels (\_t30) are listed for total-, hdl- and ldl cholesterol.  The data is a part of a larger study conducted at Department of Nutrition Exercise and Sports. 
@@ -519,7 +552,10 @@ Analyse if there is an effect of the fiber intervention on these biomarkers. Tha
 
 :::
 
-::: {.callout-exercise id=ex-stability-of-oil-under-different-conditions}
+::: {#ex-stability-of-oil-under-different-conditions}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Stability of oil under different conditions
 
 Oil are primary made up of triglycerides, where some of the fatty acids are unsaturated. This causes such a product to be susceptible to oxidation both from chemical oxidative agents such as metal ions, or from exposure to light. Oxidation of the unsaturated fatty acids changes the sensorical and physical properties of the oil.
@@ -579,7 +615,10 @@ ggplot(Mtot, aes(x = Month, y = PV, color = factor(Temperature):Light)) +
 
 :::
 
-::: {.callout-exercise id=ex-aroma-in-milk-and-cheese}
+::: {#ex-aroma-in-milk-and-cheese}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Aroma in milk and cheese
 
 In order to increase the biodiversity of hayfields it is of interest growing different kinds of herbs together with the hay. Hay is used for feeding of cows. Type of feed may affect the amount and type of flavor components in the milk as well as the flavor components in cheese made from the milk. Hence, increasing the biodiversity of hayfields used for cow feed may impact the taste of milk and cheese. An experiment was conducted in order to investigate this. In the experiment cows were fed three different diets:
@@ -699,15 +738,20 @@ If you were a farmer, would you be worried that increasing the biodiversity of y
 
 :::
 
-::: {.callout-exercise id=ex-power-of-paired-tests}
+::: {#ex-power-of-paired-tests}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Power of paired tests
 
 In @ex-fiber-and-cholesterol *Fiber and Cholesterol* you have probably used either a paired t-test or a two-sample t-test. Try to conduct both of these tests and see the difference. What needs to be full filled in order to make a paired test? How many participants would have been enrolled in the study, in the case where a two sample t-test were used for inferential analysis of the data?
 
 :::
 
-
-::: {.callout-exercise id=ex-confidence-intervals}
+::: {#ex-confidence-intervals}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Confidence intervals
 
 The datafile `Wine.xlsx` lists aroma compounds from different wines from four countries. The compound `Acetic acid` has a skewed distribution, and therefore needs an appropriate transformation. Calculate the center of the distribution for each country and give a confidence interval for this parameter, where you take into account the need for transformation, but still want to report the results in original units. 

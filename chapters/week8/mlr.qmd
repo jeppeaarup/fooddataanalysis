@@ -59,8 +59,10 @@ In a setup as described above, the investigation of the effect of $X1$ on $Y$ ca
 
 Naturally these two approaches yield different results due to the absence/presence of the variable $X2$. From the simple regression model $\beta$ shows the crude effect of $X1$ on $Y$, whereas in the multiple regression model $\beta_1$ shows the marginal effect of $X1$ on $Y$. Sometimes comparison of these models are referred to as *adjusting* for $X2$ or *controlling* for $X2$. These models often elucidate the direct and indirect relation between predictors and responses as is seen in exercise 1.
 
-
-::: {.callout-example #exa-nir-of-marcipan-mlr}
+::: {#exa-nir-of-marcipan-mlr}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-example}
 ### Near-infrared spectroscopy of marzipan - regression
 
 In the following example we want to investigate if we can improve a prediction model by using scores from more than one principal component to predict the sugar content in marzipan bread (marcipanbrød).
@@ -129,7 +131,10 @@ Maybe the wavelengths covering the visible part of the spectrum should have been
 
 ## Exercises 
 
-::: {.callout-exercise id=ex-diet-mlr}
+::: {#ex-diet-mlr}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Diet and fat metabolism - regression with several variables
 
 This exercise examines the relation between a biomarker, dietary intervention and weight in order to disentangle the effects causing elevated levels of cholesterol.

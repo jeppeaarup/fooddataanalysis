@@ -22,10 +22,19 @@ library(here)
 
 :::
 
+## Reading material
 
-## PCA in brief
+* [Principle Component Analysis (PCA) - in short](#sec-pca-intro)
+* Videos on PCA
+  * [PCA main ideas by StatQuest](#sec-pca-main-ideas)
+  * [PCA Introduction 1 by Rasmus Bro](#sec-pca-intro-1)
+  * [PCA Introduction 2 by Rasmus Bro](#sec-pca-intro-2)
+* Chapter 2 in [Biological Data analysis and Chemometrics](http://www2.imm.dtu.dk/courses/27411/Rin27411.pdf) by Brockhoff
+* Chapter 4 (4.1 to 4.5) in *Chemometrics With R: Multivariate Data Analysis in the Natural Sciences and Life Sciences by Ron Wehrens (2012)*. Springer, Heidelberg. Available in Absalon.
 
-Principal Component Analysis is a method for understanding multivariate data. By multivariate data we mean a set of samples/observations ($n$) which are characterized on a number of different features ($p$). For example:
+## Principle Component Analysis (PCA) - in short {#sec-pca-intro}
+
+Principal Component Analysis (PCA) is a method for understanding multivariate data. By multivariate data we mean a set of samples/observations ($n$) which are characterized on a number of different features ($p$). For example:
 
 * Different beers ($n = 20$) analyzed for $p = 60$ chemical variables reflecting the aroma composition.
 * Six coffee samples ($n = 6$) assessed on a set of sensorical descriptors ($p = 12$) by sensorical panel of eight judges ($n = 48$).
@@ -49,7 +58,10 @@ The power of PCA is when the mathematical decomposition into scores and loadings
 * **Loading plot** - scatter plots of combination of loadings (often $\mathbf{p}_1$ vs. $\mathbf{p}_2$).
 * **Bi plot** - overlayed score- and loading plot.
 
-::: {.callout-example #exa-phenolic-antiox-pca}
+::: {#exa-phenolic-antiox-pca}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-example}
 ### Natural phenolic antioxidants for meat preservation - PCA
 
 ```{r}
@@ -122,7 +134,10 @@ There are not registered any greater difference between the two green tea and ro
 :::
 <!-- End example callout -->
 
-::: {.callout-example #exa-nirs-marzipan-pca}
+::: {#exa-nirs-marzipan-pca}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-example}
 ### Near infrared spectroscopy of marzipan - PCA
  
 ```{r}
@@ -279,17 +294,7 @@ It is not straight forward to see which peaks are related to sugar. However, the
 :::
 <!-- End example callout -->
 
-
-## Reading material
-
-* Videos on PCA
-  * [PCA main ideas by StatQuest](#sec-pca-main-ideas)
-  * [PCA Introduction 1 by Rasmus Bro](#sec-pca-intro-1)
-  * [PCA Introduction 2 by Rasmus Bro](#sec-pca-intro-2)
-* Chapter 2 in [Biological Data analysis and Chemometrics](http://27411.compute.dtu.dk/enote/) by Brockhoff
-* Chapter 4 (4.1 to 4.5) in *Chemometrics With R: Multivariate Data Analysis in the Natural Sciences and Life Sciences by Ron Wehrens (2012)*. Springer, Heidelberg. Available in Absalon.
-
-## Videos on PCA
+## Videos
 
 ### PCA main ideas - *StatQuest* {#sec-pca-main-ideas}
 {{< video https://www.youtube.com/watch?v=HMOI_lkzW08 >}}
@@ -301,8 +306,10 @@ It is not straight forward to see which peaks are related to sugar. However, the
 {{< video https://www.youtube.com/watch?v=26YhtSJi1qc&list=PLBC24FD8C389FE9E4&index=2 >}}
 
 ## Exercises
-
-::: {.callout-exercise id=ex-mcdonalds-data}
+::: {#ex-mcdonalds-data}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### McDonalds Data
 The purpose of this exercise is to get familiar with PCA on a small intuitive dataset. The data - `McDonaldsScaled.xlsx` - constitutes of different fast food products and their nutritional content. 
 
@@ -369,7 +376,7 @@ ggplot(loadings, aes(PC1, PC2, label = row.names(loadings))) +
 ```
 
 ::: {.callout-task}
-7. Alternatively you can utilize a package ggbiplot for making nice plots from PCA objects (see the [first PCA example](#sec-example-meat-pca) for more info on how to use this package).
+7. Alternatively you can utilize a package ggbiplot for making nice plots from PCA objects (see #exa-phenolic-antiox-pca) for more info on how to use this package).
 :::
 
 ```{r}
@@ -403,8 +410,10 @@ ggbiplot(McD_pca, obs.scale = 1, var.scale = 1) +
 :::
 
 :::
-
-::: {.callout-exercise id=ex-coffee-serving-temp}
+::: {#ex-coffee-serving-temp}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Analysis of coffee serving temperatura - PCA
 
 In the dataset *Results Panel.xlsx* the sensorical results from a panel of eight judges, evaluating coffee served at six different temperatures each four times are listed. In this exercise, we are going to first average over judge and temperature followed by PCA to evaluate sensorical descriptor similarity as well as the effect of serving temperature on the perception of coffee.
@@ -518,8 +527,10 @@ The plots are hard to interpret because
 
 :::
 
-
-::: {.callout-exercise id=ex-wine-aromas-pca}
+::: {#ex-wine-aromas-pca}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 
 ### Wine aromas
 

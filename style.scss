@@ -89,6 +89,53 @@ div.callout-task.callout {
     border-bottom: none;
   }
 
+  div.callout-exercise {
+    text-align: left;
+  }
+
+  .quarto-float-ex, .quarto-float-exa {
+    display: none;
+  }
+
+
+  .custom-table {
+    width: 40%; 
+    margin: auto;
+  }
+
+// -----------------------------------------
+// TABLES AND FLOATS
+// -----------------------------------------
+
+  // --- Booktabs style tables ---
+
+  table {
+    width: auto !important;
+    min-width: 600px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: none;
+  }
+  
+  /* Remove all internal borders */
+  table th, table td {
+    border: none;
+    padding: 0.5em 1.5em;
+    text-align: left;
+  }
+  
+  /* Add top and bottom borders to header */
+  thead tr:first-child {
+    border-top: 2px solid #000;
+    border-bottom: 1px solid #000;
+  }
+  
+  /* Add bottom border to table */
+  tbody tr:last-child {
+    border-bottom: 2px solid #000;
+  }
 
 
 // -----------------------------------------
@@ -117,8 +164,6 @@ h4, .h4 {
     margin-top: 40px;
     margin-bottom: 40px;
 }
-
-
 
 // --- Text styling ---
 

@@ -20,20 +20,13 @@ The learning objectives for this theme are to:
 :::
 
 ## Reading material
+
+* [Explained variance - in short](#sec-explained-var-intro) 
 * Videos on R-squared:
   * [What does r squared tell us? What does it all mean](#sec-r2-mrnystrom)
   * [R-squared, Clearly Explained](#sec-r2-statquest)
 
-## Videos
-
-#### What does r squared tell us? What does it all mean - *MrNystrom* {#sec-r2-mrnystrom}
-{{< video https://www.youtube.com/watch?v=IMjrEeeDB-Y >}}
-
-#### R-squared, Clearly Explained - *StatQuest* {#sec-r2-statquest}
-{{< video https://www.youtube.com/watch?v=bMccdk8EdGo >}}
-
-
-## Intro to explained variance
+## Explained variance - in short {#sec-explained-var-intro}
 
 Explained variance refers to how well the estimated model describes the observed data. That is, how much of the variation is systematic and how much is residual. In the figure below are shown two examples.
 
@@ -145,10 +138,21 @@ $$
 #### PCA vs Regression/ANOVA
 In PCA, by increasing the number of components you will eventually reach explained variance of $1$. This is due to the parameters of this model is solely based on the response variables, so there is no set of independent variables, as there is in ANOVA and linear regression. This has the implication, that comparing $R^2$ values between e.g. an ANOVA model and a PCA model is not at all straight forward.
 
+## Videos
+
+#### What does r squared tell us? What does it all mean - *MrNystrom* {#sec-r2-mrnystrom}
+{{< video https://www.youtube.com/watch?v=IMjrEeeDB-Y >}}
+
+#### R-squared, Clearly Explained - *StatQuest* {#sec-r2-statquest}
+{{< video https://www.youtube.com/watch?v=bMccdk8EdGo >}}
+
 
 ## Exercises
 
-::: {.callout-exercise id=ex-explained-variance}
+::: {#ex-explained-variance}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Explained variance (R-squared) - regression n' correlation
 
 This exercise deals with explained variance and its relation to the residual deviation. This exercise uses the dietary intervention on mice and the effect on biomarkers related to fat metabolism.
@@ -167,8 +171,10 @@ This exercise deals with explained variance and its relation to the residual dev
 :::
 <!-- End exercise callout -->
 
-
-::: {.callout-exercise id=ex-r2-and-outliers}
+::: {#ex-r2-and-outliers}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### R-squared and outliers
 
 This exercise should show how extreme outliers can influence the $R^2$ measure by making it unrealistically high.
@@ -190,7 +196,10 @@ Take home message: $R^2$ alone without visual inspection can be misleading.
 :::
 <!-- End exercise callout -->
 
-::: {.callout-exercise id=ex-r2-and-transformations}
+::: {#ex-r2-and-transformations}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### R-squared and transformations
 
 This exercise should show how transformation influences the $R^2$ measure. The exercise is using the wine dataset.
@@ -214,7 +223,10 @@ m <- lm(data = wine[ic, ], ...)
 <!-- End exercise callout -->
 
 
-::: {.callout-exercise id=ex-exp-var-and-pca}
+::: {#ex-exp-var-and-pca}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Explained variance and PCA
 
 This exercise deals with explained variance in relation to PCA. This exercise uses the dietary intervention on mice and the effect on biomarkers related to fat metabolism.

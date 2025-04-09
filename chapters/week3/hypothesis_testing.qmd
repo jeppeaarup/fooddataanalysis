@@ -12,7 +12,6 @@ Additionally the concepts of population, (random) sample, parameter and estimato
 
 :::
 
-
 ## Reading material
 
 * Video on the ideas behind hypothesis testing:
@@ -20,13 +19,18 @@ Additionally the concepts of population, (random) sample, parameter and estimato
 * Chapter 3 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
     * Especially chapter 3.1 - 3.1.3 and 3.1.6.
 
+## Videos
+
 ### The Essential Guide To Hypothesis Testing - *Very Normal* {#sec-nhst-very-normal}
 {{< video https://www.youtube.com/watch?v=FZ2_hzMyJpY >}}
 
 
 ### Exercises
 
-::: {.callout-exercise id=ex-hypothesis-testing}
+::: {#ex-hypothesis-testing}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Hypothesis testing
 
 This exercise is conceptual. The idea is, that you should think about a problem, and try to figure out what the null hypothesis is, and further what could be a relevant metric for measuring the distance to this null hypothesis. 
@@ -39,7 +43,10 @@ This exercise is conceptual. The idea is, that you should think about a problem,
 
 :::
 
-::: {.callout-exercise id=ex-association-or-causality}
+::: {#ex-association-or-causality}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Association or causality?
 
 This exercise is intended to show, that you need to be careful with drawing conclussions solely based on statistical numbers (confidence intervals, p-values,...), and that you need to be critical and think about the study design, biology, life, etc.

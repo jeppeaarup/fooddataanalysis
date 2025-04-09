@@ -11,6 +11,18 @@
 
 :::
 
+## Reading material
+
+* [Binomial data - in short](#sec-intro-to-binom)
+* Introductory videos to the binomial distribution:
+    * [The Binomial Distribution](#sec-binom-dist-crashcourse)
+    * [An Introduction to the Binomial Distribution](#sec-binom-dist-jb)
+    * [The Binomial Distribution and Test, Clearly Explained](#sec-binom-dist-statquest)
+* Video on probability distribution:
+    * [The Main Ideas behind Probability Distributions](#sec-ideas-behind-prob-dist)
+* Chapter 2.1 and 2.2 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
+
+## Binomial data - in short {#sec-intro-to-binom}
 In short, binomial data are of the type *either / or*, and is normally recorded as a list of $0$'s and $1$'s. The binomial distribution is characterized by *how many* trials there is conducted ($n$) and the probability of a positive ($"1"$) response ($p$). In notation that is:  
 
 \begin{equation}
@@ -64,7 +76,10 @@ Be aware that the extreme cases where $x = 0$ or $x = n$ does not comply with th
 P(X=0) = (1-p)^{n}>\alpha
 \end{equation}
 
-::: {.callout-example #exa-qa-estimation}
+::: {#exa-qa-estimation}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-example}
 ### Quality control - estimation
 
 As a production engineer you are responsible for keeping the product quality high, which specifically means that the number of nonconforming products from the your production facility should be low.
@@ -97,32 +112,26 @@ You return these numbers to your boss, stating that there is probably 3% nonconf
 :::
 <!-- End example callout -->
 
-## Reading material
 
-* Introductory videos to the binomial distribution:
-    * [The Binomial Distribution](#sec-binom-dist-crashcourse)
-    * [An Introduction to the Binomial Distribution](#sec-binom-dist-jb)
-    * [The Binomial Distribution and Test, Clearly Explained](#sec-binom-dist-statquest)
-* Video on probability distribution:
-    * [The Main Ideas behind Probability Distributions](#sec-ideas-behind-prob-dist)
-* Chapter 2.1 and 2.2 of [*Introduction to Statistics*](https://02402.compute.dtu.dk/enotes/book-IntroStatistics) by Brockhoff
-
-
-##### The Binomial Distribution - *CrashCourse* {#sec-binom-dist-crashcourse}
+## Videos
+### The Binomial Distribution - *CrashCourse* {#sec-binom-dist-crashcourse}
 {{< video https://www.youtube.com/watch?v=WR0nMTr6uOo >}}
 
-##### An Introduction to the Binomial Distribution - *jbstatistics* {#sec-binom-dist-jb}
+### An Introduction to the Binomial Distribution - *jbstatistics* {#sec-binom-dist-jb}
 {{< video https://www.youtube.com/watch?v=qIzC1-9PwQo >}}
 
-##### The Binomial Distribution and Test, Clearly Explained - *StatQuest* {#sec-binom-dist-statquest}
+### The Binomial Distribution and Test, Clearly Explained - *StatQuest* {#sec-binom-dist-statquest}
 {{< video https://www.youtube.com/watch?v=J8jNoF-K8E8 >}}
 
-##### The Main Ideas behind Probability Distributions - *StatQuest* {#sec-ideas-behind-prob-dist}
+### The Main Ideas behind Probability Distributions - *StatQuest* {#sec-ideas-behind-prob-dist}
 {{< video https://www.youtube.com/watch?v=oI3hZJqXJuc >}}
 
 ## Exercises
 
-::: {.callout-exercise id=ex-chocolate-and-binomial-data}
+::: {#ex-chocolate-and-binomial-data}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Chocolate and binomial data
 
 A chocholate factory discards 68 chocolates out of 300 produced in a day.
@@ -136,8 +145,10 @@ A chocholate factory discards 68 chocolates out of 300 produced in a day.
 :::
 <!-- End exercise callout -->
 
-
-::: {.callout-exercise id=ex-triangle-test}
+::: {#ex-triangle-test}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Triangle test
 
 In sensorical science several types of experiments can be used for measuring (dis-)similarity between products. One of those is the Triangle Test. 
@@ -210,8 +221,10 @@ for (n in 1:100) {
 :::
 <!-- End exercise callout -->
 
-
-::: {.callout-exercise id=ex-uncertainty-of-the-binomial-dist}
+::: {#ex-uncertainty-of-the-binomial-dist}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Uncertainty of the binomial distribution
 
 This exercises examines the relation between the probability parameter $p$ and the uncertainty on this $S_p$ for the binomial distribution.
@@ -226,8 +239,10 @@ This exercises examines the relation between the probability parameter $p$ and t
 :::
 <!-- End exercise callout -->
 
-
-::: {.callout-exercise id=ex-fig-bars}
+::: {#ex-fig-bars}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Fig bars
 
 A company is producing fig and date bars and they are considering changing their date supplier. The company would like to produce fig and date bars with the same taste, smell and appearance as they have done for many years. It is therefore important that a new date supplier will not result in fig and date bars that differ from the original bars. The company asked the Department of Food Science at University of Copenhagen to perform a sensory test with five possible date suppliers. The Department of Food Science performed a triangle test with a trained sensory panel to detect if the new date suppliers would change the organoleptic (in this case smell, taste and sight) properties of the bars. The same $23$ sensory judges performed the triangle test on smell, taste and appearance.
@@ -286,8 +301,10 @@ summary(dates)
 :::
 <!-- End exercise callout -->
 
-
-::: {.callout-exercise id=ex-dist-of-extreme-values}
+::: {#ex-dist-of-extreme-values}
+<!-- Cross-ref anchor -->
+:::
+::: {.callout-exercise}
 ### Distribution of extreme values in the normal distribution
 
 This exercise combines the (standard) normal distribution with the binomial distribution in order to calculate the distribution of the maximum (or minimum) value from a sample of size $n$. 
