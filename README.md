@@ -16,7 +16,7 @@ The document uses a custom LUA-filter for creating callouts used for tasks and e
 #### Exercise callouts
 To create a **reference-able** exercise callout use the following setup:
 
-```
+````
 ::: {#ex-my-exercise}
 ::: {.callout-exercise}
 
@@ -24,7 +24,7 @@ To create a **reference-able** exercise callout use the following setup:
 
 :::
 :::
-```
+````
 
 The outer div environment is used to create the cross-reference anchor and the inner div is used for styling purposes.
 This is only a temporay fix until Quarto updates to a more robust system for custom callouts. 
@@ -36,7 +36,7 @@ If the exercise does not need to be cross-referenced then the outer div is not n
 #### Task callouts
 To draw attention to a list of tasks within (or outside of) an exercise div a task callout can be used:
 
-```
+````
 ::: {.callout-task}
 
 1. Do this
@@ -44,6 +44,6 @@ To draw attention to a list of tasks within (or outside of) an exercise div a ta
 3. Why do you think that is?
 
 :::
-```
+````
 
 Note that this callout cannot be cross-referenced and thus an outer div environment is not needed. 
