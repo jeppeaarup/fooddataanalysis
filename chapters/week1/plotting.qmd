@@ -35,6 +35,106 @@ plots.
         - [Plots, Outliers, and Justin Timberlake: Data Visualization Part 2: Crash Course Statistics #6](https://www.youtube.com/watch?v=HMkllhBI91Y).
     * This one is pretty comprehensive:
         - [Visualising data with ggplot2. Lecture by Hadley Wickham](https://www.mathtube.org/lecture/video/visualising-data-ggplot2).
+    * Pat Schloss makes some really nice videos on how to reproduce published figures using ggplot2. Be aware that they are very advanced.
+      - [Riffomonas Project](https://www.youtube.com/c/RiffomonasProject)
+
+## Plotting with ggplot2 - in short {#sec-ggplot-intro}
+
+The package `ggplot2` for R is a versatile tool for producing various plots with the option of modifying them in great detail. It is based on *layers*, which mean the you build your plots layer by layer.
+
+To create visualizations with ggplot2, you first need to load your data into R. For this example, the built-in `iris` data set is used.
+
+```{r}
+library(ggplot2) # Load ggplot2
+
+my_data <- iris # Loads the built-in example data set called "iris"
+head(my_data) # Print the first 6 rows of the data
+
+levels(my_data$Species) # Get the levels of species
+
+```
+
+It is clear that the data consists of measurements of sepals and petals of three different species of flowers. If we want to plot the `Sepal.Length` variable against the `Sepal.Width` variable it can be done by using ggplot2 as shown below.
+
+```{r}
+ggplot(data = my_data, aes(x = Sepal.Length, y = Sepal.Width))
+```
+
+In the code above we tell ggplot that we want to plot data using the dataframe `my_data`. Furthermore, we tell it that we want `Sepal.Length` on the x-axis and `Sepal.Width` on the y-axis.
+There is, however, one problem: The plot above does not contain any data points. This is due to the fact that we have not added any *geometric objects* or *geoms* as they are called. The geom for points is added to the code below.
+
+```{r}
+ggplot(data = my_data, aes(x = Sepal.Length, y = Sepal.Width)) + # Notice the "+" sign
+geom_point()
+```
+
+Notice how the data has been "given" to the `geom_point()` call and we now see data points. If we want to add some color, we can tell ggplot2 to assign a color to each species in the data set.
+
+```{r}
+ggplot(data = my_data, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+geom_point(size = 2)
+```
+
+
+When using ggplot2 the data given in a so called *aesthetic* which is denoted by the `aes()` inside the `ggplot()` call. An aesthetic mapping describes how to visual elements are mapped to the variables. The `aes(x = Sepal.Length, y = Sepal.Width, color = Species)` within the `ggplot()` call is passed down to all `geoms` below such that multiple layers can use the same data without having the specify it each time.
+
+```{r}
+ggplot(data = my_data, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+geom_point(size = 2) +
+geom_rug() # This geom also uses the specified data
+```
+
+
+The possible settings for each geom can be found using `?geom_point()` or by letting the cursor hover in the geom name and pressing F1.
+
+### Saving plots as variables
+
+Plots can also be saved as variables. This is often useful for more advanced plots and when you want to create different plots using loops etc.
+
+For example, the plot directly above can also be created as 
+
+```{r}
+plt <- ggplot(data = my_data, aes(x = Sepal.Length, y = Sepal.Width, color = Species))
+
+plt <- plt + geom_point(size = 2)
+
+plt <- plt + geom_rug()
+```
+
+And then shown using 
+
+```{r}
+#| eval: false
+plt # Show plot
+```
+
+### Saving plots from ggplot
+
+Saving plots as image or vector type formats can be done using `ggsave()`.
+
+```{r}
+#| eval: false
+
+# Save as png with standard settings using current aspect ratio
+ggsave("my_plot.png")
+
+# Save the "plt" plot using standard settings
+ggsave("my_plot.png", plot = plt)
+
+# Save the custom width and height oc 10 x 20 cm
+ggsave("my_plot.png", width = 10, height = 20, units = "cm") 
+
+# Save as svg (a vector format) with standard settings using current aspect ratio
+ggsave("my_plot.svg")
+
+```
+
+
+Sometimes it takes some playing around to get settings that scale nice, but it is by far the best way to export ggplot figures out of R.
+
+::: {.callout-important}
+  The figures will be saved to your current working directory. You can see the current working directory using `getwd()`.
+:::
 
 ## Exercises
 
@@ -66,6 +166,43 @@ Assume that you have a single response variable, for instance alcohol content of
 <!-- Cross-ref anchor -->
 :::
 :::{.callout-exercise}
+### Before you start
+
+Start by loading the `ggplot2` and the `readxl` package. Use the `readxl` package to import a data that can be used for plotting. The code below will help you on your way.
+
+```{r}
+#| eval: false
+#| code-fold: false
+
+# If you have not installed the packaged below remember to do so.
+# install.packages("readxl")
+# install.packages("ggplot2")
+
+library(readxl) # Load package for importing Excel-files
+library(ggplot2) # Load package for plotting data
+
+# Import coffee data set
+coffee <- read_excel("Results Consumer Test.xlsx")
+```
+
+::: {.callout-important}
+If you get the following error
+
+[Error: "Results Consumer Test" does not exist in current working directory"]{.code_text .red_text}
+
+or something similar, it might be due to the following things:
+
+1. You have not specified your [working directory](#sec-r-basics-working-directory) correctly.
+2. You misspelled the file name. 
+
+Check these two first!
+
+:::
+
+### The language of ggplot2
+
+
+
 ### Plotting distributions with histograms
 
 The histogram is the most basic representation of continuous data. A simple histogram can be produced in the following way with ggplot2.

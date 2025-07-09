@@ -54,7 +54,7 @@ $$
 X \sim \mathcal{N}(\mu,\sigma^2)
 $$
 
-### Estimation of $\mu$ and $\sigma$
+### Estimation of $\mu$ and $\sigma$ {#sec-estimation-of-parameters}
 
 More often than not, the distribution is unknown. That is the values of $\mu$ and $\sigma$ are unknown and must then be estimated from data.
 

@@ -10,6 +10,12 @@
 
 :::
 
+::: {.callout-note}
+## Using LLMs for coding
+
+Large Language Models (LLMs) like ChatGPT, Claude, and GitHub Copilot are powerful tools when performing programming tasks. They can be used to create and explain code as well as debugging. If you want to use LLMs to help you create code, then please read [Appendix B - LLMs in programming](#sec-llms).
+
+:::
 
 ## Installing packages
 
@@ -197,15 +203,17 @@ ggplot(df, aes(x, y, color = treatment)) +
 
 ## Rmarkdown
 
-Rmarkdown is a framework for producing beautiful reports where code and text is combined side-by-side. It makes it possible to combine scripts (your data analysis) with output (figures, tables and numbers) and narrative (the fairytale on why and discussions etc.) in ONE document. It is rather simple when you get used to how it works, and it really makes life much more easy. Both for this course, but also for all other tasks which involves data analysis and is to be presented as a report.
+Rmarkdown is a framework for producing [beautiful reports](https://rmarkdown.rstudio.com/gallery.html) where code and text is combined side-by-side. It makes it possible to combine scripts (your data analysis) with output (figures, tables and numbers) and narrative (the fairytale on why and discussions etc.) in ONE document. It is rather simple when you get used to how it works, and it really makes life much more easy. Both for this course, but also for all other tasks which involves data analysis and is to be presented as a report.
 
-It is refereed to as reproducible data analysis, and is the opposite of Excel-Hell, where the latter is characterized by being non transparent, and really hard to figure out what happened between data and results.
+It is referred to as reproducible data analysis, and is the opposite of Excel-Hell, where the latter is characterized by being non transparent, and really hard to figure out what happened between data and results.
 
-::: {callout-important}
-    Rmarkdown is especially recommended for the hand-in assignemnts doing the course.
-:::
+
+**Rmarkdown is especially recommended for the hand-in assignemnts doing the course.**
+
 
 ### How to setup a Rmarkdown document
+
+Setting up an Rmarkdown document is easy and fast using RStudio. See the [video](#fig-setup-vid) below or follow the written instructions.  
 
 To setup a new Rmarkdown document do the following:
 
@@ -229,7 +237,27 @@ output: html_document # Change this to pdf_document for pdf output
 
 These settings can be changed whenever. For more info on fancy settings see [guide on HTML outputs](https://bookdown.org/yihui/rmarkdown/html-document.html#html-document) or [guide on PDF outputs](https://bookdown.org/yihui/rmarkdown/pdf-document.html#pdf-document).
 
-### Mixing code and text in Rmarkdown
+<<<<<<< HEAD
+````
+=======
+>>>>>>> 87cad8f (Adding more content. Updating README and others.)
+:::{#fig-setup-vid}
+
+{{< video 01_setup_rmarkdown.mp4
+    title="Setting up an Rmarkdown document"
+>}}
+
+A video on how to setup an Rmarkdown document using Rstudio.
+:::
+<<<<<<< HEAD
+````
+=======
+
+>>>>>>> 87cad8f (Adding more content. Updating README and others.)
+
+### Rendering markdown documents
+
+For a guide on how to render as `html` and `pdf` see the [video](#fig-render-vid) below. 
 
 ::: {.callout-important}
 # LaTeX distribution for pdf output
@@ -253,3 +281,51 @@ tinytex::install_tinytex()
 3. You should now be able to create a pdf output.
 
 :::
+
+<<<<<<< HEAD
+````
+=======
+
+>>>>>>> 87cad8f (Adding more content. Updating README and others.)
+:::{#fig-render-vid}
+
+{{< video 02_render_rmarkdown.mp4
+    title="Rendering an Rmarkdown document"
+>}}
+
+A video on how to render Rmarkdown documents as HTML and PDF.
+:::
+<<<<<<< HEAD
+````
+=======
+>>>>>>> 87cad8f (Adding more content. Updating README and others.)
+
+### Mixing text, code, and math
+
+In Rmarkdown you can easily mix text, code, mathematical expressions and much more. For a guide on how to format text, code etc. see the [video](#fig-format-vid) or the instructions below.
+
+Instructions on how to format text, renderable code etc. can be found in multiple places:
+
+* As the standard text that is already in your `.Rmd` document when you first create it.
+* As the Markdown Quick Reference within RStudio.
+    * Go to Help > Markdown Quick Reference
+* As the Rmarkdown Cheat Sheet.
+    * Go to Help > Cheat Sheets > R Markdown Cheat Sheet
+
+<<<<<<< HEAD
+````
+=======
+>>>>>>> 87cad8f (Adding more content. Updating README and others.)
+:::{#fig-format-vid}
+
+{{< video 03_format_rmarkdown.mp4
+    title="Formatting an Rmarkdown document"
+>}}
+
+A video on how to format text, code, math, list etc. within Rmarkdown documents.
+<<<<<<< HEAD
+:::
+````
+=======
+:::
+>>>>>>> 87cad8f (Adding more content. Updating README and others.)

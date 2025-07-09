@@ -171,6 +171,9 @@ h4, .h4 {
     color: red !important;
 }
 
+.icon_text { /*-- <p class="icon_text"> This text will have an icon. </p> --*/
+    font-family: "Font Awesome 5 Free";}
+
 .code_text { /*-- <p class="code_text"> This text will be monospaced. </p> --*/
     font-family:  SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
     font-size: 0.9em;

@@ -1,0 +1,34 @@
+# Other resources
+
+Here you can find a selection of other resources for learning stastistics and programming. 
+
+## Statistics 
+
+### YouTube channels
+- [StatQuest with Josh Starmer](https://www.youtube.com/@statquest)
+- [Very Normal](https://www.youtube.com/@very-normal)
+- [Zedstastitics](https://www.youtube.com/@zedstatistics)
+
+### E-books
+- [Process Improvement Using Data](https://learnche.org/pid/contents)
+- [Statistical Thinking for the 21st Century](https://statsthinking21.github.io/statsthinking21-core-site/index.html)
+- [ANOVA and Mixed Models](https://people.math.ethz.ch/~meier/teaching/anova/)
+
+
+## Learning R
+
+### Websites
+- [The R Graph Gallery](https://r-graph-gallery.com/)
+- [Statistical tools for high-throughput data analysis](https://www.sthda.com/english/)
+
+### Cheat sheets
+- [RStudio IDE](https://rstudio.github.io/cheatsheets/html/rstudio-ide.html)
+- [Data visualization with ggplot2](https://rstudio.github.io/cheatsheets/html/data-visualization.html)
+- [Data import with the tidyverse](https://rstudio.github.io/cheatsheets/html/data-import.html)
+- [Data transformation with dplyr](https://rstudio.github.io/cheatsheets/html/data-transformation.html)
+- [Data tidying with tidyr](https://rstudio.github.io/cheatsheets/html/tidyr.html)
+- [rmarkdown ](https://rstudio.github.io/cheatsheets/html/rmarkdown.html)
+
+### E-books
+- [R for Data Science](https://r4ds.hadley.nz/)
+- [R Graphics Cookbook](https://r-graphics.org/)

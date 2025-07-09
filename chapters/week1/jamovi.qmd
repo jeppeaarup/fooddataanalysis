@@ -1,0 +1,203 @@
+# jamovi - a statistical spreadsheet
+
+::: {.callout-tip}
+## Learning objectives
+
+The learning objectives for this theme is to:
+
+* Understand that jamovi is a software for statistical analysis built on R code.
+* Be able to import and manipulate data in jamovi.
+* Be able to translate between R and jamovi using code produced in jamovi.
+
+:::
+
+## Material
+
+Below is some material for you to install and learn how to use jamovi.
+
+* [jamovi desktop installation](https://www.jamovi.org/download.html)
+* [jamovi quick start guide](https://www.jamoviguide.com/index.html)
+* [jamovi user manual](https://www.jamovi.org/user-manual.html)
+
+## Introduction to jamovi - in short {#sec-intro-to-jamovi}
+
+jamovi is a statistical spreadsheet based on R. It is useful for doing statistical analysis without the need to write code. However, it does also come with some limitaitons, and many will find that it is not nearly as flexible as R. So while it is a great tool for statistics, it does not void the benefit of learning to code.
+
+In jamovi it is possible to:
+
+* Import and manipulate data.
+    * This includes filtering of existing variables and creating new variables by transformation of existing ones.
+* Create tables of descriptive statistics with accompanying plots.
+    * This includes tables of mean, median, mode, variance and so on.
+    * The plots include histograms, boxplots, violinplots, qq-plots etc.
+* Do inferential statistics.
+    * Such as t-test, ANOVA, and chi-squared tests.
+* Work with latent variable models.
+    * Such as PCA.
+
+All of this will end up in a report created by jamovi. In this report it is possible to add text as well as export results for use in other software.
+
+::: {.callout-important}
+# jamovi uses R code
+
+It is important to note that jamovi uses R-based code behind the scenes. Most of jamovi's outputs are based on the `jmv` package which can be installed and run in R. 
+
+:::
+
+### Importing data 
+
+To open a dataset in jamovi:
+
+1. Click on the <i class="fa-solid fa-bars"></i>-menu in the upperleft corner.
+2. Click "Open" and choose a the data file you want to import.
+3. jamovi will now open the file in a new instance. 
+
+The [video](#fig-jamovi-import-vid) below describes how to import and manipulate data in jamovi.
+
+<<<<<<< HEAD
+````
+=======
+>>>>>>> 87cad8f (Adding more content. Updating README and others.)
+:::{#fig-jamovi-import-vid}
+
+{{< video 04_import_jamovi.mp4
+    title="Importing data in jamovi"
+>}}
+
+A video showing how to import data in jamovi. 
+:::
+<<<<<<< HEAD
+````
+=======
+>>>>>>> 87cad8f (Adding more content. Updating README and others.)
+
+### Analyzing data
+
+To analyze a dataset in jamovi:
+
+1. Navigative the the "Analyses" tab. 
+2. Click on the type of analysis you need.
+    * Such as Explorative, T-Tests, ANOVA, Regression and so on.
+3. A window will open on the left hand side making it possible to add variables to the analysis.
+4. The report on the right hand side will now include results and plots of your choosing.
+
+The [video](#fig-jamovi-analysis-vid) below describes how to analyze data in jamovi.
+
+::: {.callout-tip}
+# Installing modules in jamovi
+It is possible to install packages - called *modules* - in jamovi to get more functionality:
+
+1. Click on the "Modules" plus-sign in the upper right corner.
+2. Choose "jamovi library".
+3. A window will open where you can add modules to your current installation of jamovi. 
+
+:::
+
+<<<<<<< HEAD
+````
+=======
+>>>>>>> 87cad8f (Adding more content. Updating README and others.)
+:::{#fig-jamovi-analysis-vid}
+
+{{< video 05_analysis_jamovi.mp4
+    title="Doing analysis in jamovi"
+>}}
+
+A video showing how to do analysis in jamovi.
+:::
+<<<<<<< HEAD
+````
+=======
+>>>>>>> 87cad8f (Adding more content. Updating README and others.)
+
+### Create computed variables
+
+It is possible to create new variables from excisting variables in jamovi - so called computed variables:
+
+1. Navigate to the "Variables" tab.
+2. Click "Add" and choose wether to insert a transformed or computed variable.
+3. Choose the function you want to ue for computing the new variable.
+    * This can be filter functions as well as mathematical transformations.
+
+The [video](#fig-jamovi-computed-vid) below describes how to create computed variables in jamovi.
+
+<<<<<<< HEAD
+````
+=======
+>>>>>>> 87cad8f (Adding more content. Updating README and others.)
+:::{#fig-jamovi-computed-vid}
+
+{{< video 06_computed_jamovi.mp4
+    title="Creating computed variables in jamovi"
+>}}
+
+A video showing how to create computed variables in jamovi.
+:::
+<<<<<<< HEAD
+````
+=======
+>>>>>>> 87cad8f (Adding more content. Updating README and others.)
+
+
+### Extraction R code from jamovi
+
+As mentioned, jamovi calls R code in the background. It is possible to extract this code and run it directly in R.
+
+1. Create some sort of analysis.
+2. Click on the three dots in the upper right corner and put a check mark in "Syntax mode".
+3. You will now see code for each analysis that you can copy and insert directly into R.
+4. Make sure that you have installed the packages and loaded the data before running the call in R - [see the example below](#a-short-example).
+    * Sometimes the data variable name is different in R than in jamovi - make sure you update the code accordingly.
+
+The [video](#fig-jamovi-code-vid) below describes how to extract R code from jamovi.
+
+<<<<<<< HEAD
+````
+=======
+>>>>>>> 87cad8f (Adding more content. Updating README and others.)
+:::{#fig-jamovi-code-vid}
+
+{{< video 07_code_jamovi.mp4
+    title="Extracting R code from jamovi"
+>}}
+
+A video showing how to extract R code from jamovi and using it in R.
+:::
+<<<<<<< HEAD
+````
+=======
+>>>>>>> 87cad8f (Adding more content. Updating README and others.)
+
+#### A short example
+The code below has been constructed from the code generated by jamovi as well as a few function written in R. It generates a descriptive table as well as a few plots.
+
+::: {.callout-note}
+# The namespace operator
+The `::` notation - called the *namespace operator* - in R indicates that the `descriptives` function is a part of the `jmv` package. It is a way to call functions from a specific package without having to load the entire package using `library(jmv)`. 
+
+The namespace operator can also be used with other packages, for example `readxl::read_excel()`.
+
+:::
+
+```{r}
+#| eval: false
+# Install package "jmv" if not already installed
+install.packages("jmv")
+
+# Load data that is also used in jamovi 
+load("~/jamovi_example/MouseWheelCaffeine.RData")
+
+# This is the code from jamovi
+# The jmv:: notations means that it is using the "jmv" package
+jmv::descriptives(
+  formula = RPM7 ~ Caffeine:MouseType,
+  data = X, # Make sure to change the data name. Here I use "X"
+  desc = "rows",
+  hist = TRUE,
+  bar = TRUE,
+  box = TRUE,
+  dot = TRUE)
+
+```
+
+The code above returns a *very* pretty descriptive table as well as a histogram, a barchart, and a boxplot with jittered dots. All the plots can be viewed using the navigator arrows in the Rstudio plot viewer.

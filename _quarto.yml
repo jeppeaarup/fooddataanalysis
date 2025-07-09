@@ -14,6 +14,7 @@ book:
     - part: chapters/week1/week_1.qmd
       chapters: 
         - chapters/week1/r_basics.qmd
+        - chapters/week1/jamovi.qmd
         - chapters/week1/descriptive_statistics.qmd
         - chapters/week1/debugging.qmd
         - chapters/week1/plotting.qmd
@@ -65,6 +66,8 @@ book:
   # Appendices
   appendices:
   - chapters/appendix/data_wrangling.qmd
+  - chapters/appendix/llm.qmd
+  - chapters/appendix/other_resources.qmd
 
 
 # Book layout options ----

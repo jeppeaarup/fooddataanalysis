@@ -52,7 +52,7 @@ $$
 \text{corr}_{XY} = \frac{\text{cov}_{XY}}{s_X \cdot s_Y},
 $$
 
-where $s_X$ and $s_Y$ are the standard deviation for $X$ and $Y$ respectively (see 2.4.1 for details).
+where $s_X$ and $s_Y$ are the standard deviation for $X$ and $Y$ respectively (see @sec-estimation-of-parameters for details).
 
 Dividing the covariance by the individual standard deviations put the correlation coefficient in the range between −1 and 1
 

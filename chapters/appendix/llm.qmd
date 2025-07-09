@@ -1,0 +1,101 @@
+# LLMs in programming  {#sec-llms}
+
+Large Language Models (LLMs) like ChatGPT, Claude, and GitHub Copilot are powerful tools when performing programming tasks. LLMs can be used for tasks like:
+
+* **Understanding code:** LLMs can be used to explain what the code does and how.
+* **Creating scripts:** LLMs can create a starting point for when you need to accomplish a certain task via code.
+* **Debugging code:** LLMs are excellent for debugging code.
+
+::: {.callout-warning}
+LLMs can make errors and sometimes make stuff up (hallucinations). Therefore, programming is still an important skill for statistics such that one can verify the code actually does what is expected.
+:::
+
+## Best practices and limitations
+
+### Do's
+- Always verify LLM-generated code.
+- Specify what you want to achieve and the program you are using.
+- Request explanations of code functions.
+- Specify your exact package versions when encountering errors.
+
+### Don'ts
+- Don't run code without understanding it.
+- Don't assume the first solution is optimal.
+- Don't forget to validate statistical calculations.
+- Don't share sensitive data in prompts.
+
+### Common Issues
+- **Outdated syntax**: LLMs may suggest old library versions.
+- **Statistical validity**: Code may work but use inappropriate methods.
+
+## How to prompt
+
+Prompting is the process of providing input text (called a "prompt") to an LLM to get a desired response. When you type a question or instruction to an LLM, you are creating a prompt. The LLM processes this text and generates a response based on patterns it learned during training. The quality and specificity of your prompt directly influences the usefulness of the response.
+
+Below are some tips and tricks on how to write effective prompts. 
+
+### Generating code with LLMs
+
+#### Be specific and contextual
+
+Always mention important specifics such as:
+
+* The programming language and packages you are using.
+* How your data is structured.
+* The specific function/analysis you need.
+
+**Poor prompt**
+
+> Write some code to so I can analyze my data
+
+**Better prompt**
+
+> I have a CSV file with columns 'age', 'income', and 'education_level'. I need R code using tidyverse to calculate mean income by education level and create a bar chart using ggplot2.
+
+#### Start simple and build on complexity
+
+* Start with a simple code written by the LLM or you.
+* This tends to get rid of most hallucinations.
+
+**First prompt**
+
+> I have a dataframe in R with the columns 'miles-per-gallon' and 'price'. Create a simple scatterplot using ggplot2 with the 'miles-per-gallon' on the x-axis and 'price' on the y-axis.  
+
+**Second prompt**
+
+> Add a regression line, confidence intervals, and custom labels to the scatterplot.
+
+### Debugging with LLMs
+
+#### Share details
+
+* Share current code, error message, and what you are trying to accomplish.
+* Remember to never share sensitive data in prompts.
+
+**Poor prompt** 
+
+> This code gives an error.
+>
+> ggplot(iris, Sepal.Length, Sepal.Width) +
+> geom_point()
+
+**Better prompt** 
+
+> I am trying to create a scatterplot using ggplot2 in R. My dataframe is called 'iris' and contains the two variables 'Sepal.Length' and 'Sepal.Width'.
+>
+> ggplot(iris, Sepal.Length, Sepal.Width) +
+> geom_point()
+>
+> The code above returns the following error:
+> Error: Object 'Sepal.Length' is not found
+
+
+#### Share expected vs actual behaviour
+
+* Share your code, what it outputs and what you were expecting.
+
+> I am doing ANOVA in R. The model summary shows only on degree of freedom, even though my data contains five groups. 
+> 
+> fit <- aov(values ~ group, data = data)
+> summary(fit)
+> I know the df should be 4. What can be wrong?
