@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-5ebd9e89ec1851bec01474c87e21370a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-57fa7c166eed9b724d4891ac1089ac3a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -722,13 +722,13 @@ n = 10 \times 4 = 40 \text{ observations.}
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(weight_data) <span class="co"># Show the first 6 rows of the data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  person     week1    week2     week3    week4
-1      1  39.00283 77.40703  90.60888 57.81771
-2      2  47.73804 79.11512  51.74069 59.19413
-3      3 103.80805 41.69858  45.86813 63.09600
-4      4  31.57683 38.79394  55.04001 66.57640
-5      5  38.19645 53.49807  74.23110 65.44706
-6      6  78.11681 60.40187 110.59487 49.74138</code></pre>
+<pre><code>  person    week1    week2     week3    week4
+1      1 63.65420 51.82889  70.43640 69.64181
+2      2 82.52186 57.75702 107.99418 71.58120
+3      3 46.23159 56.47377  81.30373 60.50684
+4      4 87.45990 94.92606  52.25914 75.58260
+5      5 43.33043 73.33685  58.24029 85.13847
+6      6 95.67937 54.84374  85.67053 92.48265</code></pre>
 </div>
 </div>
 <p>It is clear that this data does not currently conform to the principles of tidy data. The variable “Which week is this measurement from?” is spread out across the column names of the last 4 columns. That is not practical for working with it in R, and something as simple as plotting the data using <code>ggplot2</code> would be almost impossible.</p>
@@ -749,12 +749,12 @@ n = 10 \times 4 = 40 \text{ observations.}
 <pre><code># A tibble: 6 × 3
   person week  weight
    &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt;
-1      1 week1   39.0
-2      1 week2   77.4
-3      1 week3   90.6
-4      1 week4   57.8
-5      2 week1   47.7
-6      2 week2   79.1</code></pre>
+1      1 week1   63.7
+2      1 week2   51.8
+3      1 week3   70.4
+4      1 week4   69.6
+5      2 week1   82.5
+6      2 week2   57.8</code></pre>
 </div>
 </div>
 <p>Now the data has been converted into a tidy format. Each row is an observation, and each column is a variable describing a parameter of the observation:</p>
