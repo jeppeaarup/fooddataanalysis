@@ -237,23 +237,17 @@ output: html_document # Change this to pdf_document for pdf output
 
 These settings can be changed whenever. For more info on fancy settings see [guide on HTML outputs](https://bookdown.org/yihui/rmarkdown/html-document.html#html-document) or [guide on PDF outputs](https://bookdown.org/yihui/rmarkdown/pdf-document.html#pdf-document).
 
-<<<<<<< HEAD
-````
-=======
->>>>>>> 87cad8f (Adding more content. Updating README and others.)
+
 :::{#fig-setup-vid}
 
-{{< video 01_setup_rmarkdown.mp4
+{{< video https://www.youtube.com/watch?v=7v4NDxdZsCk
+    start="0"
     title="Setting up an Rmarkdown document"
 >}}
 
 A video on how to setup an Rmarkdown document using Rstudio.
 :::
-<<<<<<< HEAD
-````
-=======
 
->>>>>>> 87cad8f (Adding more content. Updating README and others.)
 
 ### Rendering markdown documents
 
@@ -282,23 +276,17 @@ tinytex::install_tinytex()
 
 :::
 
-<<<<<<< HEAD
-````
-=======
 
->>>>>>> 87cad8f (Adding more content. Updating README and others.)
 :::{#fig-render-vid}
 
-{{< video 02_render_rmarkdown.mp4
+{{< video https://www.youtube.com/watch?v=7v4NDxdZsCk
+    start="111"
     title="Rendering an Rmarkdown document"
 >}}
 
 A video on how to render Rmarkdown documents as HTML and PDF.
 :::
-<<<<<<< HEAD
-````
-=======
->>>>>>> 87cad8f (Adding more content. Updating README and others.)
+
 
 ### Mixing text, code, and math
 
@@ -312,20 +300,14 @@ Instructions on how to format text, renderable code etc. can be found in multipl
 * As the Rmarkdown Cheat Sheet.
     * Go to Help > Cheat Sheets > R Markdown Cheat Sheet
 
-<<<<<<< HEAD
-````
-=======
->>>>>>> 87cad8f (Adding more content. Updating README and others.)
+
 :::{#fig-format-vid}
 
-{{< video 03_format_rmarkdown.mp4
+{{< video https://www.youtube.com/watch?v=7v4NDxdZsCk
+    start="291"
     title="Formatting an Rmarkdown document"
 >}}
 
 A video on how to format text, code, math, list etc. within Rmarkdown documents.
-<<<<<<< HEAD
 :::
-````
-=======
-:::
->>>>>>> 87cad8f (Adding more content. Updating README and others.)
+
